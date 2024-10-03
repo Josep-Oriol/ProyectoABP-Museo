@@ -1,0 +1,48 @@
+@import "variables.scss";
+
+header{
+
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+
+    >img{
+        margin: 3%;
+        width: 15vw;
+        height: auto;
+    }
+    >nav{
+        display: flex;
+        justify-content: space-between;
+        width: 30vw;
+        margin-right: 7vw;
+        >a{
+            text-decoration: none;
+            color: white;
+            font-size: 120%;
+        }
+        >a:hover{
+            color: $color_claro;
+            scale: 1.05;
+        }
+    }
+    >div{
+        margin-right: 3vw;
+        >a{
+            >img{
+                width: 2.5vw;
+                height: auto;
+                margin-left: 2vw;
+            }
+            >img:hover{
+                scale: 1.1;
+            }
+        }
+        
+    }
+    
+}
+

@@ -1,0 +1,39 @@
+header {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+}
+header > img {
+  margin: 3%;
+  width: 15vw;
+  height: auto;
+}
+header > nav {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  margin-right: 7vw;
+}
+header > nav > a {
+  text-decoration: none;
+  color: white;
+  font-size: 120%;
+}
+header > nav > a:hover {
+  color: #CFD1D4;
+  scale: 1.05;
+}
+header > div {
+  margin-right: 3vw;
+}
+header > div > a > img {
+  width: 2.5vw;
+  height: auto;
+  margin-left: 2vw;
+}
+header > div > a > img:hover {
+  scale: 1.1;
+}/*# sourceMappingURL=header.css.map */

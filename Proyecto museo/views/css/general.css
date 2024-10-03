@@ -1,0 +1,38 @@
+#general {
+  width: 100vw;
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+#general > :first-child {
+  font-size: larger;
+}
+#general > :last-child {
+  border: solid 2px black;
+  border-radius: 15px;
+}
+#general > :last-child > :first-child {
+  display: flex;
+  align-items: center;
+  height: 4vh;
+}
+#general > :last-child > :first-child > img {
+  width: auto;
+  height: 3vh;
+  margin-left: 0.5vw;
+}
+#general > :last-child > :first-child > input {
+  height: 4vh;
+  border: none;
+  margin-right: 0.5vw;
+  outline: none;
+  margin-left: 1vw;
+  font-size: medium;
+}
+#general > :last-child > :first-child > input:focus {
+  border: none;
+  outline: none;
+}/*# sourceMappingURL=general.css.map */

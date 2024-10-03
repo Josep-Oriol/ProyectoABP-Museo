@@ -1,0 +1,163 @@
+#login {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* Seleccionar el primer hijo */
+  /* Seleccionar el segundo hijo */
+}
+#login > :first-child {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CFD1D4;
+}
+#login > :first-child > img {
+  width: 70%;
+  height: auto;
+}
+#login > :nth-child(2) {
+  width: 50vw;
+  height: 100vh;
+}
+#login > :nth-child(2) > :first-child {
+  display: flex;
+  justify-content: space-between;
+}
+#login > :nth-child(2) > :first-child img {
+  width: 4vw;
+  height: auto;
+}
+#login > :nth-child(2) > :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+}
+#login > :nth-child(2) > :nth-child(2) img {
+  width: 15vw;
+  height: auto;
+}
+#login > :nth-child(2) > :last-child {
+  display: flex;
+  justify-content: center;
+}
+#login > :nth-child(2) > :last-child > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#login > :nth-child(2) > :last-child > form > input {
+  font-size: medium;
+  border: none;
+  background-color: white;
+  margin-bottom: 7vh;
+  border-bottom: 4px solid black;
+  width: 15vw;
+}
+#login > :nth-child(2) > :last-child > form > input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 4px solid black;
+}
+#login > :nth-child(2) > :last-child > form > :last-child {
+  font-size: medium;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  width: 7vw;
+  height: 3vh;
+}
+#login > :nth-child(2) > :last-child > form > :last-child:hover {
+  background-color: white;
+  color: black;
+  border: solid 2px black;
+}
+
+header {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+}
+header > img {
+  margin: 3%;
+  width: 15vw;
+  height: auto;
+}
+header > nav {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  margin-right: 7vw;
+}
+header > nav > a {
+  text-decoration: none;
+  color: white;
+  font-size: 120%;
+}
+header > nav > a:hover {
+  color: #CFD1D4;
+  scale: 1.05;
+}
+header > div {
+  margin-right: 3vw;
+}
+header > div > a > img {
+  width: 2.5vw;
+  height: auto;
+  margin-left: 2vw;
+}
+header > div > a > img:hover {
+  scale: 1.1;
+}
+
+#general {
+  width: 100vw;
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+#general > :first-child {
+  font-size: larger;
+}
+#general > :last-child {
+  border: solid 2px black;
+  border-radius: 15px;
+}
+#general > :last-child > :first-child {
+  display: flex;
+  align-items: center;
+  height: 4vh;
+}
+#general > :last-child > :first-child > img {
+  width: auto;
+  height: 3vh;
+  margin-left: 0.5vw;
+}
+#general > :last-child > :first-child > input {
+  height: 4vh;
+  border: none;
+  margin-right: 0.5vw;
+  outline: none;
+  margin-left: 1vw;
+  font-size: medium;
+}
+#general > :last-child > :first-child > input:focus {
+  border: none;
+  outline: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}/*# sourceMappingURL=main.css.map */
