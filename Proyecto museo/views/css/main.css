@@ -58,6 +58,7 @@
   width: 15vw;
 }
 #login > :nth-child(2) > :last-child > form > input:focus {
+  background-color: white;
   border: none;
   outline: none;
   border-bottom: 4px solid black;
@@ -70,11 +71,12 @@
   border-radius: 10px;
   width: 7vw;
   height: 3vh;
+  transition: background-color 0.3s, scale 0.3s;
 }
 #login > :nth-child(2) > :last-child > form > :last-child:hover {
-  background-color: white;
-  color: black;
   border: solid 2px black;
+  cursor: pointer;
+  scale: 1.05;
 }
 
 header {
@@ -87,7 +89,7 @@ header {
 }
 header > img {
   margin: 3%;
-  width: 15vw;
+  width: 17vw;
   height: auto;
 }
 header > nav {
@@ -100,6 +102,7 @@ header > nav > a {
   text-decoration: none;
   color: white;
   font-size: 120%;
+  transition: scale 0.3s;
 }
 header > nav > a:hover {
   color: #CFD1D4;
@@ -112,48 +115,177 @@ header > div > a > img {
   width: 2.5vw;
   height: auto;
   margin-left: 2vw;
+  transition: scale 0.3s;
 }
 header > div > a > img:hover {
   scale: 1.1;
 }
 
-#general {
+#general > :first-child {
+  display: flex;
   width: 100vw;
   height: 12vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
-#general > :first-child {
-  font-size: larger;
+#general > :first-child > :first-child {
+  font-size: 1.1rem;
+  font-weight: normal;
 }
-#general > :last-child {
+#general > :first-child > :nth-child(2) {
   border: solid 2px black;
   border-radius: 15px;
 }
-#general > :last-child > :first-child {
+#general > :first-child > :nth-child(2) > :first-child {
   display: flex;
   align-items: center;
   height: 4vh;
 }
-#general > :last-child > :first-child > img {
+#general > :first-child > :nth-child(2) > :first-child > img {
   width: auto;
   height: 3vh;
   margin-left: 0.5vw;
 }
-#general > :last-child > :first-child > input {
+#general > :first-child > :nth-child(2) > :first-child > input {
   height: 4vh;
   border: none;
-  margin-right: 0.5vw;
+  margin-right: 0.7vw;
   outline: none;
   margin-left: 1vw;
   font-size: medium;
 }
-#general > :last-child > :first-child > input:focus {
+#general > :first-child > :nth-child(2) > :first-child > input:focus {
   border: none;
   outline: none;
+}
+#general > :last-child {
+  display: flex;
+  justify-content: center;
+}
+#general > :last-child table {
+  width: 80vw;
+  border-collapse: separate;
+  border-spacing: 0 2vh;
+}
+#general > :last-child table tr {
+  font-size: larger;
+}
+#general > :last-child table tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+#general > :last-child table tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#general > :last-child table tr td {
+  padding: 1.3vh;
+  text-align: center;
+}
+#general > :last-child table tr:first-child {
+  background-color: black;
+  color: white;
+}
+#general > :last-child table tr:nth-child(even):not(:first-child) {
+  background-color: grey;
+}
+#general > :last-child table tr:nth-child(odd):not(:first-child) {
+  background-color: #CFD1D4;
+}
+#general button {
+  background-color: grey;
+}
+
+footer {
+  position: absolute; /* Posiciona el footer como absoluto */
+  left: 0; /* Alinea el footer a la izquierda */
+  bottom: 0; /* Coloca el footer en la parte inferior */
+  right: 0; /* Alinea el footer a la derecha */
+  width: 100%;
+  height: 20vh;
+  background-color: #181B1E;
+  display: flex;
+}
+footer .div1 {
+  width: 50%;
+  height: 100%;
+}
+footer .div1 img {
+  max-width: 50%;
+  display: block;
+  margin-left: 60px;
+  margin-top: 10px;
+}
+footer .div1 :first-child {
+  width: 15vw;
+  height: auto;
+  margin-left: 50px;
+}
+footer .div1 :last-child {
+  width: 20vw;
+  height: auto;
+}
+footer .div2 {
+  width: 50%;
+  height: 100%;
+  color: white;
+}
+footer .div2 .ubicacion {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .ubicacion img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .ubicacion a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .llamada {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .llamada img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .llamada a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .web {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .web img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .web a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
 }
 
 * {

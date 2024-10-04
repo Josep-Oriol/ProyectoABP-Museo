@@ -32,10 +32,11 @@ if (class_exists($nombreController)){
         $action = $_GET['action'];
     }
     else{
-        $action ="loginForm";
+        $action ="ValidarUser";
     }
 
-    $controlador->$action();   
+    $controlador->$action();
+
 }else{
 
     echo "No existe el controlador";

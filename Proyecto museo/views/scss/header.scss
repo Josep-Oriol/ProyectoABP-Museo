@@ -11,7 +11,7 @@ header{
 
     >img{
         margin: 3%;
-        width: 15vw;
+        width: 17vw;    
         height: auto;
     }
     >nav{
@@ -23,6 +23,8 @@ header{
             text-decoration: none;
             color: white;
             font-size: 120%;
+
+            transition: scale 0.3s;
         }
         >a:hover{
             color: $color_claro;
@@ -36,6 +38,8 @@ header{
                 width: 2.5vw;
                 height: auto;
                 margin-left: 2vw;
+
+            transition: scale 0.3s;
             }
             >img:hover{
                 scale: 1.1;

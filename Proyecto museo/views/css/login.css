@@ -58,6 +58,7 @@
   width: 15vw;
 }
 #login > :nth-child(2) > :last-child > form > input:focus {
+  background-color: white;
   border: none;
   outline: none;
   border-bottom: 4px solid black;
@@ -70,9 +71,10 @@
   border-radius: 10px;
   width: 7vw;
   height: 3vh;
+  transition: background-color 0.3s, scale 0.3s;
 }
 #login > :nth-child(2) > :last-child > form > :last-child:hover {
-  background-color: white;
-  color: black;
   border: solid 2px black;
+  cursor: pointer;
+  scale: 1.05;
 }/*# sourceMappingURL=login.css.map */

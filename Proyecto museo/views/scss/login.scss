@@ -59,8 +59,10 @@
                     margin-bottom: 7vh;
                     border-bottom: 4px solid black;
                     width: 15vw;
+
                 }
                 >input:focus{
+                    background-color: white;
                     border: none;
                     outline: none;
 
@@ -75,11 +77,13 @@
                     border-radius: 10px;
                     width: 7vw;
                     height: 3vh;
+
+                    transition: background-color 0.3s,  scale 0.3s;
                 }
                 >:last-child:hover{
-                    background-color: white;
-                    color: black;
                     border: solid 2px black;
+                    cursor: pointer;
+                    scale: 1.05;
                 }
             }
         }

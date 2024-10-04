@@ -1,1 +1,88 @@
-/*# sourceMappingURL=footer.css.map */
+footer {
+  position: absolute; /* Posiciona el footer como absoluto */
+  left: 0; /* Alinea el footer a la izquierda */
+  bottom: 0; /* Coloca el footer en la parte inferior */
+  right: 0; /* Alinea el footer a la derecha */
+  width: 100%;
+  height: 20vh;
+  background-color: #181B1E;
+  display: flex;
+}
+footer .div1 {
+  width: 50%;
+  height: 100%;
+}
+footer .div1 img {
+  max-width: 50%;
+  display: block;
+  margin-left: 60px;
+  margin-top: 10px;
+}
+footer .div1 :first-child {
+  width: 15vw;
+  height: auto;
+  margin-left: 50px;
+}
+footer .div1 :last-child {
+  width: 20vw;
+  height: auto;
+}
+footer .div2 {
+  width: 50%;
+  height: 100%;
+  color: white;
+}
+footer .div2 .ubicacion {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .ubicacion img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .ubicacion a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .llamada {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .llamada img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .llamada a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .web {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .web img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .web a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}/*# sourceMappingURL=footer.css.map */

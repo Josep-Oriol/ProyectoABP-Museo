@@ -49,7 +49,7 @@ class Usuarios extends Database {
     
     function verificarLogin($user, $password){
 
-        $sql = "SELECT * FROM usuarios WHERE nombre = '$user' AND contrasenya = '$password'";
+        $sql = "SELECT * FROM usuarios WHERE Nombre = '$user' AND contrasenya = '$password'";
         $db = $this->conectar();
         $rows = $db->query($sql);
         
