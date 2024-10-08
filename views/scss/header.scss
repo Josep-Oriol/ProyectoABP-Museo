@@ -2,13 +2,13 @@
 
 header{
 
-    background-color: black;
+    background-color: $color_oscuro;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
     height: 10vh;
-
+    
     >img{
         margin: 3%;
         width: 17vw;    

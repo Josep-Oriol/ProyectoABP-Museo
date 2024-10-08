@@ -80,7 +80,7 @@
 }
 
 header {
-  background-color: black;
+  background-color: #333333;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -136,30 +136,64 @@ header > div > a > img:hover {
   font-weight: normal;
 }
 #general > :first-child > :nth-child(2) {
+  margin-left: 34vw;
   border: solid 2px black;
-  border-radius: 15px;
+  /*border-radius: 15px;*/
 }
 #general > :first-child > :nth-child(2) > :first-child {
   display: flex;
   align-items: center;
   height: 4vh;
 }
-#general > :first-child > :nth-child(2) > :first-child > img {
+#general > :first-child > :nth-child(2) > :first-child .img_lupa {
   width: auto;
   height: 3vh;
   margin-left: 0.5vw;
+}
+#general > :first-child > :nth-child(2) > :first-child .img_ajustes {
+  width: auto;
+  height: 3vh;
+  margin-left: 0.5vw;
+  padding-right: 1vh;
 }
 #general > :first-child > :nth-child(2) > :first-child > input {
   height: 4vh;
   border: none;
   margin-right: 0.7vw;
   outline: none;
-  margin-left: 1vw;
+  margin-left: 3vw;
   font-size: medium;
 }
 #general > :first-child > :nth-child(2) > :first-child > input:focus {
   border: none;
   outline: none;
+}
+#general > :first-child > :nth-child(3) {
+  display: flex;
+  flex-direction: row;
+}
+#general > :first-child > :nth-child(3) > :first-child {
+  height: 2vh;
+  font-size: larger;
+}
+#general > :first-child > :nth-child(3) > img {
+  width: 2vw;
+  height: 4vh;
+}
+#general > :first-child > :nth-child(3) > img:hover {
+  cursor: pointer;
+}
+#general > :first-child > :last-child {
+  display: flex;
+  flex-direction: row;
+}
+#general > :first-child > :last-child > :first-child {
+  height: 3vh;
+  width: 1.5vw;
+}
+#general > :first-child > :last-child > :last-child {
+  height: 3vh;
+  width: 1.5vw;
 }
 #general > :last-child {
   display: flex;
@@ -186,7 +220,7 @@ header > div > a > img:hover {
   text-align: center;
 }
 #general > :last-child table tr:first-child {
-  background-color: black;
+  background-color: #333333;
   color: white;
 }
 #general > :last-child table tr:nth-child(even):not(:first-child) {
@@ -205,8 +239,8 @@ footer {
   bottom: 0; /* Coloca el footer en la parte inferior */
   right: 0; /* Alinea el footer a la derecha */
   width: 100%;
-  height: 20vh;
-  background-color: #181B1E;
+  height: 21vh;
+  background-color: #333333;
   display: flex;
 }
 footer .div1 {
