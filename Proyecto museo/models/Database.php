@@ -1,7 +1,7 @@
 <?php
 
 class Database{
-   
+   protected $db;
     
     public function conectar(){
         $servername = "localhost";
