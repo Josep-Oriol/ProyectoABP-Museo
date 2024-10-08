@@ -12,10 +12,11 @@ class ObrasController{
 
         require_once "views/general/header.html";
         require_once "views/general/general.php";
-            
-
-
         require_once "views/general/footer.html";
+    }
+
+    function mostrarFicha(){
+        require_once "views/general/fichaObra.php";
     }
 }
 

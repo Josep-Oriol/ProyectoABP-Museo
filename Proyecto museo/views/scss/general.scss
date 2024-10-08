@@ -9,8 +9,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-left: 10vw; 
-        padding-right: 10vw;
+        padding-left: 4vw; 
+        padding-right: 4vw;
         >:first-child{
             font-size: 1.1rem;
             font-weight: normal;
@@ -50,34 +50,38 @@
         justify-content: center;
 
         table{
-            width: 80vw;
+            width: 92vw;
             border-collapse: separate;
-            border-spacing: 0 2vh;
+            border-spacing: 0 0.5vh;
             tr{
-                font-size: larger;
-                td:first-child{
-                    border-top-left-radius: 10px;
-                    border-bottom-left-radius: 10px;
-                }
-                td:last-child{
-                    border-top-right-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                }
-                td{
+                font-size: large;
+                
+                
+                td, th{
                     padding: 1.3vh;
                     text-align: center;
+                    >a{
+                        
+                        >img{
+                            width: 1.5vw;
+                            height: auto;
+                            margin-right: 0.1vw;
+                        }
+                    }
                     
                 }
+                
             }
             tr:first-child{
-                background-color: black;
+                background-color: $color_oscuro2;
                 color: white;
+                
             }
             tr:nth-child(even):not(:first-child){
-                background-color: grey;
+                background-color: $color_claro2;
             }
             tr:nth-child(odd):not(:first-child) {
-                background-color: $color_claro;
+                background-color: $color_claro3;
             }
             
 
