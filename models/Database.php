@@ -1,7 +1,7 @@
 <?php
 
 class Database{
-   
+    
     
     public function conectar(){
         $servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
@@ -10,11 +10,11 @@ class Database{
         $password = "rGDbt4mR8aKmmELLLiXV";
 
         //creem una nova connexió instancinat l'objecte PDO
-		$this->db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
+		$db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
 		// establim el mode PDO error a exception per poder
 		// recuperar les excepccions
-		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         return $this->db;
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         return $db;
     
     }
     
