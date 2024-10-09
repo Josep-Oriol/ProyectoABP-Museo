@@ -2,7 +2,7 @@
 
 class Database{
     
-    private $db;
+    protected $db;
     
     public function conectar(){
         $servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
@@ -15,7 +15,7 @@ class Database{
 		// establim el mode PDO error a exception per poder
 		// recuperar les excepccions
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         return $db;
+         return $this->db;
     
     }
     
