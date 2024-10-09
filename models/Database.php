@@ -4,10 +4,10 @@ class Database{
    
     
     public function conectar(){
-        $servername = "localhost";
-        $dbname= "museu_apelles_fenosa";
-        $username = "root";
-        $password = "";
+        $servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
+        $dbname = "bhj7whmm8g7lraocrcgj";
+        $username = "uzg4eixka4uwk1yt"; 
+        $password = "rGDbt4mR8aKmmELLLiXV";
 
         //creem una nova connexió instancinat l'objecte PDO
 		$this->db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);

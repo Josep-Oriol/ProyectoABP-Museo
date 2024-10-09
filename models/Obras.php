@@ -1,6 +1,8 @@
 <?php
-require_once("database.php");
+require_once("Database.php");
 class Obras extends Database{
+
+	
     private $nombre_obra;
     private $numero_registro;
     private $nombre_museo;
@@ -256,15 +258,78 @@ class Obras extends Database{
 	public function setId_ubicacion($id_ubicacion){
 		$this->id_ubicacion = $id_ubicacion;
 	}
-    
-    public function mostrarObras(){
-        $sql ="SELECT * FROM obras";
+
+	public function mostrarObras(){
+        $sql ="SELECT *, u.Descripcion FROM obras o INNER JOIN ubicaciones u ON u.ID_ubicacion = o.FK_id_ubicacion";
         $db = $this->conectar();
         $rows = $db->query($sql);
 
-        return $rows;
-        
+        return $rows; 
     }
+	
+	public function insertarObra(
+        $numero_registro, $nombre_museo, $fotografia, $clasificacion_generica,
+        $nombre_del_objeto, $coleccion_de_procedencia, $medidas_maxima_altura_cm,
+        $medidas_maxima_anchura_cm, $medidas_maxima_profundidad_cm, $material,
+        $tecnica, $autor, $titulo, $anyo_inicial, $anyo_final, $datacion,
+        $id_ubicacion, $fecha_de_registro, $numero_de_ejemplares, $forma_de_ingreso,
+        $fecha_de_ingreso, $fuente_de_ingreso, $estado_de_conservacion,
+        $lugar_de_ejecucion, $lugar_de_procedencia, $num_tiraje,
+        $otros_numeros_de_identificacion, $valoracion_economica, $bibliografia,
+        $descripcion, $historia_del_objeto, $id_exposicion) {
+        
+		$sql = "INSERT INTO obras
+					VALUES (
+                    '$numero_registro', '$nombre_museo', '$fotografia', '$clasificacion_generica',
+                    '$nombre_del_objeto', '$coleccion_de_procedencia', $medidas_maxima_altura_cm,
+                    $medidas_maxima_anchura_cm, $medidas_maxima_profundidad_cm, '$material',
+                    '$tecnica', '$autor', '$titulo', $anyo_inicial, $anyo_final, '$datacion',
+                    $id_ubicacion, '$fecha_de_registro', $numero_de_ejemplares, '$forma_de_ingreso',
+                    '$fecha_de_ingreso', '$fuente_de_ingreso', '$estado_de_conservacion', 
+                    '$lugar_de_ejecucion', '$lugar_de_procedencia', '$num_tiraje', 
+                    '$otros_numeros_de_identificacion', $valoracion_economica, '$bibliografia',
+                    '$descripcion', '$historia_del_objeto', $id_exposicion)";
+		$this->db->query($sql);
+	}
+
+	public function modificarObra(
+        $numero_registro, $nombre_museo, $fotografia, $clasificacion_generica,
+        $nombre_del_objeto, $coleccion_de_procedencia, $medidas_maxima_altura_cm,
+        $medidas_maxima_anchura_cm, $medidas_maxima_profundidad_cm, $material,
+        $tecnica, $autor, $titulo, $anyo_inicial, $anyo_final, $datacion,
+        $id_ubicacion, $fecha_de_registro, $numero_de_ejemplares, $forma_de_ingreso,
+        $fecha_de_ingreso, $fuente_de_ingreso, $estado_de_conservacion,
+        $lugar_de_ejecucion, $lugar_de_procedencia, $num_tiraje,
+        $otros_numeros_de_identificacion, $valoracion_economica, $bibliografia,
+        $descripcion, $historia_del_objeto, $id_exposicion) {
+        
+		$sql = "UPDATE obras SET
+                    Nombre_museo = '$nombre_museo', Fotografia = '$fotografia', 
+                    Clasificacion_generica = '$clasificacion_generica', 
+                    Nombre_del_objeto = '$nombre_del_objeto', Coleccion_de_procedencia = '$coleccion_de_procedencia',
+                    Medidas_maxima_altura_cm = $medidas_maxima_altura_cm, 
+                    Medidas_maxima_anchura_cm = $medidas_maxima_anchura_cm, 
+                    Medidas_maxima_profundidad_cm = $medidas_maxima_profundidad_cm, 
+                    Material = '$material', Tecnica = '$tecnica', Autor = '$autor', 
+                    Titulo = '$titulo', Año_inicial = $anyo_inicial, Año_final = $anyo_final, 
+                    Datacion = '$datacion', FK_id_ubicacion = $id_ubicacion, 
+                    Fecha_de_registro = '$fecha_de_registro', Numero_de_ejemplares = $numero_de_ejemplares, 
+                    Forma_de_ingreso = '$forma_de_ingreso', Fecha_de_ingreso = '$fecha_de_ingreso', 
+                    Fuente_de_ingreso = '$fuente_de_ingreso', Estado_de_conservacion = '$estado_de_conservacion', 
+                    Lugar_de_ejecucion = '$lugar_de_ejecucion', Lugar_de_procedencia = '$lugar_de_procedencia', 
+                    Num_Tiraje = '$num_tiraje', Otros_numeros_de_identificacion = '$otros_numeros_de_identificacion',
+                    Valoracion_economica = $valoracion_economica, Bibliografia = '$bibliografia', 
+                    Descripcion = '$descripcion', Historia_del_objeto = '$historia_del_objeto', 
+                    FK_id_exposicion = $id_exposicion
+				WHERE Numero_registro = '$numero_registro'";
+		$this->db->query($sql);
+	}
+
+	public function eliminarObra($primary_key) {
+		$sql = "DELETE obras WHERE Numero_registro = '$primary_key'";
+		$this->db->query($sql);
+	}
+    
 }
 
 ?>

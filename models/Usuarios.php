@@ -58,6 +58,7 @@ class Usuarios extends Database {
         return $resultado;
     }
 
+
     
 }
 

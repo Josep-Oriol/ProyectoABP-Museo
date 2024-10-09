@@ -5,8 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 4vw;
+  padding-right: 4vw;
 }
 #general > :first-child > :first-child {
   font-size: 1.1rem;
@@ -77,34 +77,31 @@
   justify-content: center;
 }
 #general > :last-child table {
-  width: 80vw;
+  width: 92vw;
   border-collapse: separate;
-  border-spacing: 0 2vh;
+  border-spacing: 0 0.5vh;
 }
 #general > :last-child table tr {
-  font-size: larger;
+  font-size: large;
 }
-#general > :last-child table tr td:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-#general > :last-child table tr td:last-child {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-#general > :last-child table tr td {
+#general > :last-child table tr td, #general > :last-child table tr th {
   padding: 1.3vh;
   text-align: center;
+}
+#general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
+  width: 1.5vw;
+  height: auto;
+  margin-right: 0.1vw;
 }
 #general > :last-child table tr:first-child {
   background-color: #333333;
   color: white;
 }
 #general > :last-child table tr:nth-child(even):not(:first-child) {
-  background-color: grey;
+  background-color: #BFBFBF;
 }
 #general > :last-child table tr:nth-child(odd):not(:first-child) {
-  background-color: #CFD1D4;
+  background-color: #EFEFEF;
 }
 #general button {
   background-color: grey;
