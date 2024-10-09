@@ -1,6 +1,6 @@
 <?php
-
-class Obras extends Database{	
+require_once "Database.php";
+class Obras extends Database {	
 
     private $numero_registro;
     private $nombre_museo;
