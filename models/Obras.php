@@ -1,9 +1,7 @@
 <?php
-require_once("Database.php");
-class Obras extends Database{
 
-	
-    private $nombre_obra;
+class Obras extends Database{	
+
     private $numero_registro;
     private $nombre_museo;
     private $fotografia;
@@ -40,6 +38,7 @@ class Obras extends Database{
     private $historia_del_objeto;
     private $id_exposicion;
     private $id_ubicacion;
+
 
 	//Getters y Setters
     public function getNumero_registro(){
