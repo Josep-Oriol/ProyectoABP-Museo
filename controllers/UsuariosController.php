@@ -3,7 +3,21 @@
 class UsuariosController{
     
     private $modeloUsuario;
+
+    public function mostrarFicha(){
+        require_once "views/general/fichaUsuario.php";
+    }
     
+    public function mostrarUsuarios(){
+        require_once "models/Usuarios.php";
+        $modeloUsuario = new Usuarios();
+
+        $usuarios = $modeloUsuario->mostrarUsuarios();
+
+        require_once "views/general/header.php";
+        require_once "views/general/gestionUsuarios.php";
+        require_once "views/general/footer.html";
+    }
 
     public function validarUser() {
         require_once "models/Usuarios.php";

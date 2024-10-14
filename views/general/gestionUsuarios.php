@@ -1,21 +1,20 @@
-
 <?php
     if(isset($_SESSION['Rol'])){ ?>
-<div id = "general">
+<div id="general">
     <div>
         <div>
-            <h1>Llistat d'obres</h1>
+            <h1>Usuaris</h1>
         </div>
         <div>
             <div>
-                <img src="images/lupa.png" alt="">
+                <img class="img_lupa" src="images/lupa.png" alt="">
                 <input type="text">
-                <img src="images/ajustes_deslizadores.png" alt="">
+                <img class="img_ajustes" src="images/ajustes_deslizadores.png" alt="">
             </div>
         </div>
-        <div class="obras_visibles_desplegable">
+        <div class="usuarios_visibles_desplegable">
             <div>0-50</div>
-            <img src="images/flecha_abajo.png" alt="">
+            <img class="flecha_abajo" src="images/flecha_abajo.png" alt="">
         </div>
         <div>
             <img src="images/flecha_izquierda.png" alt="">
@@ -25,49 +24,47 @@
     <div>
         <table>
             <tr>
-                <td>Imatge</td>
-                <td>NºRegistre</td>
+                <td>ID</td>
                 <td>Nom</td>
-                <td>Títol</td>
-                <td>Autor</td>
-                <td>Datació</td>
-                <td>Ubicació</td>
+                <td>Cognoms</td>
+                <td>Telefón</td>
+                <td>Rol</td>
+                <td>Estat</td>
                 <td> 
 
                     <form action="" method="POST">
-                        <input type="submit" value="+ Obras">
+                        <input type="submit" value="+ usuarios">
                     </form>
                 </td>
             </tr>
         <?php
-    foreach($obras as $indice => $obra) {
-        $id = $obra['Numero_registro'];
+    foreach($usuarios as $indice => $usuario) {
+        $id = $usuario['ID_usuario'];
         echo "<tr>
-            <td>{$obra['Fotografia']}</td>
-            <td>{$obra['Numero_registro']}</td>
-            <td>{$obra['Nombre_del_objeto']}</td>
-            <td>{$obra['Titulo']}</td>
-            <td>{$obra['Autor']}</td>
-            <td>{$obra['Datacion']}</td>
-            <td>{$obra['Descripcion']}</td>
+            <td>{$usuario['ID_usuario']}</td>
+            <td>{$usuario['Nombre']}</td>
+            <td>{$usuario['Apellidos']}</td>
+            <td>{$usuario['Telefono']}</td>
+            <td>{$usuario['Rol']}</td>
+            <td>{$usuario['Estado']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
                     <a href=""><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                     <a href=""><img src="images/borrarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
                     <a href=""><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
                 ?>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                 <?php
             }
             echo "</td>";

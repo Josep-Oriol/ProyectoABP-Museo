@@ -1,13 +1,13 @@
 @import "variables.scss";
 
 header{
-
     background-color: $color_oscuro;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
     height: 10vh;
+    position: sticky;
     
     >img{
         margin: 3%;
@@ -19,34 +19,85 @@ header{
         justify-content: space-between;
         width: 30vw;
         margin-right: 7vw;
+        
         >a{
             text-decoration: none;
             color: white;
-            font-size: 120%;
-
+            font-size: 1.2rem;
             transition: scale 0.3s;
         }
+
         >a:hover{
             color: $color_claro;
             scale: 1.05;
         }
+
+        >div{
+            
+            >a{
+                color: white;
+                text-decoration: none;
+                font-size: 1.2rem;
+            }
+
+            >div{
+                font-size: 1.2rem;
+                opacity: 0;
+                height: 0;
+                display: block;
+                position: absolute;
+                min-width: 15vw;
+                z-index: 1;
+                background-color: $color_claro;
+                overflow: hidden; /* Para ocultar contenido que exceda la altura */
+                transition: all 0.3s ease; /* Transición de todos los parámetros */
+                border: solid 2px transparent; /* Borde invisible al inicio */
+
+                >a{
+                    color: black;
+                    text-decoration: none;
+                    padding: 5%;
+                    display: block;
+                    transition: color 0.3s;
+                }
+                >a:hover{
+                    color: $color_oscuro;
+                }
+            }
+
+            hr{
+                border: none; 
+                border-radius: 5px;
+                width: 90%;
+                margin-left: 5%;
+                height: 0.5vh;
+                background-color: black;
+            }
+        }
+
+        >div:hover > div{
+            opacity: 1; /* Mostrar */
+            height: auto; /* Dejar que se expanda a su altura natural */
+            border-color: white; /* Cambiar el borde al hacer hover */
+            border-radius: 7px;
+
+        }
     }
+
     >div{
         margin-right: 3vw;
+
         >a{
             >img{
                 width: 2.5vw;
                 height: auto;
                 margin-left: 2vw;
-
-            transition: scale 0.3s;
+                transition: scale 0.3s;
             }
+
             >img:hover{
                 scale: 1.1;
             }
         }
-        
     }
-    
 }
-

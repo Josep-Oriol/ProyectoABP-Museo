@@ -58,6 +58,16 @@ class Usuarios extends Database {
         return $resultado;
     }
 
+    function mostrarUsuarios(){
+        $sql ="SELECT * FROM usuarios";
+        $db = $this->conectar();
+        $rows = $db->query($sql);
+
+        $resultado = $rows->fetch(PDO::FETCH_ASSOC);
+
+        return $rows; 
+    }
+
 
     
 }

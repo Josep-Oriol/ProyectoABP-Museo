@@ -13,36 +13,37 @@ session_start();
 </head>
 <body>
    
-<?php 
-require_once "autoload.php";
+    <?php 
+    require_once "autoload.php";
 
 
-if (isset($_GET['controller'])){
-    $nombreController = $_GET['controller']."Controller";
-    
-}
-else{
-    //Controlador per dedecte
-    $nombreController = "UsuariosController";
-}
-if (class_exists($nombreController)){
-
-    $controlador = new $nombreController(); 
-    if(isset($_GET['action'])){
-        $action = $_GET['action'];
+    if (isset($_GET['controller'])){
+        $nombreController = $_GET['controller']."Controller";
+        
     }
     else{
-        $action ="ValidarUser";
+        //Controlador per dedecte
+        $nombreController = "UsuariosController";
+    }
+    if (class_exists($nombreController)){
+
+        $controlador = new $nombreController(); 
+        if(isset($_GET['action'])){
+            $action = $_GET['action'];
+        }
+        else{
+            $action ="ValidarUser";
+        }
+
+        $controlador->$action();
+
+    }else{
+
+        echo "No existe el controlador";
     }
 
-    $controlador->$action();
-
-}else{
-
-    echo "No existe el controlador";
-}
-
-?>
+    ?>
+    
 </body>
 </html>
 
