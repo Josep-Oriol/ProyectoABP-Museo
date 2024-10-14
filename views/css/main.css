@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #login {
   display: flex;
   width: 100vw;
@@ -86,6 +87,7 @@ header {
   align-items: center;
   width: 100vw;
   height: 10vh;
+  position: sticky;
 }
 header > img {
   margin: 3%;
@@ -101,12 +103,54 @@ header > nav {
 header > nav > a {
   text-decoration: none;
   color: white;
-  font-size: 120%;
+  font-size: 1.2rem;
   transition: scale 0.3s;
 }
 header > nav > a:hover {
   color: #CFD1D4;
   scale: 1.05;
+}
+header > nav > div > a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+header > nav > div > div {
+  font-size: 1.2rem;
+  opacity: 0;
+  height: 0;
+  display: block;
+  position: absolute;
+  min-width: 15vw;
+  z-index: 1;
+  background-color: #CFD1D4;
+  overflow: hidden; /* Para ocultar contenido que exceda la altura */
+  transition: all 0.3s ease; /* Transición de todos los parámetros */
+  border: solid 2px transparent; /* Borde invisible al inicio */
+}
+header > nav > div > div > a {
+  color: black;
+  text-decoration: none;
+  padding: 5%;
+  display: block;
+  transition: color 0.3s;
+}
+header > nav > div > div > a:hover {
+  color: #333333;
+}
+header > nav > div hr {
+  border: none;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 5%;
+  height: 0.5vh;
+  background-color: black;
+}
+header > nav > div:hover > div {
+  opacity: 1; /* Mostrar */
+  height: auto; /* Dejar que se expanda a su altura natural */
+  border-color: white; /* Cambiar el borde al hacer hover */
+  border-radius: 7px;
 }
 header > div {
   margin-right: 3vw;
@@ -121,6 +165,9 @@ header > div > a > img:hover {
   scale: 1.1;
 }
 
+#general {
+  min-height: 70vh;
+}
 #general > :first-child {
   display: flex;
   width: 100vw;
@@ -230,7 +277,26 @@ header > div > a > img:hover {
   background-color: grey;
 }
 
+#popup-overlay {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Oscurece el fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#popup-overlay > div {
+  width: 200px;
+  height: 200px;
+  background-color: black; /* Div negro */
+}
+
 footer {
+  margin-top: 12vh;
   width: 100%;
   height: 21vh;
   background-color: #333333;

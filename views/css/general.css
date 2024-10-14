@@ -1,3 +1,6 @@
+#general {
+  min-height: 70vh;
+}
 #general > :first-child {
   display: flex;
   width: 100vw;
