@@ -81,7 +81,8 @@ CREATE TABLE usuarios (
     Nombre VARCHAR(255) NOT NULL,
     Apellidos VARCHAR(255),
     Contrasenya VARCHAR(255) NOT NULL,
-    Telefono VARCHAR(255),
+    Correo_electronico VARCHAR(255) NOT NULL UNIQUE,
+    Telefono VARCHAR(255) UNIQUE,
     Rol ENUM('Lector', 'Tècnic', 'Administració') NOT NULL,
     Estado ENUM('Actiu', 'Inactiu') NOT NULL
 );
