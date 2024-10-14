@@ -1,5 +1,5 @@
 <?php
-require_once("database.php");
+require_once("Database.php");
 class Usuarios extends Database {
     private $nombre;
     private $apellidos;
@@ -8,71 +8,90 @@ class Usuarios extends Database {
     private $fecha;
     private $rol;
 
-    function getNombre() {
+    public function getNombre() {
         return $this->nombre;
     }
 
-    function getApellidos() {
+    public function getApellidos() {
         return $this->apellidos;
     }
 
-    function getEmail() {
+    public function getEmail() {
         return $this->email;
     }
 
-    function getPassword() {
+    public function getPassword() {
         return $this->password;
     }
 
-    function setNombre($nombre) {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
-    function getFecha() {
+
+    public function getFecha() {
         return $this->fecha;
     }
-    function setApellidos($apellidos) {
+
+    public function setApellidos($apellidos) {
         $this->apellidos = $apellidos;
     }
 
-    function setEmail($email) {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    function setPassword($password) {
+    public function setPassword($password) {
         $this->password = $password;
     }
     
-    function setFecha($fecha) {
+    public function setFecha($fecha) {
         $this->fecha = $fecha;
     }
 
     
-    function verificarLogin($user, $password){
-
+    public function verificarLogin($user, $password){
         $sql = "SELECT * FROM usuarios WHERE Nombre = '$user' AND contrasenya = '$password'";
         $db = $this->conectar();
-        $rows = $db->query($sql);
-        
-        $resultado = $rows->fetch(PDO::FETCH_ASSOC);
-
+        $query = $db->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
 
-    function mostrarUsuarios(){
+    public function mostrarUsuarios(){
         $sql ="SELECT * FROM usuarios";
         $db = $this->conectar();
         $rows = $db->query($sql);
-
-        $resultado = $rows->fetch(PDO::FETCH_ASSOC);
-
-        return $rows; 
+        return $rows;
     }
 
+    public function mostrarUsuario($id) {
+        $sql ="SELECT * FROM usuarios WHERE ID_usuario = $id";
+        $db = $this->conectar();
+        $rows = $db->query($sql);
+        return $rows;
+    }
 
+    public function crearUsuario($nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado, $foto) {
+        $sql = "INSERT INTO usuarios VALUES ('$foto', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
+        $db = $this->conectar();
+        $query = $db->prepare($sql);
+        $query->execute();
+    }
+
+    public function editarUsuario($id, $foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
+        $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+        $db = $this->conectar();
+        $query = $db->prepare($sql);
+        $query->execute();
+    }
+
+    public function eliminarUsuario($id) {
+        $sql = "DELETE FROM usuarios WHERE ID_usuario = $id";
+        $db = $this->conectar();
+        $query = $db->prepare($sql);
+        $query->execute();
+    }
     
 }
-
-
-
-
 ?>

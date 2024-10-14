@@ -31,10 +31,7 @@
                 <td>Rol</td>
                 <td>Estat</td>
                 <td> 
-
-                    <form action="" method="POST">
-                        <input type="submit" value="+ usuarios">
-                    </form>
+                    <a href="index.php?controller=Usuarios&action=crear">+ usuarios</a>
                 </td>
             </tr>
         <?php
@@ -47,24 +44,23 @@
             <td>{$usuario['Telefono']}</td>
             <td>{$usuario['Rol']}</td>
             <td>{$usuario['Estado']}</td>
-
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href=""><img src="images/borrarv2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=eliminar&id=<?php echo $id;?>"><img src="images/borrarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
                 ?>
-                    <a href="index.php?controller=usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                 <?php
             }
             echo "</td>";

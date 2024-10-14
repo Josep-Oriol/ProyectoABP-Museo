@@ -1,7 +1,6 @@
 <?php 
 
 class ObrasController{
-    private $modelobras;
 
     function mostrarObras(){
         require_once "models/Obras.php";
