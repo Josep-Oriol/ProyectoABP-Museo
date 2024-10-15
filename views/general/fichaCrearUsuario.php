@@ -1,7 +1,7 @@
 <?php
     if(isset($_SESSION['Rol'])){
     ?>
-        <form action="index.php?controller=Usuarios&action=crear" method="POST">
+        <form action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
             <label for="nombre">Nom</label>
             <input type="text" name="nombre" id="nombre">
             <label for="apellidos">Cognoms</label>
