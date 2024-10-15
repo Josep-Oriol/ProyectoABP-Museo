@@ -68,8 +68,9 @@ class Usuarios extends Database {
     public function mostrarUsuario($id) {
         $sql ="SELECT * FROM usuarios WHERE ID_usuario = $id";
         $db = $this->conectar();
-        $rows = $db->query($sql);
-        return $rows;
+        $query = $db->query($sql);
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
     }
 
     public function crearUsuario($nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado, $foto) {

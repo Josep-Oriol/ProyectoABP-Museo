@@ -4,31 +4,21 @@
     ?>
         <form action="index.php?controller=Usuarios&action=mostrarUsuario&id=<?php echo $_GET['id'];?>" method="POST">
             <label for="nombre">Nom</label>
-            <input type="text" name="nombre" id="nombre">
+            <span><?php echo $datos['Nombre']; ?></span>
             <label for="apellidos">Cognoms</label>
-            <input type="text" name="apellidos" id="apellidos">
+            <span><?php echo $datos['Apellidos']; ?></span>
             <label for="contrasenya">Contrasenya</label>
-            <input type="password" name="contrasenya" id="contrasenya">
+            <span><?php echo $datos['Contrasenya']; ?></span>
             <label for="rol">Rol</label>
-            <select name="rol" id="rol">
-                <option value=""></option>
-                <option value="Lector">Lector</option>
-                <option value="Tècnic">Tècnic</option>
-                <option value="Administració">Administració</option>
-            </select>
+            <span><?php echo $datos['Rol']; ?></span>
             <label for="correo_electronico">Correu electrònic</label>
-            <input type="email" name="correo_electronico" id="correo_electronico">
+            <span><?php echo $datos['Correo_electronico']; ?></span>
             <label for="telefono">Telèfon</label>
-            <input type="tel" name="telefono" id="telefono">
+            <span><?php echo $datos['Telefono']; ?></span>
             <label for="estado">Estat</label>
-            <select name="estado" id="estado">
-                <option value=""></option>
-                <option value="Actiu">Actiu</option>
-                <option value="Inactiu">Inactiu</option>
-            </select>
+            <span><?php echo $datos['Estado']; ?></span>
             <label for="foto">Fotografía</label>
-            <input type="file" name="foto" id="foto">
-            <input type="submit" value="Guardar">
+            <span><?php echo $datos['Foto']; ?></span>
         </form>
     <?php
     }
