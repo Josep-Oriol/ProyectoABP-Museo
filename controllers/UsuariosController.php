@@ -95,7 +95,6 @@ class UsuariosController{
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
             $modeloUsuario->eliminarUsuario($id);
-            
         }
         else {
             echo "<h3>Ningún usuario seleccionado.</h3>";
