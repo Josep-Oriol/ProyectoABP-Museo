@@ -103,6 +103,7 @@ class UsuariosController{
         }
         echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
         
+        
     }
     
 }

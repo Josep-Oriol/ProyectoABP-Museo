@@ -3,7 +3,7 @@
 }
 #general > :first-child {
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 12vh;
   display: flex;
   justify-content: space-between;

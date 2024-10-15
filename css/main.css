@@ -85,21 +85,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Cambiado a 100% en lugar de 100vw */
+  width: 100vw;
   height: 10vh;
   position: sticky;
 }
 header > img {
   margin: 3%;
   width: 17vw;
-  max-width: 100%; /* Asegura que la imagen no exceda su contenedor */
   height: auto;
 }
 header > nav {
   display: flex;
   justify-content: space-between;
   width: 30vw;
-  margin-right: 2vw; /* Reducido para evitar desbordamiento */
+  margin-right: 7vw;
 }
 header > nav > a {
   text-decoration: none;
@@ -153,37 +152,8 @@ header > nav > div:hover > div {
   border-color: white; /* Cambiar el borde al hacer hover */
   border-radius: 7px;
 }
-header > div {
-  margin-right: 2vw; /* Ajuste en márgenes */
-  display: block;
-}
-header > div > a > img {
-  width: 2.5vw;
-  height: auto;
-  margin-left: 2vw;
-  transition: scale 0.3s;
-}
-header > div > a > img:hover {
-  scale: 1.1;
-}
-header > div > div {
-  font-size: 1.2rem;
-  opacity: 0;
-  height: 0;
-  display: block;
-  position: absolute;
-  min-width: 15vw;
-  z-index: 1;
-  background-color: #CFD1D4;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: solid 2px transparent;
-}
-header > div:hover > div {
-  opacity: 1;
-  height: auto;
-  border-color: white;
-  border-radius: 7px;
+header > div img {
+  width: 2px;
 }
 
 #general {
@@ -191,7 +161,7 @@ header > div:hover > div {
 }
 #general > :first-child {
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 12vh;
   display: flex;
   justify-content: space-between;

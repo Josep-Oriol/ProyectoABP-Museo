@@ -1,0 +1,80 @@
+#login {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* Seleccionar el primer hijo */
+  /* Seleccionar el segundo hijo */
+}
+#login > :first-child {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CFD1D4;
+}
+#login > :first-child > img {
+  width: 70%;
+  height: auto;
+}
+#login > :nth-child(2) {
+  width: 50vw;
+  height: 100vh;
+}
+#login > :nth-child(2) > :first-child {
+  display: flex;
+  justify-content: space-between;
+}
+#login > :nth-child(2) > :first-child img {
+  width: 4vw;
+  height: auto;
+}
+#login > :nth-child(2) > :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+}
+#login > :nth-child(2) > :nth-child(2) img {
+  width: 15vw;
+  height: auto;
+}
+#login > :nth-child(2) > :last-child {
+  display: flex;
+  justify-content: center;
+}
+#login > :nth-child(2) > :last-child > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#login > :nth-child(2) > :last-child > form > input {
+  font-size: medium;
+  border: none;
+  background-color: white;
+  margin-bottom: 7vh;
+  border-bottom: 4px solid black;
+  width: 15vw;
+}
+#login > :nth-child(2) > :last-child > form > input:focus {
+  background-color: white;
+  border: none;
+  outline: none;
+  border-bottom: 4px solid black;
+}
+#login > :nth-child(2) > :last-child > form > :last-child {
+  font-size: medium;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  width: 7vw;
+  height: 3vh;
+  transition: background-color 0.3s, scale 0.3s;
+}
+#login > :nth-child(2) > :last-child > form > :last-child:hover {
+  border: solid 2px black;
+  cursor: pointer;
+  scale: 1.05;
+}/*# sourceMappingURL=login.css.map */
