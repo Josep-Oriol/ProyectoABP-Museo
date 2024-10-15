@@ -52,7 +52,10 @@ class UsuariosController{
         if ($_POST) {
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
-            $modeloUsuario->crearUsuario($_POST['foto'],$_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado'],);
+            $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
+            if ($directorioFoto != "") {
+                $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado'],);
+            }
         }
     }
 

@@ -2,7 +2,7 @@
     if(isset($_SESSION['Rol'])){
         echo "Editando el usuario: " . $_GET['id'];
     ?>
-        <form action="index.php?controller=Usuarios&action=editar&id=<?php echo $_GET['id'];?>" method="POST">
+        <form action="index.php?controller=Usuarios&action=editar&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data" method="POST">
             <label for="nombre">Nom</label>
             <input type="text" name="nombre" id="nombre" value="<?php echo $datos['Nombre']; ?>">
             <label for="apellidos">Cognoms</label>
