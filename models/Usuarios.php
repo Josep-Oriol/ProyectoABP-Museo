@@ -73,7 +73,7 @@ class Usuarios extends Database {
         return $resultado;
     }
 
-    public function crearUsuario($nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado, $foto) {
+    public function crearUsuario($foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
         $sql = "INSERT INTO usuarios (Foto_usuario, Nombre, Apellidos, Contrasenya, Correo_electronico, Telefono, Rol, Estado) VALUES ('$foto', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
         $db = $this->conectar();
         $query = $db->prepare($sql);

@@ -1,0 +1,67 @@
+#fichaEditarUsuario {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    >:first-child {
+        border: 2px solid black;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        > img {
+            width: 15%;
+            margin-top: 20px;
+        }
+        > form {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px ;
+            > div {
+                width: 50%;
+                padding: 10px;
+                >input, select {
+                    display: block;
+                    padding: 5px;
+                    margin-top: 2px;
+                    border: 2px solid black;
+                }
+            }
+            >:nth-child(7) {
+                width: 100%;
+            }
+            >:nth-child(8) {
+                border: 2px solid black;
+                width: 100%;
+                text-align: center;
+                >input {
+                    width: 50%;
+                    margin: 0px auto;
+                }
+                >span {
+                    color: $color_claro2;
+                }
+            }
+            >:last-child {
+                background-color: black;
+                color: white;
+                border-radius: 12px;
+                border: none;
+                text-align: center;
+                padding: 10px 30px 10px 30px;
+                margin-top: 20px;
+            }
+            >:last-child:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
