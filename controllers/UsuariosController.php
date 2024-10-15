@@ -90,17 +90,19 @@ class UsuariosController{
     }
 
     public function eliminar() {
-        require_once "views/general/header.php";
+        
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
             $modeloUsuario->eliminarUsuario($id);
+            
         }
         else {
             echo "<h3>Ningún usuario seleccionado.</h3>";
         }
-        require_once "views/general/footer.html";
+        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+        
     }
     
 }

@@ -8,14 +8,14 @@
         </div>
         <div>
             <div>
-                <img src="images/lupa.png" alt="">
+                <img class="img_lupa" src="images/lupa.png" alt="">
                 <input type="text">
-                <img src="images/ajustes_deslizadores.png" alt="">
+                <img class="img_ajustes" src="images/ajustes_deslizadores.png" alt="">
             </div>
         </div>
-        <div class="obras_visibles_desplegable">
+        <div class="usuarios_visibles_desplegable">
             <div>0-50</div>
-            <img src="images/flecha_abajo.png" alt="">
+            <img class="flecha_abajo" src="images/flecha_abajo.png" alt="">
         </div>
         <div>
             <img src="images/flecha_izquierda.png" alt="">
@@ -76,6 +76,7 @@
 ?>
         </table>
     </div>
+
 </div>
    <?php }
     else{
