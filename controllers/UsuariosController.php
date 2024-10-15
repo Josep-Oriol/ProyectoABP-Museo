@@ -90,6 +90,7 @@ class UsuariosController{
     }
 
     public function eliminar() {
+        
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             require_once "models/Usuarios.php";
@@ -99,6 +100,8 @@ class UsuariosController{
         else {
             echo "<h3>Ningún usuario seleccionado.</h3>";
         }
+        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+        
     }
     
 }
