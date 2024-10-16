@@ -4,8 +4,6 @@
     min-height: 70vh;
     >:first-child{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         width: 100vw;
         height: 12vh;
 
@@ -128,9 +126,13 @@
                 font-size: large;
                 
                 
-                td, th{
+                td, th {
                     padding: 1.3vh;
                     text-align: center;
+                    width: 2vw;
+                    > img {
+                        width: 100%;
+                    }
                     >a{
                         >img{
                             width: 1.5vw;

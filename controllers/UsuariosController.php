@@ -52,7 +52,12 @@ class UsuariosController{
         if ($_POST) {
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
-            $modeloUsuario->crearUsuario($_POST['foto'],$_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado'],);
+            if (isset($_FILES['foto'])) {
+                $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
+                if ($directorioFoto != "") {
+                    $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                }
+            }
         }
     }
 
@@ -80,7 +85,13 @@ class UsuariosController{
             $datos = $modeloUsuario->mostrarUsuario($id);
             require_once "views/general/fichaEditarUsuario.php";
             if ($_POST) {
-                $modeloUsuario->editarUsuario($id, $_POST['foto'], $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                if (isset($_FILES['foto'])) {
+                    $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
+                    if ($directorioFoto != "") {
+                        $modeloUsuario->editarUsuario($id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+                    }
+                }
             }
         }
         else {
@@ -96,12 +107,12 @@ class UsuariosController{
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
             $modeloUsuario->eliminarUsuario($id);
-            
         }
         else {
             echo "<h3>Ningún usuario seleccionado.</h3>";
         }
         echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+        
         
     }
     
