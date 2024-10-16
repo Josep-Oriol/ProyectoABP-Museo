@@ -1,7 +1,7 @@
 <?php
     if(isset($_SESSION['Rol'])) {
     ?>
-    <div id="fichaEditarUsuario">
+    <div class="fichaUsuario">
         <div>
             <?php
                 if ($datos['Foto_usuario'] != NULL) {

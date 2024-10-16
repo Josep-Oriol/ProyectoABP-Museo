@@ -52,11 +52,14 @@ class UsuariosController{
         if ($_POST) {
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
-            if (isset($_FILES['foto'])) {
+            if ($_FILES['foto']['size']!=0) {
+                print_r($_FILES['foto']);
                 $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
-                if ($directorioFoto != "") {
-                    $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
-                }
+
+                $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+            }
+            else{
+                $modeloUsuario->crearUsuario("images/login_icon.png", $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
             }
         }
     }
@@ -85,12 +88,15 @@ class UsuariosController{
             $datos = $modeloUsuario->mostrarUsuario($id);
             require_once "views/general/fichaEditarUsuario.php";
             if ($_POST) {
-                if (isset($_FILES['foto'])) {
+                if ($_FILES['foto']['size']!=0) {
                     $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
-                    if ($directorioFoto != "") {
-                        $modeloUsuario->editarUsuario($id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
-                        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
-                    }
+
+                    $modeloUsuario->editarUsuario($id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+                
+                }
+                else{
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
                 }
             }
         }
