@@ -89,15 +89,18 @@ class UsuariosController{
             require_once "views/general/fichaEditarUsuario.php";
             if ($_POST) {
                 if ($_FILES['foto']['size']!=0) {
+                    $fotoExist = true;
                     $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
 
-                    $modeloUsuario->editarUsuario($id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
-                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+                    $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                    
                 
                 }
                 else{
-                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+                    $fotoExist = false;
+                    $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
                 }
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
             }
         }
         else {

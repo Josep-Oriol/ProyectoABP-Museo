@@ -6,10 +6,10 @@
         <h1>Llistat d'obres</h1>
         <div>
             <div>
-                <button>
+                <button id="buscar">
                     <img src="images/lupa.png" alt="">
                 </button>
-                <input type="text">
+                <input type="text" id="busqueda">
                 <button>
                     <img src="images/ajustes_deslizadores.png" alt="">
                 </button>
@@ -81,7 +81,7 @@
 ?>
         </table>
     </div>
-
+    
 </div>
    <?php }
     else{

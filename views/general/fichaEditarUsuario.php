@@ -27,23 +27,20 @@
                 <div>
                     <label for="rol">Rol</label>
                     <select name="rol" id="rol">
-                        <option value=""></option>
                         <?php
                         switch ($datos['Rol']) {
                             case 'Administració':
+                                echo "<option value='Administració'>Administració</option>";
                                 echo "<option value='Lector'>Lector</option>";
                                 echo "<option value='Tècnic'>Tècnic</option>";
-                                echo "<option selected value='Administració'>Administració</option>";
                                 break;
                             case 'Tècnic':
+                                echo "<option value='Tècnic'>Tècnic</option>";
                                 echo "<option value='Lector'>Lector</option>";
-                                echo "<option selected value='Tècnic'>Tècnic</option>";
-                                echo "<option value='Administració'>Administració</option>";
                                 break;
                             case 'Lector':
-                                echo "<option selected value='Lector'>Lector</option>";
+                                echo "<option value='Lector'>Lector</option>";
                                 echo "<option value='Tècnic'>Tècnic</option>";
-                                echo "<option value='Administració'>Administració</option>";
                                 break;
                         }
                         ?>
@@ -60,15 +57,15 @@
                 <div>
                     <label for="estado">Estat</label>
                     <select name="estado" id="estado">
-                        <option value=""></option>
                         <?php
+                        
                         if ($datos['Estado'] == 'Actiu') {
-                            echo "<option selected value='Actiu'>Actiu</option>";
+                            echo "<option value='Actiu'>Actiu</option>";
                             echo "<option value='Inactiu'>Inactiu</option>";
                         }
                         else {
+                            echo "<option value='Inactiu'>Inactiu</option>";
                             echo "<option value='Actiu'>Actiu</option>";
-                            echo "<option selected value='Inactiu'>Inactiu</option>";
                         }
                         ?>
                     </select>

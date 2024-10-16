@@ -95,6 +95,7 @@ class Usuarios extends Database {
         $db = $this->conectar();
         $query = $db->prepare($sql);
         $query->execute();
+        echo "hola";
     }
 
     public function eliminarUsuario($id) {
