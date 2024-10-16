@@ -5,15 +5,11 @@ class Database{
     protected $db;
     
     public function conectar(){
-        /*$servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
+        $servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
         $dbname = "bhj7whmm8g7lraocrcgj";
         $username = "uzg4eixka4uwk1yt"; 
         $password = "rGDbt4mR8aKmmELLLiXV";
-        */
-        $servername = "localhost";
-        $dbname = "museu_apelles_fenosa";
-        $username = "root"; 
-        $password = "";
+        
         //creem una nova connexió instancinat l'objecte PDO
 		$this->db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
 		// establim el mode PDO error a exception per poder
