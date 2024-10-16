@@ -74,6 +74,7 @@ class Usuarios extends Database {
     }
 
     public function crearUsuario($foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
+        
         $sql = "INSERT INTO usuarios (Foto_usuario, Nombre, Apellidos, Contrasenya, Correo_electronico, Telefono, Rol, Estado) VALUES ('$foto', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
         $db = $this->conectar();
         $query = $db->prepare($sql);
@@ -108,7 +109,7 @@ class Usuarios extends Database {
         }
         else {
             echo "<h2>No se ha podido subir la imagen. La extensión no es válida.</h2>";
-            $destino = "";
+            $destino = "images/login_icon.png";
         }
         return $destino;
 
