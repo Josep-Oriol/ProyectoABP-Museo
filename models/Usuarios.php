@@ -95,6 +95,7 @@ class Usuarios extends Database {
 
     public function editarUsuario($fotoExist, $id, $foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
         if ($fotoExist) {
+            $this->eliminarFoto($id);
             $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
         }
         else {
