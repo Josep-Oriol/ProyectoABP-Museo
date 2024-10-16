@@ -1,6 +1,6 @@
-DROP DATABASE museu_apelles_fenosa;
-CREATE DATABASE museu_apelles_fenosa;
-USE museu_apelles_fenosa;
+DROP DATABASE bhj7whmm8g7lraocrcgj;
+CREATE DATABASE bhj7whmm8g7lraocrcgj;
+USE bhj7whmm8g7lraocrcgj;
 
 CREATE TABLE ubicaciones (
     ID_ubicacion INT PRIMARY KEY AUTO_INCREMENT,
