@@ -25,9 +25,11 @@
         <table>
             <tr>
                 <td>ID</td>
+                <td>Foto de perfil</td>
                 <td>Nom</td>
                 <td>Cognoms</td>
-                <td>Telefón</td>
+                <td>Correu electrònic</td>
+                <td>Telèfon</td>
                 <td>Rol</td>
                 <td>Estat</td>
                 <td> 
@@ -39,8 +41,10 @@
         $id = $usuario['ID_usuario'];
         echo "<tr>
             <td>{$usuario['ID_usuario']}</td>
+            <td><img alt='foto usuario' src='{$usuario['Foto_usuario']}'></td>
             <td>{$usuario['Nombre']}</td>
             <td>{$usuario['Apellidos']}</td>
+            <td>{$usuario['Correo_electronico']}</td>
             <td>{$usuario['Telefono']}</td>
             <td>{$usuario['Rol']}</td>
             <td>{$usuario['Estado']}</td>

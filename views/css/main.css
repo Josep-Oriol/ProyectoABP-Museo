@@ -85,8 +85,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 100%;
-  max-width: 100%;
+  width: 100%; /* Cambiado a 100% en lugar de 100vw */
   height: 10vh;
   position: sticky;
 }
@@ -278,6 +277,10 @@ header > div:hover > div {
 #general > :last-child table tr td, #general > :last-child table tr th {
   padding: 1.3vh;
   text-align: center;
+  width: 2vw;
+}
+#general > :last-child table tr td > img, #general > :last-child table tr th > img {
+  width: 100%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
   width: 1.5vw;
@@ -314,6 +317,117 @@ header > div:hover > div {
   width: 200px;
   height: 200px;
   background-color: black; /* Div negro */
+}
+
+#fichaVerUsuario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+#fichaVerUsuario > :first-child {
+  border: 2px solid black;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#fichaVerUsuario > :first-child > img {
+  width: 15%;
+  margin-top: 20px;
+}
+#fichaVerUsuario > :first-child div {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+#fichaVerUsuario > :first-child div div {
+  width: 50%;
+}
+#fichaVerUsuario > :first-child div div label {
+  font-weight: bold;
+}
+#fichaVerUsuario > :first-child div div span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  margin-top: 2px;
+  border-bottom: 2px solid black;
+}
+
+#fichaEditarUsuario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+#fichaEditarUsuario > :first-child {
+  border: 2px solid black;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#fichaEditarUsuario > :first-child > img {
+  width: 15%;
+  margin-top: 20px;
+}
+#fichaEditarUsuario > :first-child > form {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+#fichaEditarUsuario > :first-child > form > div {
+  width: 50%;
+  padding: 10px;
+}
+#fichaEditarUsuario > :first-child > form > div > input, #fichaEditarUsuario > :first-child > form > div select {
+  display: block;
+  padding: 5px;
+  margin-top: 2px;
+  border: 2px solid black;
+}
+#fichaEditarUsuario > :first-child > form > :nth-child(7) {
+  width: 100%;
+}
+#fichaEditarUsuario > :first-child > form > :nth-child(8) {
+  border: 2px solid black;
+  width: 100%;
+  text-align: center;
+}
+#fichaEditarUsuario > :first-child > form > :nth-child(8) > input {
+  width: 50%;
+  margin: 0px auto;
+}
+#fichaEditarUsuario > :first-child > form > :nth-child(8) > span {
+  color: #BFBFBF;
+}
+#fichaEditarUsuario > :first-child > form > :last-child {
+  background-color: black;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  text-align: center;
+  padding: 10px 30px 10px 30px;
+  margin-top: 20px;
+}
+#fichaEditarUsuario > :first-child > form > :last-child:hover {
+  cursor: pointer;
 }
 
 footer {
@@ -406,4 +520,6 @@ footer .div2 .web a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
