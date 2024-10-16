@@ -6,11 +6,6 @@
   display: flex;
   width: 100vw;
   height: 12vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-  height: 12vh;
 }
 #general > :first-child > :first-child {
   margin-left: 3.5%;
@@ -124,6 +119,10 @@
 #general > :last-child table tr td, #general > :last-child table tr th {
   padding: 1.3vh;
   text-align: center;
+  width: 2vw;
+}
+#general > :last-child table tr td > img, #general > :last-child table tr th > img {
+  width: 100%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
   width: 1.5vw;
