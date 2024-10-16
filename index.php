@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestió Museu Apel·les Fenosa</title>
     <link rel="stylesheet" href="views/css/main.css">
+    <script src="views/js/busqueda.js"></script>
 </head>
 <body>
    
