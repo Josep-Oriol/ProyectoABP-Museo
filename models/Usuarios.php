@@ -81,6 +81,15 @@ class Usuarios extends Database {
         $query->execute();
     }
 
+    public function eliminarFoto($id) {
+        $sql = "SELECT Foto_usuario FROM usuarios WHERE ID_usuario = $id";
+        $db = $this->conectar();
+        $query = $db->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
+        unlink($resultado['Foto_usuario']);
+    }
+
     public function editarUsuario($id, $foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
         $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
         $db = $this->conectar();
@@ -89,6 +98,7 @@ class Usuarios extends Database {
     }
 
     public function eliminarUsuario($id) {
+        $this->eliminarFoto($id);
         $sql = "DELETE FROM usuarios WHERE ID_usuario = $id";
         $db = $this->conectar();
         $query = $db->prepare($sql);

@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <label for="apellidos">Cognoms</label>
-                    <input type="text" name="apellidos" id="apellidos" required>
+                    <input type="text" name="apellidos" id="apellidos">
                 </div>
                 <div>
                     <label for="contrasenya">Contrasenya</label>
@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <label for="rol">Rol</label>
-                    <select name="rol" id="rol">
+                    <select name="rol" id="rol" required>
                         <option value="Lector">Lector</option>
                         <option value="Tècnic">Tècnic</option>
                         <option value="Administració">Administració</option>
@@ -27,15 +27,15 @@
                 </div>
                 <div>
                     <label for="correo_electronico">Correu electrònic</label>
-                    <input type="email" name="correo_electronico" id="correo_electronico" required>
+                    <input type="email" name="correo_electronico" id="correo_electronico">
                 </div>
                 <div>
                     <label for="telefono">Telèfon</label>
-                    <input type="tel" name="telefono" id="telefono" required>
+                    <input type="tel" name="telefono" id="telefono">
                 </div>
                 <div>
                     <label for="estado">Estat</label>
-                    <select name="estado" id="estado">
+                    <select name="estado" id="estado" required>
                         <option value="Actiu">Actiu</option>
                         <option value="Inactiu">Inactiu</option>
                     </select>
