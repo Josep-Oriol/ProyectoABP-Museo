@@ -3,25 +3,30 @@
     if(isset($_SESSION['Rol'])){ ?>
 <div id = "general">
     <div>
-        <div>
-            <h1>Llistat d'obres</h1>
-        </div>
+        <h1>Llistat d'obres</h1>
         <div>
             <div>
-                <img class="img_lupa" src="images/lupa.png" alt="">
+                <button>
+                    <img src="images/lupa.png" alt="">
+                </button>
                 <input type="text">
-                <img class="img_ajustes" src="images/ajustes_deslizadores.png" alt="">
+                <button>
+                    <img src="images/ajustes_deslizadores.png" alt="">
+                </button>
+            </div>
+            <div>
+                <div>
+                    <a>0 - 50</a>
+                    <img src="images/flecha_abajo.png" alt="">
+                </div>
+                <div>
+                    <img src="images/flecha_izquierda.png" alt="">
+                    <img src="images/flecha_derecha.png" alt="">
+                </div>
             </div>
         </div>
-        <div class="usuarios_visibles_desplegable">
-            <div>0-50</div>
-            <img class="flecha_abajo" src="images/flecha_abajo.png" alt="">
-        </div>
-        <div>
-            <img src="images/flecha_izquierda.png" alt="">
-            <img src="images/flecha_derecha.png" alt="">
-        </div>
     </div>
+
     <div>
         <table>
             <tr>

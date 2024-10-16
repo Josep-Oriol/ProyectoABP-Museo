@@ -4,81 +4,115 @@
     min-height: 70vh;
     >:first-child{
         display: flex;
-        width: 100vw;
-        height: 12vh;
-    
-        display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-left: 4vw; 
-        padding-right: 4vw;
+        width: 100vw;
+        height: 12vh;
+
         >:first-child{
-            font-size: 1.1rem;
-            font-weight: normal;
-            
+           margin-left: 3.5%;
         }
-        >:nth-child(2){
-            margin-left: 34vw;
-            border: solid 2px black;
-            /*border-radius: 15px;*/
-            >:first-child{
+        >:nth-child(2) {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 5%;
+            
+
+            >:first-child {
+                width: 40%;
+                height: 40%;
+                border: 2px black solid;
+                display: flex; 
+                align-items: center;
+
+                >:first-child {
+                    width: 9%; 
+                    height: 70%;
+                    background-color: transparent;
+                    margin-left: 2%;
+                    border: none; /* Eliminar borde predeterminado */
+                    padding: 0; /* Sin padding para ajustarse a la imagen */
+                    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+
+                    img {
+                        width: 100%;                    /* La imagen ocupará el 100% del ancho del botón */
+                        height: auto;                   /* Mantener la proporción de la imagen */
+                        max-height: 100%;               /* Asegurarse de que la imagen no exceda la altura del botón */
+                        object-fit: contain;            /* Ajustar la imagen para que se contenga dentro del botón */
+                    }
+                }
+                >:nth-child(2){
+                    border: none;
+                    height: 100%;
+                    width: 75%;
+                    margin-left: 2%;
+                    font-size: 16px;
+                }
+                >:nth-child(2):focus {
+                    outline: none;
+                }
+                >:last-child {
+                    width: 9%; 
+                    height: 70%;
+                    background-color: transparent;
+                    border: none; /* Eliminar borde predeterminado */
+                    padding: 0; /* Sin padding para ajustarse a la imagen */
+                    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+
+                    img {
+                        width: 100%;                    /* La imagen ocupará el 100% del ancho del botón */
+                        height: auto;                   /* Mantener la proporción de la imagen */
+                        max-height: 100%;               /* Asegurarse de que la imagen no exceda la altura del botón */
+                        object-fit: contain;            /* Ajustar la imagen para que se contenga dentro del botón */
+                    }
+                }
+            }
+            >:nth-child(2) {
+                width: 20%;
+                height: 40%;
                 display: flex;
                 align-items: center;
-    
-                height: 4vh;
-                .img_lupa{
-                    width: auto;
-                    height: 3vh;
-                    margin-left:0.5vw ;
+                
+                >:first-child {
+                    height: 100%;
+                    width: 60%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    a {
+                        margin-left: 10%;
+                        font-size: 18px;
+                    }
+
+                    img {
+                        width: 30%;
+                        height: auto;
+                    }
+                    img:hover {
+                        cursor: pointer;
+                    }
                 }
-                .img_ajustes {
-                    width: auto;
-                    height: 3vh;
-                    margin-left:0.5vw;
-                    padding-right: 1vh;
+
+                >:last-child {
+                    height: 100%;
+                    width: 40%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+
+                    img {
+                        width: 40%;
+                        height: auto;
+                    }
+                    img:hover {
+                        cursor: pointer;
+                    }
                 }
-                >input{
-                    height: 4vh;
-                    border: none;
-                    margin-right: 0.7vw;
-                    outline: none;
-    
-                    margin-left: 3vw;
-                    font-size: medium;
-                }
-                >input:focus{
-                    border: none;
-                    outline: none;
-                }
-    
-            }
-        }
-        >:nth-child(3) {
-            
-            display: flex;
-            flex-direction: row;
-            >:first-child{
-                height: 2vh;
-                font-size: larger;
-            }
-            >img {
-                width: 2vw;
-                height: 4vh;
-            }
-            >img:hover {
-                cursor: pointer;
-            }
-        }
-        >:last-child {
-            display: flex;
-            flex-direction: row;
-            >:first-child {
-                height: 3vh;
-                width: 1.5vw;
-            }
-            >:last-child {
-                height: 3vh;
-                width: 1.5vw;
             }
         }
     }
