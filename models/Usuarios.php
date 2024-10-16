@@ -74,7 +74,6 @@ class Usuarios extends Database {
     }
 
     public function crearUsuario($foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
-        
         $sql = "INSERT INTO usuarios (Foto_usuario, Nombre, Apellidos, Contrasenya, Correo_electronico, Telefono, Rol, Estado) VALUES ('$foto', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
         $db = $this->conectar();
         $query = $db->prepare($sql);
@@ -87,15 +86,23 @@ class Usuarios extends Database {
         $query = $db->prepare($sql);
         $query->execute();
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
-        unlink($resultado['Foto_usuario']);
+        $foto = $resultado['Foto_usuario'];
+        
+        if ($foto != 'images/IconDefaulUser.png') {
+            unlink($foto);
+        }
     }
 
-    public function editarUsuario($id, $foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
-        $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+    public function editarUsuario($fotoExist, $id, $foto, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
+        if ($fotoExist) {
+            $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+        }
+        else {
+            $sql = "UPDATE usuarios SET Nombre = '$nombre', Apellidos = '$apellidos', Contrasenya = '$contrasenya', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+        }
         $db = $this->conectar();
         $query = $db->prepare($sql);
         $query->execute();
-        echo "hola";
     }
 
     public function eliminarUsuario($id) {
@@ -120,7 +127,7 @@ class Usuarios extends Database {
         }
         else {
             echo "<h2>No se ha podido subir la imagen. La extensión no es válida.</h2>";
-            $destino = "images/login_icon.png";
+            $destino = "images/IconDefaulUser.png";
         }
         return $destino;
 

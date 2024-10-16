@@ -3,7 +3,7 @@
     ?>
     <div class="fichaUsuario">
         <div>
-            <img src="images/login_icon.png" alt="Icono usuario">
+            <img src="images/IconDefaulUser.png" alt="Icono usuario">
             <form action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
                 <div>
                     <label for="nombre">Nom</label>
