@@ -1,23 +1,26 @@
 <?php
 
-class Database{
+require_once 'config.php'; // Incluir el archivo de configuración
+
+class Database {
     
     protected $db;
     
-    public function conectar(){
-        $servername = "bhj7whmm8g7lraocrcgj-mysql.services.clever-cloud.com";
-        $dbname = "bhj7whmm8g7lraocrcgj";
-        $username = "uzg4eixka4uwk1yt"; 
-        $password = "rGDbt4mR8aKmmELLLiXV";
+    public function conectar() {
+        // Usar las constantes definidas en config.php
+        $servername = DB_HOST;
+        $dbname = DB_NAME;
+        $username = DB_USER;
+        $password = DB_PASSWORD;
         
-        //creem una nova connexió instancinat l'objecte PDO
-		$this->db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
-		// establim el mode PDO error a exception per poder
-		// recuperar les excepccions
-		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         return $this->db;
-    
+        // Crear una nueva conexión instanciando el objeto PDO
+        try {
+            $this->db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // Establecer el modo de error de PDO a Exception
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->db;
+        } catch (PDOException $e) {
+            echo "Error en la conexión: " . $e->getMessage();
+        }
     }
-    
-
 }
