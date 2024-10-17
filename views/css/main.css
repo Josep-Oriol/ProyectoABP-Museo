@@ -226,8 +226,7 @@ header > div:hover > div {
   width: 100%; /* La imagen ocupará el 100% del ancho del botón */
   height: auto; /* Mantener la proporción de la imagen */
   max-height: 100%; /* Asegurarse de que la imagen no exceda la altura del botón */
-  -o-object-fit: contain;
-     object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
+  object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
   border: none;
@@ -251,8 +250,7 @@ header > div:hover > div {
   width: 100%; /* La imagen ocupará el 100% del ancho del botón */
   height: auto; /* Mantener la proporción de la imagen */
   max-height: 100%; /* Asegurarse de que la imagen no exceda la altura del botón */
-  -o-object-fit: contain;
-     object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
+  object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
   width: 20%;
@@ -310,10 +308,10 @@ header > div:hover > div {
   width: 2vw;
 }
 #general > :last-child table tr td > img, #general > :last-child table tr th > img {
-  width: 100%;
+  width: 30%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
-  width: 1.5vw;
+  width: 2vw;
   height: auto;
   margin-right: 0.1vw;
 }
@@ -532,4 +530,6 @@ footer .div2 .web a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

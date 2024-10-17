@@ -53,14 +53,12 @@ class UsuariosController{
             require_once "models/Usuarios.php";
             $modeloUsuario = new Usuarios();
             if ($_FILES['foto']['size']!=0) {
-                print_r($_FILES['foto']);
                 $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
-
-                $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
             }
             else{
-                $modeloUsuario->crearUsuario("images/login_icon.png", $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                $directorioFoto = "images/IconDefaulUser.png";
             }
+            $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
         }
     }
 
@@ -90,16 +88,13 @@ class UsuariosController{
             if ($_POST) {
                 if ($_FILES['foto']['size']!=0) {
                     $fotoExist = true;
-                    $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
-
-                    $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
-                    
-                
+                    $directorioFoto = $modeloUsuario->subirFotoServidor('foto');                  
                 }
-                else{
+                else {
                     $fotoExist = false;
-                    $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                    $directorioFoto = "";
                 }
+                $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
             }
         }
