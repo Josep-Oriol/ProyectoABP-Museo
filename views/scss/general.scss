@@ -6,6 +6,8 @@
         display: flex;
         width: 100vw;
         height: 12vh;
+        align-items: center;
+        justify-content: space-between;
 
         >:first-child{
            margin-left: 3.5%;

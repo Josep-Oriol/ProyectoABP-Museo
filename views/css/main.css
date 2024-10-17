@@ -192,6 +192,8 @@ header > div:hover > div {
   display: flex;
   width: 100vw;
   height: 12vh;
+  align-items: center;
+  justify-content: space-between;
 }
 #general > :first-child > :first-child {
   margin-left: 3.5%;
