@@ -21,10 +21,6 @@
                     <input type="text" name="apellidos" id="apellidos" value="<?php echo $datos['Apellidos']; ?>">
                 </div>
                 <div>
-                    <label for="contrasenya">Contrasenya</label>
-                    <input type="password" name="contrasenya" id="contrasenya" value="<?php echo $datos['Contrasenya']; ?>">
-                </div>
-                <div>
                     <label for="rol">Rol</label>
                     <select name="rol" id="rol">
                         <?php

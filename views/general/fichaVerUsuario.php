@@ -21,10 +21,6 @@
                     <span id="apellidos"><?php echo $datos['Apellidos']; ?></span>
                 </div>
                 <div>
-                    <label for="contrasenya">Contrasenya</label>
-                    <span id="contrasenya"><?php echo $datos['Contrasenya']; ?></span>
-                </div>
-                <div>
                     <label for="rol">Rol</label>
                     <span id="rol"><?php echo $datos['Rol']; ?></span>
                 </div>
