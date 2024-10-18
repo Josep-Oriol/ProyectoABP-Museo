@@ -224,7 +224,8 @@ header > div:hover > div {
   width: 100%; /* La imagen ocupará el 100% del ancho del botón */
   height: auto; /* Mantener la proporción de la imagen */
   max-height: 100%; /* Asegurarse de que la imagen no exceda la altura del botón */
-  object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
+  -o-object-fit: contain;
+     object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
   border: none;
@@ -248,7 +249,8 @@ header > div:hover > div {
   width: 100%; /* La imagen ocupará el 100% del ancho del botón */
   height: auto; /* Mantener la proporción de la imagen */
   max-height: 100%; /* Asegurarse de que la imagen no exceda la altura del botón */
-  object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
+  -o-object-fit: contain;
+     object-fit: contain; /* Ajustar la imagen para que se contenga dentro del botón */
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
   width: 20%;
@@ -583,10 +585,44 @@ footer .div2 .web a {
   font-size: 120%;
 }
 
+/* Estilos para el overlay */
+.popup {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo respecto a la ventana */
+  top: 0; /* Comienza en la parte superior */
+  left: 0; /* Comienza a la izquierda */
+  width: 100vw; /* Ancho total de la pantalla */
+  height: 100vh; /* Alto total de la pantalla */
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
+  z-index: 1000; /* Por encima de otros elementos */
+}
+
+/* Estilos para el contenido del popup */
+.popup-content {
+  position: absolute;
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+  /*bordes popUp*/
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  /* centrar popUp */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-content * {
+  margin: 5px;
+}
+
+/* Estilos para el botón de cerrar */
+.close {
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  float: right; /* Alinea el botón a la derecha */
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
