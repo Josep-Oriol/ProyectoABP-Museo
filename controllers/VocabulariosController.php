@@ -3,7 +3,13 @@
         //Mostramos todos los nombres de los vocabularios.
         public function enviarAVocabularios(){
             require_once "views/general/header.php";
-            require_once "views/general/Vocabularios.php";
+            require_once "views/general/VocabulariosMenu.php";
+            require_once "views/general/footer.html";
+        }
+
+        public function campsLlista(){
+            require_once "views/general/header.php";
+            require_once "views/general/campsLlista.php";
             require_once "views/general/footer.html";
         }
 
@@ -11,13 +17,14 @@
             require_once "views/general/header.php";
             require_once "models/Vocabularios.php";
             $vocabularios = new Vocabularios();
-            $nombresVocabularios = $vocabulario->mostrarVocabularios();
+            $nombresVocabularios = $vocabularios->mostrarVocabularios();
+
             require_once "views/general/campsLlista.php";
             require_once "views/general/footer.html";
         }
 
         //Mostramos el nombre del vocabulario y sus campos.
-        public function mostrarVocabulario() {
+        public function mostrarCamposVocabulario() {
             require_once "views/general/header.php";
             //Controlamos que se haya pasado un identificador por la URL. 
             if ($_GET['id']) {

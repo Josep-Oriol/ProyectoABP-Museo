@@ -1,5 +1,5 @@
 <div id="campsLlista">
-    <a href="#">
+   <!-- <a href="#">
         <div>
             <p>Clasificació generica</p>
         </div>
@@ -34,9 +34,22 @@
             <p>Tècnica</p>
         </div>
     </a>
-    <a href="#">
+    <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=1">
         <div>
             <p>Forma d'ingrés</p>
         </div>
-    </a>
+    </a> -->
+
+    <?php
+        foreach($nombresVocabularios as $indice => $nombre){
+            $id = $nombre['ID_vocabulario'];
+            ?>
+                <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>">
+                    <div>
+                        <p><?php echo $nombre["Nombre_vocabulario"]; ?></p>
+                    </div>
+                </a> 
+            <?php
+        }
+    ?>
 </div>

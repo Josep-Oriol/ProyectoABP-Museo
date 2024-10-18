@@ -12,8 +12,8 @@ class UsuariosController{
             $password = $_POST['password'];
             $verificacion = $modeloUsuario->verificarLogin($user, $password);
           
-            if($verificacion){
- 
+            if($verificacion and $verificacion['Estado'] == "Actiu"){
+
                 $_SESSION['Rol'] = $verificacion['Rol'];
                 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";

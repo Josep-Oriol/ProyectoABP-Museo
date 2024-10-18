@@ -6,7 +6,7 @@
             $sql = "SELECT * FROM vocabularios";
             $db = $this->conectar();
             $query = $db->query($sql);
-            $resultado = $query->fetch(PDO::FETCH_ASSOC);
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
         }
 
