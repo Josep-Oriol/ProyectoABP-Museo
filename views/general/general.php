@@ -38,10 +38,7 @@
                 <td>Datació</td>
                 <td>Ubicació</td>
                 <td> 
-
-                    <form action="" method="POST">
-                        <input type="submit" value="+ Obras">
-                    </form>
+                    <button href="index.php?controller=Obras&action=crear">Crear obra</button>
                 </td>
             </tr>
         <?php

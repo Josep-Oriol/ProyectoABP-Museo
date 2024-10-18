@@ -10,6 +10,11 @@
 @import "popUpEliminar.scss";
 
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Hace que el body ocupe la altura completa de la ventana */
+}
 
 * {
     margin: 0;

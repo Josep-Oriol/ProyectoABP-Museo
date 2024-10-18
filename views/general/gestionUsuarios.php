@@ -6,7 +6,7 @@
         <h1>Usuaris</h1>
         <div>
             <div>
-                <button>
+                <button id="buscar">
                     <img src="images/lupa.png" alt="">
                 </button>
                 <input type="text" id="busqueda">
@@ -39,7 +39,7 @@
                 <td>Rol</td>
                 <td>Estat</td>
                 <td> 
-                    <a href="index.php?controller=Usuarios&action=crear">+ usuarios</a>
+                    <button href="index.php?controller=Usuarios&action=crear">Crear usuario</button>
                 </td>
             </tr>
         <?php
