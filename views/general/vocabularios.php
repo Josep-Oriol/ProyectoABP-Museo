@@ -12,7 +12,7 @@
             <div><p>Autories</p></div>
         </div>
         <div>
-            <div><a href="index.php?controller=Vocabularios&action=campsLlista"><img src="images/campsLlista.png" alt=""></a></div>
+            <div><a href="index.php?controller=Vocabularios&action=mostrarVocabularios"><img src="images/campsLlista.png" alt=""></a></div>
             <div><p>Camps llista</p></div>
         </div>
     </div>

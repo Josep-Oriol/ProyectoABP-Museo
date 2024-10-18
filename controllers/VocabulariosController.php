@@ -1,11 +1,18 @@
 <?php
     class VocabulariosController {
         //Mostramos todos los nombres de los vocabularios.
+        public function enviarAVocabularios(){
+            require_once "views/general/header.php";
+            require_once "views/general/Vocabularios.php";
+            require_once "views/general/footer.html";
+        }
+
         public function mostrarVocabularios() {
             require_once "views/general/header.php";
             require_once "models/Vocabularios.php";
             $vocabularios = new Vocabularios();
             $nombresVocabularios = $vocabulario->mostrarVocabularios();
+            require_once "views/general/campsLlista.php";
             require_once "views/general/footer.html";
         }
 
