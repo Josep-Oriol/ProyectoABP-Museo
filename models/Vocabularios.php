@@ -15,9 +15,9 @@
             $sql = "SELECT Nombre_vocabulario FROM vocabularios WHERE ID_vocabulario = $idVocabulario";
             $query = $db->query($sql);
             $nombreVocabulario = $query->fetch(PDO::FETCH_ASSOC);
-            $sql = "SELECT Nombre_campo FROM campos WHERE FK_vocabulario = $idVocabulario";
+            $sql = "SELECT ID_campo, Nombre_campo FROM campos WHERE FK_vocabulario = $idVocabulario";
             $query = $db->query($sql);
-            $campos = $query->fetch(PDO::FETCH_ASSOC);
+            $campos = $query->fetchAll(PDO::FETCH_ASSOC);
             $datos = [$nombreVocabulario, $campos];
             return $datos;
         }
@@ -30,7 +30,7 @@
         }
 
         public function crearCampo($idVocabulario, $nombreCampo) {
-            $sql = "INSERT INTO campos VALUES ('$nombreCampo', $idVocabulario)";
+            $sql = "INSERT INTO campos (Nombre_campo, FK_vocabulario) VALUES ('$nombreCampo', $idVocabulario)";
             $db = $this->conectar();
             $query = $db->prepare($sql);
             $query->execute();
