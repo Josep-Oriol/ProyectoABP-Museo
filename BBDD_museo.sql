@@ -101,22 +101,16 @@ CREATE TABLE logs (
 );
 
 CREATE TABLE vocabularios (
-    ID_vocabulario INT PRIMARY KEY,
-    Classificacion_generica TEXT,
-    Material TEXT,
-    Codigo_getty_material TEXT,
-    Tecnica TEXT,
-    Codigo_getty_tecnica TEXT,
-    Codigo_autor TEXT,
-    Forma_ingreso ENUM('cessió', 'comodat', 'compra', 'dació', 'desconeguda', 'dipòsit', 'donació', 'entrega obligatòria', 'excavació', 'expropiació', 'herència', 'intercanvi', 'llegat', 'ocupació', 'ofrena', 'permuta', 'premi', 'propietat directa', 'recol.lecció', 'recuperació', 'successió interadministrativa'),
-    Baja ENUM('No', 'Si'),
-    Causa_de_baja ENUM('Confiscació', 'Destrucció', 'Estat de conservació molt
-deficient', 'Manteniment i restauració
-onerós', 'Pèrdua', 'Robatori', 'Successió interadministrativa', 'Valor patrimonial insuficient'),
-    Estado_de_conservacion ENUM('Bo', 'Dolent', 'Excel·lent', 'Indeterminat', 'Desconeguda', 'Regular')  NOT NULL,
-    Tipo_exposicion ENUM('Aliena', 'Pròpia'),
-    Datacion TEXT
-); 
+    ID_vocabulario INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre_vocabulario VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE campos (
+    ID_campo INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre_campo VARCHAR(255) NOT NULL UNIQUE,
+    FK_vocabulario INT,
+    FOREIGN KEY (FK_vocabulario) REFERENCES vocabularios(ID_vocabulario)
+);
 
 CREATE TABLE copias_seguridad (
     ID_copia INT PRIMARY KEY AUTO_INCREMENT,

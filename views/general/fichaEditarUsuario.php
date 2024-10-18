@@ -66,7 +66,7 @@
                         ?>
                     </select>
                 </div>
-                <div>
+                <div id="campoFoto">
                     <label for="foto">Fotografía</label>
                     <input type="file" name="foto" id="foto">
                     <span>PNG/JPG/JPEG</span>
