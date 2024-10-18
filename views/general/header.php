@@ -11,7 +11,7 @@
             <div>
                 <a href="index.php?controller=Usuarios&action=mostrarUsuarios">Gestió d'usuaris</a>
                 <hr>
-                <a href="index.php?controller=Vocabularios$action=menu">Gestió de vocabularis</a>
+                <a href="index.php?controller=vocabularios&action=EnviarAVocabularios">Gestió de vocabularis</a>
                 <hr>
                 <a href="">Còpies de seguretat</a>
             </div>

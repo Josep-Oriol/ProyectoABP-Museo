@@ -87,7 +87,6 @@ header {
   align-items: center;
   width: 100%;
   height: 10vh;
-  position: sticky;
 }
 header > img {
   margin: 3%;
@@ -153,7 +152,7 @@ header > nav > div:hover > div {
   border-radius: 7px;
 }
 header > div {
-  margin-right: 3vw;
+  margin-right: 4vw;
   display: block;
 }
 header > div > a > img {
@@ -171,7 +170,6 @@ header > div > div {
   height: 0;
   display: block;
   position: absolute;
-  min-width: 15vw;
   z-index: 1;
   background-color: #CFD1D4;
   overflow: hidden; /* Para ocultar contenido que exceda la altura */
@@ -439,10 +437,70 @@ header > div:hover > div {
   cursor: pointer;
 }
 
+#vocabularios {
+  height: 70vh;
+}
+#vocabularios > :first-child {
+  display: flex;
+  width: 100vw;
+  height: 12vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#vocabularios > :last-child {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 6vh;
+}
+#vocabularios > :last-child div {
+  display: block;
+}
+#vocabularios > :last-child div a > img {
+  width: 15vw;
+  height: auto;
+  transition: scale 0.3s;
+}
+#vocabularios > :last-child div a > img:hover {
+  scale: 1.05;
+}
+#vocabularios > :last-child div p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.4vh;
+}
+
+#campsLlista {
+  margin-top: 7vh;
+  margin-bottom: 12.9vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#campsLlista a {
+  display: block; /* Cambia el comportamiento del enlace a bloque */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  width: 35vw; /* Asegúrate de que el enlace ocupe el mismo ancho que el div */
+  margin-left: 2.2vw; /* Asegúrate de que el margen esté aquí si es necesario */
+  margin-right: 2.2vw;
+  margin-bottom: 3vh; /* Margen inferior aquí para el enlace */
+}
+#campsLlista a div {
+  background-color: #333333;
+  padding: 1.3vw;
+  border-radius: 10px;
+}
+#campsLlista a div p {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
 footer {
-  margin-top: 12vh;
+  position: relative;
+  bottom: 0;
+  margin-top: auto;
   width: 100%;
-  height: 21vh;
+  height: 20vh;
   background-color: #333333;
   display: flex;
 }
