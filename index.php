@@ -11,6 +11,7 @@ session_start();
     <title>Gestió Museu Apel·les Fenosa</title>
     <link rel="stylesheet" href="views/css/main.css">
     <script src="views/js/busqueda.js"></script>
+    <script src="views/js/confirmarEliminacion.js" defer></script>
 </head>
 <body>
    

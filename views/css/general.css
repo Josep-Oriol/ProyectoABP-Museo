@@ -124,10 +124,10 @@
   width: 2vw;
 }
 #general > :last-child table tr td > img, #general > :last-child table tr th > img {
-  width: 100%;
+  width: 30%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
-  width: 1.5vw;
+  width: 2vw;
   height: auto;
   margin-right: 0.1vw;
 }
