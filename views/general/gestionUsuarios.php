@@ -1,5 +1,6 @@
 <?php
     if(isset($_SESSION['Rol'])){ ?>
+    <?php include 'views/general/popUpEliminar.php'; ?> 
 <div id="general">
     <div>
         <h1>Usuaris</h1>
@@ -58,7 +59,7 @@
                 ?>
                     <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                     <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=eliminar&id=<?php echo $id;?>"><img src="images/borrarv2.png" alt=""></a>
+                    <a href="javascript:void(0);" onclick="mostrarPopup(<?php echo $id;?>)"><img src="images/borrarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {

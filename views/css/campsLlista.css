@@ -1,0 +1,26 @@
+@charset "UTF-8";
+#campsLlista {
+  margin-top: 7vh;
+  margin-bottom: 12.9vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#campsLlista a {
+  display: block; /* Cambia el comportamiento del enlace a bloque */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  width: 35vw; /* Asegúrate de que el enlace ocupe el mismo ancho que el div */
+  margin-left: 2.2vw; /* Asegúrate de que el margen esté aquí si es necesario */
+  margin-right: 2.2vw;
+  margin-bottom: 3vh; /* Margen inferior aquí para el enlace */
+}
+#campsLlista a div {
+  background-color: #333333;
+  padding: 1.3vw;
+  border-radius: 10px;
+}
+#campsLlista a div p {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}/*# sourceMappingURL=campsLlista.css.map */

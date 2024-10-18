@@ -1,0 +1,31 @@
+#vocabularios {
+  height: 70vh;
+}
+#vocabularios > :first-child {
+  display: flex;
+  width: 100vw;
+  height: 12vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#vocabularios > :last-child {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 6vh;
+}
+#vocabularios > :last-child div {
+  display: block;
+}
+#vocabularios > :last-child div a > img {
+  width: 15vw;
+  height: auto;
+  transition: scale 0.3s;
+}
+#vocabularios > :last-child div a > img:hover {
+  scale: 1.05;
+}
+#vocabularios > :last-child div p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.4vh;
+}/*# sourceMappingURL=menuVocabularios.css.map */
