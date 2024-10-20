@@ -1,6 +1,6 @@
-DROP DATABASE bhj7whmm8g7lraocrcgj;
-CREATE DATABASE bhj7whmm8g7lraocrcgj;
-USE bhj7whmm8g7lraocrcgj;
+DROP DATABASE museu_apelles_fenosa;
+CREATE DATABASE museu_apelles_fenosa;
+USE museu_apelles_fenosa;
 
 CREATE TABLE ubicaciones (
     ID_ubicacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -107,7 +107,7 @@ CREATE TABLE vocabularios (
 
 CREATE TABLE campos (
     ID_campo INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre_campo VARCHAR(255) NOT NULL UNIQUE,
+    Nombre_campo VARCHAR(255) NOT NULL,
     FK_vocabulario INT,
     FOREIGN KEY (FK_vocabulario) REFERENCES vocabularios(ID_vocabulario)
 );
@@ -163,3 +163,68 @@ INSERT INTO obras VALUES
 ('O008', 'Museu Apelles Fenosa', 'foto8.jpg', 'Escultura', 'Escultura en piedra', 'Colección Apelles Fenosa', 250.0, 100.0, 60.0, 'Piedra', 'Talla', 'Constantin Brâncuși', 'Columna sin fin', 1918, 1918, 'c. 1918', 8, '2021-11-05', 1, 'compra', '2021-10-01', 'Fundación Brâncuși', 'Bo', 'París', 'París', 'T008', 'ID008', 2500000.00, 'Catálogo de Brâncuși', 'Escultura minimalista en forma de columna', 'Adquirida para una exposición permanente.', 8),
 ('O009', 'Museu Apelles Fenosa', 'foto9.jpg', 'Pintura', 'Óleo sobre tabla', 'Colección Impresionista', 120.0, 100.0, 0.0, 'Madera', 'Óleo', 'Claude Monet', 'El estanque de nenúfares', 1905, 1905, 'c. 1905', 9, '2022-01-15', 1, 'compra', '2021-12-01', 'Galería de Arte Impresionista', 'Bo', 'París', 'París', 'T009', 'ID009', 15000000.00, 'Catálogo Monet', 'Paisaje impresionista de un estanque con nenúfares', 'Adquirida en subasta privada.', 9),
 ('O010', 'Museu Apelles Fenosa', 'foto10.jpg', 'Pintura', 'Acuarela sobre papel', 'Colección Moderna', 60.0, 80.0, 0.0, 'Papel', 'Acuarela', 'Paul Klee', 'Paisaje imaginario', 1920, 1920, 'c. 1920', 10, '2022-03-20', 1, 'compra', '2022-02-15', 'Galería de Arte Moderna', 'Bo', 'Berlín', 'Berlín', 'T010', 'ID010', 500000.00, 'Catálogo de Paul Klee', 'Paisaje abstracto y colorido', 'Adquirida para una exposición permanente.', 10);
+
+
+INSERT INTO vocabularios (Nombre_vocabulario) VALUES
+("Classificació genèrica"),
+("Material"),
+("Codi Getty material"),
+("Tècnica"),
+("Codi Getty tècnica"),
+("Codi autor"),
+("Forma d'ingrés"),
+("Baixa"),
+("Causa de baixa"),
+("Estat de conservació"),
+("Tipus exposició"),
+("Autories");
+
+INSERT INTO campos (Nombre_campo, FK_vocabulario) VALUES
+-- Forma d'ingrés
+('Cessió', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Comodat', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Compra', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Dació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Desconeguda', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Dipòsit', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Donació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Entrega obligatòria', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Excavació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Expropiació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Herència', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Intercanvi', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Llegat', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Ocupació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Ofrena', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Permuta', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Premi', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Propietat directa', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Recol·lecció', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Recuperació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+('Successió interadministrativa', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Forma d'ingrés")),
+
+-- Baixa
+('No', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Baixa")),
+('Sí', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Baixa")),
+
+-- Causa de baixa
+('Confiscació', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Destrucció', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Estat de conservació molt deficient', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Manteniment i restauració onerós', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Pèrdua', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Robatori', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Successió interadministrativa', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+('Valor patrimonial insuficient', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Causa de baixa")),
+
+-- Estat de conservació
+('Bo', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+('Dolent', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+('Excel·lent', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+('Indeterminat', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+('Desconeguda', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+('Regular', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Estat de conservació")),
+
+-- Tipus exposició
+('Aliena', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Tipus exposició")),
+('Pròpia', (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = "Tipus exposició"));

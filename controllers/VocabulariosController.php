@@ -7,9 +7,13 @@
             require_once "views/general/footer.html";
         }
 
-        public function campsLlista(){
+        public function mostrarAutories() {
             require_once "views/general/header.php";
-            require_once "views/general/campsLlista.php";
+            require_once "models/Vocabularios.php";
+            $vocabulario = new Vocabularios();
+            $campos = $vocabulario->mostrarAutories();
+            $nombre = "Autories";
+            require_once "views/general/fichaVocabulario.php";
             require_once "views/general/footer.html";
         }
 
@@ -18,7 +22,6 @@
             require_once "models/Vocabularios.php";
             $vocabularios = new Vocabularios();
             $nombresVocabularios = $vocabularios->mostrarVocabularios();
-
             require_once "views/general/campsLlista.php";
             require_once "views/general/footer.html";
         }
@@ -63,7 +66,6 @@
             }
         }
         */
-
 
     }
 ?>

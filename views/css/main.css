@@ -305,13 +305,13 @@ header > div:hover > div {
   text-align: center;
   width: 2vw;
 }
-#general > :last-child table tr td > button, #general > :last-child table tr th > button {
+#general > :last-child table tr td > a button, #general > :last-child table tr th > a button {
   font-weight: bold;
   padding: 2%;
   color: #333333;
   background-color: #EFEFEF;
 }
-#general > :last-child table tr td > button:hover, #general > :last-child table tr th > button:hover {
+#general > :last-child table tr td > a button:hover, #general > :last-child table tr th > a button:hover {
   cursor: pointer;
 }
 #general > :last-child table tr td > img, #general > :last-child table tr th > img {
@@ -681,6 +681,10 @@ footer .div2 .web a {
 
 /* Estilos para el contenido del popup */
 .popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   background-color: rgb(250, 250, 250);
   padding: 20px;
@@ -691,6 +695,16 @@ footer .div2 .web a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.popup-content img {
+  width: 25%;
+}
+.popup-content div button {
+  padding: 0.5vw;
+}
+.popup-content div button:hover {
+  cursor: pointer;
+  background-color: #CFD1D4;
 }
 
 .popup-content * {

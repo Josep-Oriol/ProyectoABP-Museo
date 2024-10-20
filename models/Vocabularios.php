@@ -5,18 +5,21 @@
         public function mostrarVocabularios() {
             $sql = "SELECT * FROM vocabularios";
             $db = $this->conectar();
-            $query = $db->query($sql);
+            $query = $db->prepare($sql);
+            $query->execute();
             $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
         }
 
         public function mostrarVocabulario($idVocabulario) {
-            $db = $this->conectar();
             $sql = "SELECT Nombre_vocabulario FROM vocabularios WHERE ID_vocabulario = $idVocabulario";
-            $query = $db->query($sql);
+            $db = $this->conectar();
+            $query = $db->prepare($sql);
+            $query->execute();
             $nombreVocabulario = $query->fetch(PDO::FETCH_ASSOC);
             $sql = "SELECT ID_campo, Nombre_campo FROM campos WHERE FK_vocabulario = $idVocabulario";
-            $query = $db->query($sql);
+            $query = $db->prepare($sql);
+            $query->execute();
             $campos = $query->fetchAll(PDO::FETCH_ASSOC);
             $datos = [$nombreVocabulario, $campos];
             return $datos;
@@ -48,6 +51,15 @@
             $db = $this->conectar();
             $query = $db->prepare($sql);
             $query->execute();
+        }
+
+        public function mostrarAutories() {
+            $sql = "SELECT Nombre_campo FROM campos WHERE FK_vocabulario = (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = 'Autories')";
+            $db = $this->conectar();
+            $query = $db->prepare($sql);
+            $query->execute();
+            $campos = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $campos;
         }
     }
 ?>

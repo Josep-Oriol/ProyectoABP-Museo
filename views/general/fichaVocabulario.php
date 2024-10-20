@@ -1,6 +1,6 @@
 <?php
     if(isset($_SESSION['Rol'])){
-?>
+    ?>
     <div id="fichaVocabulario">
         <div>
             <h2><?php echo $nombre; ?></h2>
@@ -13,7 +13,7 @@
             ?>
         </div>
         <form action="index.php?controller=Vocabularios&action=crearCampo&id=<?php echo $id; ?>" method="POST">
-            <input type="text" name="crear" id="crear" placeholder="+ Crear nou camp">
+            <input type="text" name="crear" id="crear" placeholder="+ Crear nou camp" required>
             <input type="submit" value="Crear">
         </form>
         <div>
@@ -22,7 +22,7 @@
         </div>
         
     </div>
-<?php
+    <?php
     }
     else {
         echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";

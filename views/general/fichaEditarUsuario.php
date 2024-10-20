@@ -74,9 +74,7 @@
                 <input type="submit" value="Guardar">
             </form>
         </div>
-    </div>
-    
-        
+    </div>  
     <?php
     }
     else {

@@ -127,14 +127,16 @@
                     padding: 1.3vh;
                     text-align: center;
                     width: 2vw;
-                    >button {
-                        font-weight: bold;
-                        padding: 2%;
-                        color: $color_oscuro;
-                        background-color: $color_claro3;
-
-                        &:hover {
-                            cursor: pointer;
+                    > a {
+                        button {
+                            font-weight: bold;
+                            padding: 2%;
+                            color: $color_oscuro;
+                            background-color: $color_claro3;
+    
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
                     }
                     > img {
