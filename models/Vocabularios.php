@@ -54,12 +54,19 @@
         }
 
         public function mostrarAutories() {
-            $sql = "SELECT Nombre_campo FROM campos WHERE FK_vocabulario = (SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario = 'Autories')";
+            $sql = "SELECT Nombre_campo FROM campos c INNER JOIN vocabularios v ON v.ID_vocabulario = c.FK_vocabulario WHERE Nombre_vocabulario LIKE 'Autories'";
             $db = $this->conectar();
             $query = $db->prepare($sql);
             $query->execute();
             $campos = $query->fetchAll(PDO::FETCH_ASSOC);
-            return $campos;
+
+            $sql =  "SELECT ID_vocabulario FROM vocabularios WHERE Nombre_vocabulario LIKE 'Autories'";
+            $query = $db->prepare($sql);
+            $query->execute();
+            $id = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $datos = [$id, $campos];
+            return $datos;
         }
     }
 ?>

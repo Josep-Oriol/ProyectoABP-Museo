@@ -11,8 +11,10 @@
             require_once "views/general/header.php";
             require_once "models/Vocabularios.php";
             $vocabulario = new Vocabularios();
-            $campos = $vocabulario->mostrarAutories();
+            $datos = $vocabulario->mostrarAutories();
             $nombre = "Autories";
+            $id = $datos[0][0]['ID_vocabulario'];
+            $campos = $datos[1];
             require_once "views/general/fichaVocabulario.php";
             require_once "views/general/footer.html";
         }
