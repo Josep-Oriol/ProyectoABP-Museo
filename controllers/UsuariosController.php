@@ -15,6 +15,8 @@ class UsuariosController{
             if($verificacion and $verificacion['Estado'] == "Actiu"){
 
                 $_SESSION['Rol'] = $verificacion['Rol'];
+                $_SESSION['ID_usuario'] = $verificacion['ID_usuario'];
+                $_SESSION['usuario'] = $verificacion['Nombre'];
                 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 

@@ -340,7 +340,7 @@ header > div:hover > div hr {
   width: 30%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
-  width: 1.8vw;
+  width: 2vw;
   height: auto;
   margin-right: 0.1vw;
 }
