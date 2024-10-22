@@ -49,6 +49,7 @@
         echo "<tr>
             <td>{$usuario['ID_usuario']}</td>
             <td><img alt='foto usuario' src='{$usuario['Foto_usuario']}'></td>
+            <td>{$usuario['Usuario']}</td>
             <td>{$usuario['Nombre']}</td>
             <td>{$usuario['Apellidos']}</td>
             <td>{$usuario['Correo_electronico']}</td>
