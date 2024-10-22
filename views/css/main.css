@@ -440,6 +440,7 @@ header > div:hover > div {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .fichaUsuario > :first-child > form > :last-child > input {
   background-color: black;
