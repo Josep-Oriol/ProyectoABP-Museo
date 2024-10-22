@@ -181,6 +181,26 @@ header > div:hover > div {
   height: auto; /* Dejar que se expanda a su altura natural */
   border-color: white; /* Cambiar el borde al hacer hover */
   border-radius: 7px;
+  white-space: nowrap;
+  display: block;
+}
+header > div:hover > div > a {
+  color: black;
+  text-decoration: none;
+  padding: 7%;
+  display: block;
+  transition: color 0.3s;
+}
+header > div:hover > div > a:hover {
+  color: #333333;
+}
+header > div:hover > div hr {
+  border: none;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 5%;
+  height: 0.5vh;
+  background-color: black;
 }
 
 #general {
@@ -224,7 +244,8 @@ header > div:hover > div {
   width: 100%;
   height: auto;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
   border: none;
@@ -248,7 +269,8 @@ header > div:hover > div {
   width: 100%;
   height: auto;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
   width: 20%;
@@ -727,6 +749,4 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

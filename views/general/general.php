@@ -38,7 +38,7 @@
                 <td>Datació</td>
                 <td>Ubicació</td>
                 <td> 
-                    <button href="index.php?controller=Obras&action=crear">Crear obra</button>
+                    <a href="index.php?controller=Obras&action=crear"><button>Crear obra</button></a>
                 </td>
             </tr>
         <?php
