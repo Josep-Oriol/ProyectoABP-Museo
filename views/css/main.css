@@ -244,8 +244,7 @@ header > div:hover > div hr {
   width: 100%;
   height: auto;
   max-height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
   border: none;
@@ -269,8 +268,7 @@ header > div:hover > div hr {
   width: 100%;
   height: auto;
   max-height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
   width: 20%;
@@ -698,7 +696,7 @@ footer .div2 .web a {
 }
 
 /* Estilos para el overlay */
-.popup {
+#popup {
   display: none; /* Oculto por defecto */
   position: fixed; /* Fijo respecto a la ventana */
   top: 0; /* Comienza en la parte superior */
@@ -708,7 +706,7 @@ footer .div2 .web a {
   background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
   z-index: 1000; /* Por encima de otros elementos */
 }
-.popup > div {
+#popup > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -724,21 +722,22 @@ footer .div2 .web a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.popup > div > * {
+#popup > div > * {
   margin: 5px;
 }
-.popup > div img {
+#popup > div img {
   width: 25%;
 }
-.popup > div div button {
+#popup > div > :nth-child(2) {
+  margin-left: 10px;
+}
+#popup > div > :last-child button {
+  margin: 0.5vw;
   padding: 0.5vw;
 }
-.popup > div div button:hover {
+#popup > div > :last-child button:hover {
   background-color: #CFD1D4;
   cursor: pointer;
-}
-.popup > div div > :nth-child(2) {
-  margin-left: 10px;
 }
 
 /* Estilos para el botón de cerrar */
@@ -757,4 +756,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
