@@ -3,8 +3,12 @@
     ?>
     <div class="fichaUsuario">
         <div>
-            <img src="images/IconDefaulUser.png" alt="Icono usuario">
+            <img src="images/IconDefaultUser.png" alt="Icono usuario">
             <form action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
+                <div>
+                    <label for="usuario">Usuari</label>
+                    <input type="text" name="usuario" id="usuario" required>
+                </div>
                 <div>
                     <label for="nombre">Nom</label>
                     <input type="text" name="nombre" id="nombre" required>
@@ -43,8 +47,11 @@
                 <div>
                     <label for="foto">Fotografía</label>
                     <input type="file" name="foto" id="foto">
+                    <span>PNG/JPG/JPEG</span>
                 </div>
-                <input type="submit" value="Crear Usuari">
+                <div>
+                    <input type="submit" value="Crear Usuari">
+                </div>
             </form>
         </div>
     </div>

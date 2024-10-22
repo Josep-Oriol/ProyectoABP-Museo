@@ -58,9 +58,9 @@ class UsuariosController{
                 $directorioFoto = $modeloUsuario->subirFotoServidor('foto');
             }
             else{
-                $directorioFoto = "images/IconDefaulUser.png";
+                $directorioFoto = "images/IconDefaultUser.png";
             }
-            $modeloUsuario->crearUsuario($directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+            $modeloUsuario->crearUsuario($directorioFoto, $_POST['usuario'], $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
         }
     }
 
@@ -96,7 +96,7 @@ class UsuariosController{
                     $fotoExist = false;
                     $directorioFoto = "";
                 }
-                $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['nombre'],$_POST['apellidos'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+                $modeloUsuario->editarUsuario($fotoExist, $id, $directorioFoto, $_POST['usuario'], $_POST['nombre'],$_POST['apellidos'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
             }
         }
