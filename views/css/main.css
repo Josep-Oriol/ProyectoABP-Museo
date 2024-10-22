@@ -318,7 +318,7 @@ header > div:hover > div {
   width: 30%;
 }
 #general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
-  width: 2vw;
+  width: 1.5vw;
   height: auto;
   margin-right: 0.1vw;
 }
