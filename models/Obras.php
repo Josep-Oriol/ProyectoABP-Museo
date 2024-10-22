@@ -1,7 +1,6 @@
 <?php
 require_once "Database.php";
-class Obras extends Database {	
-
+class Obras extends Database {
     private $numero_registro;
     private $nombre_museo;
     private $fotografia;
@@ -259,11 +258,17 @@ class Obras extends Database {
 	}
 
 	public function mostrarObras(){
+		//Obtenemos todos los datos de obras y la descripción de la ubicación mediante la unión de la tabla de obras y ubicaciones.
         $sql ="SELECT *, u.Descripcion FROM obras o INNER JOIN ubicaciones u ON u.ID_ubicacion = o.FK_id_ubicacion";
         $db = $this->conectar();
-        $rows = $db->query($sql);
-
-        return $rows; 
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+		$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
     }
 	
 	public function insertarObra(
@@ -288,7 +293,13 @@ class Obras extends Database {
                     '$lugar_de_ejecucion', '$lugar_de_procedencia', '$num_tiraje', 
                     '$otros_numeros_de_identificacion', $valoracion_economica, '$bibliografia',
                     '$descripcion', '$historia_del_objeto', $id_exposicion)";
-		$this->db->query($sql);
+		$db = $this->conectar();
+		try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
 	}
 
 	public function modificarObra(
@@ -321,12 +332,24 @@ class Obras extends Database {
                     Descripcion = '$descripcion', Historia_del_objeto = '$historia_del_objeto', 
                     FK_id_exposicion = $id_exposicion
 				WHERE Numero_registro = '$numero_registro'";
-		$this->db->query($sql);
+		$db = $this->conectar();
+		try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
 	}
 
 	public function eliminarObra($primary_key) {
 		$sql = "DELETE obras WHERE Numero_registro = '$primary_key'";
-		$this->db->query($sql);
+		$db = $this->conectar();
+		try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
 	}
     
 }

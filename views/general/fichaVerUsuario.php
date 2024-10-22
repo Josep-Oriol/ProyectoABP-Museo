@@ -13,6 +13,10 @@
             ?>
             <div>
                 <div>
+                    <label for="usuario">Usuari</label>
+                    <span id="usuario"><?php echo $datos['Usuario']; ?></span>
+                </div>
+                <div>
                     <label for="nombre">Nom</label>
                     <span id="nombre"><?php echo $datos['Nombre']; ?></span>
                 </div>
@@ -35,10 +39,6 @@
                 <div>
                     <label for="estado">Estat</label>
                     <span id="estado"><?php echo $datos['Estado']; ?></span>
-                </div>
-                <div>
-                    <label for="foto">Fotografía</label>
-                    <span id="foto"><?php echo $datos['Foto_usuario']; ?></span>
                 </div>
             </div>
         </div>

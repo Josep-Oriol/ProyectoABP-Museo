@@ -13,8 +13,12 @@
             ?>
             <form action="index.php?controller=Usuarios&action=editar&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data" method="POST">
                 <div>
+                    <label for="usuario">Usuari</label>
+                    <input type="text" name="usuario" id="usuario" value="<?php echo $datos['Usuario']; ?>" required>
+                </div>
+                <div>
                     <label for="nombre">Nom</label>
-                    <input type="text" name="nombre" id="nombre" value="<?php echo $datos['Nombre']; ?>">
+                    <input type="text" name="nombre" id="nombre" value="<?php echo $datos['Nombre']; ?>" required>
                 </div>
                 <div>
                     <label for="apellidos">Cognoms</label>
@@ -22,7 +26,7 @@
                 </div>
                 <div>
                     <label for="rol">Rol</label>
-                    <select name="rol" id="rol">
+                    <select name="rol" id="rol" required>
                         <?php
                         switch ($datos['Rol']) {
                             case 'Administració':
@@ -52,7 +56,7 @@
                 </div>
                 <div>
                     <label for="estado">Estat</label>
-                    <select name="estado" id="estado">
+                    <select name="estado" id="estado" required>
                         <?php
                         
                         if ($datos['Estado'] == 'Actiu') {
@@ -66,12 +70,14 @@
                         ?>
                     </select>
                 </div>
-                <div id="campoFoto">
+                <div>
                     <label for="foto">Fotografía</label>
                     <input type="file" name="foto" id="foto">
                     <span>PNG/JPG/JPEG</span>
                 </div>
-                <input type="submit" value="Guardar">
+                <div>
+                    <input type="submit" value="Guardar">
+                </div>
             </form>
         </div>
     </div>  
