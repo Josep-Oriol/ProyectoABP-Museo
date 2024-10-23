@@ -1,5 +1,5 @@
 /* Estilos para el overlay */
-.popup {
+#popup {
     display: none; /* Oculto por defecto */
     position: fixed; /* Fijo respecto a la ventana */
     top: 0; /* Comienza en la parte superior */
@@ -33,18 +33,17 @@
         img {
             width: 25%;
         }
-
-        div {
+        >:nth-child(2) {
+            margin-left: 10px;
+        }
+        >:last-child {
             button {
-                padding: 0.5vw;
-
+                margin: 0.5vw;
+                padding: 0.5vw;       
                 &:hover {
                     background-color: $color_claro;
                     cursor: pointer;
                 }
-            }
-            >:nth-child(2) {
-                margin-left: 10px;
             }
         }
     }

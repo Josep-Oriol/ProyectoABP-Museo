@@ -1,6 +1,6 @@
 <?php
     if(isset($_SESSION['Rol'])){ ?>
-    <?php include 'views/general/popUpEliminar.php'; ?> 
+    <?php require_once 'views/general/popup.php'; ?>
 <div id="general">
     <div>
         <h1>Usuaris</h1>

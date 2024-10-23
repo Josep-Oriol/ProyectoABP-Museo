@@ -181,6 +181,26 @@ header > div:hover > div {
   height: auto; /* Dejar que se expanda a su altura natural */
   border-color: white; /* Cambiar el borde al hacer hover */
   border-radius: 7px;
+  white-space: nowrap;
+  display: block;
+}
+header > div:hover > div > a {
+  color: black;
+  text-decoration: none;
+  padding: 7%;
+  display: block;
+  transition: color 0.3s;
+}
+header > div:hover > div > a:hover {
+  color: #333333;
+}
+header > div:hover > div hr {
+  border: none;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 5%;
+  height: 0.5vh;
+  background-color: black;
 }
 
 #general {
@@ -676,7 +696,7 @@ footer .div2 .web a {
 }
 
 /* Estilos para el overlay */
-.popup {
+#popup {
   display: none; /* Oculto por defecto */
   position: fixed; /* Fijo respecto a la ventana */
   top: 0; /* Comienza en la parte superior */
@@ -686,7 +706,7 @@ footer .div2 .web a {
   background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
   z-index: 1000; /* Por encima de otros elementos */
 }
-.popup > div {
+#popup > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -702,21 +722,22 @@ footer .div2 .web a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.popup > div > * {
+#popup > div > * {
   margin: 5px;
 }
-.popup > div img {
+#popup > div img {
   width: 25%;
 }
-.popup > div div button {
+#popup > div > :nth-child(2) {
+  margin-left: 10px;
+}
+#popup > div > :last-child button {
+  margin: 0.5vw;
   padding: 0.5vw;
 }
-.popup > div div button:hover {
+#popup > div > :last-child button:hover {
   background-color: #CFD1D4;
   cursor: pointer;
-}
-.popup > div div > :nth-child(2) {
-  margin-left: 10px;
 }
 
 /* Estilos para el botón de cerrar */
