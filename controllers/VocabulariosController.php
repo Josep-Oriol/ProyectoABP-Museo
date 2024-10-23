@@ -41,6 +41,7 @@
                 $nombre = $datos[0]['Nombre_vocabulario'];
                 $campos = $datos[1];
                 require_once "views/general/fichaVocabulario.php";
+
             }
             else {
                 echo "<h3>Ningún vocabulario seleccionado.</h3>";
@@ -57,17 +58,15 @@
             }
         }
 
-        /*public function editarCampos() {
-            if (isset($_GET['idCampo']) && isset($_GET['nombreCampo'])) {
-                $idCampo = $_GET['idCampo'];
-                $nombreCampo = $_GET['nombreCampo'];
-                require_once "models/Vocabularios.php";
-                $vocabulario = new Vocabularios();
-                
-                $vocabulario->editarCampo($idCampo, $nombreCampo);
+        public function editarCampos() {
+            require_once "models/Vocabularios.php";      
+            $vocabulario = new Vocabularios();
+            
+            foreach($_POST as $nombreCampo => $nuevoValor){         //recorre foreach, el indice contiene el antiguo nombre y su valor el nuevo
+                $vocabulario->editarCampo($nombreCampo, $nuevoValor);
             }
         }
-        */
+        
 
     }
 ?>

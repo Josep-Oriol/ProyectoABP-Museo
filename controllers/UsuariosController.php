@@ -16,7 +16,7 @@ class UsuariosController{
 
                 $_SESSION['Rol'] = $verificacion['Rol'];
                 $_SESSION['ID_usuario'] = $verificacion['ID_usuario'];
-                $_SESSION['usuario'] = $verificacion['Nombre'];
+                $_SESSION['Usuario'] = $verificacion['Usuario'];
                 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 

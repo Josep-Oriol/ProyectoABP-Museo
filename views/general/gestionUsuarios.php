@@ -45,38 +45,40 @@
             </tr>
         <?php
     foreach($usuarios as $indice => $usuario) {
-        $id = $usuario['ID_usuario'];
-        echo "<tr>
-            <td>{$usuario['ID_usuario']}</td>
-            <td><img alt='foto usuario' src='{$usuario['Foto_usuario']}'></td>
-            <td>{$usuario['Usuario']}</td>
-            <td>{$usuario['Nombre']}</td>
-            <td>{$usuario['Apellidos']}</td>
-            <td>{$usuario['Correo_electronico']}</td>
-            <td>{$usuario['Telefono']}</td>
-            <td>{$usuario['Rol']}</td>
-            <td>{$usuario['Estado']}</td>
-            <td>";
-            if ($_SESSION['Rol'] == 'Administració') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                    <a href="javascript:void(0);" onclick="mostrarPopup(<?php echo $id;?>)"><img src="images/borrarv2.png" alt=""></a>
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Tècnic') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Lector') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                <?php
-            }
-            echo "</td>";
-        echo "</tr>";
+        if($_SESSION['Usuario'] != $usuario['Usuario'] and $usuario['Usuario'] != "root"){
+            $id = $usuario['ID_usuario'];
+            echo "<tr>
+                <td>{$usuario['ID_usuario']}</td>
+                <td><img alt='foto usuario' src='{$usuario['Foto_usuario']}'></td>
+                <td>{$usuario['Usuario']}</td>
+                <td>{$usuario['Nombre']}</td>
+                <td>{$usuario['Apellidos']}</td>
+                <td>{$usuario['Correo_electronico']}</td>
+                <td>{$usuario['Telefono']}</td>
+                <td>{$usuario['Rol']}</td>
+                <td>{$usuario['Estado']}</td>
+                <td>";
+                if ($_SESSION['Rol'] == 'Administració') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
+                        <a href="javascript:void(0);" onclick="mostrarPopup(<?php echo $id;?>)"><img src="images/borrarv2.png" alt=""></a>
+                    <?php
+                }
+                else if ($_SESSION['Rol'] == 'Tècnic') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
+                    <?php
+                }
+                else if ($_SESSION['Rol'] == 'Lector') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <?php
+                }
+                echo "</td>";
+            echo "</tr>";
+        }
     }
 ?>
         </table>
