@@ -11,7 +11,7 @@ session_start();
     <title>Gestió Museu Apel·les Fenosa</title>
     <link rel="stylesheet" href="views/css/main.css">
     <script src="views/js/busqueda.js"></script>
-    <script src="views/js/popup.js" defer></script>
+    <script src="views/js/popup.js"></script>
 </head>
 <body>
    
@@ -46,6 +46,17 @@ session_start();
 
     ?>
     
+    
+    <div id="popupEliminar">
+        <div onclick="event.stopPropagation()">
+            <img src='images/alertIcon.png' alt='Icono señal advertencia eliminación'>
+            <h3>Estàs segur que vols eliminar?</h3>
+            <div>
+                <button id='confirmar-btn'>Confirmar</button>
+                <button id='cancelar-btn'>Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

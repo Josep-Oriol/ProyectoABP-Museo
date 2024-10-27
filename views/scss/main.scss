@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 @import "variables.scss";
+@import "mixins.scss";
 @import "login.scss";
 @import "header.scss";
 @import "general.scss";
@@ -21,7 +23,11 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Alice", serif;
+    font-weight: 400;
+    font-style: normal;
 }
+    
 
 
 

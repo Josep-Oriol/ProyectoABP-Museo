@@ -58,7 +58,7 @@
                 ?>
                     <a href=""><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href=""><img src="images/borrarv2.png" alt=""></a>
+                    <a href=""><img src="images/borrarv2.png" alt="" class="iconoEliminar"></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
