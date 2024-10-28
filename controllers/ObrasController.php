@@ -16,7 +16,9 @@ class ObrasController{
     }
 
     function mostrarFicha(){
+        require_once "views/general/header.php";
         require_once "views/general/fichaObra.php";
+        require_once "views/general/footer.html";
     }
 
     function crear(){
