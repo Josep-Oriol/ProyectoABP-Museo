@@ -16,7 +16,7 @@ class UsuariosController{
 
                 $_SESSION['Rol'] = $verificacion['Rol'];
                 $_SESSION['ID_usuario'] = $verificacion['ID_usuario'];
-                $_SESSION['Usuario'] = $verificacion['Usuario'];
+                $_SESSION['usuario'] = $verificacion['Nombre'];
                 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 
@@ -90,7 +90,7 @@ class UsuariosController{
             if ($_POST) {
                 if ($_FILES['foto']['size']!=0) {
                     $fotoExist = true;
-                    $directorioFoto = $modeloUsuario->subirFotoServidor('foto');                  
+                    $directorioFoto = $modeloUsuario->subirFotoServidor('foto');          
                 }
                 else {
                     $fotoExist = false;
@@ -107,7 +107,6 @@ class UsuariosController{
     }
 
     public function eliminar() {
-        
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             require_once "models/Usuarios.php";

@@ -21,6 +21,7 @@
             <input type="submit" value="Crear">
         </form>
         <div>
+            <button>Guardar</button>
             <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>"><button>Descartar cambios</button></a>
         </div>
         

@@ -48,6 +48,17 @@ session_start();
 
     ?>
     
+    
+    <div id="popupEliminar">
+        <div onclick="event.stopPropagation()">
+            <img src='images/alertIcon.png' alt='Icono señal advertencia eliminación'>
+            <h3>Estàs segur que vols eliminar?</h3>
+            <div>
+                <button id='confirmar-btn'>Confirmar</button>
+                <button id='cancelar-btn'>Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
