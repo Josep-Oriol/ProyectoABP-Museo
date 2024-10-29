@@ -64,7 +64,6 @@
 
         public function editarCampo($antiguoValor, $nuevoValor) {
             $antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
-            echo $antiguoValor;
             if($antiguoValor != $nuevoValor){
                 $sql = "UPDATE campos SET Nombre_campo = '$nuevoValor' WHERE Nombre_campo = '$antiguoValor'";
                 $db = $this->conectar();

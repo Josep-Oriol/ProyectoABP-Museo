@@ -4,7 +4,7 @@
     
     <nav>
         <a href="index.php?controller=Obras&action=mostrarObras">Inici</a>
-        <a href="">Exposicions</a>
+        <a href="index.php?controller=Exposiciones&action=mostrarExposiciones">Exposicions</a>
         <a href="">Ubicacions</a>
         <div>
             <a href="">Administració</a>

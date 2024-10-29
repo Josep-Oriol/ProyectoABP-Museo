@@ -9,12 +9,13 @@
             <form action="index.php?controller=Vocabularios&action=editarCampos&id=<?php echo $id; ?>" method="POST">
                 <?php
                 foreach ($campos as $indice => $campo) {
-                    echo "<input type='text' name='{$campo['Nombre_campo']}' id='{$campo['Nombre_campo']}' value='{$campo['Nombre_campo']}'/>\n";
+                    echo "<input class='pruebaAjax' type='text' name='{$campo['Nombre_campo']}' id='{$campo['Nombre_campo']}' value='{$campo['Nombre_campo']}' autocomplete='off'/>\n";
                 }
                 ?>
-                <input type="submit" value="Guardar">
+                <input type="submit" value="Guardar" id="enviar">
             </form>
         </div>
+
         <form action="index.php?controller=Vocabularios&action=crearCampo&id=<?php echo $id; ?>" method="POST">
             <input type="text" name="crear" id="crear" placeholder="+ Crear nou camp" required>
             <input type="submit" value="Crear">

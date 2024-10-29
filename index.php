@@ -12,6 +12,8 @@ session_start();
     <link rel="stylesheet" href="views/css/main.css">
     <script src="views/js/busqueda.js"></script>
     <script src="views/js/popup.js" defer></script>
+    <script src="views/js/validacion.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
    
