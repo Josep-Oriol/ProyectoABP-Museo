@@ -10,8 +10,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestió Museu Apel·les Fenosa</title>
     <link rel="stylesheet" href="views/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="views/js/validarEdicionVocabularios.js"></script>
+    <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/busqueda.js"></script>
-    <script src="views/js/popup.js"></script>
+    <!-- <script src="views/js/popup.js"></script> -->
     <script src="views/js/validacion.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>

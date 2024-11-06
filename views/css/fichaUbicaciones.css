@@ -1,0 +1,68 @@
+#fichaUbicaciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2vh;
+}
+#fichaUbicaciones > :first-child {
+  background-color: #333333;
+  border-radius: 10px;
+  width: 20vw;
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
+  margin-bottom: 1.7vh;
+}
+#fichaUbicaciones > :first-child > h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+#fichaUbicaciones > :nth-child(2) {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  margin-bottom: 5%;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv input {
+  width: 100%;
+  text-align: center;
+  border-style: none;
+  padding: 0.5vw;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv input:focus {
+  outline: none;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv button {
+  height: 100%;
+  width: 8%;
+  padding: 0.5vw;
+  background-color: transparent;
+  border-style: none;
+  font-size: 17px;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv button:hover {
+  cursor: pointer;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv img {
+  width: 1vw;
+}
+#fichaUbicaciones > :last-child {
+  margin-top: 2vh;
+}
+#fichaUbicaciones > :last-child button {
+  background-color: black;
+  color: white;
+  border-radius: 12px;
+  padding: 0.5vw 2vw 0.5vw 2vw;
+}
+#fichaUbicaciones > :last-child button:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+}/*# sourceMappingURL=fichaUbicaciones.css.map */

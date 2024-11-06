@@ -7,7 +7,7 @@
         </div>
         <div>
             <div>
-                <div><a href=""><img src="images/ubicaciones.png" alt=""></a></div>
+                <div><a href="index.php?controller=Vocabularios&action=mostrarUbicaciones"><img src="images/ubicaciones.png" alt=""></a></div>
                 <div><p>Ubicacions</p></div>
             </div>
             <div>

@@ -111,5 +111,45 @@
             $datos = [$id, $campos]; //Devolvemos un array donde en el primer campo se guarda el id del vocabulario y en el segundo los campos de autories.
             return $datos;
         }
+
+        public function mostrarUbicaciones() {
+            $sql = "SELECT ID_ubicacion, Descripcion_ubicacion, ID_padre FROM ubicaciones";
+            $db = $this->conectar();
+
+            try {
+                $query = $db->prepare($sql);
+                $query->execute();
+            }catch (PDOException $error){
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+
+           
+            $tree = []; //array para agrupar la consulta por ID_padre
+            foreach ($resultado as $item) { //guardamos la ubicación en la variable $item
+                $tree[$item['ID_padre']][] = $item; //agrupamos los elementos por ID_padre de $item
+            }
+
+            return $tree;
+        }
+
+        public function obtenerHijos($id_padre) { //ID_ubicación del padre que queremos ver sus hijos
+            $sql = "SELECT ID_ubicacion, Descripcion_ubicacion, ID_padre FROM ubicaciones WHERE ID_padre = :ID_padre"; //solo las ubicacion que sean hijas del padre
+            $db = $this->conectar();
+            $query = $db->prepare($sql);
+            $query->bindParam(':ID_padre', $id_padre); // asigna el valor de $id_padre al :ID_padre que hemos puesto en la consulta
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC); //devuelve los hijos del padre que queremos
+        }
+        
+        public function crearUbicacionHija($nombreUbicacion, $id_padre) {
+            $sql = "INSERT INTO ubicaciones (Descripcion_ubicacion, ID_padre, Fecha_inicio, Fecha_fin) VALUES (:nombre, :id_padre, '2020-02-01', '2020-02-01')";
+            $db = $this->conectar();
+            $query = $db -> prepare($sql);
+            $query->execute([
+                ':nombre' => $nombreUbicacion,
+                ':id_padre' => $id_padre
+            ]);
+        }
     }
 ?>
