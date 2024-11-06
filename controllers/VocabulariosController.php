@@ -8,13 +8,13 @@
         }
         
         public function mostrarUbicaciones() {
-            require_once "views/general/header.php";
+            require_once "views/general/components/header.php";
             require_once "models/Vocabularios.php";
             $vocabulario = new Vocabularios();
             $datos = $vocabulario->mostrarUbicaciones();
             $campos = $datos;
-            require_once "views/general/fichaUbicaciones.php";
-            require_once "views/general/footer.html";
+            require_once "views/general/ubicaciones/fichaUbicaciones.php";
+            require_once "views/general/components/footer.html";
         }
 
         public function crearUbicacionHija() {
@@ -27,9 +27,9 @@
             }
             
             // Incluye la vista para cargar el formulario de `fichaCrearUbicacion.php`
-            require_once "views/general/header.php";
-            require_once "views/general/fichaCrearUbicacion.php";
-            require_once "views/general/footer.html";
+            require_once "views/general/components/header.php";
+            require_once "views/general/ubicaciones/fichaCrearUbicacion.php";
+            require_once "views/general/components/footer.html";
             
             // Si el segundo formulario envía `nombreUbicacion`
             if (isset($_POST['nombreUbicacion']) && isset($_SESSION['ID_ubicacion'])) {
