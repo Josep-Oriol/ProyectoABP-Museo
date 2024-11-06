@@ -19,8 +19,8 @@ class Exposiciones extends Database{
     
     public function eliminarExposicion($id){
         $db = $this->conectar();
-        $sql = "UPDATE obras SET FK_id_exposicion = NULL";
-        $sql2 = "DELETE FROM exposiciones e WHERE ID_exposicion = $id";
+        $sql = "UPDATE obras_exposiciones SET fk_exposicion = NULL WHERE fk_exposicion = $id";
+        $sql2 = "DELETE FROM exposiciones WHERE id_exposicion = $id";
         try{
             $query = $db->prepare($sql);
             $query->execute();
@@ -33,7 +33,7 @@ class Exposiciones extends Database{
     }
     public function datosExposicion($id){
         $db = $this->conectar();
-        $sql = "SELECT * FROM exposiciones WHERE ID_exposicion = $id";
+        $sql = "SELECT * FROM exposiciones WHERE id_exposicion = $id";
         try{
             $query = $db->prepare($sql);
             $query->execute();
@@ -53,8 +53,8 @@ class Exposiciones extends Database{
         $inici = $array['inici'];
         $final = $array['final'];
 
-        $sql = "UPDATE exposiciones SET Texto_exposicion = '$descripcio', Tipo_exposicion = '$tipus', Lugar_exposicion = '$lloc', 
-        Fecha_inicio_exposicion = '$inici', Fecha_fin_exposicion = '$final' WHERE ID_exposicion = $id";
+        $sql = "UPDATE exposiciones SET texto_exposicion = '$descripcio', tipo_exposicion = '$tipus', lugar_exposicion = '$lloc', 
+        fecha_inicio_exposicion = '$inici', fecha_fin_exposicion = '$final' WHERE id_exposicion = $id";
 
         try{
             $query = $db->prepare($sql);
@@ -73,7 +73,7 @@ class Exposiciones extends Database{
         $inici = $array['inici'];
         $final = $array['final'];
 
-        $sql = "INSERT INTO exposiciones (Texto_exposicion, Lugar_exposicion, Tipo_exposicion, Fecha_inicio_exposicion, Fecha_fin_exposicion) VALUES('$descripcio', '$lloc', '$tipus', '$inici', '$final')";
+        $sql = "INSERT INTO exposiciones (texto_exposicion, lugar_exposicion, tipo_exposicion, fecha_inicio_exposicion, fecha_fin_exposicion) VALUES('$descripcio', '$lloc', '$tipus', '$inici', '$final')";
 
         try{
             $query = $db->prepare($sql);
@@ -86,7 +86,7 @@ class Exposiciones extends Database{
 
     public function seleccionarTipo(){
         $db = $this->conectar();
-        $sql = "SELECT * FROM campos WHERE FK_vocabulario = 11";
+        $sql = "SELECT * FROM campos WHERE fk_vocabulario = 11";
         try{
             $query = $db->prepare($sql);
             $query->execute();

@@ -6,7 +6,7 @@
             <img src="images/IconDefaultUser.png" alt="Icono usuario">
             <form action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
                 <div>
-                    <label for="usuario">Usuari</label>
+                    <label id="etiquetaUsuario" for="usuario">Usuari</label>
                     <input type="text" name="usuario" id="usuario" required>
                 </div>
                 <div>
@@ -55,7 +55,7 @@
             </form>
         </div>
     </div>
-        
+    <script src="views/js/validacionesFormularios/usuarios/validacionCrear.js"></script>
     <?php
     }
     else {

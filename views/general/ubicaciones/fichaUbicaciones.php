@@ -7,18 +7,18 @@
             <h2>Ubicacions</h2>
         </div>
         <div>
-            <?php foreach ($campos[0] as $ubicacion): // Solo las ubicaciones sin padre?>
+            <?php foreach ($campos[0] as $ubicacion):// Solo las ubicaciones sin padre?>
                 
                 <div class="inputsDiv">
-                    <button class="mostrarHijos" onclick="ejecutarFuncionesMostrar(<?= $ubicacion['ID_ubicacion'] ?>, this)"><img src="images/flecha_derecha.png" alt=""></button> <!-- cuando pulsas ejecutas el script mostrarHijos y le pasas 
+                    <button class="mostrarHijos" onclick="ejecutarFuncionesMostrar(<?= $ubicacion['id_ubicacion'] ?>, this)"><img src="images/flecha_derecha.png" alt=""></button> <!-- cuando pulsas ejecutas el script mostrarHijos y le pasas 
                     la id_ubicacion del padre del cual quieres ver sus hijos -->
-                    <input type='text' name='<?= $ubicacion['ID_padre'] ?>' id='<?= $ubicacion['ID_ubicacion'] ?>' value='<?= $ubicacion['Descripcion_ubicacion'] ?>' />
+                    <input type='text' name='<?= $ubicacion['id_padre'] ?>' id='<?= $ubicacion['id_ubicacion'] ?>' value='<?= $ubicacion['descripcion_ubicacion'] ?>' />
                     <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
-                        <input type="hidden" name="ID_ubicacion" value="<?= $ubicacion['ID_ubicacion'] ?>">
+                        <input type="hidden" name="ID_ubicacion" value="<?= $ubicacion['id_ubicacion'] ?>">
                         <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
                 </div>
-                <div id='hijos-<?= $ubicacion['ID_ubicacion'] ?>' style='display:none; padding-left: 5vw'></div> <!-- div donde se almacenan los hijos de cada 
+                <div id='hijos-<?= $ubicacion['id_ubicacion'] ?>' style='display:none; padding-left: 5vw'></div> <!-- div donde se almacenan los hijos de cada 
                 padre, este div por defecto se oculta -->
             
             <?php endforeach; ?>

@@ -43,22 +43,22 @@
             </tr>
         <?php
     foreach($obras as $indice => $obra) {
-        $id = $obra['Numero_registro'];
+        $id = $obra['numero_registro'];
         echo "<tr>
-            <td>{$obra['Fotografia']}</td>
-            <td>{$obra['Numero_registro']}</td>
-            <td>{$obra['Nombre_del_objeto']}</td>
-            <td>{$obra['Titulo']}</td>
-            <td>{$obra['Autor']}</td>
-            <td>{$obra['Datacion']}</td>
-            <td>{$obra['Descripcion_ubicacion']}</td>
+            <td>{$obra['fotografia']}</td>
+            <td>{$obra['numero_registro']}</td>
+            <td>{$obra['nombre_objeto']}</td>
+            <td>{$obra['titulo']}</td>
+            <td>{$obra['autor']}</td>
+            <td>{$obra['datacion']}</td>
+            <td>{$obra['descripcion_ubicacion']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Obras&action=eliminar&id="><img src="images/borrarv2.png" alt="" class="iconoEliminar"></a>
+                    <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id;?>"><img src="images/borrarv2.png" alt="" class="iconoEliminar"></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {

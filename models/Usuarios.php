@@ -59,7 +59,7 @@ class Usuarios extends Database {
     
     public function verificarLogin($user, $password){
         //Seleccionamos el registro que coincida con el usuario introducido y la contraseña introducida.
-        $sql = "SELECT * FROM usuarios WHERE Usuario = '$user' AND contrasenya = '$password'";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$user' AND contrasenya = '$password'";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -85,7 +85,7 @@ class Usuarios extends Database {
     }
 
     public function mostrarUsuario($id) {
-        $sql ="SELECT * FROM usuarios WHERE ID_usuario = $id";
+        $sql ="SELECT * FROM usuarios WHERE id_usuario = $id";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -98,7 +98,7 @@ class Usuarios extends Database {
     }
 
     public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
-        $sql = "INSERT INTO usuarios (Foto_usuario, Usuario, Nombre, Apellidos, Contrasenya, Correo_electronico, Telefono, Rol, Estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
+        $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -109,7 +109,7 @@ class Usuarios extends Database {
     }
 
     public function eliminarFoto($id) {
-        $sql = "SELECT Foto_usuario FROM usuarios WHERE ID_usuario = $id";
+        $sql = "SELECT foto_usuario FROM usuarios WHERE id_usuario = $id";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -118,7 +118,7 @@ class Usuarios extends Database {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
-        $foto = $resultado['Foto_usuario'];
+        $foto = $resultado['foto_usuario'];
         //Si la foto del usuario es la predeterminada nos aseguramos de que no se elimine del directorio.
         if ($foto != 'images/IconDefaultUser.png') {
             unlink($foto);
@@ -129,11 +129,11 @@ class Usuarios extends Database {
         //Si se ha subido una nueva foto, eliminamos la anterior y hacemos la actualización de los campos.
         if ($fotoExist) {
             $this->eliminarFoto($id);
-            $sql = "UPDATE usuarios SET Foto_usuario = '$foto', Usuario = '$usuario', Nombre = '$nombre', Apellidos = '$apellidos', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+            $sql = "UPDATE usuarios SET foto_usuario = '$foto', usuario = '$usuario', nombre = '$nombre', apellidos = '$apellidos', correo_electronico = '$correoElectronico', telefono = '$telefono', rol = '$rol', estado = '$estado' WHERE id_usuario = $id";
         }
         else {
             //Si no se ha subido una foto actualizamos todos los campos menos el de foto.
-            $sql = "UPDATE usuarios SET Usuario = '$usuario', Nombre = '$nombre', Apellidos = '$apellidos', Correo_electronico = '$correoElectronico', Telefono = '$telefono', Rol = '$rol', Estado = '$estado' WHERE ID_usuario = $id";
+            $sql = "UPDATE usuarios SET usuario = '$usuario', nombre = '$nombre', apellidos = '$apellidos', correo_electronico = '$correoElectronico', telefono = '$telefono', rol = '$rol', estado = '$estado' WHERE id_usuario = $id";
         }
         $db = $this->conectar();
         try {
@@ -146,7 +146,7 @@ class Usuarios extends Database {
 
     public function eliminarUsuario($id) {
         $this->eliminarFoto($id);
-        $sql = "DELETE FROM usuarios WHERE ID_usuario = $id";
+        $sql = "DELETE FROM usuarios WHERE id_usuario = $id";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
