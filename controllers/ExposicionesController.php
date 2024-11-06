@@ -8,15 +8,15 @@ class ExposicionesController{
         $exposiciones = $modelo->generarTablas();
 
         
-        require_once "views/general/header.php";
-        require_once "views/general/tablaExposiciones.php";
-        require_once "views/general/footer.html";
+        require_once "views/general/components/header.php";
+        require_once "views/general/exposiciones/tablaExposiciones.php";
+        require_once "views/general/components/footer.html";
     }
 
     public function fichaExposiciones(){
-        require_once "views/general/header.php";
-        require_once "views/general/fichaExposiciones.php";
-        require_once "views/general/footer.html";
+        require_once "views/general/components/header.php";
+        require_once "views/general/exposiciones/fichaExposiciones.php";
+        require_once "views/general/components/footer.html";
     }
 
     public function eliminar(){

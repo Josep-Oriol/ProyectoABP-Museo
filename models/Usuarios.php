@@ -157,7 +157,7 @@ class Usuarios extends Database {
     }
 
     public function subirFotoServidor($nombreCampo) {
-        $directorio = "images/Usuarios/"; //Directorio destino para guardar las imágenes de los usuarios.
+        $directorio = "images/usuarios/"; //Directorio destino para guardar las imágenes de los usuarios.
         $idFoto = time(); //Usamos el tiempo actual como identificador de la foto.
         $path = pathinfo($_FILES[$nombreCampo]['name']); //Obtenemos el path de la foto subida.
         $extension = $path['extension']; //Obtenemos la extensión de la misma.

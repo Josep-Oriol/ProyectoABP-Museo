@@ -51,20 +51,20 @@
             <td>{$obra['Titulo']}</td>
             <td>{$obra['Autor']}</td>
             <td>{$obra['Datacion']}</td>
-            <td>{$obra['Descripcion']}</td>
+            <td>{$obra['Descripcion_ubicacion']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=eliminar&id="><img src="images/borrarv2.png" alt="" class="iconoEliminar"></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
