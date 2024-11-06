@@ -51,20 +51,20 @@
             <td>{$obra['Titulo']}</td>
             <td>{$obra['Autor']}</td>
             <td>{$obra['Datacion']}</td>
-            <td>{$obra['Descripcion']}</td>
+            <td>{$obra['Descripcion_ubicacion']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href=""><img src="images/borrarv2.png" alt=""></a>
+                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
+                    <a href="index.php?controller=Obras&action=eliminar&id="><img src="images/borrarv2.png" alt="" class="iconoEliminar"></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
@@ -78,25 +78,6 @@
 ?>
         </table>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#busqueda').on('keyup', function() {
-                var query = $(this).val();
-
-                $.ajax({
-                    url: 'buscar_obras.php',  
-                    method: 'POST',
-                    data: {query: query},
-                    success: function(response) {
-                        
-                        $('#tabla-obras').html(response);
-                    }
-                });
-            });
-        });
-    </script>
     
 </div>
    <?php }

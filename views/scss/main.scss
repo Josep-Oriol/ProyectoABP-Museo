@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
-@import "variables.scss";
-@import "mixins.scss";
-@import "login.scss";
-@import "header.scss";
-@import "general.scss";
-@import "fichaVerUsuario.scss";
-@import "fichaUsuario.scss";
-@import "menuVocabularios.scss";
-@import "campsLlista";
-@import "fichaVocabulario.scss";
-@import "fichaUbicaciones.scss";
-@import "footer.scss";
-@import "popup.scss";
+@import "utils/variables.scss";
+@import "utils/mixins.scss";
+@import "general/login.scss";
+@import "components/header.scss";
+@import "general/tablas.scss";
+@import "obras/fichaObra.scss";
+@import "usuarios/fichaVerUsuario.scss";
+@import "usuarios/fichaUsuario.scss";
+@import "vocabularios/menuVocabularios.scss";
+@import "vocabularios/campsLlista";
+@import "vocabularios/fichaVocabulario.scss";
+@import "components/footer.scss";
+@import "components/popup.scss";
 
 
 body {

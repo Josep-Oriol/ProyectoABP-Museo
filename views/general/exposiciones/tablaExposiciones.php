@@ -38,7 +38,7 @@
                 <td>Data termini</td>
             
                 <td> 
-                    <a href=""><button>Crear exposicion</button></a>
+                    <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposicion</button></a>
                 </td>
             </tr>
         <?php
@@ -46,18 +46,18 @@
         $id = $exposicion['ID_exposicion'];
         echo "<tr>
             <td>{$exposicion['ID_exposicion']}</td>
-            <td>{$exposicion['Texto']}</td>
+            <td>{$exposicion['Texto_exposicion']}</td>
             <td>{$exposicion['Lugar_exposicion']}</td>
-            <td>{$exposicion['Tipo']}</td>
-            <td>{$exposicion['Fecha_inicio']}</td>
-            <td>{$exposicion['Fecha_fin']}</td>
+            <td>{$exposicion['Tipo_exposicion']}</td>
+            <td>{$exposicion['Fecha_inicio_exposicion']}</td>
+            <td>{$exposicion['Fecha_fin_exposicion']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href=""><img src="images/editarv2.png" alt=""></a>
+                    <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                     <a href="index.php?controller=Exposiciones&action=fichaExposiciones&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a id="<?php echo $id;?>" class="iconoEliminar" href="index.php?controller=Exposiciones&action=eliminar&id=<?php echo $id;?>"><img src="images/borrarv2.png" alt=""></a>
+                    <a id="<?php echo $id;?>"href="index.php?controller=Exposiciones&action=eliminar&id=<?php echo $id;?>"><img src="images/borrarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
