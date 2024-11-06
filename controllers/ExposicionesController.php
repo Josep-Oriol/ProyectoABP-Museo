@@ -14,6 +14,10 @@ class ExposicionesController{
     }
 
     public function fichaExposiciones(){
+        require_once "models/Exposiciones.php";
+        $modelo = new Exposiciones();
+        $datos = $modelo->datosExposicion($_GET['id']);
+
         require_once "views/general/components/header.php";
         require_once "views/general/exposiciones/fichaExposiciones.php";
         require_once "views/general/components/footer.html";
@@ -32,9 +36,9 @@ class ExposicionesController{
 
         $datos = $modelo->datosExposicion($_GET['id']);
         
-        require_once "views/general/header.php";
-        require_once "views/general/editarExposicion.php";
-        require_once "views/general/footer.html";
+        require_once "views/general/components/header.php";
+        require_once "views/general/exposiciones/editarExposicion.php";
+        require_once "views/general/components/footer.html";
     }
 
     public function editar(){
@@ -50,9 +54,9 @@ class ExposicionesController{
         $modelo = new Exposiciones();
         $campos = $modelo->seleccionarTipo();
 
-        require_once "views/general/header.php";
-        require_once "views/general/crearExposicion.php";
-        require_once "views/general/footer.html";
+        require_once "views/general/components/header.php";
+        require_once "views/general/exposiciones/crearExposicion.php";
+        require_once "views/general/components/footer.html";
     }
     public function crear(){
         require_once "models/Exposiciones.php";
