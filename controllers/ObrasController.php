@@ -48,6 +48,8 @@ class ObrasController{
             }
             else {
                 $obra = $modelobras->mostrarObra($id);
+                $camposLista = $modelobras->obtenerCamposLista();
+
                 require_once "views/general/obras/fichaEditarObra.php";
             }           
             
@@ -55,13 +57,6 @@ class ObrasController{
         
         require_once "views/general/components/footer.html";
     }
-
-    /*$camposAutores = $modelobras->obtenerCampoLista("Autories");
-                $camposMaterial = $modelobras->obtenerCampoLista("Material");
-                $camposTecnica = $modelobras->obtenerCampoLista("Tècnica");
-                $camposClasificacionGenerica = $modelobras->obtenerCampoLista("Classificació genèrica");
-                $camposColeccionProcedencia = $modelobras->obtenerCampoLista("Colecció de procedència");
-                $camposEstadoConservacion = $modelobras->obtenerCampoLista("Estat de conservació");*/
 
     public function eliminar() {
         require_once "views/general/components/header.php";

@@ -10,7 +10,7 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <div>
                                 <label for="fotografia">Fotografia</label>
-                                <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra">
+                                <img src="images/usuarios/1729075332.jpg" alt="fotografia obra">
                                 <input type="file" name="fotografia" id="fotografia">
                             </div>
                         </div>
@@ -21,7 +21,19 @@ if (isset($_SESSION['Rol'])) {
                             </div>
                             <div>
                                 <label for="autor">Autor</label>
-                                <input type="text" id="autor" name="autor" value="<?php echo $obra['autor']; ?>" required>
+                                <select name="autor" id="autor" required>
+                                    <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Autories'] as $indice => $campo) {
+                                        if ($campo != $obra['autor']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                                </select>
                             </div>
                             <div>
                                 <label for="data">Data</label>
@@ -76,16 +88,40 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Clasificació i Dimensions</h2>
                     <div>
                         <div>
-                            <label for="classificacio">Classificació genèrica</label>
-                            <input type="text" id="classificacio" name="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>" required>
+                            <label for="classificacio_generica">Classificació genèrica</label>
+                            <select name="classificacio_generica" id="classificacio_generica" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Classificació genèrica'] as $indice => $campo) {
+                                        if ($campo != $obra['clasificacion_generica']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="nom_objecte">Nom de l'objecte</label>
                             <input type="text" id="nom_objecte" name="nom_objecte" value="<?php echo $obra['nombre_objeto']; ?>" required>
                         </div>
                         <div>
-                            <label for="coleccio">Col·lecció de procedència</label>
-                            <input type="text" id="coleccio" name="coleccio" value="<?php echo $obra['coleccion_procedencia']; ?>" required>
+                            <label for="coleccio_procedencia">Col·lecció de procedència</label>
+                            <select name="coleccio_procedencia" id="coleccio_procedencia" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Col·lecció de procedència'] as $indice => $campo) {
+                                        if ($campo != $obra['coleccion_procedencia']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="mides_alçada">Mides màxima alçada (cm)</label>
@@ -101,15 +137,51 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="material">Material</label>
-                            <input type="text" id="material" name="material" value="<?php echo $obra['material']; ?>" required>
+                            <select name="material" id="material" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Material'] as $indice => $campo) {
+                                        if ($campo != $obra['material']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="tecnica">Tècnica</label>
-                            <input type="text" id="tecnica" name="tecnica" value="<?php echo $obra['tecnica']; ?>" required>
+                            <select name="tecnica" id="tecnica" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Tècnica'] as $indice => $campo) {
+                                        if ($campo != $obra['tecnica']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="estat_conservacio">Estat de conservació</label>
-                            <input type="text" id="estat_conservacio" name="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>" required>
+                            <select name="estat_conservacio" id="estat_conservacio" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Estat de conservació'] as $indice => $campo) {
+                                        if ($campo != $obra['estado_conservacion']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="nombre_exemplars">Nombre d'exemplars</label>
@@ -145,7 +217,19 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="forma_ingres">Forma d'ingrés</label>
-                            <input type="text" id="forma_ingres" name="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>" required>
+                            <select name="forma_ingres" id="forma_ingres" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista["Forma d'ingrés"] as $indice => $campo) {
+                                        if ($campo != $obra['forma_ingreso']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="data_ingres">Data d'ingrés</label>
@@ -185,11 +269,35 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="baixa">Baixa</label>
-                            <input type="text" id="baixa" name="baixa" value="<?php echo $obra['baja']; ?>">
+                            <select name="baixa" id="baixa" required>
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Baixa'] as $indice => $campo) {
+                                        if ($campo != $obra['baja']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="causa_baixa">Causa baixa</label>
-                            <input type="text" id="causa_baixa" name="causa_baixa" value="<?php echo $obra['causa_baja']; ?>">
+                            <select name="causa_baixa" id="causa_baixa">
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Causa de baixa'] as $indice => $campo) {
+                                        if ($campo != $obra['causa_baja']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="data_baixa">Data baixa</label>
@@ -224,16 +332,28 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Exposició i Restauració</h2>
                     <div>
                         <div>
-                            <label for="exposicio">Exposició</label>
-                            <input type="text" id="exposicio" name="exposicio" value="<?php echo $obra['id_exposicion']; ?>">
+                            <label for="tipus_exposicio">Exposició</label>
+                            <select name="tipus_exposicio" id="tipus_exposicio">
+                                <option value=""></option>
+                                <?php
+                                    foreach ($camposLista['Tipus exposició'] as $indice => $campo) {
+                                        if ($campo != $obra['tipo_exposicion']) {
+                                            echo "<option value='$campo'>$campo</option>";
+                                        }
+                                        else {
+                                            echo "<option value='$campo' selected>$campo</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             <label for="data_inici_expo">Data inici expo.</label>
-                            <input type="date" id="data_inici_expo" name="data_inici_expo" readonly value="<?php echo $obra['fecha_inicio_exposicion']; ?>">
+                            <input type="date" id="data_inici_expo" name="data_inici_expo" value="<?php $valor = (isset($obra['fecha_inicio_exposicion'])) ? $obra['fecha_inicio_exposicion'] : ""; echo $valor?>">
                         </div>
                         <div>
                             <label for="data_fi_expo">Data fi expo.</label>
-                            <input type="date" id="data_fi_expo" name="data_fi_expo" readonly value="<?php echo $obra['fecha_fin_exposicion']; ?>">
+                            <input type="date" id="data_fi_expo" name="data_fi_expo" value="<?php $valor = (isset($obra['fecha_fin_exposicion'])) ? $obra['fecha_fin_exposicion'] : ""; echo $valor?>">
                         </div>
                         <div>
                             <label for="codi_restauracio">Codi restauració</label>
