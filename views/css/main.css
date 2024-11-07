@@ -615,6 +615,108 @@ header > div:hover > div hr {
     flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
   }
 }
+#fichaCrearUsuario > div {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-left: 5px solid #333333;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#fichaCrearUsuario > div h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+#fichaCrearUsuario > div div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#fichaCrearUsuario > div div div {
+  width: 50%;
+}
+#fichaCrearUsuario > div div form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 50%;
+}
+#fichaCrearUsuario > div div form div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#fichaCrearUsuario > div div form div label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+  width: 50%;
+}
+#fichaCrearUsuario > div div form div input[type=text],
+#fichaCrearUsuario > div div form div input[type=password],
+#fichaCrearUsuario > div div form div input[type=email],
+#fichaCrearUsuario > div div form div input[type=tel],
+#fichaCrearUsuario > div div form div select {
+  width: 40%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaCrearUsuario > div div form div input[type=text]:focus,
+#fichaCrearUsuario > div div form div input[type=password]:focus,
+#fichaCrearUsuario > div div form div input[type=email]:focus,
+#fichaCrearUsuario > div div form div input[type=tel]:focus,
+#fichaCrearUsuario > div div form div select:focus {
+  border-color: #333333;
+  outline: none;
+}
+#fichaCrearUsuario > div div form div input[type=text][readonly],
+#fichaCrearUsuario > div div form div input[type=password][readonly],
+#fichaCrearUsuario > div div form div input[type=email][readonly],
+#fichaCrearUsuario > div div form div input[type=tel][readonly],
+#fichaCrearUsuario > div div form div select[readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaCrearUsuario > div div form div input[type=submit] {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#fichaCrearUsuario > div div form div input[type=submit]:hover {
+  background-color: #333333;
+}
+@media (max-width: 768px) {
+  #fichaCrearUsuario > div {
+    width: 100%;
+  }
+  #fichaCrearUsuario > div form {
+    flex-direction: column;
+  }
+  #fichaCrearUsuario > div form div {
+    width: 100%;
+  }
+}
+
 #fichaEditarUsuario > div {
   width: 80%;
   margin: 0 auto;
