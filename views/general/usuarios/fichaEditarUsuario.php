@@ -1,70 +1,84 @@
 <?php
     if(isset($_SESSION['Rol'])) {
-        print_r($datos);
     ?>
-    <section id="fichaVerUsuario">
+    <section id="fichaEditarUsuario">
         <div>
             <div>
                 <h2>Dades Principals</h2>
                 <div>
-                    <div>
+                    <form action="index.php?controller=Usuarios&action=editar&id=<?php echo $datos['id_usuario'];?>" method="POST" enctype="multipart/form-data">
                         <div>
-                            <label for="fotografia">Fotografia</label>
-                            <img src="<?php echo $datos['foto_usuario'] ?>" alt="" id="fotografia">
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <label for="usuario">Títol</label>
-                            <input type="text" id="usuario" value="<?php echo $datos['usuario'];?>">
-                        </div>
-                        <div>
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" value="<?php echo $datos['nombre'];?>">
-                        </div>
-                        <div>
-                            <label for="correo">Correo electronico</label>
-                            <input type="text" id="correo" value="<?php echo $datos['correo_electronico'];?>">
-                        </div>
-                        <div>
-                            <label for="telefono">Telefono</label>
-                            <input type="text" id="telefono" value="<?php echo $datos['telefono'];?>">
-                        </div>
-                        <div>
-                            <label for="rol">Rol</label>
-                            <input type="text" id="rol" value="<?php echo $datos['rol'];?>">
-                        </div>
-                        <div>
-                            <label for="estado">Estado</label>
-                            <input type="text" id="estado" value="<?php echo $datos['estado'];?>">
+                            <div>
+                                <label for="fotografia">Fotografia</label>
+                                <img src="<?php echo $datos['foto_usuario'] ?>" alt="" id="fotografia">
+                            </div>
                         </div>
                         <div>
                             <div>
-                                <a href=""><img src="images/download.png" alt="icono descargar"></a>
+                                <label for="usuario">Usuari</label>
+                                <input type="text" id="usuario" name="usuario" value="<?php echo $datos['usuario'];?>">
                             </div>
-                            <?php
-                            switch ($_SESSION['Rol']) {
-                                case 'Administració':
-                                    ?>
-                                        <div>
-                                            <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
-                                        </div>
-                                        <div>
-                                            <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
-                                        </div>
+                            <div>
+                                <label for="nombre">Nom</label>
+                                <input type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'];?>">
+                            </div>
+                            <div>
+                                <label for="apellido">Cognoms</label>
+                                <input type="text" id="apellido" name="apellidos" value="<?php echo $datos['apellidos'];?>">
+                            </div>
+                            <div>
+                                <label for="correo">Correu electrònic</label>
+                                <input type="text" id="correo" name="correo_electronico" value="<?php echo $datos['correo_electronico'];?>">
+                            </div>
+                            <div>
+                                <label for="telefono">Telefon</label>
+                                <input type="text" id="telefono" name="telefono" value="<?php echo $datos['telefono'];?>">
+                            </div>
+                            <div>
+                                <label for="rol">Rol</label>
+                                <select name="rol" id="rol">
                                     <?php
-                                    break;
-                                case 'Tècnic':
+                                        switch($datos['rol']){
+                                            case 'Administració':
+                                                echo "<option value='Administració'>Administració</option>";
+                                                echo "<option value='Lector'>Lector</option>";
+                                                echo "<option value='Tècnic'>Tècnic</option>";
+                                                break;
+                                            case 'Tècnic':
+                                                echo "<option value='Tècnic'>Tècnic</option>";
+                                                echo "<option value='Lector'>Lector</option>";
+                                                break;
+                                            case 'Lector':
+                                                echo "<option value='Lector'>Lector</option>";
+                                                echo "<option value='Tècnic'>Tècnic</option>";
+                                                break;
+                                        }
                                     ?>
-                                        <div>
-                                            <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
-                                        </div>    
-                                    <?php
-                                    break;
-                            }
-                            ?>
-                        </div>
-                    </div>               
+                                </select>
+                            </div>
+                            <div>
+                                <label for="estado">Estado</label>
+                                <select name="estado" id="estado">
+                                    <?php 
+                                        if($datos['estado'] == "Actiu"){
+                                            echo "<option value='Actiu' selected>Actiu</option>";
+                                            echo "<option value='Inactiu'>Inactiu</option>";
+                                        }
+                                        else{
+                                            echo "<option value='Actiu'>Actiu</option>";
+                                            echo "<option value='Inactiu' selected>Inactiu</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="file" name="foto" id="foto">
+                            </div>
+                            <div>
+                                <input type="submit" value="Guardar">
+                            </div>
+                        </div>  
+                    </form>             
                 </div>
             </div>
         </div>

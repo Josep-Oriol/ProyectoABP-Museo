@@ -1,6 +1,5 @@
 <?php
     if(isset($_SESSION['Rol'])) {
-        print_r($datos);
     ?>
     <section id="fichaVerUsuario">
         <div>
@@ -47,18 +46,14 @@
                             <?php
                             switch ($_SESSION['Rol']) {
                                 case 'Administració':
-                                    ?>
-                                        
-                                            <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
-                                        
-                                            <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                    ?>              
+                                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
+                                        <a href="index.php?controller=Usuarios&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
                                     <?php
                                     break;
                                 case 'Tècnic':
                                     ?>
-                                        
-                                            <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
-                                        
+                                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>      
                                     <?php
                                     break;
                             }

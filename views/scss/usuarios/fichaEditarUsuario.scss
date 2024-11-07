@@ -1,0 +1,138 @@
+#fichaEditarUsuario {
+    > div {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        
+        > div {
+            background-color: #F4F4F4;
+            padding: 20px;
+            border-left: #333333 solid 5px;
+            border-radius: 5px;
+            // Div de datos principales
+            > h2 {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #333333;
+                margin-top: 0;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+            }
+
+            form {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                > div {
+                    // Div de la imagen
+                    &:first-child {
+                        width: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        img {
+                            max-width: 100%;
+                            max-height: 500px;
+                            border-radius: 10px;
+                        }
+                    }
+
+                    // Div de los inputs
+                    &:last-child {
+                        width: 50%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 20px;
+                        
+                        div {
+                            width: 45%;
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: wrap;
+
+
+                            label {
+                                font-weight: bold;
+                                margin-bottom: 5px;
+                                color: #333333;
+                            }
+                            select{
+                                width: 100%;
+                                padding: 8px;
+                                font-size: 1em;
+                                border: 1px solid #BFBFBF;
+                                border-radius: 4px;
+                                background-color: #FFFFFF;
+                                color: #333333;
+                            }
+
+                            input[type="text"] {
+                                width: 100%;
+                                padding: 8px;
+                                font-size: 1em;
+                                border: 1px solid #BFBFBF;
+                                border-radius: 4px;
+                                background-color: #FFFFFF;
+                                color: #333333;
+                                transition: border-color 0.3s;
+
+                                &:focus {
+                                    border-color: #333333;
+                                    outline: none;
+                                }
+
+                                &[readonly] {
+                                    background-color: #F4F4F4;
+                                    color: #BFBFBF;
+                                }
+                            }
+                        }
+
+                        // Estilo para el botón "Guardar"
+                        > div:last-child {
+                            width: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            margin-top: 20px;
+
+                            input[type="submit"] {
+                                font-size: 1em;
+                                border: none;
+                                border-radius: 5px;
+                                padding: 10px 20px;
+                                background-color: #666666;
+                                color: #FFFFFF;
+                                cursor: pointer;
+                                transition: background-color 0.3s;
+
+                                &:hover {
+                                    background-color: #333333;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Media Query para pantallas pequeñas
+@media (max-width: 768px) {
+    #fichaEditarUsuario {
+        > div {
+            width: 100%;
+            
+            form {
+                flex-direction: column;
+
+                > div {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

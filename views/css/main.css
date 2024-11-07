@@ -507,16 +507,25 @@ header > div:hover > div hr {
 }
 #fichaVerUsuario > :first-child > :first-child > div > :last-child {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 20px;
 }
 #fichaVerUsuario > :first-child > :first-child > div > :last-child div {
   width: 50%;
+  display: flex;
+  align-items: center;
 }
 #fichaVerUsuario > :first-child > :first-child > div > :last-child div input {
   width: 100%;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 #fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child > :nth-child(1) > img {
   background-color: #333333;
@@ -606,91 +615,18 @@ header > div:hover > div hr {
     flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
   }
 }
-#fichaVerUsuario > :first-child {
+#fichaEditarUsuario > div {
   width: 80%;
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px;
-  background-color: none;
 }
-#fichaVerUsuario > :first-child > :first-child > div > :first-child {
-  width: 50%;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :first-child > div {
-  max-width: 500px;
-  max-height: 500px;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child div {
-  width: 50%;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child div input {
-  width: 100%;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child {
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: left;
-  gap: 10px;
-  margin-top: 20px;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child input {
-  font-size: 1em;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child input:hover {
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div > a {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div > a > img {
-  width: 20%;
-  height: auto;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(input) input {
-  width: 100%;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono descargar"]) {
-  background-color: #333333;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono descargar"]):hover {
-  background-color: #666666;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(input), #fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono editar"]) {
-  background-color: #666666;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(input):hover, #fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono editar"]):hover {
-  background-color: #999999;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono eliminar"]) {
-  background-color: #E74C3C;
-}
-#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono eliminar"]):hover {
-  background-color: #C0392B;
-}
-#fichaVerUsuario > :first-child > div {
-  margin-bottom: 20px;
-  padding: 15px;
-  border-left: 5px solid #333333;
+#fichaEditarUsuario > div > div {
   background-color: #F4F4F4;
+  padding: 20px;
+  border-left: #333333 solid 5px;
   border-radius: 5px;
 }
-#fichaVerUsuario > :first-child > div > h2 {
+#fichaEditarUsuario > div > div > h2 {
   font-size: 1.2em;
   font-weight: bold;
   color: #333333;
@@ -699,27 +635,50 @@ header > div:hover > div hr {
   display: flex;
   align-items: center;
 }
-#fichaVerUsuario > :first-child > div > div {
+#fichaEditarUsuario > div > div form {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+#fichaEditarUsuario > div > div form > div:first-child {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fichaEditarUsuario > div > div form > div:first-child img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 10px;
+}
+#fichaEditarUsuario > div > div form > div:last-child {
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
 }
-#fichaVerUsuario > :first-child > div > div div {
-  flex: 1 1 calc(50% - 15px); /* Dos columnas */
+#fichaEditarUsuario > div > div form > div:last-child div {
+  width: 45%;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-#fichaVerUsuario > :first-child > div > div div > label {
+#fichaEditarUsuario > div > div form > div:last-child div label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
 }
-#fichaVerUsuario > :first-child > div > div div input[type=text],
-#fichaVerUsuario > :first-child > div > div div input[type=number],
-#fichaVerUsuario > :first-child > div > div div input[type=date],
-#fichaVerUsuario > :first-child > div > div div select,
-#fichaVerUsuario > :first-child > div > div div textarea {
+#fichaEditarUsuario > div > div form > div:last-child div select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+}
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text] {
+  width: 100%;
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -728,30 +687,43 @@ header > div:hover > div hr {
   color: #333333;
   transition: border-color 0.3s;
 }
-#fichaVerUsuario > :first-child > div > div div input[type=text][readonly],
-#fichaVerUsuario > :first-child > div > div div input[type=date][readonly] {
-  background-color: #F4F4F4;
-  color: #BFBFBF;
-}
-#fichaVerUsuario > :first-child > div > div div textarea {
-  resize: vertical;
-}
-#fichaVerUsuario > :first-child > div > div div input[type=text]:focus,
-#fichaVerUsuario > :first-child > div > div div input[type=number]:focus,
-#fichaVerUsuario > :first-child > div > div div input[type=date]:focus,
-#fichaVerUsuario > :first-child > div > div div select:focus,
-#fichaVerUsuario > :first-child > div > div div textarea:focus {
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text]:focus {
   border-color: #333333;
   outline: none;
 }
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text][readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit] {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit]:hover {
+  background-color: #333333;
+}
 
-/* Responsive */
 @media (max-width: 768px) {
-  .field-group {
+  #fichaEditarUsuario > div {
+    width: 100%;
+  }
+  #fichaEditarUsuario > div form {
     flex-direction: column;
   }
-  .field {
-    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+  #fichaEditarUsuario > div form > div {
+    width: 100%;
   }
 }
 #vocabularios {
