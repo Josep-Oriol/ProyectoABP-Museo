@@ -48,7 +48,6 @@ class ObrasController{
             }
             else {
                 $obra = $modelobras->mostrarObra($id);
-                print_r($obra);
                 require_once "views/general/obras/fichaEditarObra.php";
             }           
             

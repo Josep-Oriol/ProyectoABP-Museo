@@ -65,7 +65,7 @@
             $vocabulario = new Vocabularios();
             $datos = $vocabulario->mostrarAutories();
             $nombre = "Autories";
-            $id = $datos[0][0]['ID_vocabulario'];
+            $id = $datos[0][0]['id_vocabulario'];
             $campos = $datos[1];
             require_once "views/general/vocabularios/fichaVocabulario.php";
             require_once "views/general/components/footer.html";
@@ -90,7 +90,7 @@
                 require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
                 $datos = $vocabulario->mostrarVocabulario($id);
-                $nombre = $datos[0]['Nombre_vocabulario'];
+                $nombre = $datos[0]['nombre_vocabulario'];
                 $campos = $datos[1];
                 require_once "views/general/vocabularios/fichaVocabulario.php";
             }
@@ -110,7 +110,7 @@
         }
 
         public function editarCampos() {
-            require_once "models/Vocabularios.php";      
+            require_once "models/Vocabularios.php";    
             $vocabulario = new Vocabularios();
             
             foreach($_POST as $nombreCampo => $nuevoValor){         //recorre foreach, el indice contiene el antiguo nombre y su valor el nuevo

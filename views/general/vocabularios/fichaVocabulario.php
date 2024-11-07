@@ -9,7 +9,7 @@
             <form id="campos" action="index.php?controller=Vocabularios&action=editarCampos&id=<?php echo $id; ?>" method="POST">
                 <?php
                 foreach ($campos as $indice => $campo) {
-                    echo "<input class='campo' type='text' name='{$campo['Nombre_campo']}' id='{$campo['Nombre_campo']}' value='{$campo['Nombre_campo']}' autocomplete='off'/>\n";
+                    echo "<input class='campo' type='text' name='{$campo['nombre_campo']}' id='{$campo['nombre_campo']}' value='{$campo['nombre_campo']}' autocomplete='off'/>\n";
                 }
                 ?>
                 <input type="submit" value="Guardar" id="enviar" >

@@ -43,14 +43,14 @@
             </tr>
         <?php
     foreach($exposiciones as $indice => $exposicion) {
-        $id = $exposicion['ID_exposicion'];
+        $id = $exposicion['id_exposicion'];
         echo "<tr>
-            <td>{$exposicion['ID_exposicion']}</td>
-            <td>{$exposicion['Texto_exposicion']}</td>
-            <td>{$exposicion['Lugar_exposicion']}</td>
-            <td>{$exposicion['Tipo_exposicion']}</td>
-            <td>{$exposicion['Fecha_inicio_exposicion']}</td>
-            <td>{$exposicion['Fecha_fin_exposicion']}</td>
+            <td>{$exposicion['id_exposicion']}</td>
+            <td>{$exposicion['texto_exposicion']}</td>
+            <td>{$exposicion['lugar_exposicion']}</td>
+            <td>{$exposicion['tipo_exposicion']}</td>
+            <td>{$exposicion['fecha_inicio_exposicion']}</td>
+            <td>{$exposicion['fecha_fin_exposicion']}</td>
 
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {

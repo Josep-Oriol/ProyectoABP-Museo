@@ -330,7 +330,7 @@ class Obras extends Database {
 
 	public function mostrarObras(){
 		//Obtenemos todos los datos de obras y la descripción de la ubicación mediante la unión de la tabla de obras y ubicaciones.
-        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.ID_ubicacion = o.FK_id_ubicacion";
+        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -344,10 +344,13 @@ class Obras extends Database {
 
 	public function mostrarObra($numeroRegistro) {
 		//Obtenemos todos los datos de obras, ubicaciones, bajas, exposiciones y restauraciones mediante la unión de todas las tablas mediante la clave primaria de la obra
-        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.ID_ubicacion = o.FK_id_ubicacion LEFT JOIN exposiciones e ON o.FK_id_exposicion = e.ID_exposicion
-				INNER JOIN logs_obras l ON o.Numero_registro = l.FK_id_obra 
-				INNER JOIN usuarios us ON us.ID_usuario = l.Persona_autorizada
-				INNER JOIN restauraciones r ON r.FK_id_obra = o.Numero_registro WHERE o.Numero_registro = '$numeroRegistro'";
+        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
+				INNER JOIN obras_exposiciones oe ON oe.fk_obra = o.Numero_registro
+				INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion
+				INNER JOIN logs_obras l ON o.numero_registro = l.fk_obra 
+				INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
+				INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro 
+				WHERE o.numero_registro = '$numeroRegistro'";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -360,7 +363,7 @@ class Obras extends Database {
     }
 
 	public function obtenerCamposLista($vocabulario) {
-		$sql ="SELECT c.Nombre_campo FROM campos c INNER JOIN vocabularios v ON c.FK_vocabulario = v.ID_vocabulario WHERE v.Nombre_vocabulario = '$vocabulario'";
+		$sql ="SELECT c.nombre_campo FROM campos c INNER JOIN vocabularios v ON c.fk_vocabulario = v.id_vocabulario WHERE v.nombre_vocabulario = '$vocabulario'";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -374,23 +377,28 @@ class Obras extends Database {
 	
 	public function crearObra(
 		$numeroRegistro, $nombreDelObjeto, $fotografia, $titulo, $autor, $datacion,
-		$anyoInicial, $anyoFinal, $fechaDeRegistro, $material, $tecnica, $clasificacionGenerica,
-		$coleccionDeProcedencia, $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, 
-		$medidasMaximaProfundidadCm, $nombreMuseo, $idUbicacion, $idExposicion,
-		$estadoDeConservacion, $descripcion, $historiaDelObjeto, $lugarDeEjecucion, 
-		$lugarDeProcedencia, $numTiraje, $otrosNumerosDeIdentificacion, 
-		$numeroDeEjemplares, $formaDeIngreso, $fechaDeIngreso, $fuenteDeIngreso, 
-		$valoracionEconomica, $bibliografia) {
+		$anyoInicial, $anyoFinal, $descripcion, $fechaDeRegistro, $material, $tecnica, $clasificacionGenerica,
+		$coleccionDeProcedencia, $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, $medidasMaximaProfundidadCm, 
+		$nombreMuseo, $idUbicacion, $estadoDeConservacion, $lugarDeEjecucion, $lugarDeProcedencia, 
+		$numTiraje, $otrosNumerosDeIdentificacion, $numeroDeEjemplares, $formaDeIngreso, 
+		$fechaDeIngreso, $fuenteDeIngreso, $valoracionEconomica, $historiaDelObjeto, $bibliografia) {
 	
-		$sql = "INSERT INTO obras VALUES (
-					'$numeroRegistro', '$nombreDelObjeto', '$fotografia', '$titulo', '$autor', '$datacion', 
-					$anyoInicial, $anyoFinal, '$fechaDeRegistro', '$material', '$tecnica', '$clasificacionGenerica', 
-					'$coleccionDeProcedencia', $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, 
-					$medidasMaximaProfundidadCm, '$nombreMuseo', $idUbicacion, $idExposicion, 
-					'$estadoDeConservacion', '$descripcion', '$historiaDelObjeto', '$lugarDeEjecucion', 
-					'$lugarDeProcedencia', '$numTiraje', '$otrosNumerosDeIdentificacion', $numeroDeEjemplares, 
-					'$formaDeIngreso', '$fechaDeIngreso', '$fuenteDeIngreso', $valoracionEconomica, '$bibliografia')";
-	
+		$sql = "INSERT INTO obras (
+			numero_registro, nombre_objeto, fotografia, titulo, autor, datacion, anyo_inicial, anyo_final,
+			descripcion_obra, fecha_registro, material, tecnica, clasificacion_generica, coleccion_procedencia, 
+			maxima_altura_cm, maxima_anchura_cm, maxima_profundidad_cm, nombre_museo, fk_ubicacion, 
+			estado_conservacion, lugar_ejecucion, lugar_procedencia, numero_tiraje, otros_numeros_identificacion, 
+			numero_ejemplares, forma_ingreso, fecha_ingreso, fuente_ingreso, valoracion_economica, historia_objeto, 
+			bibliografia
+		) VALUES (
+			'$numeroRegistro', '$nombreDelObjeto', '$fotografia', '$titulo', '$autor', '$datacion', 
+			$anyoInicial, $anyoFinal, '$descripcion', '$fechaDeRegistro', '$material', '$tecnica', 
+			'$clasificacionGenerica', '$coleccionDeProcedencia', $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, 
+			$medidasMaximaProfundidadCm, '$nombreMuseo', $idUbicacion, '$estadoDeConservacion', '$lugarDeEjecucion', 
+			'$lugarDeProcedencia', '$numTiraje', '$otrosNumerosDeIdentificacion', $numeroDeEjemplares, 
+			'$formaDeIngreso', '$fechaDeIngreso', '$fuenteDeIngreso', $valoracionEconomica, '$historiaDelObjeto', 
+			'$bibliografia')";
+		
 		$db = $this->conectar();
 		try {
 			$query = $db->prepare($sql);
@@ -402,30 +410,26 @@ class Obras extends Database {
 
 	public function editarObra(
 		$numeroRegistro, $nombreDelObjeto, $fotografia, $titulo, $autor, $datacion,
-		$anyoInicial, $anyoFinal, $fechaDeRegistro, $material, $tecnica, $clasificacionGenerica,
-		$coleccionDeProcedencia, $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, 
-		$medidasMaximaProfundidadCm, $nombreMuseo, $idUbicacion, $idExposicion,
-		$estadoDeConservacion, $descripcion, $historiaDelObjeto, $lugarDeEjecucion, 
-		$lugarDeProcedencia, $numTiraje, $otrosNumerosDeIdentificacion, 
-		$numeroDeEjemplares, $formaDeIngreso, $fechaDeIngreso, $fuenteDeIngreso, 
-		$valoracionEconomica, $bibliografia) {
+		$anyoInicial, $anyoFinal, $descripcion, $fechaDeRegistro, $material, $tecnica, $clasificacionGenerica,
+		$coleccionDeProcedencia, $medidasMaximaAlturaCm, $medidasMaximaAnchuraCm, $medidasMaximaProfundidadCm, 
+		$nombreMuseo, $idUbicacion, $estadoDeConservacion, $lugarDeEjecucion, $lugarDeProcedencia, 
+		$numTiraje, $otrosNumerosDeIdentificacion, $numeroDeEjemplares, $formaDeIngreso, 
+		$fechaDeIngreso, $fuenteDeIngreso, $valoracionEconomica, $historiaDelObjeto, $bibliografia) {
 	
 		$sql = "UPDATE obras SET
-				Nombre_del_objeto = '$nombreDelObjeto', Fotografia = '$fotografia', Titulo = '$titulo', 
-                Autor = '$autor', Datacion = '$datacion', Anyo_inicial = $anyoInicial, Anyo_final = $anyoFinal, 
-                Fecha_de_registro = '$fechaDeRegistro', Material = '$material', Tecnica = '$tecnica', 
-                Clasificacion_generica = '$clasificacionGenerica', Coleccion_de_procedencia = '$coleccionDeProcedencia',
-                Medidas_maxima_altura_cm = $medidasMaximaAlturaCm, Medidas_maxima_anchura_cm = $medidasMaximaAnchuraCm, 
-                Medidas_maxima_profundidad_cm = $medidasMaximaProfundidadCm, Nombre_museo = '$nombreMuseo', 
-                FK_id_ubicacion = $idUbicacion, FK_id_exposicion = $idExposicion, 
-                Estado_de_conservacion = '$estadoDeConservacion', Descripcion_obra = '$descripcion', 
-                Historia_del_objeto = '$historiaDelObjeto', Lugar_de_ejecucion = '$lugarDeEjecucion', 
-                Lugar_de_procedencia = '$lugarDeProcedencia', Num_Tiraje = '$numTiraje', 
-                Otros_numeros_de_identificacion = '$otrosNumerosDeIdentificacion', 
-                Numero_de_ejemplares = $numeroDeEjemplares, Forma_de_ingreso = '$formaDeIngreso', 
-                Fecha_de_ingreso = '$fechaDeIngreso', Fuente_de_ingreso = '$fuenteDeIngreso', 
-                Valoracion_economica = $valoracionEconomica, Bibliografia = '$bibliografia'
-            WHERE Numero_registro = '$numeroRegistro'";
+			nombre_objeto = '$nombreDelObjeto', fotografia = '$fotografia', titulo = '$titulo', 
+			autor = '$autor', datacion = '$datacion', anyo_inicial = $anyoInicial, anyo_final = $anyoFinal, 
+			descripcion_obra = '$descripcion', fecha_registro = '$fechaDeRegistro', material = '$material', 
+			tecnica = '$tecnica', clasificacion_generica = '$clasificacionGenerica', 
+			coleccion_procedencia = '$coleccionDeProcedencia', maxima_altura_cm = $medidasMaximaAlturaCm, 
+			maxima_anchura_cm = $medidasMaximaAnchuraCm, maxima_profundidad_cm = $medidasMaximaProfundidadCm, 
+			nombre_museo = '$nombreMuseo', fk_ubicacion = $idUbicacion, estado_conservacion = '$estadoDeConservacion', 
+			lugar_ejecucion = '$lugarDeEjecucion', lugar_procedencia = '$lugarDeProcedencia', 
+			numero_tiraje = '$numTiraje', otros_numeros_identificacion = '$otrosNumerosDeIdentificacion', 
+			numero_ejemplares = $numeroDeEjemplares, forma_ingreso = '$formaDeIngreso', fecha_ingreso = '$fechaDeIngreso', 
+			fuente_ingreso = '$fuenteDeIngreso', valoracion_economica = $valoracionEconomica, 
+			historia_objeto = '$historiaDelObjeto', bibliografia = '$bibliografia'
+		WHERE numero_registro = '$numeroRegistro'";
 	
 		$db = $this->conectar();
 		try {
@@ -434,10 +438,10 @@ class Obras extends Database {
 		} catch (PDOException $error) {
 			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
-	}
+	}	
 
 	public function eliminarObra($id) {
-		$sql = "DELETE FROM obras WHERE Numero_registro = '$id'";
+		$sql = "DELETE FROM obras WHERE numero_registro = '$id'";
 		$db = $this->conectar();
 		try {
             $query = $db->prepare($sql);

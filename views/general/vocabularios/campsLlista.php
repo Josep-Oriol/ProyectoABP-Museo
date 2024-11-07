@@ -4,11 +4,11 @@
     <div id="campsLlista">
         <?php
             foreach($nombresVocabularios as $indice => $nombre){
-                $id = $nombre['ID_vocabulario'];
+                $id = $nombre['id_vocabulario'];
                 ?>
                     <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>">
                         <div>
-                            <p><?php echo $nombre["Nombre_vocabulario"]; ?></p>
+                            <p><?php echo $nombre["nombre_vocabulario"]; ?></p>
                         </div>
                     </a> 
                 <?php

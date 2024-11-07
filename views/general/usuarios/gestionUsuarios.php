@@ -44,17 +44,17 @@
             </tr>
         <?php
     foreach($usuarios as $indice => $usuario) {
-        $id = $usuario['ID_usuario'];
+        $id = $usuario['id_usuario'];
         echo "<tr>
-            <td>{$usuario['ID_usuario']}</td>
-            <td><img alt='foto usuario' src='{$usuario['Foto_usuario']}'></td>
-            <td>{$usuario['Usuario']}</td>
-            <td>{$usuario['Nombre']}</td>
-            <td>{$usuario['Apellidos']}</td>
-            <td>{$usuario['Correo_electronico']}</td>
-            <td>{$usuario['Telefono']}</td>
-            <td>{$usuario['Rol']}</td>
-            <td>{$usuario['Estado']}</td>
+            <td>{$usuario['id_usuario']}</td>
+            <td><img alt='foto usuario' src='{$usuario['foto_usuario']}'></td>
+            <td>{$usuario['usuario']}</td>
+            <td>{$usuario['nombre']}</td>
+            <td>{$usuario['apellidos']}</td>
+            <td>{$usuario['correo_electronico']}</td>
+            <td>{$usuario['telefono']}</td>
+            <td>{$usuario['rol']}</td>
+            <td>{$usuario['estado']}</td>
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>

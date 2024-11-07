@@ -12,11 +12,11 @@ class UsuariosController{
             $password = $_POST['password'];
             $verificacion = $modeloUsuario->verificarLogin($user, $password);
           
-            if($verificacion and $verificacion['Estado'] == "Actiu"){
+            if($verificacion and $verificacion['estado'] == "Actiu"){
 
-                $_SESSION['Rol'] = $verificacion['Rol'];
-                $_SESSION['ID_usuario'] = $verificacion['ID_usuario'];
-                $_SESSION['usuario'] = $verificacion['Nombre'];
+                $_SESSION['Rol'] = $verificacion['rol'];
+                $_SESSION['ID_usuario'] = $verificacion['id_usuario'];
+                $_SESSION['Usuario'] = $verificacion['usuario'];
                 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 
