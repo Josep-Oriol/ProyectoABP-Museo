@@ -1,18 +1,23 @@
 function ejecutarFuncionesMostrar(id, boton) {
-    console.log("Botón clicado:", boton);
-    console.log("Ejecutando mostrar hijos para ID:", id);
-    mostrarHijos(id); // Llama a la función para mostrar hijos
-    rotarImagen(boton); // Llama a la función para cambiar la imagen
+    mostrarHijos(id, boton); // Llama a la función para mostrar hijos
 }
-function mostrarHijos(id) {
+function mostrarHijos(id, boton) {
+    console.log("ID recibido:", id);
 let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los hijos 
     
-    if (divHijos.is(':empty')) { /* comprueba si el div de los hijos esta vacio, si esta vacio
-        significa que no se han cargado los hijos de esa ubicacion, asi que ejecuta el AJAX */
+    // Verificar si los hijos ya fueron cargados previamente
+    if (divHijos.data("loaded")) {
+        divHijos.toggle(); // Alterna visibilidad si ya están cargados
+        rotarImagen(boton, divHijos.is(':visible'));
+        return;
+    }
+    // Desactivar el botón mientras se carga
+    $(boton).prop("disabled", true);
+    
         $.ajax({
             url: 'ajaxUbicaciones.php?controller=Vocabularios&action=cargarHijos&ajax=true', //php que gestiona la solicitud  
             type: 'GET',
-            data: { ID_padre: id }, //enviamos la id_ubicacion (id) del padre a la funcion cargarHijos de VocabulariosController, es decir a la url
+            data: { id_padre: id }, //enviamos la id_ubicacion (id) del padre a la funcion cargarHijos de VocabulariosController, es decir a la url
             success: function(hijos) { /* si la respuesta es exitosa, recibe los hijos que ha enviado 'cargarHijos', que es un array en formato
             json */
                  
@@ -21,32 +26,44 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
                 hijos.forEach(function(hijo) { //por cada hijo se ejecuta la funcion pasandole por parametro el hijo
                 divHijos.append(`
                 <div class="inputsDiv">
-                    <button onclick="mostrarHijos(${hijo.ID_ubicacion})"><img src="images/flecha_derecha.png" alt=""></button>
-                    <input type='text' name='${hijo.ID_padre}' id='${hijo.ID_ubicacion}' value='${hijo.Descripcion_ubicacion}' />
-                    <button>+</button>
+                    <button onclick="ejecutarFuncionesMostrar(${hijo.id_ubicacion}, this)"><img src="images/flecha_derecha.png" ></button>
+                    <input type='text' name='${hijo.id_padre}' id='${hijo.id_ubicacion}' value='${hijo.descripcion_ubicacion}' />
+                    <button onclick="eliminarHijos(${hijo.id_ubicacion})"><img class="eliminarUbi" src="images/basura.png"></button>
+                    <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
+                        <input type="hidden" name="id_ubicacion" value='${hijo.id_ubicacion}'>
+                        <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
+                    </form>
                 </div>
-                    <div id='hijos-${hijo.ID_ubicacion}' style='display:none; padding-left: 5vw'></div>
+                    <div id='hijos-${hijo.id_ubicacion}' style='display:none; padding-left: 5vw'></div>
                     `); //agregamos este contenido al div 'divHijos' con el 'divHijos.append'
                 });    
             }
-                divHijos.toggle(); // despues de añadir el contenido html a divHijos, lo muestra.  
+                divHijos.data("loaded", true);
+                divHijos.toggle(); // despues de añadir el contenido html a divHijos, lo muestra.
+                rotarImagen(boton, divHijos.is(':visible')); //ejecutamos el metodo de rotar imagen diciendole (con el true) que estamos mostrando los hijos.
+            },
+            complete: function() {
+                $(boton).prop("disabled", false); // Reactivar el botón después de completar la solicitud
             }
         });
-    } else {
-        divHijos.toggle(); // si divHijos esta lleno, es decir que ya estamos mostrando los hijos, los escondemos
     }
+
+function rotarImagen(boton, mostrar) {
+    const imagen = boton.querySelector("img"); 
+    imagen.style.transform = mostrar ? "rotate(90deg)" : "rotate(0deg)"; //si 'divHijos' es visible, se rota la imagen, si es false, vuelve a su posicion original
 }
 
-let angulo = 0; // Inicializa un ángulo para rotar la imagen
-
-function rotarImagen(boton) {
-    const imagen = boton.querySelector("img"); 
-    
-    if(angulo === 0){
-        angulo += 90;
-    }else{
-        angulo -=90;
-    } 
-     
-    imagen.style.transform = `rotate(${angulo}deg)`;
+function eliminarHijos(id_ubicacion){
+    $.ajax({
+        url: 'ajaxUbicaciones.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
+        type: 'POST',
+        data: { id_ubicacion: id_ubicacion },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) { // Verifica si el servidor respondió exitosamente
+                // Remueve el elemento HTML con el ID del hijo eliminado
+                document.getElementById(id_ubicacion).parentNode.remove();
+            }
+        }
+    })
 }

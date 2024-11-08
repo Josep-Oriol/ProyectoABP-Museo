@@ -17,13 +17,32 @@
             require_once "views/general/components/footer.html";
         }
 
+        public function crearUbicacion() {
+            require_once "models/Vocabularios.php";
+            require_once "views/general/components/header.php";
+            require_once "views/general/ubicaciones/fichaCrearUbicacion.php";
+            require_once "views/general/components/footer.html";
+
+            if (isset($_POST['nombreUbicacion'])) {
+                $nombreUbicacion = $_POST['nombreUbicacion'];
+                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
+                $fecha_fin = $_POST['fecha_fin_ubicacion'];
+                $comentari = $_POST['comentario_ubicacion'];
+
+                $vocabulario = new Vocabularios();
+                $vocabulario->crearUbicacion($nombreUbicacion, $fecha_inicio, $fecha_fin, $comentari);
+
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
+            }
+        }
+
         public function crearUbicacionHija() {
             require_once "models/Vocabularios.php";
             
             // Si el primer formulario envía `ID_ubicacion`
-            if (isset($_POST['ID_ubicacion'])) {
+            if (isset($_POST['id_ubicacion'])) {
                 // Guardamos el ID_ubicacion en la sesión
-                $_SESSION['ID_ubicacion'] = $_POST['ID_ubicacion'];
+                $_SESSION['id_ubicacion'] = $_POST['id_ubicacion'];
             }
             
             // Incluye la vista para cargar el formulario de `fichaCrearUbicacion.php`
@@ -32,27 +51,62 @@
             require_once "views/general/components/footer.html";
             
             // Si el segundo formulario envía `nombreUbicacion`
-            if (isset($_POST['nombreUbicacion']) && isset($_SESSION['ID_ubicacion'])) {
-                $id_ubicacion = $_SESSION['ID_ubicacion'];
+            if (isset($_POST['nombreUbicacion']) && isset($_SESSION['id_ubicacion'])) {
+                $id_ubicacion = $_SESSION['id_ubicacion'];
                 $nombreUbicacion = $_POST['nombreUbicacion'];
+                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
+                $fecha_fin = $_POST['fecha_fin_ubicacion'];
+                $comentari = $_POST['comentario_ubicacion'];
         
                 // Llama a la función del modelo para crear la ubicación
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion);
+                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion, $fecha_inicio, $fecha_fin, $comentari);
         
                 // Limpia los datos de la sesión después de usarlos
-                unset($_SESSION['ID_ubicacion']);
+                unset($_SESSION['id_ubicacion']);
                 
                 // Redirige a otra página después de crear la ubicación
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
+            }else if (isset($_POST['nombreUbicacion'])) {
+                $nombreUbicacion = $_POST['nombreUbicacion'];
+                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
+                $fecha_fin = $_POST['fecha_fin_ubicacion'];
+                $comentari = $_POST['comentario_ubicacion'];
+
+                $vocabulario = new Vocabularios();
+                $vocabulario->crearUbicacion($nombreUbicacion, $fecha_inicio, $fecha_fin, $comentari);
+
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
             }
+        }
+
+        public function eliminarUbicacion() {
+            require_once "models/Vocabularios.php";
+            $id_ubicacion = $_POST['id_ubicacion'];
+            $vocabulario = new Vocabularios();
+            $vocabulario->eliminarUbicacion($id_ubicacion);
+            echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
+        }
+
+        public function eliminarUbicacionHija() {
+            require_once "models/Vocabularios.php";
+            $vocabulario = new Vocabularios();
+            $id_ubicacion = $_POST['id_ubicacion'];
+    
+            // Aquí ejecutas la lógica de eliminación en la base de datos.
+            $resultado = $vocabulario->eliminarUbicacion($id_ubicacion);
+
+            // Devuelve una respuesta JSON indicando si fue exitoso
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $resultado]);
+            exit;
         }
         
 
         public function cargarHijos() {
             require_once "models/Vocabularios.php"; 
             $vocabulario = new Vocabularios();
-            $ID_padre = isset($_GET['ID_padre']) ? intval($_GET['ID_padre']) : 0; //verificamos si esta presente ID_padre en la URL y lo convertimos a int, si no esta presente lo ponemos en 0
+            $ID_padre = isset($_GET['id_padre']) ? intval($_GET['id_padre']) : 0; //verificamos si esta presente ID_padre en la URL y lo convertimos a int, si no esta presente lo ponemos en 0
             $hijos = $vocabulario->obtenerHijos($ID_padre); //guardamos en $hijos el array con los hijos de ese padre 
             header('Content-Type: application/json'); //indicamos al navegador que la respuesta sera en formato JSON
             echo json_encode($hijos); //convierte el array $hijos a formato json, y es lo que envia esta funcion, el array de los hijos de ese padre en formato json

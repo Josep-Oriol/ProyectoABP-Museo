@@ -125,9 +125,9 @@
             $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
 
            
-            $tree = []; //array para agrupar la consulta por ID_padre
+            $tree = []; //array para agrupar la consulta por id_padre
             foreach ($resultado as $item) { //guardamos la ubicación en la variable $item
-                $tree[$item['id_padre']][] = $item; //agrupamos los elementos por ID_padre de $item
+                $tree[$item['id_padre']][] = $item; //agrupamos los elementos por id_padre de $item
             }
 
             return $tree;
@@ -137,19 +137,34 @@
             $sql = "SELECT id_ubicacion, descripcion_ubicacion, id_padre FROM ubicaciones WHERE id_padre = :id_padre"; //solo las ubicacion que sean hijas del padre
             $db = $this->conectar();
             $query = $db->prepare($sql);
-            $query->bindParam(':id_padre', $id_padre); // asigna el valor de $id_padre al :ID_padre que hemos puesto en la consulta
+            $query->bindParam(':id_padre', $id_padre); // asigna el valor de $id_padre al :id_padre que hemos puesto en la consulta
             $query->execute();
             return $query->fetchAll(PDO::FETCH_ASSOC); //devuelve los hijos del padre que queremos
         }
-        
-        public function crearUbicacionHija($nombreUbicacion, $id_padre) {
-            $sql = "INSERT INTO ubicaciones VALUES (:nombre, :id_padre, '2020-02-01', '2020-02-01')";
+
+        public function crearUbicacion($nombreUbicacion, $fecha_inicio_ubicacion, $fecha_fin_ubicacion, $comentari) {
+            $formato_mysql_fi = date("Y-m-d H:i:s",strtotime($fecha_inicio_ubicacion)); //convertir las fechas al formato correcto en mysql
+            $formato_mysql_ff = date("Y-m-d H:i:s",strtotime($fecha_fin_ubicacion));
+            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, fecha_inicio_ubicacion, fecha_fin_ubicacion, comentario_ubicacion) VALUES ('$nombreUbicacion', 0, '$formato_mysql_fi', '$formato_mysql_ff', '$comentari')";
             $db = $this->conectar();
             $query = $db -> prepare($sql);
-            $query->execute([
-                ':nombre' => $nombreUbicacion,
-                ':id_padre' => $id_padre
-            ]);
+            $query->execute();
+        }
+
+        public function crearUbicacionHija($nombreUbicacion, $id_padre, $fecha_inicio_ubicacion, $fecha_fin_ubicacion, $comentari) {
+            $formato_mysql_fi = date("Y-m-d H:i:s",strtotime($fecha_inicio_ubicacion));
+            $formato_mysql_ff = date("Y-m-d H:i:s",strtotime($fecha_fin_ubicacion));
+            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, fecha_inicio_ubicacion, fecha_fin_ubicacion, comentario_ubicacion) VALUES ('$nombreUbicacion', $id_padre, '$formato_mysql_fi', '$formato_mysql_ff', '$comentari')";
+            $db = $this->conectar();
+            $query = $db -> prepare($sql);
+            $query->execute();
+        }
+
+        public function eliminarUbicacion($id_ubicacion) {
+            $sql = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
+            $db = $this->conectar();
+            $query = $db->prepare($sql);
+            return $query->execute();
         }
     }
 ?>
