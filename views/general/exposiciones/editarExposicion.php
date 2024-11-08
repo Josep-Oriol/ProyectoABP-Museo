@@ -1,7 +1,7 @@
 <?php
     if(isset($_SESSION['Rol'])) {
     ?>
-    <div class="fichaUsuario">
+    <div class="editarExposicion">
         <div>
             <form action="index.php?controller=Exposiciones&action=editar&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data" method="POST">
                 <div>

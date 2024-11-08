@@ -1,7 +1,7 @@
 <?php
     if(isset($_SESSION['Rol'])){
     ?>
-    <div id="fichaVerUsuario">
+    <div class="editarExposicion">
         <div>
             <div>
                 <div>
@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <label for="lloc">Lloc exposició</label>
-                    <span id="lloc"><?php echo $datos['lugar_exposicion']; ?></span>
+                    <input type="text" value="<?php echo $datos['lugar_exposicion']?>;">
                 </div>
                 <div>
                     <label for="inici">Data inici</label>

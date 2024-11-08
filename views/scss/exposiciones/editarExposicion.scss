@@ -1,0 +1,54 @@
+.editarExposicion{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    >div{
+        width: 80%;
+        background-color: #F4F4F4;
+        padding: 20px;
+        border-radius: 5px;
+        border-left: $color-oscuro solid 5px;
+        >form{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5%;
+            >div{
+                display: flex;
+                flex-direction: column;
+                width: 45%;
+                margin-bottom: 2.5%;
+
+                input, select{
+                    font-size: 1em;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                }
+                label {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    color: #333333;
+                }
+                input[type="submit"] {
+                    font-size: 1em;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    background-color: #666666;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: #333333;
+                    }
+                }
+
+                
+            }
+            >:last-child{
+                margin-top: 2%;
+            }
+        }
+    }
+}
