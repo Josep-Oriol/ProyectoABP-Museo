@@ -1041,30 +1041,28 @@ header > div:hover > div hr {
   padding: 20px;
   border-radius: 5px;
   border-left: #333333 solid 5px;
-}
-.editarExposicion > div > form {
   display: flex;
   flex-wrap: wrap;
   gap: 2.5%;
 }
-.editarExposicion > div > form > div {
+.editarExposicion > div > div {
   display: flex;
   flex-direction: column;
   width: 45%;
   margin-bottom: 2.5%;
 }
-.editarExposicion > div > form > div input, .editarExposicion > div > form > div select {
+.editarExposicion > div > div input, .editarExposicion > div > div select {
   font-size: 1em;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
 }
-.editarExposicion > div > form > div label {
+.editarExposicion > div > div label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
 }
-.editarExposicion > div > form > div input[type=submit] {
+.editarExposicion > div > div input[type=submit] {
   font-size: 1em;
   border: none;
   border-radius: 5px;
@@ -1074,10 +1072,10 @@ header > div:hover > div hr {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.editarExposicion > div > form > div input[type=submit]:hover {
+.editarExposicion > div > div input[type=submit]:hover {
   background-color: #333333;
 }
-.editarExposicion > div > form > :last-child {
+.editarExposicion > div > div > :last-child {
   margin-top: 2%;
 }
 

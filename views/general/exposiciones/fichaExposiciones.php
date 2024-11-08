@@ -6,7 +6,7 @@
             <div>
                 <div>
                     <label for="descripcio">Descripció</label>
-                    <span id="descripcio"><?php echo $datos['texto_exposicion']; ?></span>
+                    <input type="text" value="<?php echo $datos['texto_exposicion']; ?>">
                 </div>
                 <div>
                     <label for="lloc">Lloc exposició</label>
@@ -14,11 +14,11 @@
                 </div>
                 <div>
                     <label for="inici">Data inici</label>
-                    <span id="inici"><?php echo $datos['fecha_inicio_exposicion']; ?></span>
+                    <input type="date" value="<?php echo $datos['fecha_inicio_exposicion']; ?>">
                 </div>
                 <div>
                     <label for="termini">Data termini</label>
-                    <span id="termini"><?php echo $datos['fecha_fin_exposicion']; ?></span>
+                    <input type="date" value="<?php echo $datos['fecha_fin_exposicion']; ?>">
                 </div>
             </div>
         </div>
