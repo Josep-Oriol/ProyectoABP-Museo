@@ -343,27 +343,52 @@ class Obras extends Database {
     }
 
 	public function mostrarObra($numeroRegistro) {
-		//Obtenemos todos los datos de obras, ubicaciones, bajas, exposiciones y restauraciones mediante la unión de todas las tablas mediante la clave primaria de la obra
-        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
-				INNER JOIN obras_exposiciones oe ON oe.fk_obra = o.Numero_registro
+
+		$sql = "SELECT fk_exposicion FROM obras_exposiciones WHERE fk_obra = '$numeroRegistro'";
+       
+
+        $db = $this->conectar();
+        try {
+			$query = $db->prepare($sql);
+			$query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+		
+		$resultado = $query->fetch(PDO::FETCH_ASSOC);
+
+		if ($resultado['fk_exposicion'] != NULL) {
+			//Obtenemos todos los datos de obras, ubicaciones, bajas, usuarios, exposiciones y restauraciones mediante la unión de todas las tablas mediante la clave primaria de la obra
+			$sql2 = "SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
+				INNER JOIN obras_exposiciones oe ON oe.fk_obra = o.numero_registro
 				INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion
 				INNER JOIN logs_obras l ON o.numero_registro = l.fk_obra 
 				INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
 				INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro 
 				WHERE o.numero_registro = '$numeroRegistro'";
-        $db = $this->conectar();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute();
-        } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
-        }
-		$resultado = $query->fetch(PDO::FETCH_ASSOC);
-        return $resultado;
+		}
+		else {
+			$sql2 = "SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
+				INNER JOIN logs_obras l ON o.numero_registro = l.fk_obra 
+				INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
+				INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro 
+				WHERE o.numero_registro = '$numeroRegistro'";
+		}
+		
+		try {
+			$query2 = $db->prepare($sql2);
+			$query2->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		}
+
+		$resultado2 = $query2->fetch(PDO::FETCH_ASSOC);
+        return $resultado2;
     }
 
-	public function obtenerCamposLista($vocabulario) {
-		$sql ="SELECT c.nombre_campo FROM campos c INNER JOIN vocabularios v ON c.fk_vocabulario = v.id_vocabulario WHERE v.nombre_vocabulario = '$vocabulario'";
+	public function obtenerCamposLista() {
+		$sql = "SELECT v.nombre_vocabulario, c.nombre_campo FROM vocabularios v INNER JOIN campos c ON v.id_vocabulario = c.fk_vocabulario";
+		
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -371,8 +396,21 @@ class Obras extends Database {
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
-		$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $resultado;
+		$datos = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		$vocabulariosyCampos = array();
+		foreach ($datos as $indice => $dato) {
+			$nombreVocabulario = $dato['nombre_vocabulario'];
+			$nombreCampo = $dato['nombre_campo'];
+			if (!array_key_exists($nombreVocabulario, $vocabulariosyCampos)) { 
+				$vocabulariosyCampos[$nombreVocabulario] = [$nombreCampo]; //Si no existe, creamos una clave dentro del array con un array dentro con el valor del campo
+			}
+			else {
+				array_push($vocabulariosyCampos[$nombreVocabulario], $nombreCampo); //Si existe la clave del vocabulario, le asignamos el valor del campo
+			}
+		}
+
+        return $vocabulariosyCampos;
 	}
 	
 	public function crearObra(

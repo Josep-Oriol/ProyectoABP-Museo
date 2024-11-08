@@ -9,7 +9,7 @@
                     <div>
                         <div>
                             <label for="fotografia">Fotografia</label>
-                            <img src="images/Usuarios/1729075332.jpg" alt="" id="fotografia">
+                            <img src="images/Usuarios/1729075332.jpg" alt="fotografia obra" id="fotografia">
                         </div>
                     </div>
                     <div>
@@ -230,15 +230,15 @@
                 <div>
                     <div>
                         <label for="exposicio">Exposició</label>
-                        <input type="text" id="exposicio" value="<?php echo $obra['id_exposicion'];?>">
+                        <input type="text" id="exposicio" value="<?php $valor = (isset($obra['id_exposicion'])) ? $obra['id_exposicion'] : "Indefinida"; echo $valor?>">
                     </div>
                     <div>
                         <label for="data-inici-expo">Data inici expo.</label>
-                        <input type="text" id="data-inici-expo" readonly value="<?php echo $obra['fecha_inicio_exposicion'];?>">
+                        <input type="text" id="data-inici-expo" readonly value="<?php $valor = (isset($obra['fecha_inicio_exposicion'])) ? $obra['fecha_inicio_exposicion'] : "Indefinida"; echo $valor?>">
                     </div>
                     <div>
                         <label for="data-fi-expo">Data fi expo.</label>
-                        <input type="text" id="data-fi-expo" readonly  value="<?php echo $obra['fecha_fin_exposicion'];?>">
+                        <input type="text" id="data-fi-expo" readonly  value="<?php $valor = (isset($obra['fecha_fin_exposicion'])) ? $obra['fecha_fin_exposicion'] : "Indefinida"; echo $valor?>">
                     </div>
                     <div>
                         <label for="codi-restauracio">Codi restauració</label>

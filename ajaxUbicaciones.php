@@ -17,7 +17,7 @@ if (isset($_GET['controller'])) {
             }else {
                 // Manejo de otras acciones puede ir aquí
                 echo json_encode(['error' => 'Acción no válida']);
-                exit;
+                
             }
     } else {
         echo json_encode(['error' => 'No se especificó ninguna acción']);
@@ -25,6 +25,6 @@ if (isset($_GET['controller'])) {
     }
 } else {
     echo json_encode(['error' => 'No se especificó el controlador']);
-    exit;
+    
 }
 ?>
