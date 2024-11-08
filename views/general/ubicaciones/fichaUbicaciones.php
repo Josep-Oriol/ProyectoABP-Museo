@@ -26,7 +26,7 @@
             
             <?php endforeach; ?>
         </div>
-        <form action="index.php?controller=Vocabularios&action=crearUbicacion" method="POST">
+        <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
             <input type="hidden" name="crear" id="crear">
             <input type="submit" value="Crear ubicació pare">
         </form>
