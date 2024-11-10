@@ -17,7 +17,7 @@
                     <select name="tipus" id="tipus">
                         <?php 
                         foreach($campos as $indice => $campo){
-                            $dato = $campo['Nombre_campo'];
+                            $dato = $campo['nombre_campo'];
                             echo "<option>$dato</option>";
                         }
                         ?>

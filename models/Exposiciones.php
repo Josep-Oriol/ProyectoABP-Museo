@@ -86,7 +86,7 @@ class Exposiciones extends Database{
 
     public function seleccionarTipo(){
         $db = $this->conectar();
-        $sql = "SELECT * FROM campos WHERE fk_vocabulario = 11";
+        $sql = "SELECT * FROM campos WHERE fk_vocabulario = 11";  //ID especifico, se considera que no se puede borrar
         try{
             $query = $db->prepare($sql);
             $query->execute();
@@ -97,6 +97,23 @@ class Exposiciones extends Database{
         $campos = $query->fetchAll(PDO::FETCH_ASSOC);
         return $campos;
     }
+
+    public function obrasRelacionadas($id){
+        $db = $this->conectar();
+        $sql = "SELECT * FROM obras o INNER JOIN obras_exposiciones oe ON o.numero_registro = oe.fk_obra
+        INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion WHERE e.id_exposicion = $id";
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+        $datos = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $datos;
+    }
+    
 
 
 }

@@ -330,7 +330,8 @@ class Obras extends Database {
 
 	public function mostrarObras(){
 		//Obtenemos todos los datos de obras y la descripción de la ubicación mediante la unión de la tabla de obras y ubicaciones.
-        $sql ="SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion";
+        $sql ="SELECT * FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
+                INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
@@ -345,44 +346,45 @@ class Obras extends Database {
 	public function mostrarObra($numeroRegistro) {
 
 		$sql = "SELECT fk_exposicion FROM obras_exposiciones WHERE fk_obra = '$numeroRegistro'";
-       
 
         $db = $this->conectar();
         try {
-			$query = $db->prepare($sql);
-			$query->execute();
+            $query = $db->prepare($sql);
+            $query->execute();
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
-		
-		$resultado = $query->fetch(PDO::FETCH_ASSOC);
+       
+        $numRegistros = $query->rowCount();
 
-		if ($resultado['fk_exposicion'] != NULL) {
-			//Obtenemos todos los datos de obras, ubicaciones, bajas, usuarios, exposiciones y restauraciones mediante la unión de todas las tablas mediante la clave primaria de la obra
-			$sql2 = "SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
-				INNER JOIN obras_exposiciones oe ON oe.fk_obra = o.numero_registro
-				INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion
-				INNER JOIN logs_obras l ON o.numero_registro = l.fk_obra 
-				INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
-				INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro 
-				WHERE o.numero_registro = '$numeroRegistro'";
-		}
-		else {
-			$sql2 = "SELECT * FROM obras o INNER JOIN ubicaciones u ON u.id_ubicacion = o.fk_ubicacion 
-				INNER JOIN logs_obras l ON o.numero_registro = l.fk_obra 
-				INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
-				INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro 
-				WHERE o.numero_registro = '$numeroRegistro'";
-		}
-		
-		try {
-			$query2 = $db->prepare($sql2);
-			$query2->execute();
-		} catch (PDOException $error) {
-			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
-		}
+        if ($numRegistros != 0) {
+            //Obtenemos todos los datos de obras, ubicaciones, bajas, usuarios, exposiciones y restauraciones mediante la unión de todas las tablas mediante la clave primaria de la obra
+            $sql2 = "SELECT * FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
+			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion
+			INNER JOIN obras_exposiciones oe ON oe.fk_obra = o.numero_registro
+			INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion
+			INNER JOIN logs_obras l ON l.fk_obra = o.numero_registro
+			INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
+			INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro
+			WHERE o.numero_registro = '$numeroRegistro'";
+        }
+        else {
+			$sql2 = "SELECT * FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
+			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion
+			INNER JOIN logs_obras l ON l.fk_obra = o.numero_registro
+			INNER JOIN usuarios us ON us.id_usuario = l.persona_autorizada
+			INNER JOIN restauraciones r ON r.fk_obra = o.numero_registro
+			WHERE o.numero_registro = '$numeroRegistro'";
+        }
+       
+        try {
+            $query2 = $db->prepare($sql2);
+            $query2->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
 
-		$resultado2 = $query2->fetch(PDO::FETCH_ASSOC);
+        $resultado2 = $query2->fetch(PDO::FETCH_ASSOC);
         return $resultado2;
     }
 
