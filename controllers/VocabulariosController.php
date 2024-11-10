@@ -17,25 +17,6 @@
             require_once "views/general/components/footer.html";
         }
 
-        public function crearUbicacion() {
-            require_once "models/Vocabularios.php";
-            require_once "views/general/components/header.php";
-            require_once "views/general/ubicaciones/fichaCrearUbicacion.php";
-            require_once "views/general/components/footer.html";
-
-            if (isset($_POST['nombreUbicacion'])) {
-                $nombreUbicacion = $_POST['nombreUbicacion'];
-                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
-                $fecha_fin = $_POST['fecha_fin_ubicacion'];
-                $comentari = $_POST['comentario_ubicacion'];
-
-                $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacion($nombreUbicacion, $fecha_inicio, $fecha_fin, $comentari);
-
-                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
-            }
-        }
-
         public function crearUbicacionHija() {
             require_once "models/Vocabularios.php";
             
