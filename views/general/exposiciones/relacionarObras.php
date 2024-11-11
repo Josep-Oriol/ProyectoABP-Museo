@@ -1,12 +1,13 @@
 <?php
     if(isset($_SESSION['Rol'])){
+        $id = $_GET['id'];
     ?>
     <div class="relacion">
         <div>
             <h2>Relacionar</h2>
         </div>
         <div>
-            <form action="">
+            <form action="index.php?controller=Exposiciones&action=relacionar&id=<?php echo $id; ?>" method="POST">
                 <table>
                     <tr>
                         <td>Imatge</td>
@@ -20,17 +21,14 @@
                     </tr>
                     <?php
                         foreach ($obras as $obra) {
-                            // Comprobamos si la obra actual está en $obrasRelacionadas
+
                             $checked = false;
                             foreach ($obrasRelacionadas as $obraRelacionada) {
-                                // Supongamos que comparamos por el campo 'numero_registro' de las obras
                                 if ($obra['numero_registro'] == $obraRelacionada['numero_registro']) {
                                     $checked = true;
-                                    break; // Salir del loop si ya encontramos la coincidencia
                                 }
                             }
 
-                            // Imprimir la fila de la tabla con el checkbox marcado si es necesario
                             echo "<tr>";
                             echo "<td>{$obra['fotografia']}</td>";
                             echo "<td>{$obra['numero_registro']}</td>";
@@ -39,11 +37,12 @@
                             echo "<td>{$obra['autor']}</td>";
                             echo "<td>{$obra['datacion']}</td>";
                             echo "<td>{$obra['descripcion_ubicacion']}</td>";
-                            echo "<td><input type='checkbox' name='obras' value='{$obra['numero_registro']}' " . ($checked ? "checked" : "") . "></td>";
+                            echo "<td><input type='checkbox' name='obra_{$obra['numero_registro']}' value='{$obra['numero_registro']}' " . ($checked ? "checked" : "") . "></td>";
                             echo "</tr>";
                         }
                     ?>
                 </table>
+                <input type="submit">
             </form>
         </div>
     </div>      

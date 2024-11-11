@@ -113,7 +113,87 @@ class Exposiciones extends Database{
         $datos = $query->fetchAll(PDO::FETCH_ASSOC);
         return $datos;
     }
+
+    public function NumRegistroObrasRelacionadas($id){  //CONSULTA PARECIDA A LA ANTERIOR PERO MAS LIVIANA
+        $db = $this->conectar();
+        $sql = "SELECT fk_obra FROM obras_exposiciones WHERE fk_exposicion = $id";
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+        $datos = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $datos;
+    }
     
+    public function eliminarRelaciones($obrasEnviadas, $obrasRelacionadas, $idExposicion){  //SE HARA ELIMINAR Y AÑADIR POR SEPARADO (SI NO HAY OBRAS RELACIONADAS NO RECORRE EL PRIMER FOREACH)
+
+        foreach($obrasRelacionadas as $indice => $obraRelacionada){
+            $id = $obraRelacionada['fk_obra'];  //ID DE LA OBRA RELACIONADA QUE ESTA RECORRIENDO
+            if(!in_array($id, $obrasEnviadas)){
+                $this->consultaEliminarRelaciones($id, $idExposicion);
+            }
+        }
+    }
+
+    public function consultaEliminarRelaciones($idObra, $idExposicion){
+        $db = $this->conectar();
+        $sql = "DELETE FROM obras_exposiciones WHERE fk_obra LIKE '$idObra' and fk_exposicion LIKE '$idExposicion'"; //A MEJORAR
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+    }
+
+    public function agregarRelaciones($obras, $idExposicion){
+
+        $db = $this->conectar();
+        foreach($obras as $indice => $idObra){
+            if(!$this->comprobarRelacionExiste($idObra, $idExposicion)){
+                $this->consultaAgregarRelacion($idObra, $idExposicion);   //HAY QUE ARREGLAR PARA MANDAR UNA UNICA CONSULTA EN VEZ DE MUCHAS
+            }
+        }
+    }
+
+    public function consultaAgregarRelacion($idObra, $idExposicion){
+        $db = $this->conectar();
+        $sql = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ('$idObra', '$idExposicion')";
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+    }
+
+    public function comprobarRelacionExiste($idObra, $idExposicion){
+
+        $existe = false;
+        $db = $this->conectar();
+        $sql = "SELECT * FROM obras_exposiciones WHERE fk_obra = '$idObra' and fk_exposicion = '$idExposicion'";
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+        $datos = $query->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($datos)){
+            $existe = true;
+        }
+        return $existe;
+    }
 
 
 }
