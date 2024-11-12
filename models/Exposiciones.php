@@ -130,19 +130,26 @@ class Exposiciones extends Database{
     }
     
     public function eliminarRelaciones($obrasEnviadas, $obrasRelacionadas, $idExposicion){  //SE HARA ELIMINAR Y AÑADIR POR SEPARADO (SI NO HAY OBRAS RELACIONADAS NO RECORRE EL PRIMER FOREACH)
+        
+        $consulta = "DELETE FROM obras_exposiciones WHERE fk_obra IN (";
+        $array = [];
 
         foreach($obrasRelacionadas as $indice => $obraRelacionada){
             $id = $obraRelacionada['fk_obra'];  //ID DE LA OBRA RELACIONADA QUE ESTA RECORRIENDO
             if(!in_array($id, $obrasEnviadas)){
-                $this->consultaEliminarRelaciones($id, $idExposicion);
+                array_push($array, "'$id'"); //añade elementos al final del array
             }
+        }
+        if(!empty($array)){
+            $array = implode(", ", $array); //crea el string separado por comas
+            $consulta = $consulta.$array.")"." and fk_exposicion LIKE '$idExposicion'";
+
+            $this->consultaEliminarRelaciones($consulta);
         }
     }
 
-    public function consultaEliminarRelaciones($idObra, $idExposicion){
+    public function consultaEliminarRelaciones($sql){
         $db = $this->conectar();
-        $sql = "DELETE FROM obras_exposiciones WHERE fk_obra LIKE '$idObra' and fk_exposicion LIKE '$idExposicion'"; //A MEJORAR
-
         try{
             $query = $db->prepare($sql);
             $query->execute();
@@ -153,18 +160,23 @@ class Exposiciones extends Database{
     }
 
     public function agregarRelaciones($obras, $idExposicion){
-
-        $db = $this->conectar();
+        $array = [];
+        $consulta = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ";
         foreach($obras as $indice => $idObra){
             if(!$this->comprobarRelacionExiste($idObra, $idExposicion)){
-                $this->consultaAgregarRelacion($idObra, $idExposicion);   //HAY QUE ARREGLAR PARA MANDAR UNA UNICA CONSULTA EN VEZ DE MUCHAS
+                array_push($array, "('$idObra', '$idExposicion')");
             }
         }
+        if(!empty($array)){
+            $array = implode(", ", $array); //crea el string separado por comas
+            $consulta = $consulta.$array;
+            $this->consultaAgregarRelacion($consulta);
+        }
+
     }
 
-    public function consultaAgregarRelacion($idObra, $idExposicion){
+    public function consultaAgregarRelacion($sql){
         $db = $this->conectar();
-        $sql = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ('$idObra', '$idExposicion')";
 
         try{
             $query = $db->prepare($sql);

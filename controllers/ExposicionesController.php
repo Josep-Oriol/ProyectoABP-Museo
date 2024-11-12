@@ -92,7 +92,7 @@ class ExposicionesController{
         $modeloExposiciones->agregarRelaciones($_POST, $_GET['id']);
         $modeloExposiciones->eliminarRelaciones($_POST, $obrasRelacionadas, $_GET['id']);
 
-        //echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Exposiciones&action=mostrarExposiciones'/>";
+        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Exposiciones&action=fichaExposiciones&id=" . $_GET['id'] . "'/>";
     }
 
 }
