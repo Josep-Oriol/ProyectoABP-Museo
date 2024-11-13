@@ -28,8 +28,8 @@
     </div>
 
     <div>
-        <table>
-            <tr>
+        <table id="tabla">
+            <tr id="primer_tr">
                 <td>ID</td>
                 <td>Descrpció</td>
                 <td>Lloc exposició</td>
@@ -52,7 +52,7 @@
             <td>{$exposicion['fecha_inicio_exposicion']}</td>
             <td>{$exposicion['fecha_fin_exposicion']}</td>
 
-            <td>";
+            <td class='btn'>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
                     <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
