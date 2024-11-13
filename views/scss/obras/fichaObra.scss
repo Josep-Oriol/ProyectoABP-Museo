@@ -1,4 +1,5 @@
-#fichaObra {
+#fichaObra > form{
+    margin-top: 10vh;
     >:first-child {
         width: 80%;
         margin: 0px auto;
@@ -8,53 +9,73 @@
             > div {
                 >:first-child {
                     width: 50%;
+                    @include flex-column;
                     > div { //Div imagen
-                        max-width: 500px;
-                        max-height: 500px;
+                        width: 50%;
                     }
                 }
-                >:last-child {//Div inputs y imágenes
-                    >:last-child {
-                        width: 30%; //Div opciones de descarga, edición y eliminación
-                        @include flex-row;
+                >:last-child {
+                    >:last-child {//Div inputs y imágenes
+                        width: 100%;
+                        @include flex-column;
+                        align-items: normal;
                         justify-content: left;
-                        gap: 10px;
-                        margin-top: 20px;
-                        input {
-                            font-size: 1em;
-                            border: none;
-                            border-radius: 5px;
-                            padding: 10px 20px;
-                            &:hover {
-                                cursor: pointer;
-                                transition: background-color 0.3s;
-                            }
+                        gap: 3vw;
+                        > div {
+                            @include flex-row;
+                            justify-content: left;
+                            width: 100%;
                         }
-                        div > a{
-                            @include flex-column;
+                        div > input, div > a, a > button {
+                            border-radius: 10px;
+                        }
+
+                        input {
+                            width: 3vw;
                             padding: 10px;
                         }
-                        div > a > img {
-                            width: 80%;
-                        }
-                        div:has(input) {
-                            input {
+
+                        a {
+                            width: 3vw;
+                            text-decoration: none;
+                            @include flex-column;
+                            padding: 10px;
+                            img {
                                 width: 100%;
                             }
+                            button {
+                                padding: 15px;
+                            }
                         }
-                        div:has(a img[alt="icono descargar"]) { //Div con imagen descargar
+
+                        a:has(button) {
+                            width: 10vw;
+                        }
+
+                        a > button {
+                            width: 100%;
+                            background-color: #333333;
+                            font-size: 17px;
+                            color: white;
+                            &:hover {
+                                background-color: #666666;
+                                cursor: pointer;
+                            }
+                        }
+                        
+                        a:has(img[alt="icono descargar"]) { //Div con imagen descargar
                             background-color: #333333;
                             &:hover {
                                 background-color: #666666;
                             }
                         }
-                        div:has(input), div:has(a img[alt="icono editar"]) {
+                        input, a:has(img[alt="icono editar"]) {
                             background-color: #666666;  //Div con icono editar o input guardar
                             &:hover {
                                 background-color: #999999;
                             }
                         }
-                        div:has(a img[alt="icono eliminar"]) { //Div con imagen eliminar
+                        a:has(img[alt="icono eliminar"]) { //Div con imagen eliminar
                             background-color: #E74C3C;
                             &:hover {
                                 background-color: #C0392B;

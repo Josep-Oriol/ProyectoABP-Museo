@@ -83,6 +83,8 @@
 
 header {
   background-color: #333333;
+  position: fixed;
+  top: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -357,78 +359,104 @@ header > div:hover > div hr {
   background-color: grey;
 }
 
-#fichaObra > :first-child {
+#fichaObra > form {
+  margin-top: 10vh;
+}
+#fichaObra > form > :first-child {
   width: 80%;
   margin: 0px auto;
   padding: 20px;
   background-color: none;
 }
-#fichaObra > :first-child > :first-child > div > :first-child {
+#fichaObra > form > :first-child > :first-child > div > :first-child {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div {
   width: 50%;
 }
-#fichaObra > :first-child > :first-child > div > :first-child > div {
-  max-width: 500px;
-  max-height: 500px;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-items: normal;
+  justify-content: left;
+  gap: 3vw;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child {
-  width: 30%;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   justify-content: left;
-  gap: 10px;
-  margin-top: 20px;
+  width: 100%;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child input {
-  font-size: 1em;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child div > input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child div > a, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
+  border-radius: 10px;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child input:hover {
-  cursor: pointer;
-  transition: background-color 0.3s;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input {
+  width: 3vw;
+  padding: 10px;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div > a {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+  width: 3vw;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div > a > img {
-  width: 80%;
-}
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(input) input {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a img {
   width: 100%;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono descargar"]) {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a button {
+  padding: 15px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
+  width: 10vw;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
+  width: 100%;
+  background-color: #333333;
+  font-size: 17px;
+  color: white;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button:hover {
+  background-color: #666666;
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
   background-color: #333333;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono descargar"]):hover {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
   background-color: #666666;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(input), #fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono editar"]) {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
   background-color: #666666;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(input):hover, #fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono editar"]):hover {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
   background-color: #999999;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono eliminar"]) {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
   background-color: #E74C3C;
 }
-#fichaObra > :first-child > :first-child > div > :last-child > :last-child div:has(a img[alt="icono eliminar"]):hover {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
   background-color: #C0392B;
 }
-#fichaObra > :first-child > div {
+#fichaObra > form > :first-child > div {
   margin-bottom: 20px;
   padding: 15px;
   border-left: 5px solid #333333;
   background-color: #F4F4F4;
   border-radius: 5px;
 }
-#fichaObra > :first-child > div > h2 {
+#fichaObra > form > :first-child > div > h2 {
   font-size: 1.2em;
   font-weight: bold;
   color: #333333;
@@ -437,27 +465,27 @@ header > div:hover > div hr {
   display: flex;
   align-items: center;
 }
-#fichaObra > :first-child > div > div {
+#fichaObra > form > :first-child > div > div {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
-#fichaObra > :first-child > div > div div {
+#fichaObra > form > :first-child > div > div div {
   flex: 1 1 calc(50% - 15px); /* Dos columnas */
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-#fichaObra > :first-child > div > div div > label {
+#fichaObra > form > :first-child > div > div div > label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
 }
-#fichaObra > :first-child > div > div div input[type=text],
-#fichaObra > :first-child > div > div div input[type=number],
-#fichaObra > :first-child > div > div div input[type=date],
-#fichaObra > :first-child > div > div div select,
-#fichaObra > :first-child > div > div div textarea {
+#fichaObra > form > :first-child > div > div div input[type=text],
+#fichaObra > form > :first-child > div > div div input[type=number],
+#fichaObra > form > :first-child > div > div div input[type=date],
+#fichaObra > form > :first-child > div > div div select,
+#fichaObra > form > :first-child > div > div div textarea {
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -466,19 +494,19 @@ header > div:hover > div hr {
   color: #333333;
   transition: border-color 0.3s;
 }
-#fichaObra > :first-child > div > div div input[type=text][readonly],
-#fichaObra > :first-child > div > div div input[type=date][readonly] {
+#fichaObra > form > :first-child > div > div div input[type=text][readonly],
+#fichaObra > form > :first-child > div > div div input[type=date][readonly] {
   background-color: #F4F4F4;
   color: #BFBFBF;
 }
-#fichaObra > :first-child > div > div div textarea {
+#fichaObra > form > :first-child > div > div div textarea {
   resize: vertical;
 }
-#fichaObra > :first-child > div > div div input[type=text]:focus,
-#fichaObra > :first-child > div > div div input[type=number]:focus,
-#fichaObra > :first-child > div > div div input[type=date]:focus,
-#fichaObra > :first-child > div > div div select:focus,
-#fichaObra > :first-child > div > div div textarea:focus {
+#fichaObra > form > :first-child > div > div div input[type=text]:focus,
+#fichaObra > form > :first-child > div > div div input[type=number]:focus,
+#fichaObra > form > :first-child > div > div div input[type=date]:focus,
+#fichaObra > form > :first-child > div > div div select:focus,
+#fichaObra > form > :first-child > div > div div textarea:focus {
   border-color: #333333;
   outline: none;
 }
