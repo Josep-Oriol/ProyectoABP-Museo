@@ -147,11 +147,14 @@ class Usuarios extends Database {
     public function eliminarUsuario($id) {
         $this->eliminarFoto($id);
         $sql2 = "UPDATE copias_seguridad SET fk_creador = NULL";
+        $sql3 = "UPDATE logs_obras SET persona_autorizada = NULL";
         $sql = "DELETE FROM usuarios WHERE id_usuario = $id";
         $db = $this->conectar();
         try {
             $query2 = $db->prepare($sql2);
             $query2->execute();
+            $query3 = $db->prepare($sql3);
+            $query3->execute();
             $query = $db->prepare($sql);
             $query->execute();
         } catch (PDOException $error) {

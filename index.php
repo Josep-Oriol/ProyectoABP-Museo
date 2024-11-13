@@ -37,6 +37,7 @@ if ($isAjax) {
     <script src="views/js/logIn.js"></script>
     <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/busqueda.js"></script>
+    <script src="views/js/eliminar.js"></script>
     <!-- <script src="views/js/popup.js"></script> -->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

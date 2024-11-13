@@ -1112,6 +1112,15 @@ header > div:hover > div hr {
 .Exposicion > :last-child > :last-child table tr td > a button:hover, .Exposicion > :last-child > :last-child table tr th > a button:hover {
   cursor: pointer;
 }
+.Exposicion > :last-child > :last-child table tr td button, .Exposicion > :last-child > :last-child table tr th button {
+  font-weight: bold;
+  padding: 2%;
+  color: #333333;
+  background-color: #EFEFEF;
+}
+.Exposicion > :last-child > :last-child table tr td button:hover, .Exposicion > :last-child > :last-child table tr th button:hover {
+  cursor: pointer;
+}
 .Exposicion > :last-child > :last-child table tr td > img, .Exposicion > :last-child > :last-child table tr th > img {
   width: 30%;
 }

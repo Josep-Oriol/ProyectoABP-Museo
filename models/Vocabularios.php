@@ -126,8 +126,12 @@
 
            
             $tree = []; //array para agrupar la consulta por id_padre
-            foreach ($resultado as $item) { //guardamos la ubicación en la variable $item
-                $tree[$item['id_padre']][] = $item; //agrupamos los elementos por id_padre de $item
+            foreach ($resultado as $item) {
+                if($item['id_padre'] == NULL){
+                    $tree[0][] = $item;
+                }else{
+                    $tree[$item['id_padre']][] = $item; //agrupamos los elementos por id_padre de $item
+                } //guardamos la ubicación en la variable $item
             }
 
             return $tree;
