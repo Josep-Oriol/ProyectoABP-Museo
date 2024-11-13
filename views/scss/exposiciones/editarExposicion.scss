@@ -1,0 +1,118 @@
+.Exposicion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+    >div{
+        width: 80%;
+        background-color: #F4F4F4;
+        padding: 20px;
+        border-radius: 5px;
+        border-left: $color-oscuro solid 5px;
+        >form{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5%;
+            >div{
+                display: flex;
+                flex-direction: column;
+                width: 45%;
+                margin-bottom: 2.5%;
+
+                input, select{
+                    font-size: 1em;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                }
+                label {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    color: #333333;
+                }
+                input[type="submit"] {
+                    font-size: 1em;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    background-color: #666666;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: #333333;
+                    }
+                }
+
+                
+            }
+            >:last-child > input[type="submit"]{
+                margin-top: 4.5%;
+            }
+        }
+    }
+    >:last-child{
+        >:first-child{
+            color: red;
+        }
+        >:last-child{
+            display: flex;
+            justify-content: center ;
+            table{
+                width: 92%;
+                border-collapse: separate;
+                border-spacing: 0 0.5vh;
+                tr{
+                    font-size: large;
+                    td, th {
+                        padding: 1.3vh;
+                        text-align: center;
+                        width: 1.5vw;
+                        > a {
+                            button {
+                                font-weight: bold;
+                                padding: 2%;
+                                color: $color_oscuro;
+                                background-color: $color_claro3;
+        
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                        > img {
+                            width: 30%;
+                        }
+                        >a{
+                            >img{
+                                width: 2vw;
+                                height: auto;
+                                margin-right: 0.1vw;
+                            }
+                        }
+                        
+                    }
+                    
+                }
+                tr:first-child{
+                    background-color: $color_oscuro;
+                    color: white;
+                    
+                }
+                tr:nth-child(even):not(:first-child){
+                    background-color: $color_claro2;
+                }
+                tr:nth-child(odd):not(:first-child) {
+                    background-color: $color_claro3;
+                }
+                
+    
+    
+            }
+        }
+        
+    }
+}

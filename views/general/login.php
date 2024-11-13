@@ -12,12 +12,12 @@
             <img src="images/login_icon.png" alt="">
         </div>
         <div>
-            <form action="index.php?controller=Usuarios&action=validarUser" method="POST">
+            <form id="formLogin" method="POST">
                 <input type="text" placeholder=" Usuari" name="username">
                 <input type="password" placeholder=" Contrasenya" name="password">
-
                 <input type="submit" id="submit" value="Accedir">
             </form>
+            <div id="error"></div>
         </div>
     </div>
 </div>

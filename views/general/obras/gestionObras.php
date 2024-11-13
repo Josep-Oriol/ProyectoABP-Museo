@@ -32,10 +32,10 @@
             <tr>
                 <td>Imatge</td>
                 <td>NºRegistre</td>
-                <td>Nom</td>
+                <td>Tècnica</td>
                 <td>Títol</td>
                 <td>Autor</td>
-                <td>Datació</td>
+                <td>Any</td>
                 <td>Ubicació</td>
                 <td> 
                     <a href="index.php?controller=Obras&action=crear"><button>Crear obra</button></a>
@@ -45,12 +45,12 @@
     foreach($obras as $indice => $obra) {
         $id = $obra['numero_registro'];
         echo "<tr>
-            <td>{$obra['fotografia']}</td>
+            <td><img src='{$obra['fotografia']}' alt='fotografia obra {$obra['titulo']}'></td>
             <td>{$obra['numero_registro']}</td>
             <td>{$obra['nombre_objeto']}</td>
             <td>{$obra['titulo']}</td>
             <td>{$obra['autor']}</td>
-            <td>{$obra['datacion']}</td>
+            <td>{$obra['anyo_final']}</td>
             <td>{$obra['descripcion_ubicacion']}</td>
 
             <td>";

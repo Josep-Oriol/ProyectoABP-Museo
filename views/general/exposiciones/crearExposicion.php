@@ -1,7 +1,7 @@
 <?php
     if(isset($_SESSION['Rol'])){
     ?>
-    <div class="fichaUsuario">
+    <div class="Exposicion">
         <div>
             <form action="index.php?controller=Exposiciones&action=crear" enctype="multipart/form-data" method="POST">
                 <div>
@@ -17,7 +17,7 @@
                     <select name="tipus" id="tipus">
                         <?php 
                         foreach($campos as $indice => $campo){
-                            $dato = $campo['Nombre_campo'];
+                            $dato = $campo['nombre_campo'];
                             echo "<option>$dato</option>";
                         }
                         ?>

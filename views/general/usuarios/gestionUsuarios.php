@@ -29,7 +29,6 @@
     <div>
         <table>
             <tr>
-                <td>ID</td>
                 <td>Foto de perfil</td>
                 <td>Usuari</td>
                 <td>Nom</td>
@@ -46,7 +45,6 @@
     foreach($usuarios as $indice => $usuario) {
         $id = $usuario['id_usuario'];
         echo "<tr>
-            <td>{$usuario['id_usuario']}</td>
             <td><img alt='foto usuario' src='{$usuario['foto_usuario']}'></td>
             <td>{$usuario['usuario']}</td>
             <td>{$usuario['nombre']}</td>

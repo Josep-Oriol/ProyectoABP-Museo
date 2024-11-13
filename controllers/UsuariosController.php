@@ -2,7 +2,9 @@
 
 class UsuariosController{
 
-    public function validarUser() {
+    // VERSION PRINCIPAL
+
+    /*public function validarUser() {
         require_once "models/Usuarios.php";
         $modeloUsuario = new Usuarios();
         
@@ -29,7 +31,85 @@ class UsuariosController{
             require_once "views/general/login.php";
         }
     
+    }*/
+
+    //VERSION QUE FUNCIONA Y VERIFICA QUE EL USUARIO Y LA CONTRASEÑA SEAN CORRECTOS
+
+    public function validarUser() {
+    
+        // Obtén los datos JSON de la solicitud
+        $data = json_decode(file_get_contents('php://input'), true);
+    
+        // Verifica si los datos se recibieron correctamente
+        if (is_null($data)) {
+            require_once "views/general/login.php";
+            exit;
+        }else {
+            $username = $data['username'];
+            $password = $data['password'];
+        
+            // Cargar el modelo de Usuario
+            require_once "models/Usuarios.php";
+            $modeloUsuario = new Usuarios();
+        
+            // Verificar las credenciales de usuario
+            $verificacion = $modeloUsuario->verificarLogin($username, $password);
+        
+            // Si la verificación es exitosa y el estado es "Actiu"
+            if ($verificacion && $verificacion['estado'] == "Actiu") {
+                // Establecer las variables de sesión
+                $_SESSION['Rol'] = $verificacion['rol'];
+                $_SESSION['ID_usuario'] = $verificacion['id_usuario'];
+                $_SESSION['Usuario'] = $verificacion['usuario'];
+        
+                // Responder con éxito
+                $response = ['status' => 'success'];
+            } else {
+                // Si las credenciales son incorrectas o el estado no es "Actiu"
+                $response = ['status' => 'error'];
+            }
+            
+            // Establece el encabezado JSON para que el navegador sepa que la respuesta es JSON
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
+        }
     }
+    
+
+    // VERSION QUE QUE FUNCIONA PERO NO SIRVE PARA NADA
+
+    /*public function validarUser() {
+        // Obtén los datos JSON de la solicitud
+        $data = json_decode(file_get_contents('php://input'), true);
+    
+        if (is_null($data)) {
+            require_once "views/general/login.php";
+            return;
+        }
+    
+        if (!isset($data['username']) || !isset($data['password'])) {
+            echo json_encode(['status' => 'error', 'message' => 'Faltan parámetros: username o password']);
+            return;
+        }
+    
+        // Lógica de validación
+        $username = $data['username'];
+        $password = $data['password'];
+    
+        if ($username === 'd') {
+            $response = ['status' => 'success'];
+        } else {
+            $response = ['status' => 'error'];
+        }
+    
+        // Devuelve la respuesta en formato JSON
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }*/
+
+
+
 
     public function cerrarSesion() {
         session_destroy();
