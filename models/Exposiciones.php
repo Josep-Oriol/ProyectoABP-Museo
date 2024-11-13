@@ -207,6 +207,20 @@ class Exposiciones extends Database{
         return $existe;
     }
 
+    public function consultaEliminarRelacionesFicha($idObra, $idExposicion){
+        $db = $this->conectar();
+        $sql = "DELETE FROM obras_exposiciones WHERE fk_obra = '$idObra' and fk_exposicion = '$idExposicion'";
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+            $filas = $query->rowCount();
+        }
+        catch(PDOException $error){
+            echo $error->getMessage();
+        }
+        return $filas;
+    }
+
 
 }
 ?>

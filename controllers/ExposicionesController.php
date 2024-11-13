@@ -95,6 +95,27 @@ class ExposicionesController{
         echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Exposiciones&action=fichaExposiciones&id=" . $_GET['id'] . "'/>";
     }
 
+    public function eliminarRelacionesFicha(){
+        require_once "models/Exposiciones.php";
+        $modeloExposiciones = new Exposiciones();
+
+        $data = json_decode(file_get_contents('php://input'), true);
+        $idObra = $data['idObra'];
+        $idExposicion = $data['idExposicion'];
+
+        if($idExposicion and $idObra){
+            $filas = $modeloExposiciones->consultaEliminarRelacionesFicha($idObra, $idExposicion);
+            $response = ['status' => 'success', 'obra' => $idObra, 'exposicion' => $idExposicion, 'filas' => $filas]; //ENVIAR LOS DATOS NECESARIOS
+        }
+        else{
+            $response = ['status' => 'error'];
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+        
+    }
+
 }
 
 ?>

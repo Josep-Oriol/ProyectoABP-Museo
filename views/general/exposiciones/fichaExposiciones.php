@@ -43,11 +43,11 @@
                     <?php
                     
                     foreach($datosObras as $indice => $datoObra){
-                        echo "<tr>";
+                        echo "<tr id='tr_{$datoObra['numero_registro']}'>";
                         echo "<td>".$datoObra['numero_registro']."</td>";
                         echo "<td>".$datoObra['titulo']."</td>";
                         echo "<td>".$datoObra['autor']."</td>";
-                        echo "<td>"."<a href=''><button>Retirar de la exposicion</button></a>"."</td>";
+                        echo "<td><button class='btnRelaciones' id='{$datoObra['numero_registro']}&{$_GET['id']}'>Retirar de la exposición</button></td>";
                         echo "</tr>";
                     }
                     ?>

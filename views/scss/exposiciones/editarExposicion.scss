@@ -83,6 +83,16 @@
                                 }
                             }
                         }
+                        button {
+                            font-weight: bold;
+                            padding: 2%;
+                            color: $color_oscuro;
+                            background-color: $color_claro3;
+    
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
                         > img {
                             width: 30%;
                         }
