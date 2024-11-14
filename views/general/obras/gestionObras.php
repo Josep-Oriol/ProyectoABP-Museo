@@ -80,6 +80,95 @@
     </div>
     
 </div>
+
+<div class="popup-overlay">
+  <div class="popup-content">
+    <div class="popup-header">
+      <button class="close-btn">&times;</button>
+    </div>
+    
+    <div class="popup-body">
+      <form>
+        <!-- Camp (ara com select) -->
+        <div class="form-group">
+          <label for="campo">Camp</label>
+          <select id="campo" name="campo" class="form-control">
+            <option value="">Seleccioni un camp</option>
+            <?php
+                // Codi php pels camps de l'obra
+            ?>
+          </select>
+        </div>
+
+        <!-- Any inicial i final -->
+        <div class="form-group">
+          <label>Rang d'anys</label>
+          <div class="range-inputs">
+            <input type="number" id="anyo_inicial" name="anyo_inicial" placeholder="Any inicial">
+            <input type="number" id="anyo_final" name="anyo_final" placeholder="Any final">
+          </div>
+        </div>
+
+        <!-- Dimensions -->
+        <div class="form-group">
+          <label>Dimensions màximes (cm)</label>
+          <div class="dimensions-inputs">
+            <input type="number" id="maxima_altura_cm" name="maxima_altura_cm" placeholder="Alçada">
+            <input type="number" id="maxima_anchura_cm" name="maxima_anchura_cm" placeholder="Amplada">
+            <input type="number" id="maxima_profundidad_cm" name="maxima_profundidad_cm" placeholder="Profunditat">
+          </div>
+        </div>
+
+        <!-- Nombre d'exemplars (reduït) -->
+        <div class="form-group">
+          <label for="numero_ejemplares">Nombre d'exemplars</label>
+          <input type="number" id="numero_ejemplares" name="numero_ejemplares" class="small-input">
+        </div>
+
+        <!-- Valoració econòmica (amb selector de moneda) -->
+        <div class="form-group">
+          <label for="valoracion_economica">Valoració econòmica</label>
+          <div class="currency-input">
+            <input type="number" id="valoracion_economica" name="valoracion_economica" step="0.01" class="small-input">
+            <select id="moneda" name="moneda" class="currency-select">
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dates -->
+        <div class="form-group">
+          <label for="fecha_registro">Data de registre</label>
+          <input type="date" id="fecha_registro" name="fecha_registro">
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_ingreso">Data d'ingrés</label>
+          <input type="date" id="fecha_ingreso" name="fecha_ingreso">
+        </div>
+
+        <!-- Ubicació (ara com select) -->
+        <div class="form-group">
+          <label for="ubicacion">Ubicació</label>
+          <select id="ubicacion" name="ubicacion" class="form-control">
+            <option value="">Seleccioni una ubicació</option>
+            <?php
+                // Codi php per les ubicacions
+            ?>
+          </select>
+        </div>
+
+        <!-- Botons -->
+        <div class="button-group">
+          <button type="reset" class="btn-reset">Netejar filtres</button>
+          <button type="submit" class="btn-apply">Aplicar filtres</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
    <?php }
     else{
         echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
