@@ -15,9 +15,9 @@
             <form id="formLogin" method="POST">
                 <input type="text" placeholder=" Usuari" name="username">
                 <input type="password" placeholder=" Contrasenya" name="password">
+                <div id="error"></div>
                 <input type="submit" id="submit" value="Accedir">
             </form>
-            <div id="error"></div>
         </div>
     </div>
 </div>

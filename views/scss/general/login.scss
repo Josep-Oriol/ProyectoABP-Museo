@@ -60,13 +60,15 @@
 
                 }
                 >input:focus{
-                    background-color: white;
                     border: none;
                     outline: none;
-
                     border-bottom: 4px solid black ;
                 }
-
+                >div{
+                    color: red;
+                    margin-top: 5vh;
+                    position: absolute;
+                }
                 >:last-child{
                     font-size: medium;
                     border: none;
@@ -75,7 +77,6 @@
                     border-radius: 10px;
                     width: 7vw;
                     height: 3vh;
-
                     transition: background-color 0.3s,  scale 0.3s;
                 }
                 >:last-child:hover{

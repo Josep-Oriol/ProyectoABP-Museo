@@ -60,10 +60,14 @@
   width: 15vw;
 }
 #login > :nth-child(2) > :last-child > form > input:focus {
-  background-color: white;
   border: none;
   outline: none;
   border-bottom: 4px solid black;
+}
+#login > :nth-child(2) > :last-child > form > div {
+  color: red;
+  margin-top: 5vh;
+  position: absolute;
 }
 #login > :nth-child(2) > :last-child > form > :last-child {
   font-size: medium;

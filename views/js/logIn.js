@@ -28,10 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(data.status === 'success'){
                     console.log('funciona')
                     window.location.href = 'index.php?controller=Obras&action=mostrarObras';
-                }else {
+                }else if (data.status === 'error'){
                     const errorDiv = document.getElementById('error');
-                    // Cambia el color del texto a rojo
-                    errorDiv.innerHTML ="Usuario o contraseña incorrectos";
+                    errorDiv.innerHTML ="Usuari o contrasenya incorrectes";
                 }
             })
             .catch(error => {
