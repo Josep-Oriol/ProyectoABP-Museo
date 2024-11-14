@@ -28,8 +28,8 @@
     </div>
 
     <div>
-        <table id="tabla">
-            <tr id="primer_tr">
+        <table>
+            <tr>
                 <td>ID</td>
                 <td>Descrpció</td>
                 <td>Lloc exposició</td>
