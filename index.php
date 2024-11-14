@@ -35,6 +35,7 @@ if ($isAjax) {
     <link rel="stylesheet" href="views/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="views/js/logIn.js"></script>
+    <script src="views/js/up.js"></script>
     <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/busqueda.js"></script>
     <script src="views/js/eliminar.js"></script>
@@ -84,6 +85,10 @@ if ($isAjax) {
                 <button id='cancelar-btn'>Cancelar</button>
             </div>
         </div>
+    </div>
+
+    <div id="up">
+        <img src="images/upIcon.png" alt="">
     </div>
 </body>
 </html>
