@@ -365,33 +365,6 @@ class Obras extends Database {
 		$resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
-
-	public function obtenerCamposLista() {
-		$sql = "SELECT v.nombre_vocabulario, c.nombre_campo FROM vocabularios v INNER JOIN campos c ON v.id_vocabulario = c.fk_vocabulario";
-		
-        $db = $this->conectar();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute();
-        } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
-        }
-		$datos = $query->fetchAll(PDO::FETCH_ASSOC);
-
-		$vocabulariosyCampos = array();
-		foreach ($datos as $indice => $dato) {
-			$nombreVocabulario = $dato['nombre_vocabulario'];
-			$nombreCampo = $dato['nombre_campo'];
-			if (!array_key_exists($nombreVocabulario, $vocabulariosyCampos)) { 
-				$vocabulariosyCampos[$nombreVocabulario] = [$nombreCampo]; //Si no existe, creamos una clave dentro del array con un array dentro con el valor del campo
-			}
-			else {
-				array_push($vocabulariosyCampos[$nombreVocabulario], $nombreCampo); //Si existe la clave del vocabulario, le asignamos el valor del campo
-			}
-		}
-
-        return $vocabulariosyCampos;
-	}
 	
 	public function crearObra($array) { 
 		if (isset($array['id_ubicacion'])) {
@@ -432,9 +405,12 @@ class Obras extends Database {
 		$sql = "INSERT INTO obras VALUES (" . $valores . ")";
 
 		$db = $this->conectar();
+		$exitoso = false;
 		try {
 			$query = $db->prepare($sql);
-			$query->execute();
+			if ($query->execute()) {
+				$exitoso = true;
+			}
 		} catch (PDOException $error) {
 			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
@@ -455,7 +431,8 @@ class Obras extends Database {
 				echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 			}
 		}
-		
+
+		return $exitoso;
 	}		
 
 	public function editarObra($array, $numeroRegistro) {
@@ -490,13 +467,18 @@ class Obras extends Database {
 		$valores = implode(", ", $camposOrdenados); //Obtenemos un string del array con los valores separados por comas
 		$sql = "UPDATE obras SET " . $valores . " WHERE numero_registro = '$numeroRegistro'";
 	
+		$exitoso = false;
 		$db = $this->conectar();
 		try {
 			$query = $db->prepare($sql);
-			$query->execute();
+			if ($query->execute()) {
+				$exitoso = true;
+			}
 		} catch (PDOException $error) {
 			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
+		
+		return $exitoso;
 	}
 
 	public function subirFotografiaServidor($nombreCampo, $idFotografia) {
@@ -530,13 +512,19 @@ class Obras extends Database {
 	public function eliminarObra($numeroRegistro) {
 		$this->eliminarFotografia($numeroRegistro);
 		$sql = "DELETE FROM obras WHERE numero_registro = '$numeroRegistro'";
+
+		$exitoso = false;
 		$db = $this->conectar();
 		try {
             $query = $db->prepare($sql);
-            $query->execute();
+            if ($query->execute()) {
+				$exitoso = true;
+			}
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
+
+		return $exitoso;
 	}
     
 }

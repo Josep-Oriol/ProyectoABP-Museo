@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     padding-top: 2vh;
+    padding-left: 5%;
     >:first-child {
-        background-color: #333333;
         border-radius: 10px;
         width: 20vw;
         padding-top: 1.5vw;
@@ -13,23 +12,20 @@
         margin-bottom: 1.7vh;
         > h2 {
             font-size: 1.5rem;
-            text-align: center;
-            color: white;
+            color: #333333;
         }
     }
     >:nth-child(2) {
-        width: 20vw;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         .inputsDiv {
+            border-left: 1px solid black;
             display: flex;
             align-items: center;
-            border: 2px solid black;
-            margin-bottom: 5%;
+            margin-bottom: 1%;
             
             input {
-                width: 100%;
                 text-align: center;
                 border-style: none;
                 padding: 0.5vw;
@@ -39,7 +35,6 @@
             }
             button {
                 height: 100%;
-                width: 8%;
                 padding: 0.5vw;
                 background-color: transparent;
                 border-style: none;
@@ -47,6 +42,9 @@
             }
             button:hover {
                 cursor: pointer;
+            }
+            button:active {
+                scale: 0.9;
             }
             img {
                 width: 1vw;
@@ -57,14 +55,18 @@
     >:last-child {
         margin-top: 2vh;
         button {
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: black;
+            border: 1px solid;
             border-radius: 12px;
             padding: 0.5vw 2vw 0.5vw 2vw;
         }
         button:hover {
-            cursor: pointer;
-            animation: aumentarTamano 0.2s linear 1 running forwards;
+            background-color: black;
+            color: white;
+        }
+        button:active {
+            scale: 0.95;
         }
     }
 }

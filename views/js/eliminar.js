@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function(){
     const btnRelacion = document.getElementsByClassName("btnRelaciones");
 
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 let dataJson = JSON.stringify(data)
 
-                fetch('ajaxUbicaciones.php?controller=Exposiciones&action=eliminarRelacionesFicha', {
+                fetch('ajax.php?controller=Exposiciones&action=eliminarRelacionesFicha', {
                     method: 'POST',
                     headers:{
                     'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(data => {
                     if(data.filas > 0){
                         console.log(data.obra + data.exposicion)
-         
+            
                         tr = document.getElementById("tr_" + data.obra)
                         tr.remove()
                     }

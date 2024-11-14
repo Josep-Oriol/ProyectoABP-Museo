@@ -26,12 +26,26 @@ class ObrasController{
 
     public function crear() {
         require_once "views/general/components/header.php";
+        require_once "models/Obras.php";
+        $modelobras = new Obras();
         if ($_POST) {
-            require_once "models/Obras.php";
-            $modelobras = new Obras();
-            $modelobras->crearObra($_POST['num_registre'], $_POST['nom_objecte'], $_FILES['fotografia']['name'], $_POST['nom_obra'], $_POST['autor'], $_POST['datacio'], $_POST['any_inicial'], $_POST['any_final'], $_POST['data_registre'], $_POST['material'], $_POST['tecnica'], $_POST['classificacio'], $_POST['coleccio'], $_POST['mides_alcada'], $_POST['mides_amplada'], $_POST['mides_profunditat'], $_POST['nom_museu'], $_POST['ubicacio'], $_POST['exposicio'], $_POST['estat_conservacio'], $_POST['descripcio'], $_POST['historia_objecte'], $_POST['lloc_execucio'], $_POST['lloc_procedencia'], $_POST['num_tiratge'], $_POST['altres_numeros_id'], $_POST['nombre_exemplars'], $_POST['forma_ingres'], $_POST['data_ingres'], $_POST['font_ingres'], $_POST['valoracio_economica'], $_POST['bibliografia']); 
+            if (isset($_FILES['fotografia']) && $_FILES['fotografia']['error'] == 0) {
+                $fotografia = $modelobras->subirFotografiaServidor('fotografia', $_POST['numero_registro']);
+                $_POST['fotografia'] = $fotografia;
+            }
+            $exitoso = $modelobras->crearObra($_POST);
+            if ($exitoso) {
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+            }
         }
         else {
+            require_once "models/Vocabularios.php";
+            $modeloVocabularios = new Vocabularios();
+            $camposLista = $modeloVocabularios->obtenerCamposLista();
+            $ubicaciones = $modeloVocabularios->obtenerUbicaciones();
+            require_once "models/Exposiciones.php";
+            $modeloExposiciones = new Exposiciones();
+            $exposiciones = $modeloExposiciones->datosExposiciones();
             require_once "views/general/obras/fichaCrearObra.php";
         }
         require_once "views/general/components/footer.html";
@@ -40,16 +54,28 @@ class ObrasController{
     public function editar() {
         require_once "views/general/components/header.php";
         if ($_GET['id']) {
-            require_once "models/Obras.php";
             $id = $_GET['id'];
+            require_once "models/Obras.php";
             $modelobras = new Obras();
             if ($_POST) {
-                $modelobras->editarObra($_POST['num_registre'], $_POST['nom_objecte'], $_FILES['fotografia']['name'], $_POST['nom_obra'], $_POST['autor'], $_POST['datacio'], $_POST['any_inicial'], $_POST['any_final'], $_POST['data_registre'], $_POST['material'], $_POST['tecnica'], $_POST['classificacio'], $_POST['coleccio'], $_POST['mides_alçada'], $_POST['mides_amplada'], $_POST['mides_profunditat'], $_POST['nom_museu'], $_POST['ubicacio'], $_POST['exposicio'], $_POST['estat_conservacio'], $_POST['descripcio'], $_POST['historia_objecte'], $_POST['lloc_execucio'], $_POST['lloc_procedencia'], $_POST['num_tiratge'], $_POST['altres_numeros_id'], $_POST['nombre_exemplars'], $_POST['forma_ingres'], $_POST['data_ingres'], $_POST['font_ingres'], $_POST['valoracio_economica'], $_POST['bibliografia']);
+                if (isset($_FILES['fotografia']) && $_FILES['fotografia']['error'] == 0) {
+                    $fotografia = $modelobras->subirFotografiaServidor('fotografia', $id);
+                    $_POST['fotografia'] = $fotografia;
+                }
+                $exitoso = $modelobras->editarObra($_POST, $id);
+                if ($exitoso) {
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                }
             }
             else {
                 $obra = $modelobras->mostrarObra($id);
-                $camposLista = $modelobras->obtenerCamposLista();
-
+                require_once "models/Vocabularios.php";
+                $modeloVocabularios = new Vocabularios();
+                $camposLista = $modeloVocabularios->obtenerCamposLista();
+                $ubicaciones = $modeloVocabularios->obtenerUbicaciones();
+                require_once "models/Exposiciones.php";
+                $modeloExposiciones = new Exposiciones();
+                $exposiciones = $modeloExposiciones->datosExposiciones();
                 require_once "views/general/obras/fichaEditarObra.php";
             }           
             
@@ -64,7 +90,10 @@ class ObrasController{
         if ($_GET['id']) {
             require_once "models/Obras.php";
             $modelobras = new Obras();
-            $modelobras->eliminarObra($_GET['id']);
+            $exitoso = $modelobras->eliminarObra($_GET['id']);
+            if ($exitoso) {
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+            }
         }
         else {
             echo "<h3>Ninguna obra seleccionada.</h3>";

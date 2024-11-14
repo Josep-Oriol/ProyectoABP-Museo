@@ -1,3 +1,4 @@
+
 function ejecutarFuncionesMostrar(id, boton) {
     mostrarHijos(id, boton); // Llama a la función para mostrar hijos
 }
@@ -15,7 +16,7 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
     $(boton).prop("disabled", true);
     
         $.ajax({
-            url: 'ajaxUbicaciones.php?controller=Vocabularios&action=cargarHijos&ajax=true', //php que gestiona la solicitud  
+            url: 'ajax.php?controller=Vocabularios&action=cargarHijos&ajax=true', //php que gestiona la solicitud  
             type: 'GET',
             data: { id_padre: id }, //enviamos la id_ubicacion (id) del padre a la funcion cargarHijos de VocabulariosController, es decir a la url
             success: function(hijos) { /* si la respuesta es exitosa, recibe los hijos que ha enviado 'cargarHijos', que es un array en formato

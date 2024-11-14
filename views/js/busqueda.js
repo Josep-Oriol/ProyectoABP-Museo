@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         let dataJson = JSON.stringify(data)
 
-        fetch('ajaxUbicaciones.php?controller=Buscador&action=buscar', {
+        fetch('ajax.php?controller=Buscador&action=buscar', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',

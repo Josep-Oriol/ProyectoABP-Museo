@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const formLogin = document.getElementById('formLogin');
 
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
             let dataJson = JSON.stringify(data);
     
-            fetch('index.php?controller=Usuarios&action=validarUser', {
+            fetch('ajax.php?controller=Usuarios&action=validarUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,10 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(data.status === 'success'){
                     console.log('funciona')
                     window.location.href = 'index.php?controller=Obras&action=mostrarObras';
-                }else {
+                }else if (data.status === 'error'){
                     const errorDiv = document.getElementById('error');
-                    // Cambia el color del texto a rojo
-                    errorDiv.innerHTML ="Usuario o contraseña incorrectos";
+                    errorDiv.innerHTML ="Usuari o contrasenya incorrectes";
                 }
             })
             .catch(error => {
@@ -40,3 +40,4 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 })
+

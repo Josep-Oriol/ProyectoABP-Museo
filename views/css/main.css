@@ -60,10 +60,14 @@
   width: 15vw;
 }
 #login > :nth-child(2) > :last-child > form > input:focus {
-  background-color: white;
   border: none;
   outline: none;
   border-bottom: 4px solid black;
+}
+#login > :nth-child(2) > :last-child > form > div {
+  color: red;
+  margin-top: 5vh;
+  position: absolute;
 }
 #login > :nth-child(2) > :last-child > form > :last-child {
   font-size: medium;
@@ -917,11 +921,10 @@ header > div:hover > div hr {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   padding-top: 2vh;
+  padding-left: 5%;
 }
 #fichaUbicaciones > :first-child {
-  background-color: #333333;
   border-radius: 10px;
   width: 20vw;
   padding-top: 1.5vw;
@@ -930,23 +933,20 @@ header > div:hover > div hr {
 }
 #fichaUbicaciones > :first-child > h2 {
   font-size: 1.5rem;
-  text-align: center;
-  color: white;
+  color: #333333;
 }
 #fichaUbicaciones > :nth-child(2) {
-  width: 20vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 #fichaUbicaciones > :nth-child(2) .inputsDiv {
+  border-left: 1px solid black;
   display: flex;
   align-items: center;
-  border: 2px solid black;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 #fichaUbicaciones > :nth-child(2) .inputsDiv input {
-  width: 100%;
   text-align: center;
   border-style: none;
   padding: 0.5vw;
@@ -956,7 +956,6 @@ header > div:hover > div hr {
 }
 #fichaUbicaciones > :nth-child(2) .inputsDiv button {
   height: 100%;
-  width: 8%;
   padding: 0.5vw;
   background-color: transparent;
   border-style: none;
@@ -965,6 +964,9 @@ header > div:hover > div hr {
 #fichaUbicaciones > :nth-child(2) .inputsDiv button:hover {
   cursor: pointer;
 }
+#fichaUbicaciones > :nth-child(2) .inputsDiv button:active {
+  scale: 0.9;
+}
 #fichaUbicaciones > :nth-child(2) .inputsDiv img {
   width: 1vw;
 }
@@ -972,14 +974,18 @@ header > div:hover > div hr {
   margin-top: 2vh;
 }
 #fichaUbicaciones > :last-child button {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid;
   border-radius: 12px;
   padding: 0.5vw 2vw 0.5vw 2vw;
 }
 #fichaUbicaciones > :last-child button:hover {
-  cursor: pointer;
-  animation: aumentarTamano 0.2s linear 1 running forwards;
+  background-color: black;
+  color: white;
+}
+#fichaUbicaciones > :last-child button:active {
+  scale: 0.95;
 }
 
 #fichaVocabulario {
@@ -1386,6 +1392,27 @@ body {
   font-family: "Alice", serif;
   font-weight: 400;
   font-style: normal;
+}
+
+#up {
+  background-color: #333333;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: solid 1px white;
+}
+#up img {
+  width: 40px;
+  height: 40px;
+}
+
+#up:active {
+  scale: 0.95;
 }
 
 /*# sourceMappingURL=main.css.map */

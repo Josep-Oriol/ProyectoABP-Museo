@@ -51,6 +51,33 @@
             }
         }
 
+        public function obtenerCamposLista() {
+            $sql = "SELECT v.nombre_vocabulario, c.nombre_campo FROM vocabularios v INNER JOIN campos c ON v.id_vocabulario = c.fk_vocabulario";
+            
+            $db = $this->conectar();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute();
+            } catch (PDOException $error) {
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+            $datos = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+            $vocabulariosyCampos = array();
+            foreach ($datos as $indice => $dato) {
+                $nombreVocabulario = $dato['nombre_vocabulario'];
+                $nombreCampo = $dato['nombre_campo'];
+                if (!array_key_exists($nombreVocabulario, $vocabulariosyCampos)) { 
+                    $vocabulariosyCampos[$nombreVocabulario] = [$nombreCampo]; //Si no existe, creamos una clave dentro del array con un array dentro con el valor del campo
+                }
+                else {
+                    array_push($vocabulariosyCampos[$nombreVocabulario], $nombreCampo); //Si existe la clave del vocabulario, le asignamos el valor del campo
+                }
+            }
+    
+            return $vocabulariosyCampos;
+        }
+
         public function crearCampo($idVocabulario, $nombreCampo) {
             $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES ('$nombreCampo', $idVocabulario)";
             $db = $this->conectar();
@@ -135,6 +162,21 @@
             }
 
             return $tree;
+        }
+
+        public function obtenerUbicaciones() {
+            $sql = "SELECT id_ubicacion, descripcion_ubicacion FROM ubicaciones";
+
+            $db = $this->conectar();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute();
+            }catch (PDOException $error){
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultado;
         }
 
         public function obtenerHijos($id_padre) { //ID_ubicación del padre que queremos ver sus hijos
