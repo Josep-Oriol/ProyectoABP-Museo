@@ -45,9 +45,8 @@ class ExposicionesController{
     public function editar(){
         require_once "models/Exposiciones.php";
         $modelo = new Exposiciones();
-        
-
         $modelo->editarExposicion($_GET['id'], $_POST);
+        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Exposiciones&action=mostrarExposiciones'/>";
     }
 
     public function pantallaCrear(){
@@ -63,6 +62,7 @@ class ExposicionesController{
         require_once "models/Exposiciones.php";
         $modelo = new Exposiciones();
         $datos = $modelo->crearExposicion($_POST);
+        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Exposiciones&action=mostrarExposiciones'/>";
     }
 
     

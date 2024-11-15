@@ -2,37 +2,6 @@
 
 class UsuariosController{
 
-    // VERSION PRINCIPAL
-
-    /*public function validarUser() {
-        require_once "models/Usuarios.php";
-        $modeloUsuario = new Usuarios();
-        
-        if(isset($_POST['username'])){
-            
-            $user = $_POST['username'];
-            $password = $_POST['password'];
-            $verificacion = $modeloUsuario->verificarLogin($user, $password);
-          
-            if($verificacion and $verificacion['estado'] == "Actiu"){
-
-                $_SESSION['Rol'] = $verificacion['rol'];
-                $_SESSION['ID_usuario'] = $verificacion['id_usuario'];
-                $_SESSION['Usuario'] = $verificacion['usuario'];
-                
-                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
-                
-            }
-            else{
-                require_once "views/general/login.php";
-            }
-        }
-        else{
-            require_once "views/general/login.php";
-        }
-    
-    }*/
-
     //VERSION QUE FUNCIONA Y VERIFICA QUE EL USUARIO Y LA CONTRASEÑA SEAN CORRECTOS
 
     public function validarUser() {
@@ -75,41 +44,6 @@ class UsuariosController{
             exit;
         }
     }
-    
-
-    // VERSION QUE QUE FUNCIONA PERO NO SIRVE PARA NADA
-
-    /*public function validarUser() {
-        // Obtén los datos JSON de la solicitud
-        $data = json_decode(file_get_contents('php://input'), true);
-    
-        if (is_null($data)) {
-            require_once "views/general/login.php";
-            return;
-        }
-    
-        if (!isset($data['username']) || !isset($data['password'])) {
-            echo json_encode(['status' => 'error', 'message' => 'Faltan parámetros: username o password']);
-            return;
-        }
-    
-        // Lógica de validación
-        $username = $data['username'];
-        $password = $data['password'];
-    
-        if ($username === 'd') {
-            $response = ['status' => 'success'];
-        } else {
-            $response = ['status' => 'error'];
-        }
-    
-        // Devuelve la respuesta en formato JSON
-        header('Content-Type: application/json');
-        echo json_encode($response);
-    }*/
-
-
-
 
     public function cerrarSesion() {
         session_destroy();
@@ -141,6 +75,7 @@ class UsuariosController{
                 $directorioFoto = "images/IconDefaultUser.png";
             }
             $modeloUsuario->crearUsuario($directorioFoto, $_POST['usuario'], $_POST['nombre'],$_POST['apellidos'],$_POST['contrasenya'],$_POST['correo_electronico'],$_POST['telefono'],$_POST['rol'],$_POST['estado']);
+            echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
         }
     }
 
@@ -197,8 +132,6 @@ class UsuariosController{
             echo "<h3>Ningún usuario seleccionado.</h3>";
         }
         echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
-        
-        
     }
     
 }

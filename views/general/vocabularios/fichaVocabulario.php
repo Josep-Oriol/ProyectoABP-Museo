@@ -9,19 +9,24 @@
             <form id="campos" action="index.php?controller=Vocabularios&action=editarCampos&id=<?php echo $id; ?>" method="POST">
                 <?php
                 foreach ($campos as $indice => $campo) {
-                    echo "<input class='campo' type='text' name='{$campo['nombre_campo']}' id='{$campo['nombre_campo']}' value='{$campo['nombre_campo']}' autocomplete='off'/>\n";
+                    echo "
+                    <div class='input-group' id='{$campo['nombre_campo']}'>
+                        <input class='campo' type='text' name='{$campo['nombre_campo']}' id='{$campo['nombre_campo']}' value='{$campo['nombre_campo']}' autocomplete='off'/>
+                        <input class='campo-checkbox' type='checkbox' name='{$campo['nombre_campo']}_checkbox' id='{$campo['nombre_campo']}'/>
+                    </div>
+                    "; 
                 }
                 ?>
                 <input type="submit" value="Guardar" id="enviar" >
             </form>
         </div>
 
-        <form id="crearCampo" action="index.php?controller=Vocabularios&action=crearCampo&id=<?php echo $id; ?>" method="POST">
-            <input type="text" name="crear" id="crear" placeholder="+ Crear nou camp" required>
-            <input type="submit" value="Crear">
+        <form>
+            <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
         </form>
         <div>
-            <button>Eliminar</button>
+            <button id="crearCampo">Crear</button>
+            <button id="eliminarCampos">Eliminar</button>
             <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>"><button>Descartar cambios</button></a>
         </div>
         
