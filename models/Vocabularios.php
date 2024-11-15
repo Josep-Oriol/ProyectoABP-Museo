@@ -84,9 +84,12 @@
             try {
                 $query = $db->prepare($sql);
                 $query->execute();
+                $filas = $query->rowCount();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
+            $create = $filas > 0 ? true : false;
+            return $create;
         }
 
         public function editarCampo($antiguoValor, $nuevoValor) {
@@ -104,14 +107,17 @@
         }
 
         public function eliminarCampo($idCampo) {
-            $sql = "DELETE FROM campos WHERE id_campo = $idCampo";
+            $sql = "DELETE FROM campos WHERE nombre_campo = '$idCampo'";
             $db = $this->conectar();
             try {
                 $query = $db->prepare($sql);
                 $query->execute();
+                $filas = $query->rowCount();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
+            $delete = $filas > 0 ? true : false;
+            return $delete;
         }
 
         public function mostrarAutories() {

@@ -136,12 +136,25 @@
         }
 
         public function crearCampo() {
-            if ($_POST) {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $id = $data['id'];
+            $nombre = $data['nombre'];
+
+            if(isset($nombre)){
                 require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearCampo($_GET['id'], $_POST['crear']);
-                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id={$_GET['id']}'/>";
+                $vocabulario->crearCampo($id, $nombre);
+
+                if($vocabulario) {
+                    $response = ['status' => 'success'];
+                }else{
+                    $response = ['status' => 'false'];
+                }
             }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
         }
 
         public function editarCampos() {
@@ -151,7 +164,32 @@
             foreach($_POST as $nombreCampo => $nuevoValor){         //recorre foreach, el indice contiene el antiguo nombre y su valor el nuevo
                 $vocabulario->editarCampo($nombreCampo, $nuevoValor);
             }
+
             echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id={$_GET['id']}'/>";
+        }
+
+        public function eliminarCampos() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $idCamposEliminar = $data['idsSeleccionados']; 
+            
+            require_once "models/Vocabularios.php";    
+            $vocabulario = new Vocabularios();
+
+            $response = ['status' => 'false'];
+
+            foreach($idCamposEliminar as $idCampo) {
+                $vocabulario->eliminarCampo($idCampo);
+                if ($vocabulario) {
+                    $response = ['status' => 'success'];
+                }else {
+                    $response = ['status' => 'error', 'message' => 'Error al eliminar campo con ID: ' . $idCampo];
+                    exit;
+                }
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
         }
 
     }
