@@ -38,7 +38,7 @@
                 <td>Rol</td>
                 <td>Estat</td>
                 <td> 
-                    <a href="index.php?controller=Usuarios&action=crear"><button>Crear usuario</button></a>
+                    <a href="index.php?controller=Usuarios&action=crear"><button>Crear usuari</button></a>
                 </td>
             </tr>
         <?php

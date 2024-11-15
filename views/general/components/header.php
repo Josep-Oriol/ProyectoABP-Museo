@@ -18,8 +18,9 @@
         </div>
     </nav>
     <div>
-        <a><img src="images/icono2.png" alt=""></a>
-        <div>
+        <span><?php echo $_SESSION['Usuario']; ?></span>
+        <a id="iconoPerfil"><img src="images/icono2.png" alt=""></a>
+        <div id="opcionesPerfil">
             <a href="">Veure el perfil</a>
             <hr>
             <a href="">Editar perfil</a>

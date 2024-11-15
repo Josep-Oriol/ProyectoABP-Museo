@@ -118,7 +118,7 @@
         justify-content: center;
 
         table{
-            width: 92vw;
+            width: 95vw;
             border-collapse: separate;
             border-spacing: 0 0.5vh;
             tr{
@@ -130,10 +130,12 @@
                     > a {
                         button {
                             font-weight: bold;
-                            padding: 2%;
-                            color: $color_oscuro;
-                            background-color: $color_claro3;
-    
+                            padding: 3px 10px 3px 10px;
+                            color: $color_claro3;
+                            background-color: $color_oscuro;
+                            border: 2px solid $color_claro3;
+                            border-radius: 3px;
+
                             &:hover {
                                 cursor: pointer;
                             }

@@ -8,10 +8,13 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Dades Principals</h2>
                     <div>
                         <div>
-                            <div>
-                                <label for="fotografia">Fotografia</label>
-                                <input type="file" name="fotografia" id="fotografia">
+                            <span>Fotografia</span>
+                            <div id="subirImagen">
+                                <img src="images/subirArchivo.png" alt="subir archivo">
+                                <span>PNG/JPG/JPEG</span>
+                                <p id="nombreArchivo"></p>
                             </div>
+                            <input type="file" name="fotografia" id="inputFotografia">
                         </div>
                         <div>
                             <div>

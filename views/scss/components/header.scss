@@ -85,8 +85,11 @@ header{
     }
 
     >div{
+        @include flex-row;
         margin-right: 4vw;
-        display: block;
+        > span {
+            color: $color_claro3;
+        }
         >a{
             >img{
                 width: 2.5vw;

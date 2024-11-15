@@ -155,8 +155,14 @@ header > nav > div:hover > div {
   border-radius: 7px;
 }
 header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-right: 4vw;
-  display: block;
+}
+header > div > span {
+  color: #EFEFEF;
 }
 header > div > a > img {
   width: 2.5vw;
@@ -316,7 +322,7 @@ header > div:hover > div hr {
   justify-content: center;
 }
 #general > :last-child table {
-  width: 92vw;
+  width: 95vw;
   border-collapse: separate;
   border-spacing: 0 0.5vh;
 }
@@ -330,9 +336,11 @@ header > div:hover > div hr {
 }
 #general > :last-child table tr td > a button, #general > :last-child table tr th > a button {
   font-weight: bold;
-  padding: 2%;
-  color: #333333;
-  background-color: #EFEFEF;
+  padding: 3px 10px 3px 10px;
+  color: #EFEFEF;
+  background-color: #333333;
+  border: 2px solid #EFEFEF;
+  border-radius: 3px;
 }
 #general > :last-child table tr td > a button:hover, #general > :last-child table tr th > a button:hover {
   cursor: pointer;
@@ -359,9 +367,6 @@ header > div:hover > div hr {
   background-color: grey;
 }
 
-#fichaObra > form {
-  margin-top: 10vh;
-}
 #fichaObra > form > :first-child {
   width: 80%;
   margin: 0px auto;
@@ -369,35 +374,66 @@ header > div:hover > div hr {
   background-color: none;
 }
 #fichaObra > form > :first-child > :first-child > div > :first-child {
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-right: 20px;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div {
-  width: 50%;
+#fichaObra > form > :first-child > :first-child > div > :first-child > span {
+  margin-right: auto;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
+#fichaObra > form > :first-child > :first-child > div > :first-child > img {
+  width: 100%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  align-items: normal;
-  justify-content: left;
-  gap: 3vw;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child > div {
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span {
+  color: #BFBFBF;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
+  color: #BFBFBF;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   justify-content: left;
-  width: 100%;
+  padding-top: 15px;
+  gap: 20px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child div > input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child div > a, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
-  border-radius: 10px;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+  border-radius: 5px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input {
   width: 3vw;
@@ -407,7 +443,7 @@ header > div:hover > div hr {
   width: 3vw;
   text-decoration: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -416,37 +452,56 @@ header > div:hover > div hr {
   width: 100%;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a button {
-  padding: 15px;
+  padding: 10px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
-  width: 10vw;
+  width: 30%;
+  margin-left: auto;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
+  width: 100%;
+  height: 100%;
   background-color: #333333;
-  font-size: 17px;
+  font-size: 16px;
   color: white;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button:hover {
   background-color: #666666;
   cursor: pointer;
 }
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
+  width: 25%;
+  font-size: 17px;
+  background-color: #333333;
+  color: white;
+}
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
   background-color: #333333;
+  color: white;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
+  background-color: #4b4b4b;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image], #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
   background-color: #666666;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
-  background-color: #666666;
-}
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
-  background-color: #999999;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
+  background-color: #7c7c7c;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
   background-color: #E74C3C;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
-  background-color: #C0392B;
+  background-color: #EE6655;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+  transform: translateY(-1px);
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:active, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:active {
+  transform: translateY(0);
+  scale: 0.97;
 }
 #fichaObra > form > :first-child > div {
   margin-bottom: 20px;
@@ -461,8 +516,6 @@ header > div:hover > div hr {
   color: #333333;
   margin-top: 0;
   margin-bottom: 15px;
-  display: flex;
-  align-items: center;
 }
 #fichaObra > form > :first-child > div > div {
   display: flex;
@@ -475,7 +528,7 @@ header > div:hover > div hr {
   flex-direction: column;
   margin-bottom: 10px;
 }
-#fichaObra > form > :first-child > div > div div > label {
+#fichaObra > form > :first-child > div > div div > label, #fichaObra > form > :first-child > div > div div span {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
@@ -517,6 +570,14 @@ header > div:hover > div hr {
   }
   .field {
     flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+  }
+}
+@keyframes aumentarTamano {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
   }
 }
 #fichaVerUsuario > :first-child {
