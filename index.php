@@ -15,6 +15,8 @@ session_start();
     <script src="views/js/eliminar.js"></script>
     <script src="views/js/logIn.js"></script>
     <script src="views/js/busqueda.js"></script>
+    <script src="views/js/up.js"></script>
+    <script src="views/js/popup.js"></script>
 </head>
 <body>
    
