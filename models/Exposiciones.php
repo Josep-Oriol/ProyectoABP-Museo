@@ -221,8 +221,8 @@ class Exposiciones extends Database{
         return $filas;
     }
 
-    public function busquedaExposiciones($input, $filtro){
-        $sql = "SELECT * FROM exposiciones WHERE texto_exposicion LIKE '%$input%'";
+    public function busquedaExposiciones($pagina, $input, $filtro){
+        $sql = "SELECT * FROM $pagina WHERE texto_exposicion LIKE '%$input%'";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);

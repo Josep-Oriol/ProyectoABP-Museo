@@ -10,7 +10,7 @@
                     <img src="images/lupa.png" alt="">
                 </button>
                 <input type="text" id="busqueda">
-                <button>
+                <button id="filtro">
                     <img src="images/ajustes_deslizadores.png" alt="">
                 </button>
             </div>
@@ -28,8 +28,8 @@
     </div>
 
     <div>
-        <table id="tabla">
-            <tr id="primer_tr">
+        <table>
+            <tr>
                 <td>ID</td>
                 <td>Descrpció</td>
                 <td>Lloc exposició</td>
@@ -84,3 +84,52 @@
         echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
     }
 ?>
+
+<div class="popup-overlay">
+  <div class="popup-content">
+    <div class="popup-header">
+      <button class="close-btn">&times;</button>
+    </div>
+    
+    <div class="popup-body">
+      <form id="filter-from">
+        <!-- Tipo de Exposición -->
+        <div class="form-group">
+          <label for="tipo_exposicion">Tipus d'exposició</label>
+          <select id="tipo_exposicion" name="tipo_exposicion" class="form-control">
+            <option value="">Tots els tipus</option>
+            <option value="aliena">Aliena</option>
+            <option value="propia">Pròpia</option>
+          </select>
+        </div>
+
+        <!-- Lugar de Exposición -->
+        <div class="form-group">
+          <label for="lugar_exposicion">Lloc de l'exposició</label>
+          <input type="text" id="lugar_exposicion" name="lugar_exposicion" class="form-control" placeholder="Introdueix el lloc">
+        </div>
+
+        <!-- Fechas de la exposición -->
+        <div class="form-group">
+          <label>Període de l'exposició</label>
+          <div class="range-inputs">
+            <div class="date-input">
+              <label for="fecha_inicio">Data d'inici</label>
+              <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control">
+            </div>
+            <div class="date-input">
+              <label for="fecha_fin">Data de fi</label>
+              <input type="date" id="fecha_fin" name="fecha_fin" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="button-group">
+          <button type="reset" class="btn-reset">Netejar filtres</button>
+          <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
