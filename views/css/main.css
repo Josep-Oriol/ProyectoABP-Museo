@@ -1325,6 +1325,135 @@ header > div > div hr {
   background-color: #EFEFEF;
 }
 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popup-overlay .popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.popup-overlay .popup-content .popup-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.popup-overlay .popup-content .popup-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1;
+  color: #666;
+  transition: color 0.2s;
+}
+.popup-overlay .popup-content .popup-header .close-btn:hover {
+  color: #000;
+}
+.popup-overlay .popup-content .popup-header .close-btn:active {
+  scale: 0.9;
+}
+.popup-overlay .popup-content .popup-body {
+  padding-top: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group .form-control,
+.form-group input[type=number],
+.form-group input[type=date],
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group .form-control:focus,
+.form-group input[type=number]:focus,
+.form-group input[type=date]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group .small-input {
+  width: 100px !important;
+}
+.form-group .range-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.form-group .dimensions-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.form-group .currency-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.form-group .currency-input .currency-select {
+  width: 80px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.button-group button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.button-group button:hover {
+  transform: translateY(-1px);
+}
+.button-group button:active {
+  transform: translateY(0);
+  scale: 0.99;
+}
+.button-group .btn-reset {
+  background-color: #f0f0f0;
+}
+.button-group .btn-reset:hover {
+  background-color: rgb(227.25, 227.25, 227.25);
+}
+.button-group .btn-apply {
+  background-color: #333333;
+  color: white;
+}
+.button-group .btn-apply:hover {
+  background-color: rgb(38.25, 38.25, 38.25);
+}
+
 footer {
   position: relative;
   bottom: 0;
