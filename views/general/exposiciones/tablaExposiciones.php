@@ -52,7 +52,7 @@
             <td>{$exposicion['fecha_inicio_exposicion']}</td>
             <td>{$exposicion['fecha_fin_exposicion']}</td>
 
-            <td class='btn'>";
+            <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
                     <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>

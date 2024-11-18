@@ -10,7 +10,7 @@
                     <img src="images/lupa.png" alt="">
                 </button>
                 <input type="text" id="busqueda">
-                <button>
+                <button id="filtro">
                     <img src="images/ajustes_deslizadores.png" alt="">
                 </button>
             </div>

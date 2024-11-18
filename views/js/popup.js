@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function URLRedireccion(url, id) {
         let variablesURL = new URLSearchParams(url);
         let controller = variablesURL.get('controller');
-        console.log(controller);
+
         return "index.php?controller=" + controller + "&action=eliminar&id=" + id;
     }
 
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         botonCancelar.addEventListener('click', cerrarPopupEliminar);
         botonConfirmar.addEventListener('click', function() {
             window.location.href = URLRedireccion(url, id);
-            console.log(url);
 
             window.location.href = url;
         });
@@ -41,8 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             let url = obtenerURL();
             let id = this.id;
-            console.log(id);
+
             accionEliminar(url, id);
         });
     });
+    // Popup filtro
+    const closeBtn = document.getElementsByClassName("close-btn")
+    closeBtn.addEventListener("click", function(){
+        let popup = document.getElementsByClassName("popup-overlay")
+        popup.style.display = none;
+    })
+
+    const filtroBtn = document.getElementsByClassName("filtro")
+    filtroBtn.addEventListener("click", function(){
+        let popup = document.getElementsByClassName("popup-overlay")
+        popup.style.display = flex;
+    })
+    
 });

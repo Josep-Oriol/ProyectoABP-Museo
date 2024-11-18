@@ -221,19 +221,7 @@ class Exposiciones extends Database{
         return $filas;
     }
 
-    public function busquedaExposiciones($pagina, $input, $filtro){
-        $sql = "SELECT * FROM $pagina WHERE texto_exposicion LIKE '%$input%'";
-        $db = $this->conectar();
-        try{
-            $query = $db->prepare($sql);
-            $query->execute();
-        }
-        catch(PDOException $error){
-            echo $error->getMessage();
-        }
-        $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $resultado;
-    }
+
 
 
 }
