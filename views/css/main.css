@@ -189,25 +189,31 @@ header > div > div {
   transition: all 0.3s ease; /* Transición de todos los parámetros */
   border: solid 2px transparent; /* Borde invisible al inicio */
 }
-header > div:hover > div {
+header > div > div {
+  display: none;
   opacity: 1; /* Mostrar */
   height: auto; /* Dejar que se expanda a su altura natural */
+  width: auto;
+  white-space: nowrap;
   border-color: white; /* Cambiar el borde al hacer hover */
   border-radius: 7px;
-  white-space: nowrap;
-  display: block;
 }
-header > div:hover > div > a {
+header > div > div > a {
+  font-size: 17px;
   color: black;
   text-decoration: none;
-  padding: 7%;
+  padding: 10px;
   display: block;
   transition: color 0.3s;
+  border-bottom: 3px solid black;
 }
-header > div:hover > div > a:hover {
+header > div > div > a:hover {
   color: #333333;
 }
-header > div:hover > div hr {
+header > div > div > :last-child {
+  border-bottom: none;
+}
+header > div > div hr {
   border: none;
   border-radius: 5px;
   width: 90%;
@@ -218,6 +224,7 @@ header > div:hover > div hr {
 
 #general {
   min-height: 70vh;
+  overflow: hidden;
 }
 #general > :first-child {
   display: flex;
@@ -326,7 +333,7 @@ header > div:hover > div hr {
   justify-content: center;
 }
 #general > :last-child table {
-  width: 95vw;
+  width: 95%;
   border-collapse: separate;
   border-spacing: 0 0.5vh;
 }
@@ -459,7 +466,7 @@ header > div:hover > div hr {
   padding: 10px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
-  width: 30%;
+  width: 35%;
   margin-left: auto;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
