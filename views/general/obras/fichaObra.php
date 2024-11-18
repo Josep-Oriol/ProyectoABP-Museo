@@ -8,10 +8,8 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Dades Principals</h2>
                     <div>
                         <div>
-                            <div>
-                                <label for="fotografia">Fotografia</label>
-                                <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra" id="fotografia">
-                            </div>
+                            <span>Fotografia</span>
+                            <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra">
                         </div>
                         <div>
                             <div>

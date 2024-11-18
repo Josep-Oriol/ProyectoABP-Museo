@@ -8,11 +8,8 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Dades Principals</h2>
                     <div>
                         <div>
-                            <div>
-                                <label for="fotografia">Fotografia</label>
-                                <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra">
-                                <input type="file" name="fotografia" id="fotografia">
-                            </div>
+                            <span>Fotografia</span>
+                            <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra">
                         </div>
                         <div>
                             <div>
@@ -34,21 +31,26 @@ if (isset($_SESSION['Rol'])) {
                                     ?>
                                 </select>
                             </div>
+                            <div id="subirImagen">
+                                <img src="images/subirArchivo.png" alt="subir archivo">
+                                <span>PNG/JPG/JPEG</span>
+                                <p id="nombreArchivo"></p>
+                            </div>
+                            <input type="file" name="fotografia" id="inputFotografia">
                             <div>
                                 <?php
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':
                                 ?>
-                                        <div>
-                                            <input type="image" src="images/guardar.png" alt="guardar cambios">
-                                            <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
-                                        </div>
+                                        <input type="image" src="images/guardar.png" alt="guardar cambios">
+                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
                                         <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button>Descartar canvis</button></a>
                                     <?php
                                         break;
                                     case 'Tècnic':
                                     ?>
                                         <input type="image" src="images/guardar.png" alt="guardar cambios">
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button>Descartar canvis</button></a>
                                 <?php
                                         break;
                                 }

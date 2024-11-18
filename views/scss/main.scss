@@ -17,7 +17,7 @@
 @import "popups/filtroBusqueda.scss";
 @import "components/footer.scss";
 @import "components/popup.scss";
-
+@import "popups/filtroBusqueda.scss";
 
 
 body {
@@ -51,7 +51,7 @@ body {
         width: 40px;
         height: 40px;
     }
-    
+
     &:active{
         scale: 0.95;
     }

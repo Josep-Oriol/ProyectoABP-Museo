@@ -77,8 +77,7 @@
     }
 ?>
         </table>
-    </div>
-    
+    </div>    
 </div>
 
 <div class="popup-overlay">
@@ -88,7 +87,7 @@
     </div>
     
     <div class="popup-body">
-      <form>
+      <form id="filter-from" action="#" method="POST">
         <!-- Camp (ara com select) -->
         <div class="form-group">
           <label for="campo">Camp</label>
@@ -133,7 +132,6 @@
             <select id="moneda" name="moneda" class="currency-select">
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
-              <option value="GBP">GBP</option>
             </select>
           </div>
         </div>
@@ -163,7 +161,7 @@
         <!-- Botons -->
         <div class="button-group">
           <button type="reset" class="btn-reset">Netejar filtres</button>
-          <button type="submit" class="btn-apply">Aplicar filtres</button>
+          <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>
         </div>
       </form>
     </div>
