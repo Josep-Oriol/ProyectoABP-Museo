@@ -1079,19 +1079,8 @@ header > div:hover > div hr {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-}
-#fichaVocabulario > :nth-child(2) form > :last-child {
-  right: 0;
-  margin-bottom: 1vh;
-  background-color: black;
-  color: white;
-  border-radius: 12px;
-  padding: 0.5vw 2vw 0.5vw 2vw;
-}
-#fichaVocabulario > :nth-child(2) form > :last-child:hover {
-  cursor: pointer;
-  animation: aumentarTamano 0.2s linear 1 running forwards;
 }
 #fichaVocabulario > :nth-child(2) div {
   width: 100%;
@@ -1118,6 +1107,9 @@ header > div:hover > div hr {
   position: absolute;
   right: 0;
 }
+#fichaVocabulario p {
+  display: none;
+}
 #fichaVocabulario > :nth-child(3) {
   width: 20vw;
   display: flex;
@@ -1127,9 +1119,19 @@ header > div:hover > div hr {
 }
 #fichaVocabulario > :nth-child(3) input {
   border: 2px solid black;
+  border-right: none;
   padding: 0.5vw;
   text-align: center;
-  width: 100%;
+  width: 69%;
+}
+#fichaVocabulario > :nth-child(3) button {
+  color: black;
+  border: 2px solid black;
+  padding: 0.5vw 2vw 0.5vw 2vw;
+}
+#fichaVocabulario > :nth-child(3) button:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
 }
 #fichaVocabulario > :last-child {
   margin-top: 2vh;

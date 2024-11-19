@@ -93,16 +93,20 @@
         }
 
         public function editarCampo($antiguoValor, $nuevoValor) {
-            $antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
+             //$antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
             if($antiguoValor != $nuevoValor){
                 $sql = "UPDATE campos SET nombre_campo = '$nuevoValor' WHERE nombre_campo = '$antiguoValor'";
                 $db = $this->conectar();
                 try {
                     $query = $db->prepare($sql);
                     $query->execute();
+                    return true;
                 } catch (PDOException $error) {
                     echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+                    return false;
                 }
+            }else{
+                return false;
             }
         }
 

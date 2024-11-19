@@ -141,9 +141,10 @@
             $id = $data['id'];
             $nombre = $data['nombre'];
 
-            if(isset($nombre)){
-                require_once "models/Vocabularios.php";
+            require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
+
+            if(isset($nombre)){
                 $vocabulario->crearCampo($id, $nombre);
 
                 if($vocabulario) {
@@ -158,14 +159,39 @@
         }
 
         public function editarCampos() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $antiguoValor = $data['antiguoValor'];
+            $nuevoValor = $data['nuevoValor'];
+            
             require_once "models/Vocabularios.php";    
             $vocabulario = new Vocabularios();
+
+            $cambios = false;
             
-            foreach($_POST as $nombreCampo => $nuevoValor){         //recorre foreach, el indice contiene el antiguo nombre y su valor el nuevo
-                $vocabulario->editarCampo($nombreCampo, $nuevoValor);
+            foreach ($nuevoValor as $index => $valorNuevo) {
+                foreach ($nuevoValor as $subIndex => $otroValor) {
+                    if ($index !== $subIndex && $valorNuevo === $otroValor) {
+                        header('Content-Type: application/json');
+                        echo json_encode(['status' => 'repetidos',  'duplicado' => $valorNuevo]);
+                        exit;
+                    }
+                }
             }
 
-            echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id={$_GET['id']}'/>";
+            foreach ($antiguoValor as $index => $valorAntiguo) {
+                $valorNuevo = $nuevoValor[$index];         
+                $resultado = $vocabulario->editarCampo($valorAntiguo, $valorNuevo);
+                
+                if ($resultado) {
+                    $cambios = true;
+                }
+            }
+
+            $respuesta = $cambios ? ['status' => 'success'] : ['status' => 'sinCambios'];
+            header('Content-Type: application/json');
+            echo json_encode($respuesta);
+            exit;
         }
 
         public function eliminarCampos() {

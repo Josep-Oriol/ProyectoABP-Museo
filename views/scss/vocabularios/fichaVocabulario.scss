@@ -26,19 +26,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             width: 100%;
-            >:last-child{
-                right: 0;
-                margin-bottom: 1vh;
-                background-color: black;
-                color: white;
-                border-radius: 12px;
-                padding: 0.5vw 2vw 0.5vw 2vw;
-                &:hover {
-                    cursor: pointer;
-                    animation: aumentarTamano 0.2s linear 1 running forwards;
-                }
-            }
+            
         }
         div{
             width: 100%;
@@ -68,6 +58,9 @@
         }
 
     }
+    p {
+        display: none;
+    }
     >:nth-child(3) {
         width: 20vw;
         display: flex;
@@ -76,9 +69,20 @@
         align-items: center;
         input {
             border: 2px solid black;
+            border-right: none;
             padding: 0.5vw;
             text-align: center;
-            width: 100%;
+            width: 69%;
+        }
+        button {
+            // background-color: black;
+            color: black;
+            border: 2px solid black;
+            padding: 0.5vw 2vw 0.5vw 2vw;
+        }
+        button:hover {
+            cursor: pointer;
+            animation: aumentarTamano 0.2s linear 1 running forwards;
         }
     }
     >:last-child {
