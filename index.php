@@ -26,7 +26,8 @@ session_start();
    
     <?php 
     require_once "autoload.php";
-
+    require_once "vendor/autoload.php";
+    
     if (isset($_GET['controller'])){
         $nombreController = $_GET['controller']."Controller";
         
