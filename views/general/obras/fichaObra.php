@@ -25,7 +25,7 @@ if (isset($_SESSION['Rol'])) {
                                 <input type="text" id="data" value="<?php echo $obra['anyo_final']; ?>">
                             </div>
                             <div>
-                                <a href=""><img src="images/download.png" alt="icono descargar"></a>
+                                <a href="index.php?controller=Obras&action=generarPDF&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
                                 <?php
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':

@@ -52,7 +52,7 @@
             <td>{$exposicion['fecha_inicio_exposicion']}</td>
             <td>{$exposicion['fecha_fin_exposicion']}</td>
 
-            <td class='btn'>";
+            <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
                     <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
@@ -90,41 +90,38 @@
     <div class="popup-header">
       <button class="close-btn">&times;</button>
     </div>
-    
+
     <div class="popup-body">
-      <form id="filter-from">
-        <!-- Tipo de Exposición -->
+      <form id="filter-form" action="#" method="POST">
+        <!-- Sección AND -->
         <div class="form-group">
-          <label for="tipo_exposicion">Tipus d'exposició</label>
-          <select id="tipo_exposicion" name="tipo_exposicion" class="form-control">
-            <option value="">Tots els tipus</option>
-            <option value="aliena">Aliena</option>
-            <option value="propia">Pròpia</option>
-          </select>
-        </div>
-
-        <!-- Lugar de Exposición -->
-        <div class="form-group">
-          <label for="lugar_exposicion">Lloc de l'exposició</label>
-          <input type="text" id="lugar_exposicion" name="lugar_exposicion" class="form-control" placeholder="Introdueix el lloc">
-        </div>
-
-        <!-- Fechas de la exposición -->
-        <div class="form-group">
-          <label>Període de l'exposició</label>
-          <div class="range-inputs">
-            <div class="date-input">
-              <label for="fecha_inicio">Data d'inici</label>
-              <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control">
-            </div>
-            <div class="date-input">
-              <label for="fecha_fin">Data de fi</label>
-              <input type="date" id="fecha_fin" name="fecha_fin" class="form-control">
+          <h3>Ha de ser</h3>
+          <div id="and-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="and-campo[]" class="form-control">
+                <!-- Selects -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-and-filter">Afegir</button>
             </div>
           </div>
         </div>
 
-        <!-- Botones -->
+        <hr class="separator" />
+
+        <div class="form-group">
+          <h3>Pot ser</h3>
+          <div id="or-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="or-campo[]" class="form-control">
+                <!-- Selects -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-or-filter">Afegir</button>
+            </div>
+          </div>
+        </div>
+
         <div class="button-group">
           <button type="reset" class="btn-reset">Netejar filtres</button>
           <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>

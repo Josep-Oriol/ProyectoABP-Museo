@@ -117,24 +117,30 @@ header{
         }
         
     }
-    >div:hover > div{
+    > div > div{
+        display: none;
         opacity: 1; /* Mostrar */
         height: auto; /* Dejar que se expanda a su altura natural */
+        width: auto;
+        white-space: nowrap;
         border-color: white; /* Cambiar el borde al hacer hover */
         border-radius: 7px;
-        white-space: nowrap;
-        display: block;
-
+        
         >a{
+            font-size: 17px;
             color: black;
             text-decoration: none;
-            padding: 7%;
+            padding: 10px;
             display: block;
             transition: color 0.3s;
+            border-bottom: 3px solid black;
             
         }
         >a:hover{
             color: $color_oscuro;
+        }
+        >:last-child {
+            border-bottom: none;
         }
         hr{
             border: none; 

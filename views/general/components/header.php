@@ -22,9 +22,7 @@
         <a id="iconoPerfil"><img src="images/icono2.png" alt=""></a>
         <div id="opcionesPerfil">
             <a href="">Veure el perfil</a>
-            <hr>
             <a href="">Editar perfil</a>
-            <hr>
             <a href="index.php?controller=Usuarios&action=cerrarSesion">Tanca la sessió</a>
         </div>
     </div>

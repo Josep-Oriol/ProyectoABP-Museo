@@ -12,12 +12,10 @@ session_start();
     <link rel="stylesheet" href="views/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="views/js/logIn.js"></script>
-    <script src="views/js/up.js"></script>
+    <script src="views/js/header.js"></script>
     <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/eliminar.js"></script>
-    <script src="views/js/logIn.js"></script>
     <script src="views/js/busqueda.js"></script>
-    <script src="views/js/eliminar.js"></script>
     <script src="views/js/up.js"></script>
     <script src="views/js/popup.js"></script>
     <script src="views/js/cambiarInputFile.js"></script>
@@ -28,7 +26,8 @@ session_start();
    
     <?php 
     require_once "autoload.php";
-
+    require_once "vendor/autoload.php";
+    
     if (isset($_GET['controller'])){
         $nombreController = $_GET['controller']."Controller";
         
