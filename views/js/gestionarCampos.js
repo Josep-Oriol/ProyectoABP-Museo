@@ -184,6 +184,9 @@ if(pagina != null) {
     
                             const campoInput = document.getElementById('crearCampoInput')
                             campoInput.value = '';
+
+                            camposActuales = Array.from(document.querySelectorAll('input.campo')).map(campo => campo.value);
+                            
                         }
                     })
                 }
@@ -223,7 +226,7 @@ if(pagina != null) {
     
                         setTimeout(() => {
                             mensaje.style.display = "none"; 
-                        }, 2000); 
+                        }, 3000); 
     
                         camposActuales = Array.from(document.querySelectorAll('input.campo')).map(campo => campo.value);
                     }else if (data.status === 'sinCambios'){
@@ -232,9 +235,10 @@ if(pagina != null) {
                         mensaje.style.display = 'block';
                         mensaje.style.color = 'red';
                         mensaje.innerHTML = 'Error: ya existeix un camp amb el nom ' + '"' + data.duplicado + '"';
+
                         setTimeout(() => {
                             mensaje.style.display = "none"; 
-                        }, 2000); 
+                        }, 3000); 
 
                         let inputs = document.querySelectorAll('input.campo');
     
@@ -242,9 +246,25 @@ if(pagina != null) {
                             // Restaurar el valor original desde camposActuales
                             input.value = camposActuales[index];
                         });
+                    }else if (data.status === 'vacio'){
+                        mensaje.style.display = 'block';
+                        mensaje.style.color = 'red';
+                        mensaje.innerHTML = 'Error: no hi poden haver camps buits';
+
+                        let inputs = document.querySelectorAll('input.campo');
+
+                        inputs.forEach((input, index) => {
+                            // Restaurar el valor original desde camposActuales
+                            input.value = camposActuales[index];
+                        });
+
+                        setTimeout(() => {
+                            mensaje.style.display = "none"; 
+                        }, 3000); 
                     }
                 })
             })
+            camposActuales = Array.from(document.querySelectorAll('input.campo')).map(campo => campo.value)   
         }
     })
 }

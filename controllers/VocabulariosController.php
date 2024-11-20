@@ -179,6 +179,14 @@
                 }
             }
 
+            foreach ($nuevoValor as $index => $valorNuevo){
+                if (trim($valorNuevo) === ""){
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'vacio']);
+                    exit;
+                }
+            }
+
             foreach ($antiguoValor as $index => $valorAntiguo) {
                 $valorNuevo = $nuevoValor[$index];         
                 $resultado = $vocabulario->editarCampo($valorAntiguo, $valorNuevo);
