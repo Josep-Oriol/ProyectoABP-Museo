@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 link2.href = data.url[1] + id
                 link3.href = data.url[2] + id
 
+                
                 td_botones.appendChild(link2)
                 td_botones.appendChild(link1)
                 td_botones.appendChild(link3)

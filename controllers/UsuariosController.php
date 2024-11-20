@@ -133,6 +133,14 @@ class UsuariosController{
         }
         echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
     }
+
+    public function generarPDFUsuarios(){
+        require "models/Usuarios.php";
+        $modeloUsuarios = new Usuarios;
+        $id = $_GET['id'];
+        $datos = $modeloUsuarios->mostrarUsuario($id);
+        require_once "views/general/pdfs/usuariosPDF.php";
+    }
     
 }
 

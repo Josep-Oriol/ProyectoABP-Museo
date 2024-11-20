@@ -106,8 +106,7 @@ class ObrasController{
         $modeloObras = new Obras;
         $id = $_GET['id'];
         $obra = $modeloObras->mostrarObra($id);
-        require_once "views/general/pdfs/pruebaPDF.php";
-        
+        require_once "views/general/pdfs/obrasPDF.php";
     }
 }
 
