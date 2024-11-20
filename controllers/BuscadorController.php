@@ -15,11 +15,11 @@
             }
             else if($data['pagina'] == "obras"){
                 $datos = $modelo->busquedaObras($pagina, $input, "numero_registro");
-                $url = ['index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=eliminar&id='];
+                $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
             }
             else if($data['pagina'] == "usuarios"){
                 $datos = $modelo->busquedaUsuarios($pagina, $input, "usuario");
-                $url = ['index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
+                $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
 
             $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];

@@ -42,7 +42,7 @@
                             <input type="text" id="estado" value="<?php echo $datos['estado'];?>">
                         </div>
                         <div> 
-                                <a href=""><img src="images/download.png" alt="icono descargar"></a>
+                                <a href="index.php?controller=Usuarios&action=generarPDFUsuarios&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
                             <?php
                             switch ($_SESSION['Rol']) {
                                 case 'Administració':
