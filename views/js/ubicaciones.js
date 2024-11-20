@@ -56,14 +56,15 @@ function rotarImagen(boton, mostrar) {
 
 function eliminarHijos(id_ubicacion){
     $.ajax({
-        url: 'ajaxUbicaciones.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
+        url: 'ajax.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
         type: 'POST',
         data: { id_ubicacion: id_ubicacion },
         dataType: 'json',
         success: function(response) {
-            if (response.success) { // Verifica si el servidor respondió exitosamente
-                // Remueve el elemento HTML con el ID del hijo eliminado
+            if (response.success) { 
+                
                 document.getElementById(id_ubicacion).parentNode.remove();
+                location.reload();
             }
         }
     })
