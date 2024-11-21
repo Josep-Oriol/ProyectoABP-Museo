@@ -34,6 +34,9 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
                         <input type="hidden" name="id_ubicacion" value='${hijo.id_ubicacion}'>
                         <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
+                    <form action="index.php?controller=Vocabularios&action=anadirObra&id=${hijo.id_ubicacion}" method="POST">
+                        <button type="submit">Añadir obras</button> <!-- Boton para añadir una ubicacion -->
+                    </form>
                 </div>
                     <div id='hijos-${hijo.id_ubicacion}' style='display:none; padding-left: 5vw'></div>
                     `); //agregamos este contenido al div 'divHijos' con el 'divHijos.append'
@@ -56,14 +59,15 @@ function rotarImagen(boton, mostrar) {
 
 function eliminarHijos(id_ubicacion){
     $.ajax({
-        url: 'ajaxUbicaciones.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
+        url: 'ajax.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
         type: 'POST',
         data: { id_ubicacion: id_ubicacion },
         dataType: 'json',
         success: function(response) {
-            if (response.success) { // Verifica si el servidor respondió exitosamente
-                // Remueve el elemento HTML con el ID del hijo eliminado
+            if (response.success) { 
+                
                 document.getElementById(id_ubicacion).parentNode.remove();
+                location.reload();
             }
         }
     })

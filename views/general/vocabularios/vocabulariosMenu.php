@@ -11,7 +11,7 @@
                 <div><p>Ubicacions</p></div>
             </div>
             <div>
-                <div><a href="index.php?controller=Vocabularios&action=mostrarAutories"><img src="images/autories.png" alt=""></a></div>
+                <div><a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=12"><img src="images/autories.png" alt=""></a></div>
                 <div><p>Autories</p></div>
             </div>
             <div>

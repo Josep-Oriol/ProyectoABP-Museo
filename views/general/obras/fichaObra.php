@@ -14,15 +14,15 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <div>
                                 <label for="nom_obra">Títol</label>
-                                <input type="text" id="nom_obra" value="<?php echo $obra['titulo']; ?>">
+                                <input type="text" id="nom_obra" value="<?php echo $obra['titulo']; ?>" disabled>
                             </div>
                             <div>
                                 <label for="autor">Autor</label>
-                                <input type="text" id="autor" value="<?php echo $obra['autor']; ?>">
+                                <input type="text" id="autor" value="<?php echo $obra['autor']; ?>" disabled>
                             </div>
                             <div>
                                 <label for="data">Data</label>
-                                <input type="text" id="data" value="<?php echo $obra['anyo_final']; ?>">
+                                <input type="text" id="data" value="<?php echo $obra['anyo_final']; ?>" disabled>
                             </div>
                             <div>
                                 <a href="index.php?controller=Obras&action=generarPDF&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
@@ -51,15 +51,15 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="num-registre">Nº de registre</label>
-                            <input type="text" id="num-registre" readonly value="<?php echo $obra['numero_registro']; ?>">
+                            <input type="text" id="num-registre" readonly value="<?php echo $obra['numero_registro']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data-registre">Data de registre</label>
-                            <input type="text" id="data-registre" value="<?php echo $obra['fecha_registro']; ?>">
+                            <input type="text" id="data-registre" value="<?php echo $obra['fecha_registro']; ?>" disabled>
                         </div>
                         <div>
                             <label for="nom-museu">Nom del Museu</label>
-                            <input type="text" id="nom-museu" value="<?php echo $obra['nombre_museo']; ?>">
+                            <input type="text" id="nom-museu" value="<?php echo $obra['nombre_museo']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -69,43 +69,43 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="classificacio">Classificació genèrica</label>
-                            <input type="text" id="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>">
+                            <input type="text" id="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>" disabled>
                         </div>
                         <div>
                             <label for="nom-objecte">Nom de l'objecte</label>
-                            <input type="text" id="nom-objecte" value="<?php echo $obra['nombre_objeto']; ?>">
+                            <input type="text" id="nom-objecte" value="<?php echo $obra['nombre_objeto']; ?>" disabled>
                         </div>
                         <div>
                             <label for="coleccio">Col·lecció de procedència</label>
-                            <input type="text" id="coleccio" value="<?php echo $obra['coleccion_procedencia']; ?>">
+                            <input type="text" id="coleccio" value="<?php echo $obra['coleccion_procedencia']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-alçada">Mides màxima alçada (cm)</label>
-                            <input type="number" id="mides-alçada" value="<?php echo $obra['maxima_altura_cm']; ?>">
+                            <input type="number" id="mides-alçada" value="<?php echo $obra['maxima_altura_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-amplada">Mides màxima amplada (cm)</label>
-                            <input type="number" id="mides-amplada" value="<?php echo $obra['maxima_anchura_cm']; ?>">
+                            <input type="number" id="mides-amplada" value="<?php echo $obra['maxima_anchura_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-profunditat">Mides màxima profunditat (cm)</label>
-                            <input type="number" id="mides-profunditat" value="<?php echo $obra['maxima_profundidad_cm']; ?>">
+                            <input type="number" id="mides-profunditat" value="<?php echo $obra['maxima_profundidad_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="material">Material</label>
-                            <input type="text" id="material" value="<?php echo $obra['material']; ?>">
+                            <input type="text" id="material" value="<?php echo $obra['material']; ?>" disabled>
                         </div>
                         <div>
                             <label for="tecnica">Tècnica</label>
-                            <input type="text" id="tecnica" value="<?php echo $obra['tecnica']; ?>">
+                            <input type="text" id="tecnica" value="<?php echo $obra['tecnica']; ?>" disabled>
                         </div>
                         <div>
                             <label for="estat_conservacio">Estat de conservació</label>
-                            <input type="text" id="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>">
+                            <input type="text" id="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="nombre-exemplars">Nombre d'exemplars</label>
-                            <input type="number" id="nombre-exemplars" value="<?php echo $obra['numero_ejemplares']; ?>">
+                            <input type="number" id="nombre-exemplars" value="<?php echo $obra['numero_ejemplares']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -115,19 +115,19 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="ubicacio">Ubicació</label>
-                            <input type="text" id="ubicacio" value="<?php echo $obra['descripcion_ubicacion']; ?>">
+                            <input type="text" id="ubicacio" value="<?php echo $obra['descripcion_ubicacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data_inici_ubicacio">Data inici ubicació</label>
-                            <input type="text" id="data_inici_ubicacio" value="<?php echo $obra['fecha_inicio_ubicacion']; ?>">
+                            <input type="text" id="data_inici_ubicacio" value="<?php echo $obra['fecha_inicio_ubicacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data_fi_ubicacio">Data fi ubicació</label>
-                            <input type="text" id="data_fi_ubicacio" value="<?php echo $obra['fecha_fin_ubicacion']; ?>">
+                            <input type="text" id="data_fi_ubicacio" value="<?php echo $obra['fecha_fin_ubicacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="comentari_ubicacio">Comentari ubicació</label>
-                            <input type="text" id="comentari_ubicacio" value="<?php echo $obra['comentario_ubicacion']; ?>">
+                            <input type="text" id="comentari_ubicacio" value="<?php echo $obra['comentario_ubicacion']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -137,15 +137,15 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="forma_ingres">Forma d'ingrés</label>
-                            <input type="text" id="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>">
+                            <input type="text" id="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data_ingres">Data d'ingrés</label>
-                            <input type="text" id="data_ingres" value="<?php echo $obra['fecha_ingreso']; ?>">
+                            <input type="text" id="data_ingres" value="<?php echo $obra['fecha_ingreso']; ?>" disabled>
                         </div>
                         <div>
                             <label for="font_ingres">Font d'ingrés</label>
-                            <input type="text" id="font_ingres" value="<?php echo $obra['fuente_ingreso']; ?>">
+                            <input type="text" id="font_ingres" value="<?php echo $obra['fuente_ingreso']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -155,23 +155,23 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="any-inicial">Any inicial</label>
-                            <input type="text" id="any-inicial" value="<?php echo $obra['anyo_inicial']; ?>">
+                            <input type="text" id="any-inicial" value="<?php echo $obra['anyo_inicial']; ?>" disabled>
                         </div>
                         <div>
                             <label for="any-final">Any final</label>
-                            <input type="text" id="any-final" value="<?php echo $obra['anyo_final']; ?>">
+                            <input type="text" id="any-final" value="<?php echo $obra['anyo_final']; ?>" disabled>
                         </div>
                         <div>
                             <label for="datacio">Datació</label>
-                            <input type="text" id="datacio" value="<?php echo $obra['datacion']; ?>">
+                            <input type="text" id="datacio" value="<?php echo $obra['datacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="lloc-execucio">Lloc d'execució</label>
-                            <input type="text" id="lloc-execucio" value="<?php echo $obra['lugar_ejecucion']; ?>">
+                            <input type="text" id="lloc-execucio" value="<?php echo $obra['lugar_ejecucion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="lloc-procedencia">Lloc de procedència</label>
-                            <input type="text" id="lloc-procedencia" value="<?php echo $obra['lugar_procedencia']; ?>">
+                            <input type="text" id="lloc-procedencia" value="<?php echo $obra['lugar_procedencia']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -181,19 +181,19 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="baixa">Baixa</label>
-                            <input type="text" id="baixa" value="<?php echo $obra['baja']; ?>">
+                            <input type="text" id="baixa" value="<?php echo $obra['baja']; ?>" disabled>
                         </div>
                         <div>
                             <label for="causa_baixa">Causa baixa</label>
-                            <input type="text" id="causa_baixa" value="<?php echo $obra['causa_baja']; ?>">
+                            <input type="text" id="causa_baixa" value="<?php echo $obra['causa_baja']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data_baixa">Data baixa</label>
-                            <input type="text" id="data_baixa" value="<?php echo $obra['fecha_baja']; ?>">
+                            <input type="text" id="data_baixa" value="<?php echo $obra['fecha_baja']; ?>" disabled> 
                         </div>
                         <div>
                             <label for="persona-autoritzada">Persona autoritzada</label>
-                            <input type="text" id="persona-autoritzada" value="<?php echo $obra['usuario']; ?>">
+                            <input type="text" id="persona-autoritzada" value="<?php echo $obra['usuario']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -203,15 +203,15 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="num-tiratge">Nº Tiratge</label>
-                            <input type="text" id="num-tiratge" value="<?php echo $obra['numero_tiraje']; ?>">
+                            <input type="text" id="num-tiratge" value="<?php echo $obra['numero_tiraje']; ?>" disabled>
                         </div>
                         <div>
                             <label for="altres-numeros-id">Altres números d'identificació</label>
-                            <input type="text" id="altres-numeros-id" value="<?php echo $obra['otros_numeros_identificacion']; ?>">
+                            <input type="text" id="altres-numeros-id" value="<?php echo $obra['otros_numeros_identificacion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="valoracio-economica">Valoració econòmica (€)</label>
-                            <input type="number" id="valoracio-economica" value="<?php echo $obra['valoracion_economica']; ?>">
+                            <input type="number" id="valoracio-economica" value="<?php echo $obra['valoracion_economica']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -222,29 +222,29 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <label for="exposicio">Exposició</label>
                             <input type="text" id="exposicio" value="<?php $valor = (isset($obra['texto_exposicion'])) ? $obra['texto_exposicion'] : "Indefinida";
-                                                                        echo $valor ?>">
+                                                                        echo $valor ?>" disabled>
                         </div>
                         <div>
                             <label for="data-inici-expo">Data inici expo.</label>
                             <input type="text" id="data-inici-expo" readonly value="<?php $valor = (isset($obra['fecha_inicio_exposicion'])) ? $obra['fecha_inicio_exposicion'] : "Indefinida";
-                                                                                    echo $valor ?>">
+                                                                                    echo $valor ?>" disabled>
                         </div>
                         <div>
                             <label for="data-fi-expo">Data fi expo.</label>
                             <input type="text" id="data-fi-expo" readonly value="<?php $valor = (isset($obra['fecha_fin_exposicion'])) ? $obra['fecha_fin_exposicion'] : "Indefinida";
-                                                                                    echo $valor ?>">
+                                                                                    echo $valor ?>" disabled>
                         </div>
                         <div>
                             <label for="codi-restauracio">Codi restauració</label>
-                            <input type="text" id="codi-restauracio" value="<?php echo $obra['id_restauracion']; ?>">
+                            <input type="text" id="codi-restauracio" value="<?php echo $obra['id_restauracion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data-inici-restauracio">Data inici restauració</label>
-                            <input type="text" id="data-inici-restauracio" value="<?php echo $obra['fecha_inicio_restauracion']; ?>">
+                            <input type="text" id="data-inici-restauracio" value="<?php echo $obra['fecha_inicio_restauracion']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data-fi-restauracio">Data fi restauració</label>
-                            <input type="text" id="data-fi-restauracio" value="<?php echo $obra['fecha_fin_restauracion']; ?>">
+                            <input type="text" id="data-fi-restauracio" value="<?php echo $obra['fecha_fin_restauracion']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -254,15 +254,15 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="descripcio">Descripció</label>
-                            <textarea id="descripcio"><?php echo $obra['descripcion_obra']; ?></textarea>
+                            <textarea  disabled id="descripcio"><?php echo $obra['descripcion_obra']; ?></textarea>
                         </div>
                         <div>
                             <label for="bibliografia">Bibliografia</label>
-                            <textarea name="bibliografia" id="bibliografia"><?php echo $obra['bibliografia']; ?></textarea>
+                            <textarea  disabled name="bibliografia" id="bibliografia"><?php echo $obra['bibliografia']; ?></textarea>
                         </div>
                         <div>
                             <label for="historia-objecte">Història de l'objecte</label>
-                            <textarea id="historia-objecte"><?php echo $obra['historia_objeto']; ?></textarea>
+                            <textarea disabled id="historia-objecte"><?php echo $obra['historia_objeto']; ?></textarea>
                         </div>
                     </div>
                 </div>

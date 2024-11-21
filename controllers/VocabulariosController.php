@@ -35,13 +35,11 @@
             if (isset($_POST['nombreUbicacion']) && isset($_SESSION['id_ubicacion'])) {
                 $id_ubicacion = $_SESSION['id_ubicacion'];
                 $nombreUbicacion = $_POST['nombreUbicacion'];
-                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
-                $fecha_fin = $_POST['fecha_fin_ubicacion'];
                 $comentari = $_POST['comentario_ubicacion'];
         
                 // Llama a la función del modelo para crear la ubicación
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion, $fecha_inicio, $fecha_fin, $comentari);
+                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion, $comentari);
         
                 // Limpia los datos de la sesión después de usarlos
                 unset($_SESSION['id_ubicacion']);
@@ -50,12 +48,10 @@
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
             }else if (isset($_POST['nombreUbicacion'])) {
                 $nombreUbicacion = $_POST['nombreUbicacion'];
-                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
-                $fecha_fin = $_POST['fecha_fin_ubicacion'];
                 $comentari = $_POST['comentario_ubicacion'];
 
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacion($nombreUbicacion, $fecha_inicio, $fecha_fin, $comentari);
+                $vocabulario->crearUbicacion($nombreUbicacion, $comentari);
 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
             }
@@ -226,5 +222,8 @@
             exit;
         }
 
+        public function anadirObra(){
+            echo $_GET['id'];
+        }
     }
 ?>
