@@ -34,6 +34,9 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
                         <input type="hidden" name="id_ubicacion" value='${hijo.id_ubicacion}'>
                         <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
+                    <form action="index.php?controller=Vocabularios&action=anadirObra&id=${hijo.id_ubicacion}" method="POST">
+                        <button type="submit">Añadir obras</button> <!-- Boton para añadir una ubicacion -->
+                    </form>
                 </div>
                     <div id='hijos-${hijo.id_ubicacion}' style='display:none; padding-left: 5vw'></div>
                     `); //agregamos este contenido al div 'divHijos' con el 'divHijos.append'

@@ -222,5 +222,8 @@
             exit;
         }
 
+        public function anadirObra(){
+            echo $_GET['id'];
+        }
     }
 ?>
