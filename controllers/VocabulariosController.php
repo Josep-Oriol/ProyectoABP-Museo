@@ -221,9 +221,5 @@
             echo json_encode($response);
             exit;
         }
-
-        public function anadirObra(){
-            echo $_GET['id'];
-        }
     }
 ?>

@@ -22,10 +22,6 @@
                         <input type="hidden" name="id_ubicacion" value="<?= $ubicacion['id_ubicacion'] ?>">
                         <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
-
-                    <form action="index.php?controller=Vocabularios&action=anadirObra&id=<?php echo $ubicacion['id_ubicacion'] ?>" method="POST">
-                        <button type="submit">Añadir obras</button> <!-- Boton para añadir una ubicacion -->
-                    </form>
                     
                 </div>
                 <div id='hijos-<?= $ubicacion['id_ubicacion'] ?>' style='display:none; padding-left: 5vw'></div> <!-- div donde se almacenan los hijos de cada 
