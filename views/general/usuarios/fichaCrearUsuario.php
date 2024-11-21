@@ -11,16 +11,16 @@
                 </div>
 
                 <!-- Formulario -->
-                <form action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
+                <form id="Form" action="index.php?controller=Usuarios&action=crear" enctype="multipart/form-data" method="POST">
                     <!-- Div de los inputs -->
                     <div>
                         <div>
                             <label for="usuario">Usuari</label>
-                            <input type="text" name="usuario" id="usuario" required>
+                            <input class='userForm' type="text" name="usuario" id="usuario" required>
                         </div>
                         <div>
                             <label for="nombre">Nom</label>
-                            <input type="text" name="nombre" id="nombre" required>
+                            <input class='userForm' type="text" name="nombre" id="nombre" required>
                         </div>
                         <div>
                             <label for="apellidos">Cognoms</label>
@@ -28,11 +28,11 @@
                         </div>
                         <div>
                             <label for="contrasenya">Contrasenya</label>
-                            <input type="password" name="contrasenya" id="contrasenya" required>
+                            <input class='userForm' type="password" name="contrasenya" id="contrasenya" required>
                         </div>
                         <div>
                             <label for="rol">Rol</label>
-                            <select name="rol" id="rol" required>
+                            <select class='userForm' name="rol" id="rol" required>
                                 <option value="Lector">Lector</option>
                                 <option value="Tècnic">Tècnic</option>
                                 <option value="Administració">Administració</option>
@@ -48,14 +48,14 @@
                         </div>
                         <div>
                             <label for="estado">Estat</label>
-                            <select name="estado" id="estado" required>
+                            <select class='userForm' name="estado" id="estado" required>
                                 <option value="Actiu">Actiu</option>
                                 <option value="Inactiu">Inactiu</option>
                             </select>
                         </div>
                         <div>
                             <label for="foto">Fotografía</label>
-                            <input type="file" name="foto" id="foto">
+                            <input id="fotoForm" type="file" name="foto" id="foto">
                             <span>PNG/JPG/JPEG</span>
                         </div>
                         <div>

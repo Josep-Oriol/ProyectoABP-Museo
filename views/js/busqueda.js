@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function(){
             
             exposiciones.forEach(exposicion => {
                 let tr = document.createElement('tr')
-                let cont = 0; 
                 for(let dato in exposicion){
                     let td = document.createElement('td')
 
