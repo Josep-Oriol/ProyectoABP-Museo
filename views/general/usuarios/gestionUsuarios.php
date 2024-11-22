@@ -45,7 +45,7 @@
         <?php
     foreach($usuarios as $indice => $usuario) {
         $id = $usuario['id_usuario'];
-        echo "<tr>
+        echo "<tr id=\"$id\">
             <td><img alt='foto usuario' src='{$usuario['foto_usuario']}'></td>
             <td>{$usuario['id_usuario']}</td>
             <td>{$usuario['usuario']}</td>
@@ -60,7 +60,13 @@
                 ?>
                     <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                     <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=eliminar&id=<?php echo $id;?>" class="iconoEliminar" id="<?php echo $id; ?>"><img src="images/borrarv2.png" alt="" ></a>
+                    <a id="<?php echo $id;?>" class="eliminarRegistro"><img src="images/borrarv2.png" alt=""></a>
+                    <div class="popupEliminar">
+                      <img src="images/alertIcon.png" alt="">
+                      <p>Estas segur que vols eliminar el registre?</p>
+                      <button class="btnEliminarRegistro">Eliminar</button>
+                      <button class="btnCancelarEliminacion">Cancelar</button>
+                    </div>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
