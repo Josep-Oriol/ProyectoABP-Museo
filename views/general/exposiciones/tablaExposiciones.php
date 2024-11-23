@@ -3,7 +3,7 @@
     if(isset($_SESSION['Rol'])){ ?>
 <div id = "general">
   
-  <div>
+        <div>
             <h1>Exposicions</h1>
             <div>
                 <div>
@@ -58,16 +58,7 @@
                     ?>
                         <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
                         <a href="index.php?controller=Exposiciones&action=fichaExposiciones&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                        <a id="<?php echo $id;?>" class="eliminarRegistro"><img src="images/borrarv2.png" alt=""></a>
-                        <div class="fondo"></div>
-                          <div class="popupEliminar">
-                              <img src="images/alertIcon.png" alt="">
-                              <p>Estas segur que vols eliminar el registre?</p>
-                              <button class="btnEliminarRegistro">Eliminar</button>
-                              <button class="btnCancelarEliminacion">Cancelar</button>
-                          </div>
-                        
-                        
+                        <button id="<?php echo $id;?>" class="eliminarRegistro"><img src="images/borrarv2.png" alt=""></button> 
                     <?php
                 }
                 else if ($_SESSION['Rol'] == 'Tècnic') {
@@ -141,5 +132,5 @@
       </div>
     </div>
   
-  
+        
 </div>

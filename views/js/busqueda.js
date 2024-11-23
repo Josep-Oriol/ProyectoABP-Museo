@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function(){
             body :dataJson
         })
         .then(response => response.json())
-
         .then(data => {
             exposiciones = data.texto
             const tbody = document.querySelector('tbody');
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 for(let dato in exposicion){
                     let td = document.createElement('td')
 
-                    
                     if(exposicion[dato] && typeof exposicion[dato] === 'string' && exposicion[dato].includes("images/")){
                         let img = document.createElement('img')
                         img.src = exposicion[dato]
@@ -64,29 +62,30 @@ document.addEventListener("DOMContentLoaded", function(){
                 img2.src = 'images/fichav2.png'
                 link2.appendChild(img2)
  
-                link3 = document.createElement('a')
+                link3 = document.createElement('button')
                 img3 = document.createElement('img')
                 img3.src = 'images/borrarv2.png'
                 link3.appendChild(img3)
 
                 id = pagina === "obras" ? exposicion.numero_registro : pagina === "exposiciones" ? exposicion.id_exposicion : pagina === "usuarios" ? exposicion.id_usuario : null
 
-                console.log(exposicion)
+                tr.setAttribute('id', id);
                 link1.href = data.url[0] + id
                 link2.href = data.url[1] + id
-                link3.href = data.url[2] + id
+                link3.classList.add('eliminarRegistro');
+                link3.setAttribute('id', id);
 
-                
                 td_botones.appendChild(link2)
                 td_botones.appendChild(link1)
                 td_botones.appendChild(link3)
 
                 tr.appendChild(td_botones)
-
                 tbody.appendChild(tr)
             });
+
+            // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
+            agregarEventosEliminar();
         })
-        
         .catch(error => {
             console.error('Error:', error);
         })

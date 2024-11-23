@@ -153,7 +153,15 @@
                             margin-right: 0.1vw;
                         }
                     }
-                    
+                    .eliminarRegistro {
+                        border: none;
+                        background-color: transparent;
+                        margin-left: -0.3vw;
+                        cursor: pointer;
+                        > img {
+                            width: 2.2vw;
+                        }
+                    }
                 }
                 
             }
@@ -173,5 +181,4 @@
 
         }
     }
-
 }

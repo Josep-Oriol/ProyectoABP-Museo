@@ -1,0 +1,47 @@
+#fichaCrearUbicaciones {
+  max-width: 500px;
+  padding: 20px;
+}
+#fichaCrearUbicaciones form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#fichaCrearUbicaciones form label {
+  font-weight: 500;
+  color: #333;
+}
+#fichaCrearUbicaciones form input[type=text],
+#fichaCrearUbicaciones form textarea {
+  padding: 8px 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 14px;
+}
+#fichaCrearUbicaciones form input[type=text]:focus,
+#fichaCrearUbicaciones form textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 3px rgba(74, 144, 226, 0.3);
+}
+#fichaCrearUbicaciones form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+#fichaCrearUbicaciones form input[type=submit] {
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start;
+}
+#fichaCrearUbicaciones form input[type=submit]:hover {
+  background-color: black;
+  color: white;
+}
+#fichaCrearUbicaciones form input[type=submit]:active {
+  transform: translateY(1px);
+}/*# sourceMappingURL=fichaCrearUbicacion.css.map */
