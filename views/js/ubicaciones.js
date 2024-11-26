@@ -32,7 +32,7 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
                     <button onclick="eliminarHijos(${hijo.id_ubicacion})"><img class="eliminarUbi" src="images/basura.png"></button>
                     <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
                         <input type="hidden" name="id_ubicacion" value='${hijo.id_ubicacion}'>
-                        <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
+                        <button type="submit" title="Afegir ubicació">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
                 </div>
                     <div id='hijos-${hijo.id_ubicacion}' style='display:none; padding-left: 5vw'></div>

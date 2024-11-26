@@ -25,18 +25,18 @@ if (isset($_SESSION['Rol'])) {
                                 <input type="text" id="data" value="<?php echo $obra['anyo_final']; ?>" disabled>
                             </div>
                             <div>
-                                <a href="index.php?controller=Obras&action=generarPDF&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
+                                <a href="index.php?controller=Obras&action=generarPDF&id=<?php echo $id; ?>" title="Descarregar"><img src="images/download.png" alt="icono descargar"></a>
                                 <?php
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':
                                 ?>
-                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
-                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><img src="images/editarv2.png" alt="icono editar"></a>
+                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>" title="Eliminar"><img src="images/borrarv2.png" alt="icono eliminar"></a>
                                     <?php
                                         break;
                                     case 'Tècnic':
                                     ?>
-                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><img src="images/editarv2.png" alt="icono editar"></a>
                                 <?php
                                         break;
                                 }

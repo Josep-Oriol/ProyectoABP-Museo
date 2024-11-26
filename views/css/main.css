@@ -1259,7 +1259,9 @@ header > div > div hr {
   margin-top: 4.5%;
 }
 .Exposicion > :last-child > :first-child {
-  color: red;
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: center;
 }
 .Exposicion > :last-child > :last-child {
   display: flex;
@@ -1292,9 +1294,11 @@ header > div > div hr {
   padding: 2%;
   color: #333333;
   background-color: #EFEFEF;
+  transition: transform 0.3s ease;
 }
 .Exposicion > :last-child > :last-child table tr td button:hover, .Exposicion > :last-child > :last-child table tr th button:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 .Exposicion > :last-child > :last-child table tr td > img, .Exposicion > :last-child > :last-child table tr th > img {
   width: 30%;

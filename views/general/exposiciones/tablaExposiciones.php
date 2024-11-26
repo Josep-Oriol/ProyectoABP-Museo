@@ -39,7 +39,7 @@
                     <td>Data termini</td>
                 
                     <td> 
-                        <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposicion</button></a>
+                        <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposició</button></a>
                     </td>
                 </tr>
             <?php
@@ -56,9 +56,9 @@
                 <td>";
                 if ($_SESSION['Rol'] == 'Administració') {
                     ?>
-                        <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                        <a href="index.php?controller=Exposiciones&action=fichaExposiciones&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                        <button id="<?php echo $id;?>" class="eliminarRegistro"><img src="images/borrarv2.png" alt=""></button> 
+                        <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>" title="Editar exposició"><img src="images/editarv2.png" alt=""></a>
+                        <a href="index.php?controller=Exposiciones&action=fichaExposiciones&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                        <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar exposició"><img src="images/borrarv2.png" alt=""></a> 
                     <?php
                 }
                 else if ($_SESSION['Rol'] == 'Tècnic') {

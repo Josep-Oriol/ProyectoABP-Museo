@@ -20,7 +20,7 @@
                     
                     <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
                         <input type="hidden" name="id_ubicacion" value="<?= $ubicacion['id_ubicacion'] ?>">
-                        <button type="submit">+</button> <!-- Boton para añadir una ubicacion -->
+                        <button type="submit" title="Afegir ubicació">+</button> <!-- Boton para añadir una ubicacion -->
                     </form>
                     
                 </div>

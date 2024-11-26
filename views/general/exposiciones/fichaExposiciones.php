@@ -28,7 +28,7 @@
         </div>
         <div>
             <div>
-                <h2>Obras relacionadas</h2> <!-- Poner el contenido deseado -->
+                <h2>Obras relacionades</h2> <!-- Poner el contenido deseado -->
             </div>
             <div>
                 <table>
