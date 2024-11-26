@@ -2,9 +2,8 @@
 $primary-color: #333333;
 $border-color: #ddd;
 $background-grey: #f0f0f0;
+$delete-color: #fe3b3b;
 $border-radius: 4px;
-$spacing-small: 8px;
-$spacing-medium: 15px;
 $spacing-large: 20px;
 
 // Estilos del popup
@@ -27,6 +26,12 @@ $spacing-large: 20px;
     max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
+    scale: 1;
+    transition: scale .2s ease-in-out;
+
+    @starting-style{
+      scale: 0;
+    }
 
     .popup-header {
       display: flex;
@@ -56,6 +61,10 @@ $spacing-large: 20px;
 
     .popup-body {
       padding-top: 5px;
+
+      h3{
+        padding-bottom: 15px;
+      }
     }
   }
 }
@@ -64,13 +73,39 @@ $spacing-large: 20px;
 .form-group {
   margin-bottom: 15px;
 
+  .filterItemGroup{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
   label {
     margin-bottom: 5px;
     font-weight: bold;
   }
 
-  // Estilos base para inputs y selects
   select {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    background-color: $primary-color;
+    color: white;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  input{
     width: 50%;
     padding: 8px;
     border: 1px solid $border-color;
@@ -82,6 +117,13 @@ $spacing-large: 20px;
       border-color: $primary-color;
       box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
     }
+  }
+  .plusInput{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 25px;
+    margin-bottom: 10px;
   }
   
   .btn-add-field{
@@ -95,9 +137,64 @@ $spacing-large: 20px;
     
     &:hover {
       background-color: darken($primary-color, 5%);
+      transform: translateY(-1px);
+    }
+
+    &:active{
+      scale: 0.95;
     }
   }
+  #and-filters-inputs, #or-filters-inputs{
+    padding: 10px 0 0 10px;
+
+  }
+  .input-group{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
 }
+
+.trashIcon{
+  cursor: pointer;
+
+  &:hover{
+    filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+    transform: translateY(-1px);
+  }
+
+  &:active{
+    scale: 0.9;
+  }
+}
+
+.minusIcon{
+  cursor: pointer;
+  transition: filter 0.3s ease;
+
+  &:hover{
+    filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+    transform: translateY(-1px);
+  }
+
+  &:active{
+    scale: 0.9;
+  }
+}
+
+.plusIcon{
+  cursor: pointer;
+
+  &:hover{
+    transform: translateY(-1px);
+  }
+
+  &:active{
+    scale: 0.9;
+  }
+}
+
 // Grupo de botones
 .button-group {
   display: flex;

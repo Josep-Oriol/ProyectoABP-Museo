@@ -1485,6 +1485,13 @@ header > div > div hr {
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .popup-overlay .popup-content {
+    scale: 0;
+  }
 }
 .popup-overlay .popup-content .popup-header {
   display: flex;
@@ -1512,9 +1519,18 @@ header > div > div hr {
 .popup-overlay .popup-content .popup-body {
   padding-top: 5px;
 }
+.popup-overlay .popup-content .popup-body h3 {
+  padding-bottom: 15px;
+}
 
 .form-group {
   margin-bottom: 15px;
+}
+.form-group .filterItemGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .form-group label {
   margin-bottom: 5px;
@@ -1526,11 +1542,35 @@ header > div > div hr {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: #333333;
+  color: white;
 }
 .form-group select:focus {
   outline: none;
   border-color: #333333;
   box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group select:hover {
+  cursor: pointer;
+}
+.form-group input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group .plusInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 25px;
+  margin-bottom: 10px;
 }
 .form-group .btn-add-field {
   padding: 8px 16px;
@@ -1543,6 +1583,52 @@ header > div > div hr {
 }
 .form-group .btn-add-field:hover {
   background-color: rgb(38.25, 38.25, 38.25);
+  transform: translateY(-1px);
+}
+.form-group .btn-add-field:active {
+  scale: 0.95;
+}
+.form-group #and-filters-inputs, .form-group #or-filters-inputs {
+  padding: 10px 0 0 10px;
+}
+.form-group .input-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+.trashIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.trashIcon:active {
+  scale: 0.9;
+}
+
+.minusIcon {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.minusIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.minusIcon:active {
+  scale: 0.9;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+.plusIcon:hover {
+  transform: translateY(-1px);
+}
+.plusIcon:active {
+  scale: 0.9;
 }
 
 .button-group {
@@ -1749,6 +1835,13 @@ footer .div2 .web a {
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .popup-overlay .popup-content {
+    scale: 0;
+  }
 }
 .popup-overlay .popup-content .popup-header {
   display: flex;
@@ -1776,9 +1869,18 @@ footer .div2 .web a {
 .popup-overlay .popup-content .popup-body {
   padding-top: 5px;
 }
+.popup-overlay .popup-content .popup-body h3 {
+  padding-bottom: 15px;
+}
 
 .form-group {
   margin-bottom: 15px;
+}
+.form-group .filterItemGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .form-group label {
   margin-bottom: 5px;
@@ -1790,11 +1892,35 @@ footer .div2 .web a {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: #333333;
+  color: white;
 }
 .form-group select:focus {
   outline: none;
   border-color: #333333;
   box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group select:hover {
+  cursor: pointer;
+}
+.form-group input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group .plusInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 25px;
+  margin-bottom: 10px;
 }
 .form-group .btn-add-field {
   padding: 8px 16px;
@@ -1807,6 +1933,52 @@ footer .div2 .web a {
 }
 .form-group .btn-add-field:hover {
   background-color: rgb(38.25, 38.25, 38.25);
+  transform: translateY(-1px);
+}
+.form-group .btn-add-field:active {
+  scale: 0.95;
+}
+.form-group #and-filters-inputs, .form-group #or-filters-inputs {
+  padding: 10px 0 0 10px;
+}
+.form-group .input-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+.trashIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.trashIcon:active {
+  scale: 0.9;
+}
+
+.minusIcon {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.minusIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.minusIcon:active {
+  scale: 0.9;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+.plusIcon:hover {
+  transform: translateY(-1px);
+}
+.plusIcon:active {
+  scale: 0.9;
 }
 
 .button-group {
@@ -1958,6 +2130,10 @@ body {
   font-style: normal;
 }
 
+#filtro {
+  cursor: pointer;
+}
+
 #up {
   background-color: #333333;
   width: 50px;
@@ -1969,6 +2145,7 @@ body {
   bottom: 20px;
   right: 20px;
   border: solid 1px white;
+  cursor: pointer;
 }
 #up img {
   width: 40px;

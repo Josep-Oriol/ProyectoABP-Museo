@@ -62,7 +62,25 @@ function agregarEventosEliminar() {
 
 }
 
+function filtrosAvanzados(){
+    const openBtn = document.getElementById("filtro");
+    const cerrar = document.querySelector('.close-btn');
+    const popup = document.querySelector('.popup-overlay');
+
+
+    if(openBtn){
+        openBtn.addEventListener("click", function(){
+            popup.style.display = "flex";
+        });
+
+        cerrar.addEventListener("click", function(){
+            popup.style.display = "none";
+        });
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
     agregarEventosEliminar();
+    filtrosAvanzados();
 })

@@ -1,0 +1,68 @@
+{
+    "id": {
+      "label": "ID",
+      "type": "text",
+      "placeholder": "Introdueix ID",
+      "name": "op-id",
+      "class": "id-class",
+      "id": "id-id"
+    },
+    "usuari": {
+      "label": "Usuari",
+      "type": "text",
+      "placeholder": "Introdueix usuari",
+      "name": "op-user", 
+      "class": "user-class",
+      "id": "id-id"
+    },
+    "nom": {
+      "label": "Nom",
+      "type": "text",
+      "placeholder": "Introdueix nom",
+      "name": "op-nom",
+      "class": "nom-class",
+      "id": "id-nom"
+    },
+    "cognom": {
+      "label": "Cognom",
+      "type": "text",
+      "placeholder": "Introdueix cognom",
+      "name": "op-cognom", 
+      "class": "cognom-class",
+      "id": "id-cognom"
+    },
+    "correu": {
+      "label": "Correu electrònic",
+      "type": "email",
+      "placeholder": "Introdueix correu electrònic",
+      "name": "op-correu",
+      "class": "correu-class", 
+      "id": "id-correu"
+    },
+    "telefon": {
+      "label": "Telèfon",
+      "type": "tel",
+      "placeholder": "Introdueix telèfon",
+      "name": "op-tel",
+      "class": "telefon-class",
+      "id": "id-telefon"
+    },
+    "rol": {
+      "label": "Rol",
+      "type": "select",
+      "placeholder": "Selecciona rol",
+      "options": ["Admin", "Usuari", "Editor"],
+      "name": "op-rol",
+      "class": "rol-class",
+      "id": "id-rol"
+    },
+    "estat": {
+      "label": "Estat",
+      "type": "select",
+      "placeholder": "Selecciona estat",
+      "options": ["Actiu", "Inactiu"],
+      "name": "op-estat",
+      "class": "estat-class", 
+      "id": "id-estat"
+    }
+  }

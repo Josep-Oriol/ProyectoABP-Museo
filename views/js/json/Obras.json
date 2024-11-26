@@ -1,0 +1,43 @@
+{
+    "nregistre": {
+      "label": "Nº Registre",
+      "type": "text",
+      "placeholder": "Introdueix el Nº de registre",
+      "name": "op-nregistre",
+      "class": "nregistre-class",
+      "id": "id-nregistre"
+    },
+    "tecnica": {
+      "label": "Tècnica",
+      "type": "text",
+      "placeholder": "Introdueix la tècnica",
+      "name": "op-tecnica",
+      "class": "tecnica-class",
+      "id": "id-tecnica"
+    },
+    "titolo": {
+      "label": "Títol",
+      "type": "text",
+      "placeholder": "Introdueix el títol",
+      "name": "op-titulo",
+      "class": "titulo-class",
+      "id": "id-titulo"
+    },
+    "autor": {
+      "label": "Autor",
+      "type": "text",
+      "placeholder": "Introdueix l'autor",
+      "name": "op-autor",
+      "class": "autor-class",
+      "id": "id-autor"
+    },
+    "any": {
+      "label": "Any",
+      "type": "text",
+      "placeholder": "Introdueix l'any",
+      "name": "op-any",
+      "class": "any-class",
+      "id": "id-any"
+    }
+  }
+  

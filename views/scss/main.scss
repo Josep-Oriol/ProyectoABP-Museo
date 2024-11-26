@@ -37,6 +37,10 @@ body {
     font-style: normal;
 }
 
+#filtro{
+    cursor: pointer;
+}
+
 #up{
     background-color: #333333;
     width: 50px;
@@ -48,6 +52,7 @@ body {
     bottom: 20px;
     right: 20px;
     border: solid 1px white;
+    cursor: pointer;
     
     img{
         width: 40px;

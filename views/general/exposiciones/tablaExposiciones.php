@@ -86,51 +86,55 @@
         }
     ?>
 
-    <div class="popup-overlay">
-      <div class="popup-content">
-        <div class="popup-header">
-          <button class="close-btn">&times;</button>
-        </div>
-
-        <div class="popup-body">
-          <form id="filter-form" action="#" method="POST">
-            <!-- Sección AND -->
-            <div class="form-group">
-              <h3>Ha de ser</h3>
-              <div id="and-filters" class="filters-section">
-                <div class="filter-item">
-                  <label>Filtrar per:</label>
-                  <select name="and-campo[]" class="form-control">
-                    <!-- Selects -->
-                  </select>
-                  <button type="button" class="btn-add-field" id="add-and-filter">Afegir</button>
-                </div>
-              </div>
-            </div>
-
-            <hr class="separator" />
-
-            <div class="form-group">
-              <h3>Pot ser</h3>
-              <div id="or-filters" class="filters-section">
-                <div class="filter-item">
-                  <label>Filtrar per:</label>
-                  <select name="or-campo[]" class="form-control">
-                    <!-- Selects -->
-                  </select>
-                  <button type="button" class="btn-add-field" id="add-or-filter">Afegir</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="button-group">
-              <button type="reset" class="btn-reset">Netejar filtres</button>
-              <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>
-            </div>
-          </form>
-        </div>
-      </div>
+<div class="popup-overlay">
+  <div class="popup-content">
+    <div class="popup-header">
+      <button class="close-btn">&times;</button>
     </div>
+
+    <div class="popup-body">
+      <form id="filter-form" action="#" method="POST">
+        <!-- Sección AND -->
+        <div class="form-group">
+          <h3>Ha de ser</h3>
+          <div id="and-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="and-campo[]" class="form-control" id="and-select-value">
+                <!-- Opciones segun el form -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-and-filter">Afegir</button>
+            </div>
+            <div id="and-filters-inputs">
+            </div>
+          </div>
+        </div>
+
+        <hr class="separator" />
+
+        <div class="form-group">
+          <h3>Pot ser</h3>
+          <div id="or-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="or-campo[]" class="form-control" id="or-select-value">
+                <!-- Opciones segun el form -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-or-filter">Afegir</button>
+            </div>
+            <div id="or-filters-inputs">
+            </div>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="reset" class="btn-reset" id="btn-reset">Netejar filtres</button>
+          <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   
         
 </div>
