@@ -7,19 +7,6 @@ $spacing-small: 8px;
 $spacing-medium: 15px;
 $spacing-large: 20px;
 
-// Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin grid-container($columns) {
-  display: grid;
-  grid-template-columns: $columns;
-  gap: $spacing-small;
-}
-
 // Estilos del popup
 .popup-overlay {
   position: fixed;
@@ -51,7 +38,7 @@ $spacing-large: 20px;
       .close-btn {
         background: none;
         border: none;
-        font-size: 18px;
+        font-size: 22px;
         cursor: pointer;
         padding: 2px 8px;
         line-height: 1;
@@ -78,17 +65,13 @@ $spacing-large: 20px;
   margin-bottom: 15px;
 
   label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
   }
 
   // Estilos base para inputs y selects
-  .form-control, 
-  input[type="number"], 
-  input[type="date"], 
   select {
-    width: 100%;
+    width: 50%;
     padding: 8px;
     border: 1px solid $border-color;
     border-radius: $border-radius;
@@ -100,33 +83,21 @@ $spacing-large: 20px;
       box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
     }
   }
-
-  // Input pequeño
-  .small-input {
-    width: 100px !important;
-  }
-
-  // Contenedores grid
-  .range-inputs {
-    @include grid-container(1fr 1fr);
-  }
-
-  .dimensions-inputs {
-    @include grid-container(repeat(3, 1fr));
-  }
-
-  // Contenedor para valor y moneda
-  .currency-input {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    .currency-select {
-      width: 80px;
+  
+  .btn-add-field{
+    padding: 8px 16px;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover {
+      background-color: darken($primary-color, 5%);
     }
   }
 }
-
 // Grupo de botones
 .button-group {
   display: flex;

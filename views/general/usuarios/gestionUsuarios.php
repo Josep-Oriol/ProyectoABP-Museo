@@ -45,7 +45,7 @@
         <?php
     foreach($usuarios as $indice => $usuario) {
         $id = $usuario['id_usuario'];
-        echo "<tr>
+        echo "<tr id=\"$id\">
             <td><img alt='foto usuario' src='{$usuario['foto_usuario']}'></td>
             <td>{$usuario['id_usuario']}</td>
             <td>{$usuario['usuario']}</td>
@@ -58,20 +58,21 @@
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=eliminar&id=<?php echo $id;?>" class="iconoEliminar" id="<?php echo $id; ?>"><img src="images/borrarv2.png" alt="" ></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
+                    <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar usuari"><img src="images/borrarv2.png" alt=""></a>
+                    
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>"><img src="images/editarv2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
                 ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
                 <?php
             }
             echo "</td>";
@@ -100,31 +101,40 @@
     <div class="popup-header">
       <button class="close-btn">&times;</button>
     </div>
-    
+
     <div class="popup-body">
-      <form id="filter-from" action="#" method="POST">
-        <!-- Camp (ara com select) -->
+      <form id="filter-form" action="#" method="POST">
+        <!-- Sección AND -->
         <div class="form-group">
-            <label for="rol">Rol</label>
-            <select id="rol" name="rol" class="form-control" required>
-                <option value="Lector">Lector</option>
-                <option value="Tècnic">Tècnic</option>
-                <option value="Administració">Administració</option>
-            </select>
+          <h3>Ha de ser</h3>
+          <div id="and-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="and-campo[]" class="form-control">
+                <!-- Selects -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-and-filter">Afegir</button>
+            </div>
+          </div>
         </div>
 
+        <hr class="separator" />
+
         <div class="form-group">
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado" class="form-control" required>
-                <option value="Actiu">Actiu</option>
-                <option value="Inactiu">Inactiu</option>
-            </select>
+          <h3>Pot ser</h3>
+          <div id="or-filters" class="filters-section">
+            <div class="filter-item">
+              <label>Filtrar per:</label>
+              <select name="or-campo[]" class="form-control">
+                <!-- Selects -->
+              </select>
+              <button type="button" class="btn-add-field" id="add-or-filter">Afegir</button>
+            </div>
+          </div>
         </div>
 
-        <!-- Botons -->
         <div class="button-group">
           <button type="reset" class="btn-reset">Netejar filtres</button>
-          <button id="test">test</button>
           <button type="submit" class="btn-apply" id="btn-apply">Aplicar filtres</button>
         </div>
       </form>

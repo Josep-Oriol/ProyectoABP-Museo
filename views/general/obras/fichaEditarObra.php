@@ -42,15 +42,15 @@ if (isset($_SESSION['Rol'])) {
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':
                                 ?>
-                                        <input type="image" src="images/guardar.png" alt="guardar cambios">
-                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                        <input type="image" src="images/guardar.png" alt="guardar cambios" title="Guardar canvis">
+                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>" title="Eliminar"><img src="images/borrarv2.png" alt="icono eliminar"></a>
                                         <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button>Descartar canvis</button></a>
                                     <?php
                                         break;
                                     case 'Tècnic':
                                     ?>
                                         <input type="image" src="images/guardar.png" alt="guardar cambios">
-                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button>Descartar canvis</button></a>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><button>Descartar canvis</button></a>
                                 <?php
                                         break;
                                 }

@@ -93,16 +93,20 @@
         }
 
         public function editarCampo($antiguoValor, $nuevoValor) {
-            $antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
+             //$antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
             if($antiguoValor != $nuevoValor){
                 $sql = "UPDATE campos SET nombre_campo = '$nuevoValor' WHERE nombre_campo = '$antiguoValor'";
                 $db = $this->conectar();
                 try {
                     $query = $db->prepare($sql);
                     $query->execute();
+                    return true;
                 } catch (PDOException $error) {
                     echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+                    return false;
                 }
+            }else{
+                return false;
             }
         }
 
@@ -194,19 +198,15 @@
             return $query->fetchAll(PDO::FETCH_ASSOC); //devuelve los hijos del padre que queremos
         }
 
-        public function crearUbicacion($nombreUbicacion, $fecha_inicio_ubicacion, $fecha_fin_ubicacion, $comentari) {
-            $formato_mysql_fi = date("Y-m-d H:i:s",strtotime($fecha_inicio_ubicacion)); //convertir las fechas al formato correcto en mysql
-            $formato_mysql_ff = date("Y-m-d H:i:s",strtotime($fecha_fin_ubicacion));
-            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, fecha_inicio_ubicacion, fecha_fin_ubicacion, comentario_ubicacion) VALUES ('$nombreUbicacion', 0, '$formato_mysql_fi', '$formato_mysql_ff', '$comentari')";
+        public function crearUbicacion($nombreUbicacion, $comentari) {
+            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, comentario_ubicacion) VALUES ('$nombreUbicacion', NULL, '$comentari')";
             $db = $this->conectar();
             $query = $db -> prepare($sql);
             $query->execute();
         }
 
-        public function crearUbicacionHija($nombreUbicacion, $id_padre, $fecha_inicio_ubicacion, $fecha_fin_ubicacion, $comentari) {
-            $formato_mysql_fi = date("Y-m-d H:i:s",strtotime($fecha_inicio_ubicacion));
-            $formato_mysql_ff = date("Y-m-d H:i:s",strtotime($fecha_fin_ubicacion));
-            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, fecha_inicio_ubicacion, fecha_fin_ubicacion, comentario_ubicacion) VALUES ('$nombreUbicacion', $id_padre, '$formato_mysql_fi', '$formato_mysql_ff', '$comentari')";
+        public function crearUbicacionHija($nombreUbicacion, $id_padre, $comentari) {
+            $sql = "INSERT INTO ubicaciones (descripcion_ubicacion, id_padre, comentario_ubicacion) VALUES ('$nombreUbicacion', $id_padre, '$comentari')";
             $db = $this->conectar();
             $query = $db -> prepare($sql);
             $query->execute();

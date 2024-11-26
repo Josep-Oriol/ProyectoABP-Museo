@@ -35,13 +35,11 @@
             if (isset($_POST['nombreUbicacion']) && isset($_SESSION['id_ubicacion'])) {
                 $id_ubicacion = $_SESSION['id_ubicacion'];
                 $nombreUbicacion = $_POST['nombreUbicacion'];
-                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
-                $fecha_fin = $_POST['fecha_fin_ubicacion'];
                 $comentari = $_POST['comentario_ubicacion'];
         
                 // Llama a la función del modelo para crear la ubicación
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion, $fecha_inicio, $fecha_fin, $comentari);
+                $vocabulario->crearUbicacionHija($nombreUbicacion, $id_ubicacion, $comentari);
         
                 // Limpia los datos de la sesión después de usarlos
                 unset($_SESSION['id_ubicacion']);
@@ -50,12 +48,10 @@
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
             }else if (isset($_POST['nombreUbicacion'])) {
                 $nombreUbicacion = $_POST['nombreUbicacion'];
-                $fecha_inicio = $_POST['fecha_inicio_ubicacion'];
-                $fecha_fin = $_POST['fecha_fin_ubicacion'];
                 $comentari = $_POST['comentario_ubicacion'];
 
                 $vocabulario = new Vocabularios();
-                $vocabulario->crearUbicacion($nombreUbicacion, $fecha_inicio, $fecha_fin, $comentari);
+                $vocabulario->crearUbicacion($nombreUbicacion, $comentari);
 
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarUbicaciones'/>";
             }
@@ -141,9 +137,10 @@
             $id = $data['id'];
             $nombre = $data['nombre'];
 
-            if(isset($nombre)){
-                require_once "models/Vocabularios.php";
+            require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
+
+            if(isset($nombre)){
                 $vocabulario->crearCampo($id, $nombre);
 
                 if($vocabulario) {
@@ -158,14 +155,47 @@
         }
 
         public function editarCampos() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $antiguoValor = $data['antiguoValor'];
+            $nuevoValor = $data['nuevoValor'];
+            
             require_once "models/Vocabularios.php";    
             $vocabulario = new Vocabularios();
+
+            $cambios = false;
             
-            foreach($_POST as $nombreCampo => $nuevoValor){         //recorre foreach, el indice contiene el antiguo nombre y su valor el nuevo
-                $vocabulario->editarCampo($nombreCampo, $nuevoValor);
+            foreach ($nuevoValor as $index => $valorNuevo) {
+                foreach ($nuevoValor as $subIndex => $otroValor) {
+                    if ($index !== $subIndex && $valorNuevo === $otroValor) {
+                        header('Content-Type: application/json');
+                        echo json_encode(['status' => 'repetidos',  'duplicado' => $valorNuevo]);
+                        exit;
+                    }
+                }
             }
 
-            echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id={$_GET['id']}'/>";
+            foreach ($nuevoValor as $index => $valorNuevo){
+                if (trim($valorNuevo) === ""){
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'vacio']);
+                    exit;
+                }
+            }
+
+            foreach ($antiguoValor as $index => $valorAntiguo) {
+                $valorNuevo = $nuevoValor[$index];         
+                $resultado = $vocabulario->editarCampo($valorAntiguo, $valorNuevo);
+                
+                if ($resultado) {
+                    $cambios = true;
+                }
+            }
+
+            $respuesta = $cambios ? ['status' => 'success'] : ['status' => 'sinCambios'];
+            header('Content-Type: application/json');
+            echo json_encode($respuesta);
+            exit;
         }
 
         public function eliminarCampos() {
@@ -191,6 +221,5 @@
             echo json_encode($response);
             exit;
         }
-
     }
 ?>

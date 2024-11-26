@@ -56,7 +56,9 @@
     }
     >:last-child{
         >:first-child{
-            color: red;
+            margin-bottom: 2vh;
+            display: flex;
+            justify-content: center;
         }
         >:last-child{
             display: flex;
@@ -88,9 +90,11 @@
                             padding: 2%;
                             color: $color_oscuro;
                             background-color: $color_claro3;
-    
+                            transition: transform 0.3s ease;
+
                             &:hover {
                                 cursor: pointer;
+                                transform: scale(1.1);
                             }
                         }
                         > img {

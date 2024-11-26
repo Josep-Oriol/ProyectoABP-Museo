@@ -6,7 +6,7 @@
             <h2><?php echo $nombre; ?></h2>
         </div>
         <div>
-            <form id="campos" action="index.php?controller=Vocabularios&action=editarCampos&id=<?php echo $id; ?>" method="POST">
+            <form id="campos">
                 <?php
                 foreach ($campos as $indice => $campo) {
                     echo "
@@ -17,19 +17,19 @@
                     "; 
                 }
                 ?>
-                <input type="submit" value="Guardar" id="enviar" >
             </form>
+            <p id="mensajeEditado"></p>
         </div>
 
         <form>
             <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
+            <button id="crearCampo">Crear</button>
         </form>
         <div>
-            <button id="crearCampo">Crear</button>
+            <button id="editar">Editar</button>
             <button id="eliminarCampos">Eliminar</button>
             <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>"><button>Descartar cambios</button></a>
         </div>
-        
     </div>
     <?php
     }

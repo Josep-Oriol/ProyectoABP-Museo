@@ -24,12 +24,14 @@ session_start();
     <script src="views/js/generarNumeroRegistro.js"></script>
     <!--<script src="views/js/gestionarCampos.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="views/js/validacionesFormularios/validacionCrearUsuario.js"></script>
 </head>
 <body>
    
     <?php 
     require_once "autoload.php";
-
+    require_once "vendor/autoload.php";
+    
     if (isset($_GET['controller'])){
         $nombreController = $_GET['controller']."Controller";
         
@@ -57,21 +59,20 @@ session_start();
 
     ?>
     
-    
-    <div id="popupEliminar">
-        <div onclick="event.stopPropagation()">
-            <img src='images/alertIcon.png' alt='Icono señal advertencia eliminación'>
-            <h3>Estàs segur que vols eliminar?</h3>
-            <div>
-                <button id='confirmar-btn'>Confirmar</button>
-                <button id='cancelar-btn'>Cancelar</button>
-            </div>
-        </div>
+    <div id="fondoPopUp"></div>
+    <div id="popUpEliminar">
+        <img src="images/alertIcon.png" alt="">
+        <p>Confirmar elimininació</p>
+        <button id="btnConfirmar" class="confirmar">Confirmar</button>
+        <button id="btnCancelar" class="cancelar">Cancelar</button>
     </div>
 
     <div id="up">
         <img src="images/upIcon.png" alt="">
     </div>
+
+
+
 </body>
 </html>
 

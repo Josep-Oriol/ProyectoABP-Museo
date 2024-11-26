@@ -103,6 +103,14 @@ class ObrasController{
         }
         require_once "views/general/components/footer.html";
     }
+
+    public function generarPDF(){
+        require "models/Obras.php";
+        $modeloObras = new Obras;
+        $id = $_GET['id'];
+        $obra = $modeloObras->mostrarObra($id);
+        require_once "views/general/pdfs/obrasPDF.php";
+    }
 }
 
 ?>

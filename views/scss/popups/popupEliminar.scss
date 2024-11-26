@@ -1,0 +1,67 @@
+
+.popupEliminar {
+    // Posicionamiento fijo en el centro
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  
+    // Estilo del contenedor
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    min-width: 300px;
+    border: 1px solid black;
+    
+    // Flex para organizar elementos verticalmente
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  
+    // Estilo para la imagen
+    img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      margin-bottom: 1vh;
+    }
+  
+    // Estilos base para los botones
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      min-width: 100px;
+      margin-top: 2vh;
+      
+    }
+  
+    // Botón de eliminar
+    .btnEliminarRegistro {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        margin-right: 1vw;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+    }
+  
+    // Botón de cancelar
+    .btnCancelarEliminacion {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+      margin-left: 1vw;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+  }

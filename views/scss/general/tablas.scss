@@ -2,6 +2,7 @@
     min-height: 70vh;
     overflow: hidden;
     >:first-child{
+        
         display: flex;
         width: 100vw;
         height: 12vh;
@@ -151,7 +152,15 @@
                             margin-right: 0.1vw;
                         }
                     }
-                    
+                    .eliminarRegistro {
+                        border: none;
+                        background-color: transparent;
+                        margin-left: -0.3vw;
+                        cursor: pointer;
+                        > img {
+                            width: 2.2vw;
+                        }
+                    }
                 }
                 
             }
@@ -171,9 +180,7 @@
 
         }
     }
-    button{
-        background-color: grey;
-    }
+    
 
 }
 
