@@ -2,7 +2,7 @@
 if (isset($_SESSION['Rol'])) {
 ?>
     <section id="fichaObra">
-        <form action="index.php?controller=Obras&action=crear" enctype="multipart/form-data" method="POST">
+        <form action="index.php?controller=Obras&action=crear" enctype="multipart/form-data" method="POST" id="formCrear">
             <div>
                 <div>
                     <h2>Dades Principals</h2>
@@ -37,7 +37,7 @@ if (isset($_SESSION['Rol'])) {
                                 </select>
                             </div>
                             <div>
-                                <input type="submit" value="Crear">
+                                <input type="submit" value="Crear" id="btnCrearObra">
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,13 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="numero_registro">Nº de registre</label>
-                            <input type="text" id="numero_registro" name="numero_registro" required>
+                            <div id="camposNumeroRegistro">
+                                <input type="text" name="letra" id="letra" placeholder="[A-Z]">
+                                <input type="text" id="numero_registro" name="numero_registro" required>
+                                <input type="text" name="decimales" id="decimales" placeholder="[01-99]">
+                                <p id="errorFormatoNumRegistro"></p>
+                                <img src="images/reload.png" alt="Sugerir número de registro" id="sugerirNumeroRegistro">
+                            </div>
                         </div>
                         <div>
                             <label for="fecha_registro">Data de registre</label>

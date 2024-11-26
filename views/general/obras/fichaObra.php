@@ -2,7 +2,11 @@
 if (isset($_SESSION['Rol'])) {
 ?>
     <section id="fichaObra">
-        <form action="" method="POST">
+        <div>
+            <button id="btnFichaBasica">Fitxa bàsica</button>
+            <button id="btnFichaCompleta">Fitxa completa</button>
+        </div>
+        <form action="" method="POST" id="fichaCompleta">
             <div>
                 <div>
                     <h2>Dades Principals</h2>
@@ -263,6 +267,137 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <label for="historia-objecte">Història de l'objecte</label>
                             <textarea id="historia-objecte"><?php echo $obra['historia_objeto']; ?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="" method="POST" id="fichaBasica">
+            <div>
+                <div>
+                    <h2>Dades Principals</h2>
+                    <div>
+                        <div>
+                            <span>Fotografia</span>
+                            <img src="<?php echo $obra['fotografia']; ?>" alt="fotografia obra">
+                        </div>
+                        <div>
+                            <div>
+                                <label for="num-registre">Nº de registre</label>
+                                <input type="text" id="num-registre" readonly value="<?php echo $obra['numero_registro']; ?>">
+                            </div>
+                            <div>
+                                <label for="nom_obra">Títol</label>
+                                <input type="text" id="nom_obra" value="<?php echo $obra['titulo']; ?>">
+                            </div>
+                            <div>
+                                <label for="autor">Autor</label>
+                                <input type="text" id="autor" value="<?php echo $obra['autor']; ?>">
+                            </div>
+                            <div>
+                                <label for="data">Datació</label>
+                                <input type="text" id="data" value="<?php echo $obra['datacion']; ?>">
+                            </div>
+                            <div>
+                                <a href=""><img src="images/download.png" alt="icono descargar"></a>
+                                <?php
+                                switch ($_SESSION['Rol']) {
+                                    case 'Administració':
+                                ?>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
+                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                    <?php
+                                        break;
+                                    case 'Tècnic':
+                                    ?>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><img src="images/editarv2.png" alt="icono editar"></a>
+                                <?php
+                                        break;
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Dades Generals</h2>
+                    <div>
+                        
+                        <div>
+                            <label for="data-registre">Data de registre</label>
+                            <input type="text" id="data-registre" value="<?php echo $obra['fecha_registro']; ?>">
+                        </div>
+                        <div>
+                            <label for="lloc-procedencia">Lloc de procedència</label>
+                            <input type="text" id="lloc-procedencia" value="<?php echo $obra['lugar_procedencia']; ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Clasificació i Dimensions</h2>
+                    <div>
+                        <div>
+                            <label for="nom-objecte">Nom de l'objecte</label>
+                            <input type="text" id="nom-objecte" value="<?php echo $obra['nombre_objeto']; ?>">
+                        </div>
+                        <div>
+                            <label for="classificacio">Classificació genèrica</label>
+                            <input type="text" id="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>">
+                        </div>
+                        <div>
+                            <label for="mides-alçada">Mides màxima alçada (cm)</label>
+                            <input type="number" id="mides-alçada" value="<?php echo $obra['maxima_altura_cm']; ?>">
+                        </div>
+                        <div>
+                            <label for="mides-amplada">Mides màxima amplada (cm)</label>
+                            <input type="number" id="mides-amplada" value="<?php echo $obra['maxima_anchura_cm']; ?>">
+                        </div>
+                        <div>
+                            <label for="mides-profunditat">Mides màxima profunditat (cm)</label>
+                            <input type="number" id="mides-profunditat" value="<?php echo $obra['maxima_profundidad_cm']; ?>">
+                        </div>
+                        <div>
+                            <label for="material">Material</label>
+                            <input type="text" id="material" value="<?php echo $obra['material']; ?>">
+                        </div>
+                        <div>
+                            <label for="estat_conservacio">Estat de conservació</label>
+                            <input type="text" id="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Ingrés</h2>
+                    <div>
+                        <div>
+                            <label for="forma_ingres">Forma d'ingrés</label>
+                            <input type="text" id="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>">
+                        </div>
+                        <div>
+                            <label for="data_ingres">Data d'ingrés</label>
+                            <input type="text" id="data_ingres" value="<?php echo $obra['fecha_ingreso']; ?>">
+                        </div>
+                        <div>
+                            <label for="font_ingres">Font d'ingrés</label>
+                            <input type="text" id="font_ingres" value="<?php echo $obra['fuente_ingreso']; ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Informació adicional</h2>
+                    <div>
+                        <div>
+                            <label for="valoracio-economica">Valoració econòmica (€)</label>
+                            <input type="number" id="valoracio-economica" value="<?php echo $obra['valoracion_economica']; ?>">
+                        </div>
+                        <div>
+                            <label for="usuario_registro">Usuari que registra</label>
+                            <input type="text" id="usuario_registro" value="">
                         </div>
                     </div>
                 </div>

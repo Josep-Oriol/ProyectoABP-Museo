@@ -258,7 +258,6 @@ header > div > div hr {
   margin-left: 2%;
   border: none;
   padding: 0;
-  cursor: pointer;
 }
 #general > :first-child > :nth-child(2) > :first-child > :first-child img {
   width: 100%;
@@ -282,7 +281,6 @@ header > div > div hr {
   background-color: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
 }
 #general > :first-child > :nth-child(2) > :first-child > :last-child img {
   width: 100%;
@@ -378,6 +376,63 @@ header > div > div hr {
   background-color: grey;
 }
 
+#popupImagen {
+  display: none;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#vistaImagenAmpliada {
+  width: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#vistaImagenAmpliada img {
+  width: 100%;
+  height: auto;
+}
+
+.fotografiaObjeto:hover {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#fichaObra > div {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+#fichaObra > div button {
+  background-color: #EFEFEF;
+  padding: 8px;
+}
+#fichaObra > div button:hover {
+  background-color: #BFBFBF;
+  cursor: pointer;
+}
+#fichaObra > div button.pulsado {
+  background-color: #333333;
+  color: white;
+  transform: scale(0.95);
+}
 #fichaObra > form > :first-child {
   width: 80%;
   margin: 0px auto;
@@ -417,6 +472,10 @@ header > div > div hr {
 #fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span {
   color: #BFBFBF;
 }
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
 #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
   width: 100%;
   display: flex;
@@ -433,6 +492,10 @@ header > div > div hr {
 #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
   color: #BFBFBF;
 }
+#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
   width: 100%;
   display: flex;
@@ -441,7 +504,7 @@ header > div > div hr {
   align-items: center;
   justify-content: left;
   padding-top: 15px;
-  gap: 20px;
+  gap: 15px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
   border-radius: 5px;
@@ -466,7 +529,7 @@ header > div > div hr {
   padding: 10px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
-  width: 35%;
+  width: auto;
   margin-left: auto;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
@@ -538,6 +601,35 @@ header > div > div hr {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > :first-child {
+  width: 15%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > :nth-child(2) {
+  width: 30%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > :nth-child(3) {
+  width: 15%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) input {
+  margin-right: 10px;
+  text-align: center;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > img {
+  width: 20px;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > div > div div > div:has(img) > p {
+  color: red;
 }
 #fichaObra > form > :first-child > div > div div > label, #fichaObra > form > :first-child > div > div div span {
   font-weight: bold;

@@ -13,13 +13,16 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="views/js/logIn.js"></script>
     <script src="views/js/header.js"></script>
+    <script src="views/js/verImagen.js"></script>
     <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/eliminar.js"></script>
     <script src="views/js/busqueda.js"></script>
     <script src="views/js/up.js"></script>
     <script src="views/js/popup.js"></script>
     <script src="views/js/cambiarInputFile.js"></script>
-    <script src="views/js/gestionarCampos.js"></script>
+    <script src="views/js/validarFichaObra.js"></script>
+    <script src="views/js/generarNumeroRegistro.js"></script>
+    <!--<script src="views/js/gestionarCampos.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>

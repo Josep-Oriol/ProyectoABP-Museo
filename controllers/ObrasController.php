@@ -33,6 +33,9 @@ class ObrasController{
                 $fotografia = $modelobras->subirFotografiaServidor('fotografia', $_POST['numero_registro']);
                 $_POST['fotografia'] = $fotografia;
             }
+            else {
+                $_POST['fotografia'] = 'images/iconDefaultObra.png';
+            }
             $exitoso = $modelobras->crearObra($_POST);
             if ($exitoso) {
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
@@ -64,7 +67,7 @@ class ObrasController{
                 }
                 $exitoso = $modelobras->editarObra($_POST, $id);
                 if ($exitoso) {
-                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                    //echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 }
             }
             else {

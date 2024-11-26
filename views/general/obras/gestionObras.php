@@ -45,7 +45,7 @@
     foreach($obras as $indice => $obra) {
         $id = $obra['numero_registro'];
         echo "<tr>
-            <td><img src='{$obra['fotografia']}' alt='fotografia obra {$obra['titulo']}'></td>
+            <td><img src='{$obra['fotografia']}' alt='fotografia obra {$obra['titulo']}' class='fotografiaObjeto'></td>
             <td>{$obra['numero_registro']}</td>
             <td>{$obra['nombre_objeto']}</td>
             <td>{$obra['titulo']}</td>
@@ -78,6 +78,12 @@
 ?>
         </table>
     </div>    
+</div>
+
+<div id="popupImagen" >
+  <div id="vistaImagenAmpliada">
+    <img src="" alt="">
+  </div>
 </div>
 
 <div class="popup-overlay">

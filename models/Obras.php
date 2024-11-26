@@ -39,28 +39,61 @@ class Obras extends Database {
 		$resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
-	
-	public function crearObra($array) { 
-		if (isset($array['id_ubicacion'])) {
-			$sql2 = "INSERT INTO obras_ubicaciones VALUES ('{$array['numero_registro']}', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}', '{$array['fecha_fin_ubicacion']}')";
+
+	public function obtenerUltimoNumeroRegistro($letra) {
+		$sql = "SELECT numero_registro FROM obras WHERE numero_registro LIKE '$letra%' ORDER BY numero_registro DESC LIMIT 1";
+
+		$db = $this->conectar();
+		try {
+			$query = $db->prepare($sql);
+			$query->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
-		if (isset($array['id_exposicion'])) {
-			$sql3 = "INSERT INTO obras_exposiciones VALUES ('{$array['numero_registro']}', {$array['id_exposicion']})";
+		$resultado = $query->fetch(PDO::FETCH_ASSOC);
+		return $resultado;
+	}
+
+	public function consultarNumeroRegistro($numeroRegistro) {
+		$sql = "SELECT numero_registro FROM obras WHERE numero_registro = '$numeroRegistro'";
+		$db = $this->conectar();
+		try {
+			$query = $db->prepare($sql);
+			$query->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		}
+		$existe = false;
+		if ($query->rowCount() > 0) {
+			$existe = true;
+		}
+		return $existe;
+	}
+	
+	public function crearObra($array) {
+		if (!empty($array['decimales'])) {
+			$array['numero_registro'] = $array['letra'] . $array['numero_registro'] . "." . $array['decimales'];
+		}
+		else {
+			$array['numero_registro'] = $array['letra'] . $array['numero_registro'];
+		}
+
+		if (!empty($array['id_ubicacion'])) {
+			$sql2 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion, fecha_fin_ubicacion) VALUES ('{$array['numero_registro']}', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}', '{$array['fecha_fin_ubicacion']}')";
+		}
+		if (!empty($array['id_exposicion'])) {
+			$sql3 = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ('{$array['numero_registro']}', {$array['id_exposicion']})";
 		}
 
 		//Campos que llegan por POST pero que no son de la tabla de obras
-		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'fecha_fin_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion'];
+		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'fecha_fin_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'letra', 'decimales'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
 		}
 
-		if (isset($array['fotografia'])) {
-			$orden = ['numero_registro', 'nombre_objeto', 'fotografia', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
-		}
-		else {
-			$orden = ['numero_registro', 'nombre_objeto', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
-		}
+		$orden = ['numero_registro', 'nombre_objeto', 'fotografia', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
+		
 		//Como por defecto se desordenan, los ordenamos en el orden que estan en la base de datos.
 		$camposOrdenados = array_replace(array_flip($orden), $array);
 
@@ -77,7 +110,7 @@ class Obras extends Database {
 
 		$valores = implode(", ", $camposOrdenados); //Obtenemos los valores del array separados por comas.
 		$sql = "INSERT INTO obras VALUES (" . $valores . ")";
-
+		
 		$db = $this->conectar();
 		$exitoso = false;
 		try {
@@ -89,20 +122,22 @@ class Obras extends Database {
 			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
 
-		if (isset($sql2)) {
-			try {
-				$query = $db->prepare($sql2);
-				$query->execute();
-			} catch (PDOException $error) {
-				echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		if ($exitoso) {
+			if (isset($sql2)) {
+				try {
+					$query = $db->prepare($sql2);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
 			}
-		}
-		if (isset($sql3)) {
-			try {
-				$query = $db->prepare($sql3);
-				$query->execute();
-			} catch (PDOException $error) {
-				echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+			if (isset($sql3)) {
+				try {
+					$query = $db->prepare($sql3);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
 			}
 		}
 
@@ -179,7 +214,9 @@ class Obras extends Database {
 
 		if ($query->rowCount() > 0) { //Si la consulta devuelve 1 registro, la eliminamos.
 			$resultado = $query->fetch(PDO::FETCH_ASSOC);
-			unlink($resultado['fotografia']);
+			if ($resultado['fotografia'] != 'images/iconDefaultObra.png') {
+				unlink($resultado['fotografia']);
+			}
 		}
 	}
 
