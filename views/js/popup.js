@@ -83,4 +83,4 @@ function filtrosAvanzados(){
 document.addEventListener("DOMContentLoaded", function () {
     agregarEventosEliminar();
     filtrosAvanzados();
-})
+});

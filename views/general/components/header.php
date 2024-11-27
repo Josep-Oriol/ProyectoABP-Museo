@@ -13,7 +13,7 @@
                 <hr>
                 <a href="index.php?controller=Vocabularios&action=enviarAVocabularios">Gestió de vocabularis</a>
                 <hr>
-                <a href="">Còpies de seguretat</a>
+                <a href="index.php?controller=Copias&action=mostrarCopias">Còpies de seguretat</a>
             </div>
         </div>
     </nav>
