@@ -6,19 +6,21 @@
 
             $data = json_decode(file_get_contents('php://input'), true);
             $input = $data['busqueda'];
-            $pagina = $data['pagina'];  //Seleccionar pagina segun la url
+            $pagina = $data['pagina'];
+            $filters = isset($data['filters']) ? $data['filters'] : [];
+            //Seleccionar pagina segun la url
             $url = [];
 
             if($data['pagina'] == "exposiciones"){
-                $datos = $modelo->busquedaExposiciones($pagina, $input, "texto_exposicion");
+                $datos = $modelo->busquedaExposiciones($pagina, $input, $filters);
                 $url = ['index.php?controller=Exposiciones&action=Pantallaeditar&id=', 'index.php?controller=Exposiciones&action=fichaExposiciones&id=', 'index.php?controller=Exposiciones&action=eliminar&id='];
             }
             else if($data['pagina'] == "obras"){
-                $datos = $modelo->busquedaObras($pagina, $input, "numero_registro");
+                $datos = $modelo->busquedaObras($pagina, $input, $filters);
                 $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
             }
             else if($data['pagina'] == "usuarios"){
-                $datos = $modelo->busquedaUsuarios($pagina, $input, "usuario");
+                $datos = $modelo->busquedaUsuarios($pagina, $input, $filters);
                 $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
 
@@ -26,7 +28,6 @@
 
             header('Content-Type: application/json');
             echo json_encode($response);
-            exit;
         }
     }
 
