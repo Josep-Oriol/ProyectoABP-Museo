@@ -48,7 +48,6 @@ function agregarFiltro(section) {
     for (let field of existingFields) {
         if (field.textContent === selectedText) {
             alert(`Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`);
-            return;
         }
     }
 
@@ -214,7 +213,26 @@ function datosForm(){
 
   // Muestra los valores obtenidos
   console.log(filters);
+  return filters;
+}
 
+async function enviarDatos(){
+  try {
+    const filters = datosForm();
+
+    const response = await fetch(`index.php?controller=Buscador&action=buscar`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(filters),
+    });
+
+
+    
+  } catch (error) {
+    console.error('Error al obtener el JSON:', error);
+  }
 }
 
 // Inicializar eventos
@@ -234,7 +252,7 @@ function inicializarEventos() {
     agregarFiltro('or');
   });
 
-  resetBtn.addEventListener('click' , () => {
+  submit.addEventListener('click' , () => {
     const orFiltersInputs = document.getElementById("or-filters-inputs");
     const andFiltersInputs = document.getElementById("and-filters-inputs");
 
@@ -242,8 +260,9 @@ function inicializarEventos() {
     andFiltersInputs.innerHTML = '';
   });
 
-  submit.addEventListener('click', function(event){
+  resetBtn.addEventListener('click', function(event){
     event.preventDefault();
+    //enviarDatos();
     datosForm();
   })
 
