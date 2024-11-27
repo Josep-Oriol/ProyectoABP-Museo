@@ -40,12 +40,12 @@
             align-items: center;
             margin-bottom: 1.7vh;
             >:first-child {
-                height: 100%;
-                width: 100%;
-                
+                padding-bottom: 0.4vh;
+                width: 70%;
                 border: none;
+                border-bottom: 1px solid black;
                 text-align: center;
-                padding: 0.5vw;
+                
             }
             >:first-child:focus{
                 outline: none;
@@ -53,8 +53,9 @@
             >:last-child {
                 width: 10%;
                 position: absolute;
-                right: 0;
+                left: 0;
             }
+            
         }
 
     }

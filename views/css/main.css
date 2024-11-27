@@ -1235,11 +1235,11 @@ header > div > div hr {
   margin-bottom: 1.7vh;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child {
-  height: 100%;
-  width: 100%;
+  padding-bottom: 0.4vh;
+  width: 70%;
   border: none;
+  border-bottom: 1px solid black;
   text-align: center;
-  padding: 0.5vw;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child:focus {
   outline: none;
@@ -1247,7 +1247,7 @@ header > div > div hr {
 #fichaVocabulario > :nth-child(2) div > :last-child {
   width: 10%;
   position: absolute;
-  right: 0;
+  left: 0;
 }
 #fichaVocabulario p {
   display: none;
@@ -2211,6 +2211,26 @@ body {
 }
 #popUpEliminar button.cancelar {
   margin-left: 1vw;
+}
+
+#popUpUbicaciones {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones img {
+  width: 3vw;
+  margin-bottom: 1vh;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -55,17 +55,31 @@ function rotarImagen(boton, mostrar) {
 }
 
 function eliminarHijos(id_ubicacion){
-    $.ajax({
-        url: 'ajax.php?controller=Vocabularios&action=eliminarUbicacionHija&ajax=true',
-        type: 'POST',
-        data: { id_ubicacion: id_ubicacion },
-        dataType: 'json',
-        success: function(response) {
-            if (response.success) { 
-                
-                document.getElementById(id_ubicacion).parentNode.remove();
-                location.reload();
-            }
+    let data = {
+        id_ubicacion : id_ubicacion
+    }
+
+    let dataJson = JSON.stringify(data)
+
+    fetch('ajax.php?controller=Vocabularios&action=eliminarUbicacionHija', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body :dataJson
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success'){
+            document.getElementById(id_ubicacion).parentNode.remove();
+        }else{
+            let popUp = document.getElementById('popUpUbicaciones');
+            popUp.style.display = 'flex';
+
+            setTimeout(() => {
+                popUp.style.display = "none"; 
+            }, 3000);
         }
     })
 }

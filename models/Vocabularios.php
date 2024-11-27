@@ -212,11 +212,53 @@
             $query->execute();
         }
 
-        public function eliminarUbicacion($id_ubicacion) {
-            $sql = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
-            $db = $this->conectar();
+        public function ubicacionesDescendientes($id_ubicacion) {
+            $db = $this->conectar(); 
+        
+            $ubicaciones = [$id_ubicacion]; 
+        
+            $sql = "SELECT id_ubicacion FROM ubicaciones WHERE id_padre = :id_ubicacion";
             $query = $db->prepare($sql);
-            return $query->execute();
+            $query->bindParam(':id_ubicacion', $id_ubicacion, PDO::PARAM_INT);
+            $query->execute();
+        
+            $hijos = $query->fetchAll(PDO::FETCH_COLUMN);
+
+            foreach ($hijos as $hijo) {
+                $ubicaciones = array_merge($ubicaciones, $this->ubicacionesDescendientes($hijo));
+            }
+        
+            return $ubicaciones;
         }
+
+        public function eliminarUbicacion($id_ubicacion) {
+            $respuesta = null;
+            $hayObra = null;
+            $db = $this->conectar();
+            $ubicacionesDescendientes = $this->ubicacionesDescendientes($id_ubicacion);
+            foreach ($ubicacionesDescendientes as $ubicacionDescendiente) {
+                $sql3 = "SELECT fecha_fin_ubicacion FROM obras_ubicaciones WHERE fk_ubicacion = :ubicacionDescendiente";
+                $query3 = $db->prepare($sql3);
+                $query3->bindParam(':ubicacionDescendiente', $ubicacionDescendiente, PDO::PARAM_INT);
+                $query3->execute();
+                $fechaFinHijo = $query3->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($fechaFinHijo as $fila) {
+                    if ($fila['fecha_fin_ubicacion'] === null){
+                        $hayObra = true;
+                    }
+                }
+            }
+            if ($hayObra === true){
+                $respuesta = false;
+            }else {
+                $sql5 = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
+                $query5 = $db->prepare($sql5);
+                $query5->execute();
+                $respuesta = true;
+            }
+            return $respuesta;
+        }
+
+        
     }
 ?>

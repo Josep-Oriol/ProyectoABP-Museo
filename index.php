@@ -23,7 +23,7 @@ session_start();
     <script src="views/js/cambiarInputFile.js"></script>
     <script src="views/js/validarFichaObra.js"></script>
     <script src="views/js/generarNumeroRegistro.js"></script>
-    <!--<script src="views/js/gestionarCampos.js"></script>-->
+    <script src="views/js/gestionarCampos.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="views/js/validacionesFormularios/validacionCrearUsuario.js"></script>
 </head>
@@ -61,6 +61,12 @@ session_start();
     ?>
     
     <div id="fondoPopUp"></div>
+
+    <div id="popUpUbicaciones">
+        <img src="images/alertIcon.png" alt="">
+        <p>Hi han obres a aquesta ubicació actualment!</p>
+    </div>
+
     <div id="popUpEliminar">
         <img src="images/alertIcon.png" alt="">
         <p>Confirmar elimininació</p>
@@ -71,7 +77,6 @@ session_start();
     <div id="up">
         <img src="images/upIcon.png" alt="">
     </div>
-
 
 
 </body>
