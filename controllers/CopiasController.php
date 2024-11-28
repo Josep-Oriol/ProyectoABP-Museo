@@ -12,11 +12,20 @@ class CopiasController{
     }
 
     function crear(){
+        require_once "views/general/components/header.php";
         require_once 'models/Copias.php';
         $modelo = new Copias();
-
         $id = $_SESSION['ID_usuario'];
-        $datos = $modelo->crearCopia($_POST, $id );
-        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Copia&action=mostrarCopias'/>";
+
+        if ($_POST) {
+            $exitoso = $modelo->crearCopia($_POST, $id);
+            if ($exitoso) {
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Copias&action=mostrarCopias'/>";
+            }
+        }
+        else {
+            require_once "views/general/copias/fichaCrearCopia.php";
+        }
+        require_once "views/general/components/footer.html";
     }
 }

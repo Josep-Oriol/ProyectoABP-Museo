@@ -19,9 +19,9 @@ class Copias extends Database{
     }
 
     function crearCopia($array, $id) {
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $fecha = $_POST['fecha'];
+        $nombre = $array['nombre'];
+        $descripcion = $array['descripcion'];
+        $fecha = $array['fecha'];
         $creador = $id;
 
         $sql = 'INSERT INTO copias_seguridad (nombre_copia, descripcion_copia, fecha_copia, fk_creador)

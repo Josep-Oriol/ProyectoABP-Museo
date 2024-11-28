@@ -36,7 +36,7 @@
                 <td>Fecha</td>
                 <td>Creador</td>
                 <td> 
-                    <a href="index.php?controller=Copia&action=crear"><button>Crear copia</button></a>
+                    <a href="index.php?controller=Copias&action=crear"><button>Crear copia</button></a>
                 </td>
             </tr>
         <?php

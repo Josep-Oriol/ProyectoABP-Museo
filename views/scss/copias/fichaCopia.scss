@@ -1,0 +1,291 @@
+#fichaCopia {
+    >div {
+        width: 80%;
+        margin: 0px auto;
+        margin-top: 20px;
+        @include flex-row;
+        justify-content: center;
+        gap: 15px;
+
+        button {
+            background-color: $color_claro3;
+            padding: 8px;
+            &:hover {
+                background-color: $color_claro2;
+                cursor: pointer;
+            }
+            &.pulsado {
+                background-color: $color_oscuro;
+                color: white;
+                transform: scale(0.95);
+            }
+        }
+    }
+    > form {
+        >:first-child {
+            width: 80%;
+            margin: 0px auto;
+            padding: 20px;
+            background-color: none;
+            >:first-child { //Div datos principales
+                > div {
+                    >:first-child {//Div imagen
+                        @include flex-column;
+                        justify-content: center;
+                        width: 100%;
+                        padding-right: 20px;
+                        > span {
+                            margin-right: auto;
+                        }
+                        > img {
+                            width: 100%;
+                            margin-bottom: auto;
+                            margin-top: auto;
+                        }
+
+                        > div:has(span) {
+                            width: 100%;
+                            @include flex-column;
+                            margin-top: 20px;
+                            padding: 20px;
+                            border: 2px solid black;
+
+                            > img {
+                                width: 15%;
+                            }
+
+                            > span {
+                                color: $color_claro2;
+                            }
+
+                            > p {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    >:last-child {
+                        > div:has(span) {
+                            width: 100%;
+                            @include flex-column;
+                            margin-top: 20px;
+                            padding: 20px;
+                            border: 2px solid black;
+
+                            > img {
+                                width: 15%;
+                            }
+
+                            > span {
+                                color: $color_claro2;
+                            }
+
+                            > p {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+                        >:last-child {//Div inputs y imágenes
+                            width: 100%;
+                            @include flex-row;
+                            justify-content: left;
+                            padding-top: 15px;
+                            gap: 15px;
+
+                            input, a {
+                                border-radius: 5px;
+                            }
+
+                            input {
+                                width: 3vw;
+                                padding: 10px;
+                            }
+
+                            a {
+                                width: 3vw;
+                                text-decoration: none;
+                                @include flex-row;
+                                padding: 10px;
+                                img {
+                                    width: 100%;
+                                }
+                                button {
+                                    padding: 10px;
+                                }
+                            }
+
+                            a:has(button) {
+                                width: auto;
+                                margin-left: auto;
+                            }
+
+                            a > button {
+                                width: 100%;
+                                height: 100%;
+                                background-color: #333333;
+                                font-size: 16px;
+                                color: white;
+                                &:hover {
+                                    background-color: #666666;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            input[type="submit"] {
+                                width: 25%;
+                                font-size: 17px;
+                                background-color: #333333;
+                                color: white;
+                            }
+                            
+                            a:has(img[alt="icono descargar"]) { //Div con imagen descargar
+                                background-color: #333333;
+                                color: white;
+                                &:hover {
+                                    background-color: #4b4b4b;
+                                }
+                            }
+                            input[type="image"], a:has(img[alt="icono editar"]) {
+                                background-color: #666666;  //Div con icono editar o input guardar
+                                &:hover {
+                                    background-color: #7c7c7c;
+                                }
+                            }
+                            a:has(img[alt="icono eliminar"]) { //Div con imagen eliminar
+                                background-color: #E74C3C;
+                                &:hover {
+                                    background-color: #EE6655;
+                                }
+                            }
+                            
+                            a, input {
+                                &:hover {
+                                    cursor: pointer;
+                                    animation: aumentarTamano 0.2s linear 1 running forwards;
+                                    transform: translateY(-1px);
+                                }
+
+                                &:active {
+                                    transform: translateY(0);
+                                    scale: 0.97;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            > div {
+                margin-bottom: 20px;
+                padding: 15px;
+                border-left: 5px solid #333333;
+                background-color: #F4F4F4;
+                border-radius: 5px;
+                > h2 {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: #333333;
+                    margin-top: 0;
+                    margin-bottom: 15px;
+                }
+                > div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    
+                    div {
+                        flex: 1 1 calc(50% - 15px); /* Dos columnas */
+                        display: flex;
+                        flex-direction: column;
+                        margin-bottom: 10px;
+                        > div:has(img) { //Campos numero de registro
+                            @include flex-row;
+                            justify-content: left;
+                            >:first-child {
+                                width: 15%;
+                            }
+                            >:nth-child(2) {
+                                width: 30%;
+                            }
+                            >:nth-child(3) {
+                                width: 15%;
+                            }
+                            input {
+                                margin-right: 10px;
+                                text-align: center;
+                            }
+                            > img {
+                                width: 20px;
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                            > p {
+                                color: red;
+                            }
+                        }
+                        > label, span {
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                            color: #333333;
+                        }
+                        input[type="text"],
+                        input[type="number"],
+                        input[type="date"],
+                        select,
+                        textarea {
+                            padding: 8px;
+                            font-size: 1em;
+                            border: 1px solid #BFBFBF;
+                            border-radius: 4px;
+                            background-color: #FFFFFF;
+                            color: #333333;
+                            transition: border-color 0.3s;
+                        }
+                        
+                        input[type="text"][readonly],
+                        input[type="date"][readonly] {
+                            background-color: #F4F4F4;
+                            color: #BFBFBF;
+                        }
+                        
+                        textarea {
+                            resize: vertical;
+                        }
+                        
+                        input[type="text"]:focus,
+                        input[type="number"]:focus,
+                        input[type="date"]:focus,
+                        select:focus,
+                        textarea:focus {
+                            border-color: #333333;
+                            outline: none;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+  
+/* Responsive */
+@media (max-width: 768px) {
+.field-group {
+    flex-direction: column;
+}
+
+.field {
+    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+}
+}
+
+
+@keyframes aumentarTamano {
+from {
+    transform: scale(1);
+}
+to {
+    transform: scale(1.02);
+}
+}
