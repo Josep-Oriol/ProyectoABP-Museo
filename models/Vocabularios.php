@@ -232,17 +232,29 @@
         }
 
         public function eliminarUbicacion($id_ubicacion) {
+            $relacionesAInsertar = [];
             $respuesta = null;
             $hayObra = null;
             $db = $this->conectar();
             $ubicacionesDescendientes = $this->ubicacionesDescendientes($id_ubicacion);
             foreach ($ubicacionesDescendientes as $ubicacionDescendiente) {
-                $sql3 = "SELECT fecha_fin_ubicacion FROM obras_ubicaciones WHERE fk_ubicacion = :ubicacionDescendiente";
+                $sql3 = "SELECT * FROM obras_ubicaciones WHERE fk_ubicacion = :ubicacionDescendiente";
                 $query3 = $db->prepare($sql3);
                 $query3->bindParam(':ubicacionDescendiente', $ubicacionDescendiente, PDO::PARAM_INT);
                 $query3->execute();
                 $fechaFinHijo = $query3->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($fechaFinHijo as $fila) {
+                    $selectNombreUbicacion = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = " . $fila['fk_ubicacion'];
+                    $querySelect = $db->prepare($selectNombreUbicacion);
+                    $querySelect->execute();
+                    $idUbi = $querySelect->fetch(PDO::FETCH_ASSOC);
+
+                    $relacionesAInsertar[] = [
+                        'id_obra' => $fila['fk_obra'],
+                        'nombre_ubicacion' => $idUbi['descripcion_ubicacion'],
+                        'fecha_inicio' => $fila['fecha_inicio_ubicacion'],
+                        'fecha_fin' => $fila['fecha_fin_ubicacion']
+                    ];
                     if ($fila['fecha_fin_ubicacion'] === null){
                         $hayObra = true;
                     }
@@ -251,6 +263,13 @@
             if ($hayObra === true){
                 $respuesta = false;
             }else {
+                foreach($relacionesAInsertar as $relaccion){
+                    $insert = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES
+                    ('" . $relaccion['id_obra'] . "', '" . $relaccion['nombre_ubicacion'] . "', '" . $relaccion['fecha_inicio'] . "', '" .$relaccion['fecha_fin'] . "')";
+                    $queryInsert = $db->prepare($insert);
+                    $queryInsert->execute();
+                }
+
                 $sql5 = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
                 $query5 = $db->prepare($sql5);
                 $query5->execute();

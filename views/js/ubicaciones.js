@@ -73,6 +73,7 @@ function eliminarHijos(id_ubicacion){
     .then(data => {
         if(data.status === 'success'){
             document.getElementById(id_ubicacion).parentNode.remove();
+            location.reload();
         }else{
             let popUp = document.getElementById('popUpUbicaciones');
             popUp.style.display = 'flex';
