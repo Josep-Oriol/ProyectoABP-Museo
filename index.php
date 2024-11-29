@@ -21,9 +21,9 @@ session_start();
     <script src="views/js/filtros.js"></script>
     <script src="views/js/popup.js"></script>
     <script src="views/js/cambiarInputFile.js"></script>
-    <script src="views/js/validarFichaObra.js"></script>
+    <script src="views/js/validacionesFormularios/validarFichaObra.js"></script>
     <script src="views/js/generarNumeroRegistro.js"></script>
-    <!--<script src="views/js/gestionarCampos.js"></script>-->
+    <script src="views/js/gestionarCampos.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="views/js/validacionesFormularios/validacionCrearUsuario.js"></script>
 </head>

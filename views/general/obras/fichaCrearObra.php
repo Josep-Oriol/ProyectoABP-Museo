@@ -148,7 +148,7 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="estado_conservacion">Estat de conservació</label>
-                            <select name="estado_conservacion" id="estado_conservacion" required>
+                            <select name="estado_conservacion" id="estado_conservacion">
                                 <option value=""></option>
                                 <?php
                                 foreach ($camposLista['Estat de conservació'] as $indice => $campo) {

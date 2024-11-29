@@ -1,48 +1,46 @@
 
 <?php
     if(isset($_SESSION['Rol'])){ ?>
-<div id = "general">
-  
-        <div>
-            <h1>Exposicions</h1>
-            <div>
-                <div>
-                    <button id="buscar">
-                        <img src="images/lupa.png" alt="">
-                    </button>
-                    <input type="text" id="busqueda">
-                    <button id="filtro">
-                        <img src="images/ajustes_deslizadores.png" alt="">
-                    </button>
-                </div>
-                <div>
-                    <div>
-                        <a>0 - 50</a>
-                        <img src="images/flecha_abajo.png" alt="">
-                    </div>
-                    <div>
-                        <img src="images/flecha_izquierda.png" alt="">
-                        <img src="images/flecha_derecha.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>Descrpció</td>
-                    <td>Lloc exposició</td>
-                    <td>Tipus</td>
-                    <td>Data inici</td>
-                    <td>Data termini</td>
-                
-                    <td> 
-                        <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposició</button></a>
-                    </td>
-                </tr>
-            <?php
+<section id="general">
+  <div>
+      <div>
+        <h1>Exposicions</h1>
+      </div>
+      <div>
+          <div>
+              <img src="images/lupa.png" alt="" id="buscar">
+              <input type="text" id="busqueda">
+              <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
+          </div>
+          <div>
+            <select name="numeroResultados" id="numeroResultados">
+              <option value="0-25">0-25</option>
+              <option value="0-50">0-50</option>
+              <option value="0-100">0-100</option>
+              <option value="0-500">0-500</option>
+            </select>
+          </div>
+          <div>
+              <img src="images/flecha_izquierda.png" alt="flecha izquierda">
+              <img src="images/flecha_derecha.png" alt="flecha derecha">
+          </div>
+      </div>
+  </div>
+  <div>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Descrpció</td>
+            <td>Lloc exposició</td>
+            <td>Tipus</td>
+            <td>Data inici</td>
+            <td>Data termini</td>
+        
+            <td> 
+                <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposició</button></a>
+            </td>
+        </tr>
+        <?php
         foreach($exposiciones as $indice => $exposicion) {
             $id = $exposicion['id_exposicion'];
             echo "<tr id=\"$id\">
@@ -63,7 +61,7 @@
                 }
                 else if ($_SESSION['Rol'] == 'Tècnic') {
                     ?>
-                        <a href=""><img src="images/editarv2.png" alt=""></a>
+                        <a href="index.php?controller=Exposiciones&action=Pantallaeditar&id=<?php echo $id;?>" title="Editar exposició"><img src="images/editarv2.png" alt=""></a>
                         <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>"><img src="images/fichav2.png" alt=""></a>
                     <?php
                 }
@@ -75,16 +73,15 @@
                 echo "</td>";
             echo "</tr>";
         }
-    ?>
-            </table>
-        </div>
-        
-    </div>
-      <?php }
-        else{
-            echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
-        }
-    ?>
+        ?>
+    </table>
+  </div>
+</section>
+<?php }
+  else{
+      echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
+  }
+?>
 
 <div class="popup-overlay">
   <div class="popup-content">

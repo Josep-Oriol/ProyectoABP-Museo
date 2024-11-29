@@ -1,17 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let iconoPerfil = document.getElementById('iconoPerfil');
-    let opcionesPerfil = document.getElementById('opcionesPerfil');
+    const opcionAdmin = document.getElementById('opcionAdmin');
+    const iconoPerfil = document.getElementById('iconoPerfil');
+    const desplegableAdmin = document.getElementById('desplegableAdmin');
+    const desplegablePerfil = document.getElementById('desplegablePerfil');
+    const opcionesHeader = document.querySelectorAll('.opcionesHeader');
+    let temporizador;
 
-    iconoPerfil.addEventListener('mouseenter', function() {
-        opcionesPerfil.style.display = 'block';
-        opcionesPerfil.style.position = 'absolute';
-        opcionesPerfil.style.top = '8vh';
-        opcionesPerfil.style.right = '10px';
-    });
+    function mostrarDesplegable(icono, desplegable) {
+        icono.addEventListener('mouseenter', function() {
+            clearTimeout(temporizador);
+            desplegable.style.display = 'block';
+        });
 
-    opcionesPerfil.addEventListener('mouseleave', function() {
-        opcionesPerfil.style.display = 'none';
+        desplegable.addEventListener('mouseenter', function() {
+            clearTimeout(temporizador);
+            desplegable.style.display = 'block';
+        });
+
+        desplegable.addEventListener('mouseleave', function() {
+            clearTimeout(temporizador)
+            desplegable.style.display = 'none';
+        });
+
+        icono.addEventListener('mouseleave', function() {
+            temporizador = setTimeout(function () {
+                desplegable.style.display = 'none';
+            }, 300);
+        });
+    }
+
+    if (opcionAdmin) {
+        mostrarDesplegable(opcionAdmin, desplegableAdmin);
+    }
+    mostrarDesplegable(iconoPerfil, desplegablePerfil);
+    
+    opcionesHeader.forEach(opcion => {
+        if (opcion.href === window.location.href) {
+            opcion.style.borderBottom = '2px solid rgb(235, 235, 235)';
+        }
     });
+    
 
     /*iconoPerfil.addEventListener('mouseleave', function() {
         opcionesPerfil.style.display = 'none';
