@@ -25,7 +25,8 @@ class Obras extends Database {
 			LEFT JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion
 			LEFT JOIN logs_obras l ON l.fk_obra = o.numero_registro
 			LEFT JOIN usuarios us ON us.id_usuario = l.persona_autorizada
-			LEFT JOIN restauraciones r ON r.fk_obra = o.numero_registro 
+			LEFT JOIN obras_restauraciones ores ON ores.fk_obra = o.numero_registro
+			LEFT JOIN restauraciones r ON r.id_restauracion = ores.fk_restauracion 
 			WHERE o.numero_registro = '$numeroRegistro'";
 		
 		$db = $this->conectar();

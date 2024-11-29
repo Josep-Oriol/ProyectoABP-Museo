@@ -66,16 +66,22 @@
         }
 
         public function eliminarUbicacionHija() {
+            $data = json_decode(file_get_contents('php://input'), true);
             require_once "models/Vocabularios.php";
             $vocabulario = new Vocabularios();
-            $id_ubicacion = $_POST['id_ubicacion'];
+            $id_ubicacion = $data['id_ubicacion'];
     
             // Aquí ejecutas la lógica de eliminación en la base de datos.
             $resultado = $vocabulario->eliminarUbicacion($id_ubicacion);
 
+            if ($resultado) {
+                $response = ['status' => 'success'];
+            }else {
+                $response = ['status' => 'false'];
+            }
             // Devuelve una respuesta JSON indicando si fue exitoso
             header('Content-Type: application/json');
-            echo json_encode(['success' => $resultado]);
+            echo json_encode($response);
             exit;
         }
         

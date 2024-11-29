@@ -2,6 +2,7 @@ let url = window.location.href;
 let pagina = url.includes('mostrarCamposVocabulario') ? 'Vocabulario' : null
 
 if(pagina != null) {
+    
     document.addEventListener('DOMContentLoaded', function() {
         const btnEliminar = document.getElementById('eliminarCampos')
         const btnCrear = document.getElementById('crearCampo')
@@ -152,6 +153,7 @@ if(pagina != null) {
                     })
                     .then(response => response.json())
                     .then(data => {
+                        
                         if(data.status === 'success') {
                             const nuevoDiv = document.createElement('div');
                             nuevoDiv.classList.add('input-group');

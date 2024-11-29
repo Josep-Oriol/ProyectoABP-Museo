@@ -8,7 +8,7 @@
         position: sticky;
         top: 10vh;
         background-color: white; // Para que el contenido no se vea a través
-        z-index: 100; // Para asegurar que está por encima de otros elementos
+        z-index: 1; // Para asegurar que está por encima de otros elementos
         padding: 15px 0;
         display: flex;
         align-items: center;

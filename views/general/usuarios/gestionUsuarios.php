@@ -2,26 +2,26 @@
     if(isset($_SESSION['Rol'])){ ?>
 <div id="general">
     <div>
-        <h1>Usuaris</h1>
+        <div>
+            <h1>Usuaris</h1>
+        </div> 
         <div>
             <div>
-                <button id="buscar">
-                    <img src="images/lupa.png" alt="">
-                </button>
+                <img src="images/lupa.png" alt="" id="buscar">
                 <input type="text" id="busqueda">
-                <button id="filtro">
-                    <img src="images/ajustes_deslizadores.png" alt="">
-                </button>
+                <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
             </div>
             <div>
-                <div>
-                    <a>0 - 50</a>
-                    <img src="images/flecha_abajo.png" alt="">
-                </div>
-                <div>
-                    <img src="images/flecha_izquierda.png" alt="">
-                    <img src="images/flecha_derecha.png" alt="">
-                </div>
+                <select name="numeroResultados" id="numeroResultados">
+                  <option value="0-25">0-25</option>
+                  <option value="0-50">0-50</option>
+                  <option value="0-100">0-100</option>
+                  <option value="0-500">0-500</option>
+                </select>
+            </div>
+            <div>
+                <img src="images/flecha_izquierda.png" alt="">
+                <img src="images/flecha_derecha.png" alt="">
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
     foreach($usuarios as $indice => $usuario) {
         $id = $usuario['id_usuario'];
         echo "<tr id=\"$id\">
-            <td><img alt='foto usuario' src='{$usuario['foto_usuario']}'></td>
+            <td><img src='{$usuario['foto_usuario']}' alt='foto usuario {$usuario['usuario']}' class='fotografiaObjeto'></td>
             <td>{$usuario['id_usuario']}</td>
             <td>{$usuario['usuario']}</td>
             <td>{$usuario['nombre']}</td>
@@ -89,13 +89,12 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset=utf-8 />
-<title>Editor JavaScript online - www.cubicfactory.com</title>
-</head>
-<body>
+<div id="popupImagen" >
+  <div id="vistaImagenAmpliada">
+    <img src="" alt="">
+  </div>
+</div>
+
 <div class="popup-overlay">
   <div class="popup-content">
     <div class="popup-header">
@@ -145,5 +144,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>

@@ -87,291 +87,235 @@
 
 header {
   position: sticky;
-  top: 0;
-  z-index: 2;
-  background-color: #333333;
   top: 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333333;
+  z-index: 2;
 }
 header > img {
-  margin: 3%;
-  width: 17vw;
-  height: auto;
+  width: 200px;
+  margin-left: 20px;
 }
 header > nav {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width: 30vw;
-  margin-right: 7vw;
+  align-items: center;
+  gap: 20px;
 }
 header > nav > a {
   text-decoration: none;
   color: white;
-  font-size: 1.2rem;
-  transition: scale 0.3s;
+  font-size: 20px;
+  display: inline-block;
+  position: relative;
 }
 header > nav > a:hover {
-  color: #CFD1D4;
-  scale: 1.05;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: rgb(235, 235, 235);
+}
+header > nav > a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: rgb(235, 235, 235);
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+header > nav > a:hover::after {
+  width: 100%;
 }
 header > nav > div > a {
+  font-size: 20px;
   color: white;
   text-decoration: none;
-  font-size: 1.2rem;
+  padding-left: 5px;
 }
-header > nav > div > div {
-  font-size: 1.2rem;
-  opacity: 0;
-  height: 0;
-  display: block;
-  position: absolute;
-  min-width: 15vw;
-  z-index: 1;
-  background-color: #CFD1D4;
-  overflow: hidden; /* Para ocultar contenido que exceda la altura */
-  transition: all 0.3s ease; /* Transición de todos los parámetros */
-  border: solid 2px transparent; /* Borde invisible al inicio */
-}
-header > nav > div > div > a {
-  color: black;
-  text-decoration: none;
-  padding: 5%;
-  display: block;
-  transition: color 0.3s;
-}
-header > nav > div > div > a:hover {
-  color: #333333;
-}
-header > nav > div hr {
-  border: none;
-  border-radius: 5px;
-  width: 90%;
-  margin-left: 5%;
-  height: 0.5vh;
-  background-color: black;
-}
-header > nav > div:hover > div {
-  opacity: 1; /* Mostrar */
-  height: auto; /* Dejar que se expanda a su altura natural */
-  border-color: white; /* Cambiar el borde al hacer hover */
-  border-radius: 7px;
+header > nav > div > a:hover {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: rgb(235, 235, 235);
 }
 header > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-right: 4vw;
+  margin-right: 20px;
 }
 header > div > span {
   color: #EFEFEF;
 }
-header > div > a > img {
-  width: 2.5vw;
+header > div > img {
+  width: 30px;
   height: auto;
-  margin-left: 2vw;
+  margin-left: 20px;
+  margin-right: 10px;
   transition: scale 0.3s;
 }
-header > div > a > img:hover {
+header > div > img:hover {
   scale: 1.1;
+  cursor: pointer;
 }
 header > div > div {
-  font-size: 1.2rem;
-  opacity: 0;
-  height: 0;
-  display: block;
-  position: absolute;
-  z-index: 1;
-  background-color: #CFD1D4;
-  overflow: hidden; /* Para ocultar contenido que exceda la altura */
-  transition: all 0.3s ease; /* Transición de todos los parámetros */
-  border: solid 2px transparent; /* Borde invisible al inicio */
+  top: 8vh;
+  right: 30px;
 }
-header > div > div {
+header > nav > div > div, header > div > div {
   display: none;
-  opacity: 1; /* Mostrar */
+  position: absolute;
   height: auto; /* Dejar que se expanda a su altura natural */
   width: auto;
   white-space: nowrap;
-  border-color: white; /* Cambiar el borde al hacer hover */
-  border-radius: 7px;
+  background-color: #333333;
+  opacity: 1; /* Mostrar */
+  transition: all 0.3s ease; /* Transición de todos los parámetros */
+  border: 1px solid white; /* Borde invisible al inicio */
+  border-top: none;
+  border-radius: 0px 0px 5px 5px;
 }
-header > div > div > a {
+header > nav > div > div a, header > div > div a {
   font-size: 17px;
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 10px;
   display: block;
   transition: color 0.3s;
   border-bottom: 3px solid black;
 }
-header > div > div > a:hover {
+header > nav > div > div a:hover, header > div > div a:hover {
+  background-color: #CFD1D4;
   color: #333333;
 }
-header > div > div > :last-child {
+header > nav > div > div > :last-child, header > div > div > :last-child {
   border-bottom: none;
-}
-header > div > div hr {
-  border: none;
-  border-radius: 5px;
-  width: 90%;
-  margin-left: 5%;
-  height: 0.5vh;
-  background-color: black;
 }
 
 #general {
   min-height: 70vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 #general > :first-child {
   display: flex;
-  width: 100vw;
-  height: 12vh;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  padding: 20px 0px 20px 20px;
 }
-#general > :first-child > :first-child {
-  margin-left: 3.5%;
+#general > :first-child > :first-child > h1 {
+  font-size: 30px;
 }
 #general > :first-child > :nth-child(2) {
-  width: 50%;
-  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  margin-right: 5%;
+  justify-content: right;
 }
 #general > :first-child > :nth-child(2) > :first-child {
-  width: 40%;
-  height: 40%;
   border: 2px black solid;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
+  padding: 5px;
 }
 #general > :first-child > :nth-child(2) > :first-child > :first-child {
-  width: 9%;
-  height: 70%;
-  background-color: transparent;
-  margin-left: 2%;
-  border: none;
-  padding: 0;
-}
-#general > :first-child > :nth-child(2) > :first-child > :first-child img {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
+  width: 20px;
+  padding: 0px;
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
   border: none;
-  height: 100%;
-  width: 75%;
-  margin-left: 2%;
+  margin-left: 20px;
   font-size: 16px;
 }
 #general > :first-child > :nth-child(2) > :first-child > :nth-child(2):focus {
   outline: none;
 }
 #general > :first-child > :nth-child(2) > :first-child > :last-child {
-  width: 9%;
-  height: 70%;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-}
-#general > :first-child > :nth-child(2) > :first-child > :last-child img {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
+  width: 22px;
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
-  width: 20%;
-  height: 40%;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) > select {
+  background-color: #333333;
+  border: 1px solid #BFBFBF;
+  border-radius: 3px;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 8px;
+}
+#general > :first-child > :nth-child(2) > :last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#general > :first-child > :nth-child(2) > :last-child img {
+  width: 25px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child a {
-  margin-left: 10%;
-  font-size: 18px;
-}
-#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child img {
-  width: 30%;
-  height: auto;
-}
-#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child img:hover {
-  cursor: pointer;
-}
-#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child {
-  height: 100%;
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child img {
-  width: 40%;
-  height: auto;
-}
-#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child img:hover {
+#general > :first-child > :nth-child(2) > :last-child img:hover {
   cursor: pointer;
 }
 #general > :last-child {
-  display: flex;
-  justify-content: center;
+  width: 95%;
 }
 #general > :last-child table {
-  width: 95%;
+  width: 100%;
   border-collapse: separate;
-  border-spacing: 0 0.5vh;
+  border-spacing: 0px 5px;
 }
 #general > :last-child table tr {
-  font-size: large;
+  font-size: 18px;
 }
 #general > :last-child table tr td, #general > :last-child table tr th {
-  padding: 1.3vh;
+  padding: 10px;
   text-align: center;
-  width: 1.5vw;
+  width: 50px;
 }
 #general > :last-child table tr td > a button, #general > :last-child table tr th > a button {
-  font-weight: bold;
-  padding: 3px 10px 3px 10px;
-  color: #EFEFEF;
   background-color: #333333;
   border: 2px solid #EFEFEF;
   border-radius: 3px;
+  color: #EFEFEF;
+  font-weight: bold;
+  padding: 3px 10px 3px 10px;
 }
 #general > :last-child table tr td > a button:hover, #general > :last-child table tr th > a button:hover {
   cursor: pointer;
 }
 #general > :last-child table tr td > img, #general > :last-child table tr th > img {
-  width: 30%;
+  width: 40%;
 }
-#general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
-  width: 2vw;
-  height: auto;
-  margin-right: 0.1vw;
-}
-#general > :last-child table tr td .eliminarRegistro, #general > :last-child table tr th .eliminarRegistro {
-  border: none;
-  background-color: transparent;
-  margin-left: -0.3vw;
+#general > :last-child table tr td > img:hover, #general > :last-child table tr th > img:hover {
   cursor: pointer;
 }
-#general > :last-child table tr td .eliminarRegistro > img, #general > :last-child table tr th .eliminarRegistro > img {
-  width: 2.2vw;
+#general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
+  width: 25px;
+}
+#general > :last-child table tr td > a > img:hover, #general > :last-child table tr th > a > img:hover {
+  cursor: pointer;
 }
 #general > :last-child table tr:first-child {
   background-color: #333333;
@@ -392,29 +336,18 @@ header > div > div hr {
   left: 0%;
   bottom: 0%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
 }
-
-#vistaImagenAmpliada {
+#popupImagen > div {
   width: 25%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#vistaImagenAmpliada img {
+#popupImagen > div img {
   width: 100%;
   height: auto;
-}
-
-.fotografiaObjeto:hover {
-  cursor: pointer;
-}
-
-.flex {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 
 #fichaObra > div {
@@ -1096,7 +1029,7 @@ header > div > div hr {
   position: sticky;
   top: 10vh;
   background-color: white;
-  z-index: 100;
+  z-index: 1;
   padding: 15px 0;
   display: flex;
   align-items: center;
@@ -2211,6 +2144,26 @@ body {
 }
 #popUpEliminar button.cancelar {
   margin-left: 1vw;
+}
+
+#popUpUbicaciones {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones img {
+  width: 3vw;
+  margin-bottom: 1vh;
 }
 
 /*# sourceMappingURL=main.css.map */

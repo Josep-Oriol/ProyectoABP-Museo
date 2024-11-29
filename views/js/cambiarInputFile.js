@@ -3,14 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let subirImagen = document.getElementById('subirImagen');
     let nombreArchivo = document.getElementById('nombreArchivo');
 
-    inputFile.style.display = 'none';
+    if (inputFile) {
+        inputFile.style.display = 'none';
 
-    subirImagen.addEventListener('click', function() {
-        inputFile.click();
-    });
+        subirImagen.addEventListener('click', function() {
+            inputFile.click();
+        });
 
-    inputFile.addEventListener('change', function() {
-        nombreArchivo.innerHTML = inputFile.files[0].name;
-        console.log(inputFile.files);
-    });
+        inputFile.addEventListener('change', function() {
+            nombreArchivo.innerHTML = inputFile.files[0].name;
+            console.log(inputFile.files);
+        });
+    }
 });

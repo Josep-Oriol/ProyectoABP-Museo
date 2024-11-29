@@ -26,7 +26,7 @@
             <button id="crearCampo">Crear</button>
         </form>
         <div>
-            <button id="editar">Editar</button>
+            <button id="editar">Guardar cambios</button>
             <button id="eliminarCampos">Eliminar</button>
             <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>"><button>Descartar cambios</button></a>
         </div>

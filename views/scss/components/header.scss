@@ -1,156 +1,117 @@
 header{
     position: sticky;
-    top: 0;
-    z-index: 2;
-    background-color: $color_oscuro;
     top: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     height: 10vh;
-
+    @include flex-row;
+    background-color: $color_oscuro;
+    z-index: 2;
     
-    >img{
-        margin: 3%;
-        width: 17vw;    
-        height: auto;
+    >img {
+        width: 200px;
+        margin-left: 20px;
     }
     >nav{
-        display: flex;
-        justify-content: space-between;
-        width: 30vw;
-        margin-right: 7vw;
+        @include flex-row;
+        gap: 20px;
         
-        >a{
+        > a{
             text-decoration: none;
             color: white;
-            font-size: 1.2rem;
-            transition: scale 0.3s;
-        }
+            font-size: 20px;
+            display: inline-block;
+            position: relative;
 
-        >a:hover{
-            color: $color_claro;
-            scale: 1.05;
+            &:hover{
+                @include hover-y;
+                color: rgb(235, 235, 235);
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                width: 0px;
+                height: 2px;
+                background-color: rgb(235, 235, 235);
+                transform: translateX(-50%);
+                transition: width 0.3s ease-in-out;
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
         }
 
         >div{
-            
-            >a{
+            //Administración
+            > a {
+                font-size: 20px;
                 color: white;
                 text-decoration: none;
-                font-size: 1.2rem;
-            }
+                padding-left: 5px;
 
-            >div{
-                font-size: 1.2rem;
-                opacity: 0;
-                height: 0;
-                display: block;
-                position: absolute;
-                min-width: 15vw;
-                z-index: 1;
-                background-color: $color_claro;
-                overflow: hidden; /* Para ocultar contenido que exceda la altura */
-                transition: all 0.3s ease; /* Transición de todos los parámetros */
-                border: solid 2px transparent; /* Borde invisible al inicio */
-
-                >a{
-                    color: black;
-                    text-decoration: none;
-                    padding: 5%;
-                    display: block;
-                    transition: color 0.3s;
-                }
-                >a:hover{
-                    color: $color_oscuro;
+                &:hover {
+                    @include hover-y;
+                    color: rgb(235, 235, 235);
                 }
             }
-
-            hr{
-                border: none; 
-                border-radius: 5px;
-                width: 90%;
-                margin-left: 5%;
-                height: 0.5vh;
-                background-color: black;
-            }
-        }
-
-        >div:hover > div{
-            opacity: 1; /* Mostrar */
-            height: auto; /* Dejar que se expanda a su altura natural */
-            border-color: white; /* Cambiar el borde al hacer hover */
-            border-radius: 7px;
-
         }
     }
 
-    >div{
+    >div{ //Div icono usuario
         @include flex-row;
-        margin-right: 4vw;
-        > span {
+        margin-right: 20px;
+        > span { //Nombre usuario
             color: $color_claro3;
         }
-        >a{
-            >img{
-                width: 2.5vw;
-                height: auto;
-                margin-left: 2vw;
-                transition: scale 0.3s;
-            }
+        >img{
+            width: 30px;
+            height: auto;
+            margin-left: 20px;
+            margin-right: 10px;
+            transition: scale 0.3s;
 
-            >img:hover{
+            &:hover{
                 scale: 1.1;
+                cursor: pointer;
             }
         }
-        >div{
-            font-size: 1.2rem;
-            opacity: 0;
-            height: 0;
-            display: block;
-            position: absolute;
-            
-            z-index: 1;
-            background-color: $color_claro;
-            overflow: hidden; /* Para ocultar contenido que exceda la altura */
-            transition: all 0.3s ease; /* Transición de todos los parámetros */
-            border: solid 2px transparent; /* Borde invisible al inicio */
+        > div {
+            top: 8vh;
+            right: 30px;
         }
-        
     }
-    > div > div{
+    > nav > div > div, > div > div {
         display: none;
-        opacity: 1; /* Mostrar */
+        position: absolute;
         height: auto; /* Dejar que se expanda a su altura natural */
         width: auto;
         white-space: nowrap;
-        border-color: white; /* Cambiar el borde al hacer hover */
-        border-radius: 7px;
+        background-color: $color_oscuro;
+        opacity: 1; /* Mostrar */
+        transition: all 0.3s ease; /* Transición de todos los parámetros */
+        border: 1px solid white; /* Borde invisible al inicio */
+        border-top: none;
+        border-radius: 0px 0px 5px 5px;
         
-        >a{
+        a {
             font-size: 17px;
-            color: black;
+            color: white;
             text-decoration: none;
             padding: 10px;
             display: block;
             transition: color 0.3s;
             border-bottom: 3px solid black;
             
-        }
-        >a:hover{
-            color: $color_oscuro;
+            &:hover{
+                background-color: $color_claro;
+                color: $color_oscuro;
+            }
         }
         >:last-child {
             border-bottom: none;
-        }
-        hr{
-            border: none; 
-            border-radius: 5px;
-            width: 90%;
-            margin-left: 5%;
-            height: 0.5vh;
-            background-color: black;
         }
     }
 }
