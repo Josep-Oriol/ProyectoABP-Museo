@@ -7,9 +7,63 @@
             $data = json_decode(file_get_contents('php://input'), true);
             $input = $data['busqueda'];
             $pagina = $data['pagina'];
-            $filters = isset($data['filters']) ? $data['filters'] : [];
+            $filters = $data['filtros'];
             //Seleccionar pagina segun la url
             $url = [];
+
+            $strWhere = "WHERE ";
+            
+            $arrayAnd = [];
+            $strAnd = "";
+            $arrayOr = [];
+            $strOr = "";
+
+
+            foreach($filters as $indice => $valor){
+                if($indice == "and"){
+                    foreach($filters["and"] as $indice2 => $valor2){
+                        $arrayTemporal = [];
+                        if(is_string($valor2)){
+                            $indice2 = substr($indice2, 4);
+                            array_push($arrayAnd, $indice2." LIKE ".$valor2);
+                        }
+                        else{
+                            foreach($valor2 as $indice3 => $valor3){
+                                array_push($arrayTemporal, $valor3);
+                            }
+                            $strTemporal = implode(", ", $arrayTemporal);
+                            $indice2 = substr($indice2, 4);
+                            array_push($arrayAnd, $indice2." IN (".$strTemporal.")");
+                        }
+                    }
+                    $strAnd = "(".implode(" AND ", $arrayAnd).")";
+
+                }
+                else if($indice == "or"){
+                    foreach($filters["or"] as $indice2 => $valor2){
+                        $arrayTemporal = [];
+                        if(is_string($valor2)){
+                            $indice2 = substr($indice2, 3);
+                            array_push($arrayOr, $indice2." LIKE ".$valor2);
+                        }
+                        else{
+                            foreach($valor2 as $indice3 => $valor3){
+                                array_push($arrayTemporal, $valor3);
+                            }
+                            $strTemporal = implode(", ", $arrayTemporal);
+                            $indice2 = substr($indice2, 3);
+                            array_push($arrayOr, $indice2." IN (".$strTemporal.")");
+                        }
+                    }
+                    $strOr = "(".implode(" OR ", $arrayOr).")";
+                }
+            }
+
+            $strWhere .= $strAnd." OR ".$strOr;
+
+            
+           // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
+    
 
             if($data['pagina'] == "exposiciones"){
                 $datos = $modelo->busquedaExposiciones($pagina, $input, $filters);
@@ -24,7 +78,7 @@
                 $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
 
-            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];
+            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url, "condicionales" => $strWhere];
 
             header('Content-Type: application/json');
             echo json_encode($response);

@@ -1,3 +1,96 @@
+  
+
+
+
+
+function mostrarDatos(dato, filters){
+  const url = window.location.href;
+  let pagina = url.includes("Exposiciones") ? "exposiciones" : url.includes("Obras") ? "obras" : url.includes("Usuarios") ? "usuarios" : null;
+
+  let data ={
+      "busqueda": dato,
+      "pagina": pagina,
+      "filtros" : filters
+  }
+  let dataJson = JSON.stringify(data)
+
+  fetch('ajax.php?controller=Buscador&action=buscar', {
+      method: 'POST',
+      headers:{
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+      },
+      body :dataJson
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data.condicionales);
+      
+    /*  exposiciones = data.texto
+      const tbody = document.querySelector('tbody');
+      const primer_tr = document.querySelector('tr')
+      tbody.innerHTML = primer_tr.outerHTML
+      
+      exposiciones.forEach(exposicion => {
+          let tr = document.createElement('tr')
+          for(let dato in exposicion){
+              let td = document.createElement('td')
+
+              if(exposicion[dato] && typeof exposicion[dato] === 'string' && exposicion[dato].includes("images/")){
+                  let img = document.createElement('img')
+                  img.src = exposicion[dato]
+                  img.alt = ""
+                  td.appendChild(img)
+              }
+              else{
+                  td.textContent = exposicion[dato]
+              }
+
+              tr.appendChild(td)
+          }
+          td_botones = document.createElement('td')
+          tr.appendChild(td_botones)
+
+          link1 = document.createElement('a')
+          img1 = document.createElement('img')
+          img1.src = 'images/editarv2.png'
+          link1.appendChild(img1)
+          
+          link2 = document.createElement('a')
+          img2 = document.createElement('img')
+          img2.src = 'images/fichav2.png'
+          link2.appendChild(img2)
+
+          link3 = document.createElement('button')
+          img3 = document.createElement('img')
+          img3.src = 'images/borrarv2.png'
+          link3.appendChild(img3)
+
+          id = pagina === "obras" ? exposicion.numero_registro : pagina === "exposiciones" ? exposicion.id_exposicion : pagina === "usuarios" ? exposicion.id_usuario : null
+
+          tr.setAttribute('id', id);
+          link1.href = data.url[0] + id
+          link2.href = data.url[1] + id
+          link3.classList.add('eliminarRegistro');
+          link3.setAttribute('id', id);
+
+          td_botones.appendChild(link2)
+          td_botones.appendChild(link1)
+          td_botones.appendChild(link3)
+
+          tr.appendChild(td_botones)
+          tbody.appendChild(tr)
+      });
+
+      // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
+      agregarEventosEliminar(); */
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  })
+}
+
+
 // Obtener el controller desde la URL
 const params = new URLSearchParams(window.location.search);
 const controller = params.get('controller');
@@ -203,6 +296,7 @@ function datosForm(){
       if (baseName.startsWith('and-')) {
         // Si solo hay un valor los asignamos si hay mas añadimos el array
         filters.and[baseName] = groupValues.length === 1 ? groupValues[0] : groupValues;
+        
       } 
       else if (baseName.startsWith('or-')) {
         // Si solo hay un valor los asignamos si hay mas añadimos el array
@@ -212,14 +306,12 @@ function datosForm(){
   });
 
   // Muestra los valores obtenidos
-  console.log(filters);
   return filters;
 }
 
 async function enviarDatos(){
   try {
     const filters = datosForm();
-
     const response = await fetch(`index.php?controller=Buscador&action=buscar`, {
       method: 'POST',
       headers: {
@@ -237,6 +329,8 @@ async function enviarDatos(){
 
 // Inicializar eventos
 function inicializarEventos() {
+  const inputExposiciones = document.getElementById("busqueda")
+
   const addAndFilterBtn = document.getElementById('add-and-filter');
   const addOrFilterBtn = document.getElementById('add-or-filter');
 
@@ -252,7 +346,7 @@ function inicializarEventos() {
     agregarFiltro('or');
   });
 
-  submit.addEventListener('click' , () => {
+  resetBtn.addEventListener('click' , () => {
     const orFiltersInputs = document.getElementById("or-filters-inputs");
     const andFiltersInputs = document.getElementById("and-filters-inputs");
 
@@ -260,16 +354,23 @@ function inicializarEventos() {
     andFiltersInputs.innerHTML = '';
   });
 
-  resetBtn.addEventListener('click', function(event){
+  submit.addEventListener('click', function(event){
     event.preventDefault();
-    //enviarDatos();
-    datosForm();
+    enviarDatos();
+
+  })
+
+  inputExposiciones.addEventListener("input", function(event){
+    let filters = datosForm();
+    let dato = inputExposiciones.value
+    mostrarDatos(inputExposiciones.value, filters)
   })
 
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+
   await obtenerDatos(controller);
   cargarSelect();
-  inicializarEventos();
+  inicializarEventos();   
 });

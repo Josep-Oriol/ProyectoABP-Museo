@@ -1,5 +1,5 @@
 {
-    "nregistre": {
+    "numero_registre": {
       "label": "Nº Registre",
       "type": "text",
       "placeholder": "Introdueix el Nº de registre",
@@ -15,7 +15,7 @@
       "class": "tecnica-class",
       "id": "id-tecnica"
     },
-    "titolo": {
+    "titol": {
       "label": "Títol",
       "type": "text",
       "placeholder": "Introdueix el títol",
@@ -31,7 +31,7 @@
       "class": "autor-class",
       "id": "id-autor"
     },
-    "any": {
+    "anyo": {
       "label": "Any",
       "type": "text",
       "placeholder": "Introdueix l'any",
