@@ -2146,4 +2146,24 @@ body {
   margin-left: 1vw;
 }
 
+#popUpUbicaciones {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones img {
+  width: 3vw;
+  margin-bottom: 1vh;
+}
+
 /*# sourceMappingURL=main.css.map */

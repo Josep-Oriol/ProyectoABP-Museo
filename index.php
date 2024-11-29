@@ -61,6 +61,12 @@ session_start();
     ?>
     
     <div id="fondoPopUp"></div>
+
+    <div id="popUpUbicaciones">
+        <img src="images/alertIcon.png" alt="">
+        <p>Hi han obres a aquesta ubicació actualment!</p>
+    </div>
+
     <div id="popUpEliminar">
         <img src="images/alertIcon.png" alt="">
         <p>Confirmar elimininació</p>
@@ -71,7 +77,6 @@ session_start();
     <div id="up">
         <img src="images/upIcon.png" alt="">
     </div>
-
 
 
 </body>
