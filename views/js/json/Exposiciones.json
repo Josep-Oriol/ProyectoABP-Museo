@@ -1,5 +1,5 @@
 {
-    "id": {
+    "id_exposicion": {
       "label": "ID",
       "type": "text",
       "placeholder": "Introdueix ID",
@@ -7,7 +7,7 @@
       "class": "id-class",
       "id": "id-id"
     },
-    "descripcio": {
+    "texto_exposicion": {
       "label": "Descripció",
       "type": "text",
       "placeholder": "Introdueix la descripció",
@@ -15,7 +15,7 @@
       "class": "descripcio-class",
       "id": "id-descripcio"
     },
-    "lloc_exposicio": {
+    "lugar_exposicion": {
       "label": "Lloc d'exposició",
       "type": "text",
       "placeholder": "Introdueix el lloc d'exposició",
@@ -23,7 +23,7 @@
       "class": "lloc_exposicio-class",
       "id": "id-lloc_exposicio"
     },
-    "tipus": {
+    "tipo_exposicion": {
       "label": "Tipus",
       "type": "text",
       "placeholder": "Introdueix el tipus",
@@ -31,7 +31,7 @@
       "class": "tipus-class",
       "id": "id-tipus"
     },
-    "data_inici": {
+    "fecha_inicio_exposicion": {
       "label": "Data inici",
       "type": "date",
       "placeholder": "Selecciona la data d'inici",
@@ -39,7 +39,7 @@
       "class": "data_inici-class",
       "id": "id-data_inici"
     },
-    "data_termini": {
+    "fecha_fin_exposicion": {
       "label": "Data termini",
       "type": "date",
       "placeholder": "Selecciona la data de termini",
