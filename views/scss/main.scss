@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alice&display=swap");
 @import "utils/variables.scss";
 @import "utils/mixins.scss";
 @import "general/login.scss";
@@ -22,117 +22,114 @@
 @import "vocabularios/fichaCrearUbicacion.scss";
 @import "copias/fichaCopia.scss";
 
-
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Hace que el body ocupe la altura completa de la ventana */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hace que el body ocupe la altura completa de la ventana */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Alice", serif;
-    font-weight: 400;
-    font-style: normal;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-#filtro{
-    cursor: pointer;
+#filtro {
+  cursor: pointer;
 }
 
-#up{
-    background-color: #333333;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border: solid 1px white;
-    cursor: pointer;
-    
-    img{
-        width: 40px;
-        height: 40px;
-    }
+#up {
+  background-color: #333333;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: solid 1px white;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
 
-    &:active{
-        scale: 0.95;
-    }
+  @starting-style {
+    opacity: 0;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  &:active {
+    scale: 0.95;
+  }
 }
 
 #fondoPopUp {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
 }
 
 #popUpEliminar {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #fff;
-    padding: 30px;
-    border: 1px solid #ddd; /* Color de borde más suave */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombras más pronunciadas */
-    border-radius: 8px; /* Bordes redondeados */
-    width: auto;
-    max-width: 400px; /* Limitar el ancho del popup */
-    display: none;
-    text-align: center; /* Centra el contenido del popup */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombras más pronunciadas */
+  border-radius: 8px; /* Bordes redondeados */
+  width: auto;
+  max-width: 400px; /* Limitar el ancho del popup */
+  display: none;
+  text-align: center; /* Centra el contenido del popup */
+  border: 1px solid black;
+
+  // Título y contenido
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  img {
+    width: 20%;
+    height: auto;
+    margin-bottom: 1vh;
+  }
+  // Botones
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
     border: 1px solid black;
-  
-    // Título y contenido
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: #333;
+    cursor: pointer;
+
+    &:hover {
+      background-color: black;
+      color: white;
     }
-    img {
-        width: 20%;
-        height: auto;
-        margin-bottom: 1vh;
+
+    &.confirmar {
+      margin-right: 1vw;
     }
-    // Botones
-    button {
-        padding: 12px 20px;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: none;
-        background-color: white;
-        border: 1px solid black;
-        cursor: pointer;
 
-        &:hover {
-            background-color: black;
-            color: white;
-        }
-
-        &.confirmar {
-            margin-right: 1vw;
-        }
-
-        &.cancelar {
-            margin-left: 1vw;
-        }
+    &.cancelar {
+      margin-left: 1vw;
     }
   }
-  
-
-
-
-
-
-
-
+}

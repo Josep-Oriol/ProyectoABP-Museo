@@ -2420,6 +2420,13 @@ body {
   right: 20px;
   border: solid 1px white;
   cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+@starting-style {
+  #up {
+    opacity: 0;
+  }
 }
 #up img {
   width: 40px;
