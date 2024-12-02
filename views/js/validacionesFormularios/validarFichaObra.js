@@ -11,16 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (fichaBasica) {
         fichaCompleta.style.display = 'none';
-        btnFichaBasica.classList.toggle('pulsado');
         btnFichaCompleta.addEventListener('click', () => {
-            btnFichaCompleta.classList.toggle('pulsado');
+            btnFichaCompleta.classList.add('pulsado');
             btnFichaBasica.classList.remove('pulsado');
             fichaBasica.style.display = 'none';
             fichaCompleta.style.display = 'block';
         });
     
-        btnFichaBasica.addEventListener('click', () => {
-            btnFichaBasica.classList.toggle('pulsado');
+        btnFichaBasica.addEventListener('click', () => { 
+            btnFichaBasica.classList.add('pulsado');
             btnFichaCompleta.classList.remove('pulsado');
             fichaBasica.style.display = 'block';
             fichaCompleta.style.display = 'none';

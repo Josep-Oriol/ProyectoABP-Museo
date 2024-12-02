@@ -190,7 +190,7 @@ header > nav > div > div a, header > div > div a {
   padding: 10px;
   display: block;
   transition: color 0.3s;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #333333;
 }
 header > nav > div > div a:hover, header > div > div a:hover {
   background-color: #CFD1D4;
@@ -227,7 +227,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   justify-content: right;
 }
 #general > :first-child > :nth-child(2) > :first-child {
-  border: 2px black solid;
+  border: 2px #333333 solid;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -362,17 +362,35 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   gap: 15px;
 }
 #fichaObra > div button {
-  background-color: #EFEFEF;
+  display: inline-block;
+  position: relative;
+  color: #333333;
+  font-size: 20px;
   padding: 8px;
+  border: none;
+  background-color: transparent;
 }
 #fichaObra > div button:hover {
-  background-color: #BFBFBF;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+}
+#fichaObra > div button::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: #333333;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+#fichaObra > div button:hover::after {
+  width: 100%;
 }
 #fichaObra > div button.pulsado {
-  background-color: #333333;
-  color: white;
-  transform: scale(0.95);
+  border-bottom: 2px solid #333333;
 }
 #fichaObra > form > :first-child {
   width: 80%;
@@ -385,57 +403,13 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: start;
   width: 100%;
   padding-right: 20px;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > span {
-  margin-right: auto;
-}
 #fichaObra > form > :first-child > :first-child > div > :first-child > img {
   width: 100%;
-  margin-bottom: auto;
-  margin-top: auto;
-}
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px solid black;
-}
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img {
-  width: 15%;
-}
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span {
-  color: #BFBFBF;
-}
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > p {
-  width: 100%;
-  text-align: center;
-}
-#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px solid black;
-}
-#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
-  width: 15%;
-}
-#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
-  color: #BFBFBF;
-}
-#fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
-  width: 100%;
-  text-align: center;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
   width: 100%;
@@ -443,9 +417,22 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  justify-content: left;
   padding-top: 15px;
   gap: 15px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) {
+  justify-content: space-between;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(:not(div)) {
+  justify-content: left;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
   border-radius: 5px;
@@ -471,24 +458,23 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
   width: auto;
-  margin-left: auto;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button {
-  width: 100%;
-  height: 100%;
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button {
+  width: auto;
   background-color: #333333;
   font-size: 16px;
   color: white;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a > button:hover {
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button:hover {
   background-color: #666666;
   cursor: pointer;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
-  width: 25%;
-  font-size: 17px;
+  width: auto;
   background-color: #333333;
+  font-size: 17px;
   color: white;
+  padding: 12px 20px 12px 20px;
 }
 #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
   background-color: #333333;
@@ -518,6 +504,31 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   transform: translateY(0);
   scale: 0.97;
 }
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span), #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #333333;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
+  width: 100%;
+  text-align: center;
+  color: #BFBFBF;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > p, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
 #fichaObra > form > :first-child > div {
   margin-bottom: 20px;
   padding: 15px;
@@ -543,33 +554,33 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   flex-direction: column;
   margin-bottom: 10px;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   justify-content: left;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > :first-child {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :first-child {
   width: 15%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > :nth-child(2) {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(2) {
   width: 30%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > :nth-child(3) {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(3) {
   width: 15%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) input {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) input {
   margin-right: 10px;
   text-align: center;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > img {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img {
   width: 20px;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > img:hover {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img:hover {
   cursor: pointer;
 }
-#fichaObra > form > :first-child > div > div div > div:has(img) > p {
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > p {
   color: red;
 }
 #fichaObra > form > :first-child > div > div div > label, #fichaObra > form > :first-child > div > div div span {
