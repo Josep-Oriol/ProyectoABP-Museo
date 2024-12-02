@@ -26,7 +26,7 @@ function mostrarDatos(dato, filters){
   .then(data => {
       console.log(data.condicionales);
       
-    /*  exposiciones = data.texto
+      exposiciones = data.texto
       const tbody = document.querySelector('tbody');
       const primer_tr = document.querySelector('tr')
       tbody.innerHTML = primer_tr.outerHTML
@@ -61,7 +61,7 @@ function mostrarDatos(dato, filters){
           img2.src = 'images/fichav2.png'
           link2.appendChild(img2)
 
-          link3 = document.createElement('button')
+          link3 = document.createElement('a')
           img3 = document.createElement('img')
           img3.src = 'images/borrarv2.png'
           link3.appendChild(img3)
@@ -83,7 +83,7 @@ function mostrarDatos(dato, filters){
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
-      agregarEventosEliminar(); */
+      agregarEventosEliminar(); 
   })
   .catch(error => {
       console.error('Error:', error);
@@ -356,9 +356,12 @@ function inicializarEventos() {
 
   submit.addEventListener('click', function(event){
     event.preventDefault();
-    enviarDatos();
+    let filters = datosForm();
+    let dato = inputExposiciones.value
+    mostrarDatos(inputExposiciones.value, filters)
 
-  })
+
+  });
 
   inputExposiciones.addEventListener("input", function(event){
     let filters = datosForm();
