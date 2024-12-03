@@ -66,6 +66,7 @@ function filtrosAvanzados(){
     const openBtn = document.getElementById("filtro");
     const cerrar = document.querySelector('.close-btn');
     const popup = document.querySelector('.popup-overlay');
+    const apply = document.getElementById("btn-apply");
 
 
     if(openBtn){
@@ -76,6 +77,18 @@ function filtrosAvanzados(){
         cerrar.addEventListener("click", function(){
             popup.style.display = "none";
         });
+
+        apply.addEventListener("click", function(){
+            popup.style.display = "none";
+        });
+
+        if(popup){
+            document.addEventListener("keydown", e =>{
+                if(e.key == 'Escape'){
+                    popup.style.display = "none";
+                }
+            })
+        }
     }
 }
 
@@ -83,4 +96,4 @@ function filtrosAvanzados(){
 document.addEventListener("DOMContentLoaded", function () {
     agregarEventosEliminar();
     filtrosAvanzados();
-})
+});

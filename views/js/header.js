@@ -39,9 +39,4 @@ document.addEventListener('DOMContentLoaded', function() {
             opcion.style.borderBottom = '2px solid rgb(235, 235, 235)';
         }
     });
-    
-
-    /*iconoPerfil.addEventListener('mouseleave', function() {
-        opcionesPerfil.style.display = 'none';
-    });*/
 });

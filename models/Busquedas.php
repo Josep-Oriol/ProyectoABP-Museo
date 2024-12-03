@@ -3,7 +3,8 @@ require_once "Database.php";
 
 class Busquedas extends Database{
     public function busquedaExposiciones($pagina, $input, $filtro){
-        $sql = "SELECT * FROM $pagina WHERE $filtro LIKE '%$input%'";
+        $sql = "SELECT e.id_exposicion, e.texto_exposicion, e.lugar_exposicion, e.tipo_exposicion, e.fecha_inicio_exposicion, e.fecha_fin_exposicion
+        FROM $pagina e WHERE e.texto_exposicion LIKE '%$input%' $filtro";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);
@@ -17,8 +18,8 @@ class Busquedas extends Database{
     }
 
     public function busquedaObras($pagina, $input, $filtro){
-        $sql = "SELECT o.fotografia, o.numero_registro, o.tecnica, o.titulo, o.autor, anyo_final, u.descripcion_ubicacion FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
-			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE $filtro LIKE '%$input%'";
+        $sql = "SELECT o.fotografia, o.numero_registro, o.nombre_objeto, o.titulo, o.autor, o.anyo_final, u.descripcion_ubicacion FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
+			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE o.numero_registro LIKE '%$input%' $filtro";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);
@@ -31,7 +32,7 @@ class Busquedas extends Database{
         return $resultado;
     }
     public function busquedaUsuarios($pagina, $input, $filtro){
-        $sql = "SELECT id_usuario, foto_usuario, usuario, nombre, apellidos, correo_electronico, telefono, rol, estado FROM $pagina WHERE $filtro LIKE '%$input%'";
+        $sql = "SELECT id_usuario, foto_usuario, usuario, nombre, apellidos, correo_electronico, telefono, rol, estado FROM $pagina u $filtro AND usuari LIKE '%$input%'";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);

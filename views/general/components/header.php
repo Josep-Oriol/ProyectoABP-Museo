@@ -14,9 +14,8 @@
                 <div id="desplegableAdmin">
                     <a href="index.php?controller=Usuarios&action=mostrarUsuarios">Gestió d'usuaris</a>
                     <a href="index.php?controller=Vocabularios&action=enviarAVocabularios">Gestió de vocabularis</a>
-                    <a href="">Còpies de seguretat</a>
+                    <a href="index.php?controller=Copias&action=mostrarCopias">Còpies de seguretat</a>
                 </div>
-            </div>
             <?php
         }
         ?>
@@ -31,3 +30,5 @@
         </div>
     </div>
 </header>
+
+

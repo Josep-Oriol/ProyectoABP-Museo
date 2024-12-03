@@ -41,15 +41,18 @@ if (isset($_SESSION['Rol'])) {
                                 <?php
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':
-                                ?>
-                                        <input type="image" src="images/guardar.png" alt="guardar cambios" title="Guardar canvis">
-                                        <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>" title="Eliminar"><img src="images/borrarv2.png" alt="icono eliminar"></a>
-                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button>Descartar canvis</button></a>
+                                ?>      <div>
+                                            <input type="image" src="images/guardar.png" alt="guardar cambios" title="Guardar canvis">
+                                            <a href="index.php?controller=Obras&action=eliminar&id=<?php echo $id; ?>" title="Eliminar"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                        </div>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>"><button type="button">Descartar canvis</button></a>
                                     <?php
                                         break;
                                     case 'Tècnic':
                                     ?>
-                                        <input type="image" src="images/guardar.png" alt="guardar cambios">
+                                        <div>
+                                            <input type="image" src="images/guardar.png" alt="guardar cambios">
+                                        </div>
                                         <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><button>Descartar canvis</button></a>
                                 <?php
                                         break;

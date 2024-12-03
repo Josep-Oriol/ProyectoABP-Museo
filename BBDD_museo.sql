@@ -142,7 +142,7 @@ CREATE TABLE copias_seguridad (
     id_copia INT PRIMARY KEY AUTO_INCREMENT,
     nombre_copia VARCHAR(255) NOT NULL,
     descripcion_copia TEXT,
-    fecha_copia DATE NOT NULL,
+    fecha_copia VARCHAR(255) NOT NULL,
     fk_creador INT NOT NULL,
     FOREIGN KEY (fk_creador) REFERENCES usuarios(id_usuario) ON UPDATE CASCADE
 );
