@@ -13,7 +13,7 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="creador">Creador</label>
-                            <input type="text" id="creador" name="creador" value='<?php echo $copia['usuario'] ?>' readonly>
+                            <input type="text" id="creador" name="creador" value='<?php echo $copia['usuario'] ?>'>
                         </div>
                         <div>
                             <label for="desc">Descripció</label>
@@ -21,7 +21,7 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="fecha">Datació</label>
-                            <input type="text" id="fecha" name="fecha" value='<?php echo $copia['fecha_copia'] ?>' readonly>
+                            <input type="text" id="fecha" name="fecha" value='<?php echo $copia['fecha_copia'] ?>'>
                         </div>
                         <div>
                             <?php
@@ -30,6 +30,7 @@ if (isset($_SESSION['Rol'])) {
                             ?>
                                     <a href="index.php?controller=Copias&action=editar&id=<?php echo $id; ?>" title="Editar"><img src="images/editarv2.png" alt="icono editar"></a>
                                     <a href="index.php?controller=Copias&action=eliminar&id=<?php echo $id; ?>" title="Eliminar"><img src="images/borrarv2.png" alt="icono eliminar"></a>
+                                    <button>Enviar</button>
                                 <?php
                                     break;
                                 case 'Tècnic':

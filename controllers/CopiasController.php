@@ -48,13 +48,15 @@ class CopiasController{
             $id = $_GET['id'];
             require_once "models/Copias.php";
             $modelocopias = new Copias();
-            $datos = $modelocopias->mostrarCopia($id);
-            require_once "views/general/copias/fichaEditarCopia.php";
             if ($_POST) {
                 $exitoso = $modelocopias->editarCopia($_POST, $id);
                 if ($exitoso) {
                     echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Copias&action=mostrarCopias'/>";
                 }
+            }
+            else {
+                $copia = $modelocopias->mostrarCopia($id);
+                require_once "views/general/copias/fichaEditarCopia.php";
             }
         }
         

@@ -3,7 +3,6 @@
     <img src="images/nombre.png" alt="">
     
     <nav>
-<<<<<<< HEAD
         <a href="index.php?controller=Obras&action=mostrarObras" class="opcionesHeader">Inici</a>
         <a href="index.php?controller=Exposiciones&action=mostrarExposiciones" class="opcionesHeader">Exposicions</a>
         <a href="index.php?controller=Vocabularios&action=mostrarUbicaciones" class="opcionesHeader">Ubicacions</a>
@@ -15,22 +14,8 @@
                 <div id="desplegableAdmin">
                     <a href="index.php?controller=Usuarios&action=mostrarUsuarios">Gestió d'usuaris</a>
                     <a href="index.php?controller=Vocabularios&action=enviarAVocabularios">Gestió de vocabularis</a>
-                    <a href="">Còpies de seguretat</a>
+                    <a href="index.php?controller=Copias&action=mostrarCopias">Còpies de seguretat</a>
                 </div>
-=======
-        <a href="index.php?controller=Obras&action=mostrarObras">Inici</a>
-        <a href="index.php?controller=Exposiciones&action=mostrarExposiciones">Exposicions</a>
-        <a href="index.php?controller=Vocabularios&action=mostrarUbicaciones">Ubicacions</a>
-        <div>
-            <a href="">Administració</a>
-            <div>
-                <a href="index.php?controller=Usuarios&action=mostrarUsuarios">Gestió d'usuaris</a>
-                <hr>
-                <a href="index.php?controller=Vocabularios&action=enviarAVocabularios">Gestió de vocabularis</a>
-                <hr>
-                <a href="index.php?controller=Copias&action=mostrarCopias">Còpies de seguretat</a>
->>>>>>> 680d0146472095e00769b9b5f164bb62b2eeff5f
-            </div>
             <?php
         }
         ?>

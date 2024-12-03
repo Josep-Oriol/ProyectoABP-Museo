@@ -1,17 +1,2461 @@
-/* Error: expected "{".
- *     ,
- * 134 | <<<<<<< HEAD
- *     |             ^
- *     '
- *   views/scss/main.scss 134:13  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a     \2577 \a 134 \2502  <<<<<<< HEAD\a     \2502              ^\a     \2575 \a   views/scss/main.scss 134:13  root stylesheet';
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Alice&display=swap");
+#login {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* Seleccionar el primer hijo */
+  /* Seleccionar el segundo hijo */
 }
+#login > :first-child {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CFD1D4;
+}
+#login > :first-child > img {
+  width: 70%;
+  height: auto;
+}
+#login > :nth-child(2) {
+  width: 50vw;
+  height: 100vh;
+}
+#login > :nth-child(2) > :first-child {
+  display: flex;
+  justify-content: space-between;
+}
+#login > :nth-child(2) > :first-child img {
+  width: 4vw;
+  height: auto;
+}
+#login > :nth-child(2) > :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+}
+#login > :nth-child(2) > :nth-child(2) img {
+  width: 15vw;
+  height: auto;
+}
+#login > :nth-child(2) > :last-child {
+  display: flex;
+  justify-content: center;
+}
+#login > :nth-child(2) > :last-child > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#login > :nth-child(2) > :last-child > form > input {
+  font-size: medium;
+  border: none;
+  background-color: white;
+  margin-bottom: 7vh;
+  border-bottom: 4px solid black;
+  width: 15vw;
+}
+#login > :nth-child(2) > :last-child > form > input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 4px solid black;
+}
+#login > :nth-child(2) > :last-child > form > div {
+  color: red;
+  margin-top: 5vh;
+  position: absolute;
+}
+#login > :nth-child(2) > :last-child > form > :last-child {
+  font-size: medium;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  width: 7vw;
+  height: 3vh;
+  transition: background-color 0.3s, scale 0.3s;
+}
+#login > :nth-child(2) > :last-child > form > :last-child:hover {
+  border: solid 2px black;
+  cursor: pointer;
+  scale: 1.05;
+}
+
+header {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333333;
+  z-index: 2;
+}
+header > img {
+  width: 200px;
+  margin-left: 20px;
+}
+header > nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+header > nav > a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+  position: relative;
+}
+header > nav > a:hover {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: rgb(235, 235, 235);
+}
+header > nav > a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: rgb(235, 235, 235);
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+header > nav > a:hover::after {
+  width: 100%;
+}
+header > nav > div > a {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  padding-left: 5px;
+}
+header > nav > div > a:hover {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: rgb(235, 235, 235);
+}
+header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+}
+header > div > span {
+  color: #EFEFEF;
+}
+header > div > img {
+  width: 30px;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 10px;
+  transition: scale 0.3s;
+}
+header > div > img:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+header > div > div {
+  top: 8vh;
+  right: 30px;
+}
+header > nav > div > div, header > div > div {
+  display: none;
+  position: absolute;
+  height: auto; /* Dejar que se expanda a su altura natural */
+  width: auto;
+  white-space: nowrap;
+  background-color: #333333;
+  opacity: 1; /* Mostrar */
+  transition: all 0.3s ease; /* Transición de todos los parámetros */
+  border: 1px solid white; /* Borde invisible al inicio */
+  border-top: none;
+  border-radius: 0px 0px 5px 5px;
+}
+header > nav > div > div a, header > div > div a {
+  font-size: 17px;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  transition: color 0.3s;
+  border-bottom: 3px solid #333333;
+}
+header > nav > div > div a:hover, header > div > div a:hover {
+  background-color: #CFD1D4;
+  color: #333333;
+}
+header > nav > div > div > :last-child, header > div > div > :last-child {
+  border-bottom: none;
+}
+
+#general {
+  min-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#general > :first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  padding: 20px 0px 20px 20px;
+}
+#general > :first-child > :first-child > h1 {
+  font-size: 30px;
+}
+#general > :first-child > :nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: right;
+}
+#general > :first-child > :nth-child(2) > :first-child {
+  border: 2px #333333 solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+}
+#general > :first-child > :nth-child(2) > :first-child > :first-child {
+  width: 20px;
+  padding: 0px;
+}
+#general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
+  border: none;
+  margin-left: 20px;
+  font-size: 16px;
+}
+#general > :first-child > :nth-child(2) > :first-child > :nth-child(2):focus {
+  outline: none;
+}
+#general > :first-child > :nth-child(2) > :first-child > :last-child {
+  width: 22px;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) > select {
+  background-color: #333333;
+  border: 1px solid #BFBFBF;
+  border-radius: 3px;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 8px;
+}
+#general > :first-child > :nth-child(2) > :last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#general > :first-child > :nth-child(2) > :last-child img {
+  width: 25px;
+}
+#general > :first-child > :nth-child(2) > :last-child img:hover {
+  cursor: pointer;
+}
+#general > :last-child {
+  width: 95%;
+}
+#general > :last-child table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px 5px;
+}
+#general > :last-child table tr {
+  font-size: 18px;
+}
+#general > :last-child table tr td, #general > :last-child table tr th {
+  padding: 10px;
+  text-align: center;
+  width: 50px;
+}
+#general > :last-child table tr td > a button, #general > :last-child table tr th > a button {
+  background-color: #333333;
+  border: 2px solid #EFEFEF;
+  border-radius: 3px;
+  color: #EFEFEF;
+  font-weight: bold;
+  padding: 3px 10px 3px 10px;
+}
+#general > :last-child table tr td > a button:hover, #general > :last-child table tr th > a button:hover {
+  cursor: pointer;
+}
+#general > :last-child table tr td > img, #general > :last-child table tr th > img {
+  width: 40%;
+}
+#general > :last-child table tr td > img:hover, #general > :last-child table tr th > img:hover {
+  cursor: pointer;
+}
+#general > :last-child table tr td > a > img, #general > :last-child table tr th > a > img {
+  width: 25px;
+}
+#general > :last-child table tr td > a > img:hover, #general > :last-child table tr th > a > img:hover {
+  cursor: pointer;
+}
+#general > :last-child table tr:first-child {
+  background-color: #333333;
+  color: white;
+}
+#general > :last-child table tr:nth-child(even):not(:first-child) {
+  background-color: #BFBFBF;
+}
+#general > :last-child table tr:nth-child(odd):not(:first-child) {
+  background-color: #EFEFEF;
+}
+
+#popupImagen {
+  display: none;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+#popupImagen > div {
+  width: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#popupImagen > div img {
+  width: 100%;
+  height: auto;
+}
+
+#fichaObra > div {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+#fichaObra > div button {
+  display: inline-block;
+  position: relative;
+  color: #333333;
+  font-size: 20px;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+}
+#fichaObra > div button:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+}
+#fichaObra > div button::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: #333333;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+#fichaObra > div button:hover::after {
+  width: 100%;
+}
+#fichaObra > div button.pulsado {
+  border-bottom: 2px solid #333333;
+}
+#fichaObra > form > :first-child {
+  width: 80%;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: none;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
+  align-items: start;
+  width: 100%;
+  padding-right: 20px;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > img {
+  width: 100%;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  gap: 15px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) {
+  justify-content: space-between;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(:not(div)) {
+  justify-content: left;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+  border-radius: 5px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input {
+  width: 3vw;
+  padding: 10px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+  width: 3vw;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a img {
+  width: 100%;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a button {
+  padding: 10px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
+  width: auto;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button {
+  width: auto;
+  background-color: #333333;
+  font-size: 16px;
+  color: white;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button:hover {
+  background-color: #666666;
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
+  width: auto;
+  background-color: #333333;
+  font-size: 17px;
+  color: white;
+  padding: 12px 20px 12px 20px;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
+  background-color: #333333;
+  color: white;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
+  background-color: #4b4b4b;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image], #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
+  background-color: #666666;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
+  background-color: #7c7c7c;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
+  background-color: #E74C3C;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
+  background-color: #EE6655;
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+  transform: translateY(-1px);
+}
+#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:active, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:active {
+  transform: translateY(0);
+  scale: 0.97;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span), #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #333333;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
+  width: 100%;
+  text-align: center;
+  color: #BFBFBF;
+}
+#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > p, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
+#fichaObra > form > :first-child > div {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-left: 5px solid #333333;
+  background-color: #F4F4F4;
+  border-radius: 5px;
+}
+#fichaObra > form > :first-child > div > h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#fichaObra > form > :first-child > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+#fichaObra > form > :first-child > div > div div {
+  flex: 1 1 calc(50% - 15px); /* Dos columnas */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :first-child {
+  width: 15%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(2) {
+  width: 30%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(3) {
+  width: 15%;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) input {
+  margin-right: 10px;
+  text-align: center;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img {
+  width: 20px;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > p {
+  color: red;
+}
+#fichaObra > form > :first-child > div > div div > label, #fichaObra > form > :first-child > div > div div span {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+#fichaObra > form > :first-child > div > div div input[type=text],
+#fichaObra > form > :first-child > div > div div input[type=number],
+#fichaObra > form > :first-child > div > div div input[type=date],
+#fichaObra > form > :first-child > div > div div select,
+#fichaObra > form > :first-child > div > div div textarea {
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaObra > form > :first-child > div > div div input[type=text][readonly],
+#fichaObra > form > :first-child > div > div div input[type=date][readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaObra > form > :first-child > div > div div textarea {
+  resize: vertical;
+}
+#fichaObra > form > :first-child > div > div div input[type=text]:focus,
+#fichaObra > form > :first-child > div > div div input[type=number]:focus,
+#fichaObra > form > :first-child > div > div div input[type=date]:focus,
+#fichaObra > form > :first-child > div > div div select:focus,
+#fichaObra > form > :first-child > div > div div textarea:focus {
+  border-color: #333333;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .field-group {
+    flex-direction: column;
+  }
+  .field {
+    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+  }
+}
+@keyframes aumentarTamano {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+#fichaVerUsuario > :first-child {
+  width: 80%;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: none;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :first-child {
+  width: 50%;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :first-child > div {
+  max-width: 500px;
+  max-height: 500px;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child div input {
+  width: 100%;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child > :nth-child(1) > img {
+  background-color: #333333;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child > :nth-child(2) > img {
+  background-color: #666666;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child > :nth-child(3) > img {
+  background-color: #E74C3C;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child a {
+  width: 15%;
+}
+#fichaVerUsuario > :first-child > :first-child > div > :last-child > :last-child a img {
+  padding: 5px;
+  width: 100%;
+  height: auto;
+}
+#fichaVerUsuario > :first-child > div {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-left: 5px solid #333333;
+  background-color: #F4F4F4;
+  border-radius: 5px;
+}
+#fichaVerUsuario > :first-child > div > h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+#fichaVerUsuario > :first-child > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+#fichaVerUsuario > :first-child > div > div div {
+  flex: 1 1 calc(50% - 15px); /* Dos columnas */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+#fichaVerUsuario > :first-child > div > div div > label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+#fichaVerUsuario > :first-child > div > div div input[type=text],
+#fichaVerUsuario > :first-child > div > div div input[type=number],
+#fichaVerUsuario > :first-child > div > div div input[type=date],
+#fichaVerUsuario > :first-child > div > div div select,
+#fichaVerUsuario > :first-child > div > div div textarea {
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaVerUsuario > :first-child > div > div div input[type=text][readonly],
+#fichaVerUsuario > :first-child > div > div div input[type=date][readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaVerUsuario > :first-child > div > div div textarea {
+  resize: vertical;
+}
+#fichaVerUsuario > :first-child > div > div div input[type=text]:focus,
+#fichaVerUsuario > :first-child > div > div div input[type=number]:focus,
+#fichaVerUsuario > :first-child > div > div div input[type=date]:focus,
+#fichaVerUsuario > :first-child > div > div div select:focus,
+#fichaVerUsuario > :first-child > div > div div textarea:focus {
+  border-color: #333333;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .field-group {
+    flex-direction: column;
+  }
+  .field {
+    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+  }
+}
+#fichaCrearUsuario > div {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-left: 5px solid #333333;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#fichaCrearUsuario > div h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+#fichaCrearUsuario > div div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#fichaCrearUsuario > div div div {
+  width: 50%;
+}
+#fichaCrearUsuario > div div form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 50%;
+}
+#fichaCrearUsuario > div div form div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#fichaCrearUsuario > div div form div label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+  width: 50%;
+}
+#fichaCrearUsuario > div div form div input[type=text],
+#fichaCrearUsuario > div div form div input[type=password],
+#fichaCrearUsuario > div div form div input[type=email],
+#fichaCrearUsuario > div div form div input[type=tel],
+#fichaCrearUsuario > div div form div select {
+  width: 40%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaCrearUsuario > div div form div input[type=text]:focus,
+#fichaCrearUsuario > div div form div input[type=password]:focus,
+#fichaCrearUsuario > div div form div input[type=email]:focus,
+#fichaCrearUsuario > div div form div input[type=tel]:focus,
+#fichaCrearUsuario > div div form div select:focus {
+  border-color: #333333;
+  outline: none;
+}
+#fichaCrearUsuario > div div form div input[type=text][readonly],
+#fichaCrearUsuario > div div form div input[type=password][readonly],
+#fichaCrearUsuario > div div form div input[type=email][readonly],
+#fichaCrearUsuario > div div form div input[type=tel][readonly],
+#fichaCrearUsuario > div div form div select[readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaCrearUsuario > div div form div input[type=submit] {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#fichaCrearUsuario > div div form div input[type=submit]:hover {
+  background-color: #333333;
+}
+@media (max-width: 768px) {
+  #fichaCrearUsuario > div {
+    width: 100%;
+  }
+  #fichaCrearUsuario > div form {
+    flex-direction: column;
+  }
+  #fichaCrearUsuario > div form div {
+    width: 100%;
+  }
+}
+
+#fichaEditarUsuario > div {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+#fichaEditarUsuario > div > div {
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-left: #333333 solid 5px;
+  border-radius: 5px;
+}
+#fichaEditarUsuario > div > div > h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+#fichaEditarUsuario > div > div form {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+#fichaEditarUsuario > div > div form > div:first-child {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fichaEditarUsuario > div > div form > div:first-child img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 10px;
+}
+#fichaEditarUsuario > div > div form > div:last-child {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#fichaEditarUsuario > div > div form > div:last-child div {
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#fichaEditarUsuario > div > div form > div:last-child div label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+#fichaEditarUsuario > div > div form > div:last-child div select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+}
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text] {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text]:focus {
+  border-color: #333333;
+  outline: none;
+}
+#fichaEditarUsuario > div > div form > div:last-child div input[type=text][readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit] {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit]:hover {
+  background-color: #333333;
+}
+
+@media (max-width: 768px) {
+  #fichaEditarUsuario > div {
+    width: 100%;
+  }
+  #fichaEditarUsuario > div form {
+    flex-direction: column;
+  }
+  #fichaEditarUsuario > div form > div {
+    width: 100%;
+  }
+}
+#vocabularios {
+  height: 70vh;
+}
+#vocabularios > :first-child {
+  display: flex;
+  width: 100vw;
+  height: 12vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#vocabularios > :last-child {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 6vh;
+}
+#vocabularios > :last-child div {
+  display: block;
+}
+#vocabularios > :last-child div a > img {
+  width: 15vw;
+  height: auto;
+  transition: scale 0.3s;
+}
+#vocabularios > :last-child div a > img:hover {
+  scale: 1.05;
+}
+#vocabularios > :last-child div p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.4vh;
+}
+
+#campsLlista {
+  margin-top: 7vh;
+  margin-bottom: 12.9vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#campsLlista a {
+  display: block; /* Cambia el comportamiento del enlace a bloque */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  width: 35vw; /* Asegúrate de que el enlace ocupe el mismo ancho que el div */
+  margin-left: 2.2vw; /* Asegúrate de que el margen esté aquí si es necesario */
+  margin-right: 2.2vw;
+  margin-bottom: 3vh; /* Margen inferior aquí para el enlace */
+}
+#campsLlista a div {
+  background-color: #333333;
+  padding: 1.3vw;
+  border-radius: 10px;
+}
+#campsLlista a div p {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+#fichaUbicaciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2vh;
+  padding-left: 5%;
+}
+#fichaUbicaciones > :first-child {
+  position: sticky;
+  top: 10vh;
+  background-color: white;
+  z-index: 1;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /*
+  border-radius: 10px;
+  width: 20vw;
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
+  margin-bottom: 1.7vh;
+  display: flex;*/
+}
+#fichaUbicaciones > :first-child > h2 {
+  font-size: 1.5rem;
+  color: #333333;
+}
+#fichaUbicaciones > :first-child form {
+  margin: 0;
+  margin-left: 3vh;
+}
+#fichaUbicaciones > :first-child form .btn {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#fichaUbicaciones > :first-child form .btn:hover {
+  background-color: black;
+  color: white;
+}
+#fichaUbicaciones > :first-child form .btn:active {
+  transform: translateY(1px);
+}
+#fichaUbicaciones > :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv {
+  border-left: 1px solid black;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1%;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv input {
+  text-align: center;
+  border-style: none;
+  padding: 0.5vw;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv input:focus {
+  outline: none;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv button {
+  height: 100%;
+  padding: 0.5vw;
+  background-color: transparent;
+  border-style: none;
+  font-size: 17px;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv button:hover {
+  cursor: pointer;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv button:active {
+  scale: 0.9;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv img {
+  width: 1vw;
+}
+#fichaUbicaciones > :last-child {
+  display: flex;
+  gap: 10px;
+}
+#fichaUbicaciones > :last-child form {
+  margin: 0;
+  margin-bottom: 2vw;
+  margin-top: 1vw;
+}
+#fichaUbicaciones > :last-child .btn {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#fichaUbicaciones > :last-child .btn:hover {
+  background-color: #e0e0e0;
+}
+#fichaUbicaciones > :last-child .btn:active {
+  transform: translateY(1px);
+}
+
+#fichaVocabulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2vh;
+}
+#fichaVocabulario > :first-child {
+  background-color: #333333;
+  border-radius: 10px;
+  width: 20vw;
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
+  margin-bottom: 1.7vh;
+}
+#fichaVocabulario > :first-child > h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+#fichaVocabulario > :nth-child(2) {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#fichaVocabulario > :nth-child(2) form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+#fichaVocabulario > :nth-child(2) div {
+  width: 100%;
+  height: 5.5vh;
+  border: 2px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.7vh;
+}
+#fichaVocabulario > :nth-child(2) div > :first-child {
+  padding-bottom: 0.4vh;
+  width: 70%;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+#fichaVocabulario > :nth-child(2) div > :first-child:focus {
+  outline: none;
+}
+#fichaVocabulario > :nth-child(2) div > :last-child {
+  width: 10%;
+  position: absolute;
+  left: 0;
+}
+#fichaVocabulario p {
+  display: none;
+}
+#fichaVocabulario > :nth-child(3) {
+  width: 20vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#fichaVocabulario > :nth-child(3) input {
+  border: 2px solid black;
+  border-right: none;
+  padding: 0.5vw;
+  text-align: center;
+  width: 69%;
+}
+#fichaVocabulario > :nth-child(3) button {
+  color: black;
+  border: 2px solid black;
+  padding: 0.5vw 2vw 0.5vw 2vw;
+}
+#fichaVocabulario > :nth-child(3) button:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+}
+#fichaVocabulario > :last-child {
+  margin-top: 2vh;
+}
+#fichaVocabulario > :last-child button {
+  background-color: black;
+  color: white;
+  border-radius: 12px;
+  padding: 0.5vw 2vw 0.5vw 2vw;
+}
+#fichaVocabulario > :last-child button:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+}
+
+@keyframes aumentarTamano {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.04);
+  }
+}
+.Exposicion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
+}
+.Exposicion > div {
+  width: 80%;
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-radius: 5px;
+  border-left: #333333 solid 5px;
+}
+.Exposicion > div > form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5%;
+}
+.Exposicion > div > form > div {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin-bottom: 2.5%;
+}
+.Exposicion > div > form > div input, .Exposicion > div > form > div select {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.Exposicion > div > form > div label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+.Exposicion > div > form > div input[type=submit] {
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #666666;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.Exposicion > div > form > div input[type=submit]:hover {
+  background-color: #333333;
+}
+.Exposicion > div > form > :last-child > input[type=submit] {
+  margin-top: 4.5%;
+}
+.Exposicion > :last-child > :first-child {
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: center;
+}
+.Exposicion > :last-child > :last-child {
+  display: flex;
+  justify-content: center;
+}
+.Exposicion > :last-child > :last-child table {
+  width: 92%;
+  border-collapse: separate;
+  border-spacing: 0 0.5vh;
+}
+.Exposicion > :last-child > :last-child table tr {
+  font-size: large;
+}
+.Exposicion > :last-child > :last-child table tr td, .Exposicion > :last-child > :last-child table tr th {
+  padding: 1.3vh;
+  text-align: center;
+  width: 1.5vw;
+}
+.Exposicion > :last-child > :last-child table tr td > a button, .Exposicion > :last-child > :last-child table tr th > a button {
+  font-weight: bold;
+  padding: 2%;
+  color: #333333;
+  background-color: #EFEFEF;
+}
+.Exposicion > :last-child > :last-child table tr td > a button:hover, .Exposicion > :last-child > :last-child table tr th > a button:hover {
+  cursor: pointer;
+}
+.Exposicion > :last-child > :last-child table tr td button, .Exposicion > :last-child > :last-child table tr th button {
+  font-weight: bold;
+  padding: 2%;
+  color: #333333;
+  background-color: #EFEFEF;
+  transition: transform 0.3s ease;
+}
+.Exposicion > :last-child > :last-child table tr td button:hover, .Exposicion > :last-child > :last-child table tr th button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.Exposicion > :last-child > :last-child table tr td > img, .Exposicion > :last-child > :last-child table tr th > img {
+  width: 30%;
+}
+.Exposicion > :last-child > :last-child table tr td > a > img, .Exposicion > :last-child > :last-child table tr th > a > img {
+  width: 2vw;
+  height: auto;
+  margin-right: 0.1vw;
+}
+.Exposicion > :last-child > :last-child table tr:first-child {
+  background-color: #333333;
+  color: white;
+}
+.Exposicion > :last-child > :last-child table tr:nth-child(even):not(:first-child) {
+  background-color: #BFBFBF;
+}
+.Exposicion > :last-child > :last-child table tr:nth-child(odd):not(:first-child) {
+  background-color: #EFEFEF;
+}
+
+.relacion > :first-child {
+  color: red;
+  text-align: center;
+}
+.relacion > :last-child {
+  display: flex;
+  justify-content: center;
+}
+.relacion > :last-child form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.relacion > :last-child form table {
+  width: 92%;
+  border-collapse: separate;
+  border-spacing: 0 0.5vh;
+}
+.relacion > :last-child form table tr {
+  font-size: large;
+}
+.relacion > :last-child form table tr td, .relacion > :last-child form table tr th {
+  padding: 1.3vh;
+  text-align: center;
+  width: 1.5vw;
+}
+.relacion > :last-child form table tr td > a button, .relacion > :last-child form table tr th > a button {
+  font-weight: bold;
+  padding: 2%;
+  color: #333333;
+  background-color: #EFEFEF;
+}
+.relacion > :last-child form table tr td > a button:hover, .relacion > :last-child form table tr th > a button:hover {
+  cursor: pointer;
+}
+.relacion > :last-child form table tr td > img, .relacion > :last-child form table tr th > img {
+  width: 30%;
+}
+.relacion > :last-child form table tr td > a > img, .relacion > :last-child form table tr th > a > img {
+  width: 2vw;
+  height: auto;
+  margin-right: 0.1vw;
+}
+.relacion > :last-child form table tr:first-child {
+  background-color: #333333;
+  color: white;
+}
+.relacion > :last-child form table tr:nth-child(even):not(:first-child) {
+  background-color: #BFBFBF;
+}
+.relacion > :last-child form table tr:nth-child(odd):not(:first-child) {
+  background-color: #EFEFEF;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popup-overlay .popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .popup-overlay .popup-content {
+    scale: 0;
+  }
+}
+.popup-overlay .popup-content .popup-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.popup-overlay .popup-content .popup-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1;
+  color: #666;
+  transition: color 0.2s;
+}
+.popup-overlay .popup-content .popup-header .close-btn:hover {
+  color: #000;
+}
+.popup-overlay .popup-content .popup-header .close-btn:active {
+  scale: 0.9;
+}
+.popup-overlay .popup-content .popup-body {
+  padding-top: 5px;
+}
+.popup-overlay .popup-content .popup-body h3 {
+  padding-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group .filterItemGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group select {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #333333;
+  color: white;
+}
+.form-group select:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group select:hover {
+  cursor: pointer;
+}
+.form-group input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group .plusInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+.form-group .btn-add-field {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #333333;
+  color: white;
+}
+.form-group .btn-add-field:hover {
+  background-color: rgb(38.25, 38.25, 38.25);
+  transform: translateY(-1px);
+}
+.form-group .btn-add-field:active {
+  scale: 0.95;
+}
+.form-group #and-filters-inputs, .form-group #or-filters-inputs {
+  padding: 10px 0 0 10px;
+}
+.form-group .input-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+.trashIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.trashIcon:active {
+  scale: 0.9;
+}
+
+.minusIcon {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.minusIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.minusIcon:active {
+  scale: 0.9;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+.plusIcon:hover {
+  transform: translateY(-1px);
+}
+.plusIcon:active {
+  scale: 0.9;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.button-group button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.button-group button:hover {
+  transform: translateY(-1px);
+}
+.button-group button:active {
+  transform: translateY(0);
+  scale: 0.99;
+}
+.button-group .btn-reset {
+  background-color: #f0f0f0;
+}
+.button-group .btn-reset:hover {
+  background-color: rgb(227.25, 227.25, 227.25);
+}
+.button-group .btn-apply {
+  background-color: #333333;
+  color: white;
+}
+.button-group .btn-apply:hover {
+  background-color: rgb(38.25, 38.25, 38.25);
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  margin-top: auto;
+  width: 100%;
+  height: 20vh;
+  background-color: #333333;
+  display: flex;
+}
+footer .div1 {
+  width: 50%;
+  height: 100%;
+}
+footer .div1 img {
+  max-width: 50%;
+  display: block;
+  margin-left: 60px;
+  margin-top: 10px;
+}
+footer .div1 :first-child {
+  width: 15vw;
+  height: auto;
+  margin-left: 50px;
+}
+footer .div1 :last-child {
+  width: 20vw;
+  height: auto;
+}
+footer .div2 {
+  width: 50%;
+  height: 100%;
+  color: white;
+}
+footer .div2 .ubicacion {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .ubicacion img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .ubicacion a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .llamada {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .llamada img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .llamada a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+footer .div2 .web {
+  display: flex;
+  margin-left: 0;
+  height: 33%;
+  align-items: center;
+}
+footer .div2 .web img {
+  width: auto;
+  height: auto;
+  max-width: 3vw;
+  max-height: 3vh;
+}
+footer .div2 .web a {
+  margin: auto;
+  margin-left: 1vw;
+  font-weight: normal;
+  font-size: 120%;
+}
+
+#popupEliminar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+#popupEliminar > div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2vh;
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#popupEliminar > div > img {
+  width: 30%;
+}
+#popupEliminar > div > h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+#popupEliminar > div > :last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+#popupEliminar > div > :last-child button {
+  background-color: #F8F9FA;
+  color: #333333;
+  padding: 0.5vw;
+  font-size: 1.2em;
+}
+#popupEliminar > div > :last-child button:hover {
+  background-color: #333333;
+  color: #F8F9FA;
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+}
+
+@keyframes aumentarTamano {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popup-overlay .popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .popup-overlay .popup-content {
+    scale: 0;
+  }
+}
+.popup-overlay .popup-content .popup-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.popup-overlay .popup-content .popup-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1;
+  color: #666;
+  transition: color 0.2s;
+}
+.popup-overlay .popup-content .popup-header .close-btn:hover {
+  color: #000;
+}
+.popup-overlay .popup-content .popup-header .close-btn:active {
+  scale: 0.9;
+}
+.popup-overlay .popup-content .popup-body {
+  padding-top: 5px;
+}
+.popup-overlay .popup-content .popup-body h3 {
+  padding-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group .filterItemGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group select {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #333333;
+  color: white;
+}
+.form-group select:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group select:hover {
+  cursor: pointer;
+}
+.form-group input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
+}
+.form-group .plusInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+.form-group .btn-add-field {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #333333;
+  color: white;
+}
+.form-group .btn-add-field:hover {
+  background-color: rgb(38.25, 38.25, 38.25);
+  transform: translateY(-1px);
+}
+.form-group .btn-add-field:active {
+  scale: 0.95;
+}
+.form-group #and-filters-inputs, .form-group #or-filters-inputs {
+  padding: 10px 0 0 10px;
+}
+.form-group .input-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+.trashIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.trashIcon:active {
+  scale: 0.9;
+}
+
+.minusIcon {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.minusIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.minusIcon:active {
+  scale: 0.9;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+.plusIcon:hover {
+  transform: translateY(-1px);
+}
+.plusIcon:active {
+  scale: 0.9;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.button-group button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.button-group button:hover {
+  transform: translateY(-1px);
+}
+.button-group button:active {
+  transform: translateY(0);
+  scale: 0.99;
+}
+.button-group .btn-reset {
+  background-color: #f0f0f0;
+}
+.button-group .btn-reset:hover {
+  background-color: rgb(227.25, 227.25, 227.25);
+}
+.button-group .btn-apply {
+  background-color: #333333;
+  color: white;
+}
+.button-group .btn-apply:hover {
+  background-color: rgb(38.25, 38.25, 38.25);
+}
+
+.popupEliminar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 300px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.popupEliminar img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 1vh;
+}
+.popupEliminar button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 100px;
+  margin-top: 2vh;
+}
+.popupEliminar .btnEliminarRegistro {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  margin-right: 1vw;
+}
+.popupEliminar .btnEliminarRegistro:hover {
+  background-color: black;
+  color: white;
+}
+.popupEliminar .btnCancelarEliminacion {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  margin-left: 1vw;
+}
+.popupEliminar .btnCancelarEliminacion:hover {
+  background-color: black;
+  color: white;
+}
+
+#fichaCrearUbicaciones {
+  max-width: 500px;
+  padding: 20px;
+}
+#fichaCrearUbicaciones form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#fichaCrearUbicaciones form label {
+  font-weight: 500;
+  color: #333;
+}
+#fichaCrearUbicaciones form input[type=text],
+#fichaCrearUbicaciones form textarea {
+  padding: 8px 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 14px;
+}
+#fichaCrearUbicaciones form input[type=text]:focus,
+#fichaCrearUbicaciones form textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 3px rgba(74, 144, 226, 0.3);
+}
+#fichaCrearUbicaciones form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+#fichaCrearUbicaciones form input[type=submit] {
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start;
+}
+#fichaCrearUbicaciones form input[type=submit]:hover {
+  background-color: black;
+  color: white;
+}
+#fichaCrearUbicaciones form input[type=submit]:active {
+  transform: translateY(1px);
+}
+
+#fichaCopia > div {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+#fichaCopia > div button {
+  background-color: #EFEFEF;
+  padding: 8px;
+}
+#fichaCopia > div button:hover {
+  background-color: #BFBFBF;
+  cursor: pointer;
+}
+#fichaCopia > div button.pulsado {
+  background-color: #333333;
+  color: white;
+  transform: scale(0.95);
+}
+#fichaCopia > form > :first-child {
+  width: 80%;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: none;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-right: 20px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > span {
+  margin-right: auto;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > img {
+  width: 100%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > div:has(span) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > div:has(span) > span {
+  color: #BFBFBF;
+}
+#fichaCopia > form > :first-child > :first-child > div > :first-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
+  width: 15%;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
+  color: #BFBFBF;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
+  width: 100%;
+  text-align: center;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+  padding-top: 15px;
+  gap: 15px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a {
+  border-radius: 5px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input {
+  width: 3vw;
+  padding: 10px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a {
+  width: 3vw;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a img {
+  width: 100%;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a button {
+  padding: 10px;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
+  width: auto;
+  margin-left: auto;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a > button {
+  width: 100%;
+  height: 100%;
+  background-color: #333333;
+  font-size: 16px;
+  color: white;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a > button:hover {
+  background-color: #666666;
+  cursor: pointer;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
+  width: 25%;
+  font-size: 17px;
+  background-color: #333333;
+  color: white;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
+  background-color: #333333;
+  color: white;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
+  background-color: #4b4b4b;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=image], #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
+  background-color: #666666;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
+  background-color: #7c7c7c;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
+  background-color: #E74C3C;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
+  background-color: #EE6655;
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:hover, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input:hover {
+  cursor: pointer;
+  animation: aumentarTamano 0.2s linear 1 running forwards;
+  transform: translateY(-1px);
+}
+#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:active, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input:active {
+  transform: translateY(0);
+  scale: 0.97;
+}
+#fichaCopia > form > :first-child > div {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-left: 5px solid #333333;
+  background-color: #F4F4F4;
+  border-radius: 5px;
+}
+#fichaCopia > form > :first-child > div > h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#fichaCopia > form > :first-child > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+#fichaCopia > form > :first-child > div > div div {
+  flex: 1 1 calc(50% - 15px); /* Dos columnas */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > :first-child {
+  width: 15%;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > :nth-child(2) {
+  width: 30%;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > :nth-child(3) {
+  width: 15%;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) input {
+  margin-right: 10px;
+  text-align: center;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > img {
+  width: 20px;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > img:hover {
+  cursor: pointer;
+}
+#fichaCopia > form > :first-child > div > div div > div:has(img) > p {
+  color: red;
+}
+#fichaCopia > form > :first-child > div > div div > label, #fichaCopia > form > :first-child > div > div div span {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+#fichaCopia > form > :first-child > div > div div input[type=text],
+#fichaCopia > form > :first-child > div > div div input[type=number],
+#fichaCopia > form > :first-child > div > div div input[type=date],
+#fichaCopia > form > :first-child > div > div div select,
+#fichaCopia > form > :first-child > div > div div textarea {
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaCopia > form > :first-child > div > div div input[type=text][readonly],
+#fichaCopia > form > :first-child > div > div div input[type=date][readonly] {
+  background-color: #F4F4F4;
+  color: #BFBFBF;
+}
+#fichaCopia > form > :first-child > div > div div textarea {
+  resize: vertical;
+}
+#fichaCopia > form > :first-child > div > div div input[type=text]:focus,
+#fichaCopia > form > :first-child > div > div div input[type=number]:focus,
+#fichaCopia > form > :first-child > div > div div input[type=date]:focus,
+#fichaCopia > form > :first-child > div > div div select:focus,
+#fichaCopia > form > :first-child > div > div div textarea:focus {
+  border-color: #333333;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .field-group {
+    flex-direction: column;
+  }
+  .field {
+    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+  }
+}
+@keyframes aumentarTamano {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hace que el body ocupe la altura completa de la ventana */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#filtro {
+  cursor: pointer;
+}
+
+#up {
+  background-color: #333333;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: solid 1px white;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+@starting-style {
+  #up {
+    opacity: 0;
+  }
+}
+#up img {
+  width: 40px;
+  height: 40px;
+}
+#up:active {
+  scale: 0.95;
+}
+
+#fondoPopUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+#popUpEliminar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombras más pronunciadas */
+  border-radius: 8px; /* Bordes redondeados */
+  width: auto;
+  max-width: 400px; /* Limitar el ancho del popup */
+  display: none;
+  text-align: center; /* Centra el contenido del popup */
+  border: 1px solid black;
+}
+#popUpEliminar p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+#popUpEliminar img {
+  width: 20%;
+  height: auto;
+  margin-bottom: 1vh;
+}
+#popUpEliminar button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+#popUpEliminar button:hover {
+  background-color: black;
+  color: white;
+}
+#popUpEliminar button.confirmar {
+  margin-right: 1vw;
+}
+#popUpEliminar button.cancelar {
+  margin-left: 1vw;
+}
+
+#popUpUbicaciones {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones img {
+  width: 3vw;
+  margin-bottom: 1vh;
+}
+
+/*# sourceMappingURL=main.css.map */
