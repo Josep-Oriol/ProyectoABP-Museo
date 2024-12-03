@@ -25,8 +25,12 @@ function mostrarDatos(dato, filters){
   .then(response => response.json())
   .then(data => {
       console.log(data.condicionales);
+      console.log(data.condicionales2);
       
       exposiciones = data.texto
+
+      let popupImagen = document.getElementById('popupImagen');
+      let vistaImagen = document.getElementById('vistaImagenAmpliada');
       const tbody = document.querySelector('tbody');
       const primer_tr = document.querySelector('tr')
       tbody.innerHTML = primer_tr.outerHTML
@@ -37,16 +41,21 @@ function mostrarDatos(dato, filters){
               let td = document.createElement('td')
 
               if(exposicion[dato] && typeof exposicion[dato] === 'string' && exposicion[dato].includes("images/")){
-                  let img = document.createElement('img')
-                  img.src = exposicion[dato]
-                  img.alt = ""
+                  let img = document.createElement('img');
+                  img.src = exposicion[dato];
+                  img.alt = 'fotografia';
+                  img.className += "fotografiaObjeto";
+                  img.addEventListener('click', function() {
+                    popupImagen.style.display = 'block';
+                    let imagenAmpliada = vistaImagen.children[0]; //La imagen es el primer hijo de vistaImagenAmpliada
+                    imagenAmpliada.src = img.src;
+                  })
                   td.appendChild(img)
               }
               else{
                   td.textContent = exposicion[dato]
               }
-
-              tr.appendChild(td)
+              tr.appendChild(td);
           }
           td_botones = document.createElement('td')
           tr.appendChild(td_botones)
@@ -79,7 +88,7 @@ function mostrarDatos(dato, filters){
           td_botones.appendChild(link3)
 
           tr.appendChild(td_botones)
-          tbody.appendChild(tr)
+          tbody.appendChild(tr);
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
@@ -135,18 +144,20 @@ function agregarFiltro(section) {
     const selectedValue = selectElement.value;
     const selectedText = selectElement.options[selectElement.selectedIndex].text;
     const filtersContainer = document.getElementById(`${section}-filters-inputs`);
+    let exist = false;
 
     // Verificar si ya existe un campo con el mismo label
     const existingFields = filtersContainer.querySelectorAll("label");
     for (let field of existingFields) {
         if (field.textContent === selectedText) {
             alert(`Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`);
-        }
+            exist = true;
+          }
     }
 
     // Crear el nuevo input
     const fieldConfig = dic.get(selectedValue);
-    if (fieldConfig) {
+    if (fieldConfig && !exist) {
         const div = document.createElement("div");
         div.className = "filter-item";
 
@@ -375,5 +386,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await obtenerDatos(controller);
   cargarSelect();
-  inicializarEventos();   
+  inicializarEventos();
+  mostrarDatos("", { and: {}, or: {} });
 });

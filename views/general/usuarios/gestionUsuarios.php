@@ -1,6 +1,6 @@
 <?php
     if(isset($_SESSION['Rol'])){ ?>
-<div id="general">
+<section id="general">
     <div>
         <div>
             <h1>Usuaris</h1>
@@ -29,8 +29,8 @@
     <div>
         <table>
             <tr>
-                <td>Foto de perfil</td>
                 <td>ID</td>
+                <td>Foto de perfil</td>
                 <td>Usuari</td>
                 <td>Nom</td>
                 <td>Cognoms</td>
@@ -43,45 +43,46 @@
                 </td>
             </tr>
         <?php
-    foreach($usuarios as $indice => $usuario) {
-        $id = $usuario['id_usuario'];
-        echo "<tr id=\"$id\">
-            <td><img src='{$usuario['foto_usuario']}' alt='foto usuario {$usuario['usuario']}' class='fotografiaObjeto'></td>
-            <td>{$usuario['id_usuario']}</td>
-            <td>{$usuario['usuario']}</td>
-            <td>{$usuario['nombre']}</td>
-            <td>{$usuario['apellidos']}</td>
-            <td>{$usuario['correo_electronico']}</td>
-            <td>{$usuario['telefono']}</td>
-            <td>{$usuario['rol']}</td>
-            <td>{$usuario['estado']}</td>
-            <td>";
-            if ($_SESSION['Rol'] == 'Administració') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
-                    <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar usuari"><img src="images/borrarv2.png" alt=""></a>
-                    
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Tècnic') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Lector') {
-                ?>
-                    <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
-                <?php
-            }
-            echo "</td>";
-        echo "</tr>";
-    }
-?>
+        /*
+        foreach($usuarios as $indice => $usuario) {
+            $id = $usuario['id_usuario'];
+            echo "<tr id=\"$id\">
+                <td><img src='{$usuario['foto_usuario']}' alt='foto usuario {$usuario['usuario']}' class='fotografiaObjeto'></td>
+                <td>{$usuario['id_usuario']}</td>
+                <td>{$usuario['usuario']}</td>
+                <td>{$usuario['nombre']}</td>
+                <td>{$usuario['apellidos']}</td>
+                <td>{$usuario['correo_electronico']}</td>
+                <td>{$usuario['telefono']}</td>
+                <td>{$usuario['rol']}</td>
+                <td>{$usuario['estado']}</td>
+                <td>";
+                if ($_SESSION['Rol'] == 'Administració') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
+                        <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar usuari"><img src="images/borrarv2.png" alt=""></a>
+                        
+                    <?php
+                }
+                else if ($_SESSION['Rol'] == 'Tècnic') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                        <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $id;?>" title="Editar usuari"><img src="images/editarv2.png" alt=""></a>
+                    <?php
+                }
+                else if ($_SESSION['Rol'] == 'Lector') {
+                    ?>
+                        <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                    <?php
+                }
+                echo "</td>";
+            echo "</tr>";
+        }*/
+        ?>
         </table>
     </div>
-</div>
+</section>
     
    <?php }
     else{

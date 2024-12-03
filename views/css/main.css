@@ -280,6 +280,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #general > :last-child {
   width: 95%;
+  min-height: 100vh;
 }
 #general > :last-child table {
   width: 100%;
