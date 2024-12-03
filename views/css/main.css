@@ -190,7 +190,7 @@ header > nav > div > div a, header > div > div a {
   padding: 10px;
   display: block;
   transition: color 0.3s;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #333333;
 }
 header > nav > div > div a:hover, header > div > div a:hover {
   background-color: #CFD1D4;
@@ -1168,11 +1168,11 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-bottom: 1.7vh;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child {
-  height: 100%;
-  width: 100%;
+  padding-bottom: 0.4vh;
+  width: 70%;
   border: none;
+  border-bottom: 1px solid black;
   text-align: center;
-  padding: 0.5vw;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child:focus {
   outline: none;
@@ -1180,7 +1180,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaVocabulario > :nth-child(2) div > :last-child {
   width: 10%;
   position: absolute;
-  right: 0;
+  left: 0;
 }
 #fichaVocabulario p {
   display: none;

@@ -67,7 +67,7 @@ class ObrasController{
                 }
                 $exitoso = $modelobras->editarObra($_POST, $id);
                 if ($exitoso) {
-                    //echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
                 }
             }
             else {

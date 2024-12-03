@@ -103,7 +103,7 @@ header{
             padding: 10px;
             display: block;
             transition: color 0.3s;
-            border-bottom: 3px solid black;
+            border-bottom: 3px solid $color_oscuro;
             
             &:hover{
                 background-color: $color_claro;
