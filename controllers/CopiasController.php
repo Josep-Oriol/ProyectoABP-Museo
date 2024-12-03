@@ -28,4 +28,36 @@ class CopiasController{
         }
         require_once "views/general/components/footer.html";
     }
+
+    public function mostrarCopia() {
+        require_once "views/general/components/header.php";
+        if ($_GET['id']) {
+            require_once "models/Copias.php";
+            $modelocopia = new Copias();
+            $id = $_GET['id'];
+            $copia = $modelocopia->mostrarCopia($id);
+
+            require_once "views/general/copias/fichaCopia.php";
+        }
+        require_once "views/general/components/footer.html";
+    }
+
+    public function editar() {
+        require_once "views/general/components/header.php";
+        if ($_GET['id']) {
+            $id = $_GET['id'];
+            require_once "models/Copias.php";
+            $modelocopias = new Copias();
+            $datos = $modelocopias->mostrarCopia($id);
+            require_once "views/general/copias/fichaEditarCopia.php";
+            if ($_POST) {
+                $exitoso = $modelocopias->editarCopia($_POST, $id);
+                if ($exitoso) {
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Copias&action=mostrarCopias'/>";
+                }
+            }
+        }
+        
+        require_once "views/general/components/footer.html";
+    }
 }

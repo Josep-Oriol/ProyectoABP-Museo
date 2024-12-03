@@ -52,21 +52,21 @@
             <td>";
             if ($_SESSION['Rol'] == 'Administració') {
                 ?>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>" title="Editar obra"><img src="images/editarv2.png" alt=""></a>
-                    <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar obra"><img src="images/borrarv2.png" alt=""></a>
+                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
+                    <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar Copia"><img src="images/borrarv2.png" alt=""></a>
             
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {
                 ?>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Obras&action=editar&id=<?php echo $id;?>" title="Editar obra"><img src="images/editarv2.png" alt=""></a>
+                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Lector') {
                 ?>
-                    <a href="index.php?controller=Obras&action=mostrarFicha&id=<?php echo $id;?>" title="Veure ficha"><img src="images/fichav2.png" alt=""></a>
+                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
                 <?php
             }
             echo "</td>";

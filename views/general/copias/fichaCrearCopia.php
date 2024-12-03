@@ -13,15 +13,15 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="creador">Creador</label>
-                            <input type="text" id="creador" name="creador" readonly value='<?php $_SESSION['Usuario']?>'>
+                            <input type="text" id="creador" name="creador" readonly value='<?php echo $_SESSION['Usuario']?>'>
                         </div>
                         <div>
                             <label for="desc">Descripció</label>
                             <input type="textarea" id="desc" name="desc">
                         </div>
                         <div>
-                            <label for="datacion">Datació</label>
-                            <input type="date" id="datacion" name="datacion" required>
+                            <label for="fecha">Datació</label>
+                            <input type="text" id="fecha" name="fecha" value='<?php echo date("Y-m-d"); ?>' readonly>
                         </div>
                         <div>
                             <input type="submit" value="Crear" id="btnCrearCopia">
