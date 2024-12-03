@@ -26,71 +26,70 @@ function mostrarDatos(dato, filters) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.condicionales);
+      console.log(data.condicionales2);
+      
+      exposiciones = data.texto
 
-      exposiciones = data.texto;
-      const tbody = document.querySelector("tbody");
-      const primer_tr = document.querySelector("tr");
-      tbody.innerHTML = primer_tr.outerHTML;
+      let popupImagen = document.getElementById('popupImagen');
+      let vistaImagen = document.getElementById('vistaImagenAmpliada');
+      const tbody = document.querySelector('tbody');
+      const primer_tr = document.querySelector('tr')
+      tbody.innerHTML = primer_tr.outerHTML
+      
+      exposiciones.forEach(exposicion => {
+          let tr = document.createElement('tr')
+          for(let dato in exposicion){
+              let td = document.createElement('td')
 
-      exposiciones.forEach((exposicion) => {
-        let tr = document.createElement("tr");
-        for (let dato in exposicion) {
-          let td = document.createElement("td");
-
-          if (
-            exposicion[dato] &&
-            typeof exposicion[dato] === "string" &&
-            exposicion[dato].includes("images/")
-          ) {
-            let img = document.createElement("img");
-            img.src = exposicion[dato];
-            img.alt = "";
-            td.appendChild(img);
-          } else {
-            td.textContent = exposicion[dato];
+              if(exposicion[dato] && typeof exposicion[dato] === 'string' && exposicion[dato].includes("images/")){
+                  let img = document.createElement('img');
+                  img.src = exposicion[dato];
+                  img.alt = 'fotografia';
+                  img.className += "fotografiaObjeto";
+                  img.addEventListener('click', function() {
+                    popupImagen.style.display = 'block';
+                    let imagenAmpliada = vistaImagen.children[0]; //La imagen es el primer hijo de vistaImagenAmpliada
+                    imagenAmpliada.src = img.src;
+                  })
+                  td.appendChild(img)
+              }
+              else{
+                  td.textContent = exposicion[dato]
+              }
+              tr.appendChild(td);
           }
+          td_botones = document.createElement('td')
+          tr.appendChild(td_botones)
 
-          tr.appendChild(td);
-        }
-        td_botones = document.createElement("td");
-        tr.appendChild(td_botones);
+          link1 = document.createElement('a')
+          img1 = document.createElement('img')
+          img1.src = 'images/editarv2.png'
+          link1.appendChild(img1)
+          
+          link2 = document.createElement('a')
+          img2 = document.createElement('img')
+          img2.src = 'images/fichav2.png'
+          link2.appendChild(img2)
 
-        link1 = document.createElement("a");
-        img1 = document.createElement("img");
-        img1.src = "images/editarv2.png";
-        link1.appendChild(img1);
+          link3 = document.createElement('a')
+          img3 = document.createElement('img')
+          img3.src = 'images/borrarv2.png'
+          link3.appendChild(img3)
 
-        link2 = document.createElement("a");
-        img2 = document.createElement("img");
-        img2.src = "images/fichav2.png";
-        link2.appendChild(img2);
+          id = pagina === "obras" ? exposicion.numero_registro : pagina === "exposiciones" ? exposicion.id_exposicion : pagina === "usuarios" ? exposicion.id_usuario : null
 
-        link3 = document.createElement("a");
-        img3 = document.createElement("img");
-        img3.src = "images/borrarv2.png";
-        link3.appendChild(img3);
+          tr.setAttribute('id', id);
+          link1.href = data.url[0] + id
+          link2.href = data.url[1] + id
+          link3.classList.add('eliminarRegistro');
+          link3.setAttribute('id', id);
 
-        id =
-          pagina === "obras"
-            ? exposicion.numero_registro
-            : pagina === "exposiciones"
-            ? exposicion.id_exposicion
-            : pagina === "usuarios"
-            ? exposicion.id_usuario
-            : null;
+          td_botones.appendChild(link2)
+          td_botones.appendChild(link1)
+          td_botones.appendChild(link3)
 
-        tr.setAttribute("id", id);
-        link1.href = data.url[0] + id;
-        link2.href = data.url[1] + id;
-        link3.classList.add("eliminarRegistro");
-        link3.setAttribute("id", id);
-
-        td_botones.appendChild(link2);
-        td_botones.appendChild(link1);
-        td_botones.appendChild(link3);
-
-        tr.appendChild(td_botones);
-        tbody.appendChild(tr);
+          tr.appendChild(td_botones)
+          tbody.appendChild(tr);
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
@@ -141,26 +140,26 @@ function cargarSelect() {
 
 // Agregar un filtro
 function agregarFiltro(section) {
-  const selectElement = document.getElementById(`${section}-select-value`);
-  const selectedValue = selectElement.value;
-  const selectedText = selectElement.options[selectElement.selectedIndex].text;
-  const filtersContainer = document.getElementById(`${section}-filters-inputs`);
+    const selectElement = document.getElementById(`${section}-select-value`);
+    const selectedValue = selectElement.value;
+    const selectedText = selectElement.options[selectElement.selectedIndex].text;
+    const filtersContainer = document.getElementById(`${section}-filters-inputs`);
+    let exist = false;
 
-  // Verificar si ya existe un campo con el mismo label
-  const existingFields = filtersContainer.querySelectorAll("label");
-  for (let field of existingFields) {
-    if (field.textContent === selectedText) {
-      alert(
-        `Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`
-      );
+    // Verificar si ya existe un campo con el mismo label
+    const existingFields = filtersContainer.querySelectorAll("label");
+    for (let field of existingFields) {
+        if (field.textContent === selectedText) {
+            alert(`Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`);
+            exist = true;
+          }
     }
-  }
 
-  // Crear el nuevo input
-  const fieldConfig = dic.get(selectedValue);
-  if (fieldConfig) {
-    const div = document.createElement("div");
-    div.className = "filter-item";
+    // Crear el nuevo input
+    const fieldConfig = dic.get(selectedValue);
+    if (fieldConfig && !exist) {
+        const div = document.createElement("div");
+        div.className = "filter-item";
 
     // Crear el label
     const label = document.createElement("label");
@@ -388,4 +387,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   await obtenerDatos(controller);
   cargarSelect();
   inicializarEventos();
+  mostrarDatos("", { and: {}, or: {} });
 });
