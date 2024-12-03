@@ -1098,7 +1098,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   scale: 0.9;
 }
 #fichaUbicaciones > :nth-child(2) .inputsDiv img {
-  width: 1vw;
+  width: 1.2vw;
+}
+#fichaUbicaciones > :nth-child(2) .inputsDiv > :last-child {
+  margin-left: 0.5vw;
+  cursor: pointer;
+}
+#fichaUbicaciones > :nth-child(2) .divHistorial {
+  display: none;
 }
 #fichaUbicaciones > :last-child {
   display: flex;
@@ -1168,11 +1175,11 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-bottom: 1.7vh;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child {
-  height: 100%;
-  width: 100%;
+  padding-bottom: 0.4vh;
+  width: 70%;
   border: none;
+  border-bottom: 1px solid black;
   text-align: center;
-  padding: 0.5vw;
 }
 #fichaVocabulario > :nth-child(2) div > :first-child:focus {
   outline: none;
@@ -1180,7 +1187,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaVocabulario > :nth-child(2) div > :last-child {
   width: 10%;
   position: absolute;
-  right: 0;
+  left: 0;
 }
 #fichaVocabulario p {
   display: none;

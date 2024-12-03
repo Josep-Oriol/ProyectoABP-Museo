@@ -81,8 +81,15 @@
                 scale: 0.9;
             }
             img {
-                width: 1vw;
+                width: 1.2vw;
             }
+            >:last-child{
+              margin-left: 0.5vw;
+              cursor: pointer;
+            }
+        }
+        .divHistorial{
+          display: none;
         }
     
     }

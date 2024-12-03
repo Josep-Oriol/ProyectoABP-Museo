@@ -20,10 +20,13 @@
                     
                     <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
                         <input type="hidden" name="id_ubicacion" value="<?= $ubicacion['id_ubicacion'] ?>">
-                        <button type="submit" title="Afegir ubicació">+</button> <!-- Boton para añadir una ubicacion -->
+                        <button type="submit" title="Afegir ubicació"><img src="images/mas.png"></button> <!-- Boton para añadir una ubicacion -->
                     </form>
+
+                    <img class="historial" src="images/historial.png" id="<?= $ubicacion['id_ubicacion']?>"> 
                     
                 </div>
+                <div class="divHistorial" id="div_<?= $ubicacion['id_ubicacion']?>">historial de la obra</div>
                 <div id='hijos-<?= $ubicacion['id_ubicacion'] ?>' style='display:none; padding-left: 5vw'></div> <!-- div donde se almacenan los hijos de cada 
                 padre, este div por defecto se oculta -->
             

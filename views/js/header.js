@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         icono.addEventListener('mouseleave', function() {
             temporizador = setTimeout(function () {
                 desplegable.style.display = 'none';
-            }, 300);
+            }, 100);
         });
     }
 

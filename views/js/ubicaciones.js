@@ -32,8 +32,9 @@ let divHijos = $("#hijos-" + id); //variable que almacena el contenedor de los h
                     <button onclick="eliminarHijos(${hijo.id_ubicacion})"><img class="eliminarUbi" src="images/basura.png"></button>
                     <form action="index.php?controller=Vocabularios&action=crearUbicacionHija" method="POST">
                         <input type="hidden" name="id_ubicacion" value='${hijo.id_ubicacion}'>
-                        <button type="submit" title="Afegir ubicació">+</button> <!-- Boton para añadir una ubicacion -->
+                        <button type="submit" title="Afegir ubicació"><img src="images/mas.png"></button> <!-- Boton para añadir una ubicacion -->
                     </form>
+                    <img class="historial" src="images/historial.png" id="historial">
                 </div>
                     <div id='hijos-${hijo.id_ubicacion}' style='display:none; padding-left: 5vw'></div>
                     `); //agregamos este contenido al div 'divHijos' con el 'divHijos.append'
@@ -84,3 +85,32 @@ function eliminarHijos(id_ubicacion){
         }
     })
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const botones = document.getElementsByClassName('historial')
+
+    Array.from(botones).forEach(boton => {
+        boton.addEventListener('click', function(){
+            let div = document.getElementById('div_' + boton.id)
+
+            let data = {
+                id_ubicacion: boton.id
+            }
+            let dataJson = JSON.stringify(data);
+            
+            fetch('ajax.php?controller=Vocabularios&action=mostrarHistorial', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body :dataJson
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+        })
+    })
+})
+

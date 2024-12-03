@@ -227,5 +227,20 @@
             echo json_encode($response);
             exit;
         }
+
+        public function mostrarHistorial(){
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $id_ubicacion = $data['id_ubicacion'];
+            require_once "models/Vocabularios.php";    
+            $vocabulario = new Vocabularios();
+
+            $historial = $vocabulario->mostrarHistorial($id_ubicacion);
+            $response = ['datos' => $historial];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
+        }
     }
 ?>

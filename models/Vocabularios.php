@@ -244,6 +244,11 @@
                 $query3->execute();
                 $fechaFinHijo = $query3->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($fechaFinHijo as $fila) {
+                    $selectNombreObra = "SELECT titulo FROM obras WHERE numero_registro = " . "'" . $fila['fk_obra'] . "'";
+                    $querySelect2 = $db->prepare($selectNombreObra);
+                    print_r($querySelect2);
+                    $querySelect2->execute();
+                    $nombre_obra = $querySelect2->fetch(PDO::FETCH_ASSOC);
                     $selectNombreUbicacion = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = " . $fila['fk_ubicacion'];
                     $querySelect = $db->prepare($selectNombreUbicacion);
                     $querySelect->execute();
@@ -251,6 +256,7 @@
 
                     $relacionesAInsertar[] = [
                         'id_obra' => $fila['fk_obra'],
+                        'nombre_obra' => $nombre_obra['titulo'],
                         'nombre_ubicacion' => $idUbi['descripcion_ubicacion'],
                         'fecha_inicio' => $fila['fecha_inicio_ubicacion'],
                         'fecha_fin' => $fila['fecha_fin_ubicacion']
@@ -264,8 +270,8 @@
                 $respuesta = false;
             }else {
                 foreach($relacionesAInsertar as $relaccion){
-                    $insert = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES
-                    ('" . $relaccion['id_obra'] . "', '" . $relaccion['nombre_ubicacion'] . "', '" . $relaccion['fecha_inicio'] . "', '" .$relaccion['fecha_fin'] . "')";
+                    $insert = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES
+                    ('" . $relaccion['id_obra'] . "', '" . $relaccion['nombre_obra'] . "', '" . $relaccion['nombre_ubicacion'] . "', '" . $relaccion['fecha_inicio'] . "', '" .$relaccion['fecha_fin'] . "')";
                     $queryInsert = $db->prepare($insert);
                     $queryInsert->execute();
                 }
@@ -278,6 +284,40 @@
             return $respuesta;
         }
 
-        
+        public function mostrarHistorial($id_ubicacion){
+            $db = $this->conectar();
+            $sql2 = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
+            try{
+                $query2 = $db->prepare($sql2);
+                $query2->execute();
+            }catch(PDOException $error){
+                echo $error->getMessage();
+            }
+            $nombre_ubi = $query2->fetchAll(PDO::FETCH_ASSOC);
+            $nombre_ubicacion = $nombre_ubi[0]['descripcion_ubicacion'];
+
+            $sql = "SELECT id_obra, nombre_obra, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE nombre_ubicacion = " . "'" . $nombre_ubicacion . "'";
+            try{
+                $relaccionesAntiguas = $db->prepare($sql);
+                $relaccionesAntiguas->execute();
+            }catch(PDOException $error){
+                echo $error->getMessage();
+            }
+            $resultado[0] = $relaccionesAntiguas->fetchAll(PDO::FETCH_ASSOC);
+
+            $sql3 = "SELECT o.titulo, u.descripcion_ubicacion, ou.fecha_inicio_ubicacion, ou.fecha_fin_ubicacion  FROM obras_ubicaciones ou INNER JOIN obras o ON o.numero_registro = ou.fk_obra
+            INNER JOIN ubicaciones u ON ou.fk_ubicacion = u.id_ubicacion WHERE $id_ubicacion = u.id_ubicacion";
+            try{
+                $relaccionesActuales = $db->prepare($sql3);
+                $relaccionesActuales->execute();
+                $nuevosDatos = $relaccionesActuales->fetchAll(PDO::FETCH_ASSOC);
+            }catch(PDOException $error){
+                echo $error->getMessage();
+            }
+            $resultado[1] = $nuevosDatos;
+
+            return $resultado;
+            
+        }
     }
 ?>
