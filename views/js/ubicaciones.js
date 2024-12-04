@@ -150,6 +150,100 @@ function eliminarHijos(id_ubicacion) {
     });
 }
 
+function crearHeaderTable() {
+  const header = ["Títol", "Ubicació", "Inici", "Fin"];
+  const tabla = document.getElementById("table-ubicaciones");
+  tabla.innerHTML = "";
+
+  // Header
+  const rowHeader = document.createElement("tr");
+  rowHeader.setAttribute("class", "thead");
+  header.forEach((element) => {
+    let tdHeader = document.createElement("td");
+    tdHeader.textContent = element;
+    rowHeader.appendChild(tdHeader);
+  });
+  tabla.appendChild(rowHeader);
+}
+
+function mostrarPasadas(data) {
+  const tabla = document.getElementById("table-ubicaciones");
+
+  const row = document.createElement("tr");
+
+  if (data.obrasAntiguas.length > 0) {
+    data.obrasAntiguas.forEach((obra) => {
+      // Fila
+
+      // Celdas
+      const tdTitulo = document.createElement("td");
+      tdTitulo.textContent = obra.titulo;
+      row.appendChild(tdTitulo);
+
+      const tdDescripcion = document.createElement("td");
+      tdDescripcion.textContent = obra.descripcion_ubicacion;
+      row.appendChild(tdDescripcion);
+
+      const tdInicio = document.createElement("td");
+      tdInicio.textContent = obra.fecha_inicio_ubicacion;
+      row.appendChild(tdInicio);
+
+      const tdFin = document.createElement("td");
+      tdFin.textContent = obra.fecha_fin_ubicacion;
+      row.appendChild(tdFin);
+
+      // Añadir
+      tabla.appendChild(row);
+    });
+  } else {
+    // No hay obras
+    const row = document.createElement("tr");
+    const tdEmpty = document.createElement("td");
+    td.colSpan = 4;
+    td.textContent = "No hay obras pasadas.";
+    row.appendChild(tdEmpty);
+    tabla.appendChild(row);
+  }
+}
+
+function mostrarActuales(data) {
+  const tabla = document.getElementById("table-ubicaciones");
+  if (data.obrasActuales.length > 0) {
+    data.obrasActuales.forEach((obra) => {
+      // Fila
+      const row = document.createElement("tr");
+
+      // Celdas
+      const tdTitulo = document.createElement("td");
+      tdTitulo.textContent = obra.titulo;
+      row.appendChild(tdTitulo);
+
+      const tdDescripcion = document.createElement("td");
+      tdDescripcion.textContent = obra.descripcion_ubicacion;
+      row.appendChild(tdDescripcion);
+
+      const tdInicio = document.createElement("td");
+      tdInicio.textContent = obra.fecha_inicio_ubicacion;
+      row.appendChild(tdInicio);
+
+      const tdFin = document.createElement("td");
+      tdFin.textContent = obra.fecha_fin_ubicacion;
+      row.appendChild(tdFin);
+
+      // Añadir
+      tabla.appendChild(row);
+    });
+  } else {
+    // No hay obras
+    const row = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 4;
+    td.textContent = "No hay obras actuales.";
+    row.appendChild(td);
+    tabla.appendChild(row);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const botones = document.getElementsByClassName("historial");
 
@@ -173,45 +267,22 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => response.json())
         .then((data) => {
-          const tablaCuerpo = document.getElementById("tabla-cuerpo");
-          tablaCuerpo.innerHTML = "";
+          console.log(data);
 
-          if (data.obrasActuales.length > 0) {
-            data.obrasActuales.forEach((obra) => {
-              // Fila
-              const row = document.createElement("tr");
+          crearHeaderTable(data);
+          const pasadas = document.getElementById("past");
+          const actuales = document.getElementById("current");
 
-              // Celdas
-              const tdTitulo = document.createElement("td");
-              tdTitulo.textContent = obra.titulo;
-              row.appendChild(tdTitulo);
+          pasadas.addEventListener("click", () => {
+            mostrarPasadas(data);
+          });
 
-              const tdDescripcion = document.createElement("td");
-              tdDescripcion.textContent = obra.descripcion_ubicacion;
-              row.appendChild(tdDescripcion);
-
-              const tdInicio = document.createElement("td");
-              tdInicio.textContent = obra.fecha_inicio_ubicacion;
-              row.appendChild(tdInicio);
-
-              const tdFin = document.createElement("td");
-              tdFin.textContent = obra.fecha_fin_ubicacion;
-              row.appendChild(tdFin);
-
-              // Añadir
-              tablaCuerpo.appendChild(row);
-            });
-          } else {
-            // No hay obras
-            const row = document.createElement("tr");
-            const td = document.createElement("td");
-            td.colSpan = 4;
-            td.textContent = "No hay obras actuales.";
-            row.appendChild(td);
-            tablaCuerpo.appendChild(row);
-          }
+          actuales.addEventListener("click", () => {
+            mostrarActuales(data);
+          });
         })
         .catch((error) => {
+          alert("Error al cargar los datos:" + error);
           console.error("Error al cargar los datos:", error);
         });
     });

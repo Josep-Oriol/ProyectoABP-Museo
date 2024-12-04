@@ -22,8 +22,8 @@ $spacing-large: 20px;
     padding: 20px;
     border-radius: 8px;
     width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
+    max-width: 700px;
+    max-height: 60vh;
     overflow-y: auto;
     scale: 1;
     transition: scale 0.2s ease-in-out;
@@ -72,14 +72,32 @@ $spacing-large: 20px;
       border-radius: $border-radius;
       cursor: pointer;
       transition: all 0.2s;
+      background-color: transparent;
 
       &:hover {
         transform: translateY(-1px);
+        @include hover-y;
+        color: $primary-color;
       }
 
       &:active {
         transform: translateY(0);
         scale: 0.99;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        width: 0px;
+        height: 2px;
+        background-color: $primary-color;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover::after {
+        width: 100%;
       }
     }
   }
@@ -89,14 +107,20 @@ $spacing-large: 20px;
     justify-content: center;
 
     table {
-      thead {
-        font-size: 18px;
-        font-weight: bold;
+      width: 90%;
+      border-collapse: collapse;
+      .thead {
+        background-color: $primary-color;
+        color: white;
 
-        > tr {
-          background-color: $primary-color;
-          color: white;
+        > td {
+          padding: 15px;
+          text-align: center;
         }
+      }
+      tr {
+        margin-bottom: 5px;
+        background-color: $background-grey;
       }
     }
   }

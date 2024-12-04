@@ -46,17 +46,7 @@
             <button id="current">Actuales</button>
         </div>
         <div class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Títol</th>
-                        <th>Descripción Ubicación</th>
-                        <th>Inicio</th>
-                        <th>Fin</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-cuerpo">
-                </tbody>
+            <table id="table-ubicaciones">
             </table>
         </div>
     </div>
