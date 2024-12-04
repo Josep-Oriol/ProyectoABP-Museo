@@ -6,6 +6,9 @@
             <h1>Usuaris</h1>
         </div> 
         <div>
+          <div>
+            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+          </div>
             <div>
                 <img src="images/lupa.png" alt="" id="buscar">
                 <input type="text" id="busqueda">

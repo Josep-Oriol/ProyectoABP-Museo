@@ -11,6 +11,64 @@
             //Seleccionar pagina segun la url
             $url = [];
 
+            $strWhere = $this->devolverWhere($pagina, $filters);
+
+           // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
+    
+            if($pagina == "exposiciones"){
+                $datos = $modelo->busquedaExposiciones($pagina, $input, $strWhere);
+                $url = ['index.php?controller=Exposiciones&action=Pantallaeditar&id=', 'index.php?controller=Exposiciones&action=fichaExposiciones&id=', 'index.php?controller=Exposiciones&action=eliminar&id='];
+            }
+            else if($pagina == "obras"){
+                $datos = $modelo->busquedaObras($pagina, $input, $strWhere);
+                $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
+            }
+            else if($pagina == "usuarios"){
+                $datos = $modelo->busquedaUsuarios($pagina, $input, $strWhere);
+                $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
+            }
+
+            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+
+        public function exportarTablas(){
+            require_once "models/Busquedas.php";
+            $modelo = new Busquedas();
+
+            $data = json_decode(file_get_contents('php://input'), true);
+            $input = $data['busqueda'];
+            $pagina = $data['pagina'];
+            $filters = $data['filtros'];
+            //Seleccionar pagina segun la url
+            $url = [];
+
+            $strWhere = $this->devolverWhere($pagina, $filters);
+
+           // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
+    
+            if($pagina == "exposiciones"){
+                $datos = $modelo->exportarExposiciones($pagina, $input, $strWhere);
+             
+            }
+            else if($pagina == "obras"){
+                $datos = $modelo->exportarObras($pagina, $input, $strWhere);            
+            }
+            else if($pagina == "usuarios"){
+                $datos = $modelo->exportarUsuarios($pagina, $input, $strWhere);
+            }
+
+            $response = ["texto" => $datos];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+
+        
+
+        function devolverWhere($pagina, $filters){
             $strWhere = "AND ";
             
             $arrayAnd = [];
@@ -87,28 +145,9 @@
                 $strWhere = "";
             }
 
-            
-           // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
-    
-
-            if($data['pagina'] == "exposiciones"){
-                $datos = $modelo->busquedaExposiciones($pagina, $input, $strWhere);
-                $url = ['index.php?controller=Exposiciones&action=Pantallaeditar&id=', 'index.php?controller=Exposiciones&action=fichaExposiciones&id=', 'index.php?controller=Exposiciones&action=eliminar&id='];
-            }
-            else if($data['pagina'] == "obras"){
-                $datos = $modelo->busquedaObras($pagina, $input, $strWhere);
-                $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
-            }
-            else if($data['pagina'] == "usuarios"){
-                $datos = $modelo->busquedaUsuarios($pagina, $input, $strWhere);
-                $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
-            }
-
-            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url, "condicionales" => $strOr, "condicionales2" => $strAnd, "condicionales3" => $strWhere];
-
-            header('Content-Type: application/json');
-            echo json_encode($response);
+            return $strWhere;
         }
+        
     }
 
 ?>

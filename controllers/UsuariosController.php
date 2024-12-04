@@ -131,7 +131,12 @@ class UsuariosController{
         else {
             echo "<h3>Ningún usuario seleccionado.</h3>";
         }
-        echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+        if($id != $_SESSION['ID_usuario']){
+            echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Usuarios&action=mostrarUsuarios'/>";
+        }
+        else{
+            echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
+        }
     }
 
     public function generarPDFUsuarios(){

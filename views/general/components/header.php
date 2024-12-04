@@ -24,8 +24,8 @@
         <span><?php echo $_SESSION['Usuario']; ?></span>
         <img src="images/icono2.png" alt="" id="iconoPerfil">
         <div id="desplegablePerfil">
-            <a href="">Veure el perfil</a>
-            <a href="">Editar perfil</a>
+            <a href="index.php?controller=Usuarios&action=mostrarFicha&id=<?php echo $_SESSION['ID_usuario']?>">Veure el perfil</a>
+            <a href="index.php?controller=Usuarios&action=editar&id=<?php echo $_SESSION['ID_usuario']?>">Editar perfil</a>
             <a href="index.php?controller=Usuarios&action=cerrarSesion">Tanca la sessió</a>
         </div>
     </div>

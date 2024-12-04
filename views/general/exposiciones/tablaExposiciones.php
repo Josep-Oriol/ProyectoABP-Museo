@@ -8,6 +8,9 @@
       </div>
       <div>
           <div>
+            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+          </div>
+          <div>
               <img src="images/lupa.png" alt="" id="buscar">
               <input type="text" id="busqueda">
               <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
