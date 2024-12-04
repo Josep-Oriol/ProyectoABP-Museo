@@ -204,10 +204,6 @@ if (isset($_SESSION['Rol'])) {
                             <label for="fecha_inicio_ubicacion">Data inici ubicació</label>
                             <input type="date" id="fecha_inicio_ubicacion" name="fecha_inicio_ubicacion" value="<?php echo $obra['fecha_inicio_ubicacion']; ?>">
                         </div>
-                        <div>
-                            <label for="fecha_fin_ubicacion">Data fi ubicació</label>
-                            <input type="date" id="fecha_fin_ubicacion" name="fecha_fin_ubicacion" value="<?php echo $obra['fecha_fin_ubicacion']; ?>">
-                        </div>
                     </div>
                 </div>
 
