@@ -15,6 +15,10 @@ function mostrarDatos(dato, filters) {
   };
   let dataJson = JSON.stringify(data);
 
+  loader = document.querySelector(".loader")
+  loader.style.display = "block"
+  noResults = document.querySelector(".noResultados")
+
   fetch("ajax.php?controller=Buscador&action=buscar", {
     method: "POST",
     headers: {
@@ -25,8 +29,14 @@ function mostrarDatos(dato, filters) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.condicionales);
-      console.log(data.condicionales2);
+
+      if(data.texto.length === 0){
+        noResults.style.display = "block"
+        loader.style.display = "none"
+      }
+      else{
+        noResults.style.display = "none"
+      }
       
       exposiciones = data.texto
 
@@ -90,6 +100,8 @@ function mostrarDatos(dato, filters) {
 
           tr.appendChild(td_botones)
           tbody.appendChild(tr);
+
+          loader.style.display = "none"
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones

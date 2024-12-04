@@ -77,6 +77,8 @@
     </table>
   </div>
 </section>
+<span class="noResultados">No se han encontrado resultados</span>
+<span class="loader"></span>
 <?php }
   else{
       echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
