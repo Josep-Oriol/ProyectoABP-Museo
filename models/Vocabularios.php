@@ -284,40 +284,60 @@
             return $respuesta;
         }
 
-        public function mostrarHistorial($id_ubicacion){
+        public function mostrarHistorial($id_ubicacion) {
             $db = $this->conectar();
-            $sql2 = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
-            try{
+        
+            $obrasAntiguas = [];
+            $obrasActuales = [];
+        
+            // Obtener el nombre de la ubicación
+            $sql2 = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = ?";
+            try {
                 $query2 = $db->prepare($sql2);
-                $query2->execute();
-            }catch(PDOException $error){
-                echo $error->getMessage();
+                $query2->execute([$id_ubicacion]);
+                $nombre_ubi = $query2->fetch(PDO::FETCH_ASSOC);
+        
+                // Verificar si se encontró la ubicación
+                $nombre_ubicacion = $nombre_ubi ? $nombre_ubi['descripcion_ubicacion'] : null;
+            } catch (PDOException $error) {
+                echo "Error al obtener la ubicación: " . $error->getMessage();
             }
-            $nombre_ubi = $query2->fetchAll(PDO::FETCH_ASSOC);
-            $nombre_ubicacion = $nombre_ubi[0]['descripcion_ubicacion'];
-
-            $sql = "SELECT id_obra, nombre_obra, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE nombre_ubicacion = " . "'" . $nombre_ubicacion . "'";
-            try{
-                $relaccionesAntiguas = $db->prepare($sql);
-                $relaccionesAntiguas->execute();
-            }catch(PDOException $error){
-                echo $error->getMessage();
+        
+            // Obtener obras antiguas si se encontró el nombre de la ubicación
+            if ($nombre_ubicacion) {
+                $sql = "SELECT id_obra, nombre_obra, fecha_inicio, fecha_fin 
+                        FROM historial_obras_ubicaciones 
+                        WHERE nombre_ubicacion = ?";
+                try {
+                    $relaccionesAntiguas = $db->prepare($sql);
+                    $relaccionesAntiguas->execute([$nombre_ubicacion]);
+                    $obrasAntiguas = $relaccionesAntiguas->fetchAll(PDO::FETCH_ASSOC);
+                } catch (PDOException $error) {
+                    echo "Error al obtener las obras antiguas: " . $error->getMessage();
+                }
             }
-            $resultado[0] = $relaccionesAntiguas->fetchAll(PDO::FETCH_ASSOC);
-
-            $sql3 = "SELECT o.titulo, u.descripcion_ubicacion, ou.fecha_inicio_ubicacion, ou.fecha_fin_ubicacion  FROM obras_ubicaciones ou INNER JOIN obras o ON o.numero_registro = ou.fk_obra
-            INNER JOIN ubicaciones u ON ou.fk_ubicacion = u.id_ubicacion WHERE $id_ubicacion = u.id_ubicacion";
-            try{
+        
+            // Obtener obras actuales
+            $sql3 = "SELECT o.titulo, u.descripcion_ubicacion, ou.fecha_inicio_ubicacion, ou.fecha_fin_ubicacion  
+                     FROM obras_ubicaciones ou 
+                     INNER JOIN obras o ON o.numero_registro = ou.fk_obra
+                     INNER JOIN ubicaciones u ON ou.fk_ubicacion = u.id_ubicacion 
+                     WHERE u.id_ubicacion = ?";
+            try {
                 $relaccionesActuales = $db->prepare($sql3);
-                $relaccionesActuales->execute();
-                $nuevosDatos = $relaccionesActuales->fetchAll(PDO::FETCH_ASSOC);
-            }catch(PDOException $error){
-                echo $error->getMessage();
+                $relaccionesActuales->execute([$id_ubicacion]);
+                $obrasActuales = $relaccionesActuales->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $error) {
+                echo "Error al obtener las obras actuales: " . $error->getMessage();
             }
-            $resultado[1] = $nuevosDatos;
-
-            return $resultado;
-            
+        
+            // Retorna las obras antiguas y actuales
+            return [
+                'obrasAntiguas' => $obrasAntiguas,
+                'obrasActuales' => $obrasActuales
+            ];
         }
+        
+        
     }
 ?>
