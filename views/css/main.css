@@ -2358,8 +2358,8 @@ footer .div2 .web a {
   padding: 20px;
   border-radius: 8px;
   width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
+  max-width: 700px;
+  max-height: 60vh;
   overflow-y: auto;
   scale: 1;
   transition: scale 0.2s ease-in-out;
@@ -2405,25 +2405,51 @@ footer .div2 .web a {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
+  background-color: transparent;
 }
 .overlay-ubicaciones .btns button:hover {
   transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: #333333;
 }
 .overlay-ubicaciones .btns button:active {
   transform: translateY(0);
   scale: 0.99;
 }
+.overlay-ubicaciones .btns button::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: #333333;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+.overlay-ubicaciones .btns button:hover::after {
+  width: 100%;
+}
 .overlay-ubicaciones .content {
   display: flex;
   justify-content: center;
 }
-.overlay-ubicaciones .content table thead {
-  font-size: 18px;
-  font-weight: bold;
+.overlay-ubicaciones .content table {
+  width: 90%;
+  border-collapse: collapse;
 }
-.overlay-ubicaciones .content table thead > tr {
+.overlay-ubicaciones .content table .thead {
   background-color: #333333;
   color: white;
+}
+.overlay-ubicaciones .content table .thead > td {
+  padding: 15px;
+  text-align: center;
+}
+.overlay-ubicaciones .content table tr {
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
 }
 
 body {
