@@ -80,14 +80,14 @@ class Obras extends Database {
 		}
 
 		if (!empty($array['id_ubicacion'])) {
-			$sql2 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion, fecha_fin_ubicacion) VALUES ('{$array['numero_registro']}', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}', '{$array['fecha_fin_ubicacion']}')";
+			$sql2 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion) VALUES ('{$array['numero_registro']}', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}')";
 		}
 		if (!empty($array['id_exposicion'])) {
 			$sql3 = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ('{$array['numero_registro']}', {$array['id_exposicion']})";
 		}
 
 		//Campos que llegan por POST pero que no son de la tabla de obras
-		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'fecha_fin_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'letra', 'decimales'];
+		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'letra', 'decimales'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
@@ -146,7 +146,37 @@ class Obras extends Database {
 	}		
 
 	public function editarObra($array, $numeroRegistro) {
-		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'fecha_fin_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y'];
+		//Comprobar que se ha cambiado la ubicación
+		$sql = "SELECT * FROM obras_ubicaciones WHERE fk_obra = '$numeroRegistro' AND fk_ubicacion = '{$array['id_ubicacion']}'";
+		$db = $this->conectar();
+		try {
+			$query = $db->prepare($sql);
+			$query->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		}
+
+		if ($query->rowCount() == 0) { //Se ha cambiado la ubicación
+			require_once "Vocabularios.php";
+			$modeloVocabularios = new Vocabularios();
+			$sql = "SELECT id_ubicacion, descripcion_ubicacion, fecha_inicio_ubicacion FROM obras_ubicaciones ou INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE fk_obra = '$numeroRegistro'"; //Seleccionamos la ubicacion antigua
+			try {
+				$query = $db->prepare($sql);
+				$query->execute();
+			} catch (PDOException $error) {
+				echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+			}
+			$datosUbicacion = $query->fetch(PDO::FETCH_ASSOC);
+			$idUbicacion = $datosUbicacion['id_ubicacion'];
+			$nombreUbicacion = $datosUbicacion['descripcion_ubicacion'];
+			$fechaInicio = $datosUbicacion['fecha_inicio_ubicacion'];
+
+			$sql1 = "DELETE FROM obras_ubicaciones WHERE fk_obra = '$numeroRegistro'"; //Borramos el registro con la ubicación antigua
+			$sql2 = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES ('$numeroRegistro', '{$array['titulo']}', '$nombreUbicacion', '$fechaInicio', CURDATE())"; //Insertamos el registro de la antigua ubicación en el historial
+			$sql3 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion) VALUES ('$numeroRegistro', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}')"; //Insertamos el nuevo registro con la nueva ubicación activa
+		}
+
+		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
@@ -187,7 +217,22 @@ class Obras extends Database {
 		} catch (PDOException $error) {
 			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
 		}
-		
+
+		if ($exitoso) {
+			if (isset($sql1)) {
+				$db = $this->conectar();
+				try {
+					$query = $db->prepare($sql1);
+					$query->execute();
+					$query = $db->prepare($sql2);
+					$query->execute();
+					$query = $db->prepare($sql3);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+		}
 		return $exitoso;
 	}
 
