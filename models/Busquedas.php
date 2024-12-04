@@ -32,7 +32,7 @@ class Busquedas extends Database{
         return $resultado;
     }
     public function busquedaUsuarios($pagina, $input, $filtro){
-        $sql = "SELECT id_usuario, foto_usuario, usuario, nombre, apellidos, correo_electronico, telefono, rol, estado FROM $pagina u $filtro AND usuari LIKE '%$input%'";
+        $sql = "SELECT id_usuario, foto_usuario, usuario, nombre, apellidos, correo_electronico, telefono, rol, estado FROM $pagina u WHERE u.usuario LIKE '%$input%' $filtro";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);

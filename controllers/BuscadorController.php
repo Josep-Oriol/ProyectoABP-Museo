@@ -74,17 +74,17 @@
             }
 
             
-            if($strOr == "()" and $strAnd == "()"){
-                $strWhere = "";
+            if($strOr != "()" and $strAnd != "()"){
+                $strWhere .= $strAnd." OR ".$strOr;   
             }
-            elseif($strOr == "()"){
+            elseif($strOr == "()" and $strAnd != "()"){
                 $strWhere .= $strAnd;
             }
-            elseif($strAnd == "()"){
+            elseif($strAnd == "()" and $strOr != "()"){
                 $strWhere .= $strOr;
             }
             elseif($strOr == "()" and $strAnd == "()"){
-                $strWhere .= $strAnd." OR ".$strOr;
+                $strWhere = "";
             }
 
             
@@ -104,7 +104,7 @@
                 $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
 
-            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url, "condicionales" => $strWhere];
+            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url, "condicionales" => $strOr, "condicionales2" => $strAnd, "condicionales3" => $strWhere];
 
             header('Content-Type: application/json');
             echo json_encode($response);

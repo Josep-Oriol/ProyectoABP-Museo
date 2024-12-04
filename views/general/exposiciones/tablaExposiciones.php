@@ -35,12 +35,12 @@
             <td>Tipus</td>
             <td>Data inici</td>
             <td>Data termini</td>
-        
             <td> 
                 <a href="index.php?controller=Exposiciones&action=pantallaCrear"><button>Crear exposició</button></a>
             </td>
         </tr>
         <?php
+        /*
         foreach($exposiciones as $indice => $exposicion) {
             $id = $exposicion['id_exposicion'];
             echo "<tr id=\"$id\">
@@ -72,11 +72,13 @@
                 }
                 echo "</td>";
             echo "</tr>";
-        }
+        }*/
         ?>
     </table>
   </div>
 </section>
+<span class="noResultados">No se han encontrado resultados</span>
+<span class="loader"></span>
 <?php }
   else{
       echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
