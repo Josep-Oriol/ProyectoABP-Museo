@@ -26,6 +26,7 @@ class Copias extends Database{
 
         $exitoso = false;
 
+        $selectId = "SELECT id_copia FROM copias_seguridad WHERE nombre_copia = ?";
         $sql = 'INSERT INTO copias_seguridad (nombre_copia, descripcion_copia, fecha_copia, fk_creador)
         VALUE (?, ? ,? , ?)';
 
@@ -38,6 +39,26 @@ class Copias extends Database{
             $exitoso = false;
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
+
+        if ($exitoso){
+            $db = $this->conectar();
+
+            try {
+                $query2 = $db->prepare($selectId);
+                $exitoso2 = $query2->execute([$nombre]);
+                $resultado = $query2->fetch(PDO::FETCH_ASSOC);
+                $idCopia = $resultado['id_copia'];
+            } catch (PDOException $error) {
+                $exitoso2 = false;
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+
+            if($exitoso2){
+                $database = new Database;
+                $database->copiaSeguridad($idCopia);
+            }
+        }
+
         return $exitoso;
     }
 
