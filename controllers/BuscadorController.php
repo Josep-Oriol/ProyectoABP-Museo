@@ -29,7 +29,7 @@
            // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
     
             if($pagina == "exposiciones"){
-                $datos = $modelo->busquedaExposiciones($pagina, $input, $strWhere);
+                $datos = $modelo->busquedaExposiciones($pagina, $input, $strWhere, $paginar);
                 $url = ['index.php?controller=Exposiciones&action=Pantallaeditar&id=', 'index.php?controller=Exposiciones&action=fichaExposiciones&id=', 'index.php?controller=Exposiciones&action=eliminar&id='];
             }
             else if($pagina == "obras"){
@@ -37,7 +37,7 @@
                 $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
             }
             else if($pagina == "usuarios"){
-                $datos = $modelo->busquedaUsuarios($pagina, $input, $strWhere);
+                $datos = $modelo->busquedaUsuarios($pagina, $input, $strWhere, $paginar);
                 $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
 
@@ -55,6 +55,20 @@
             $input = $data['busqueda'];
             $pagina = $data['pagina'];
             $filters = $data['filtros'];
+
+            $lim_valores = $data['lim_registros'];
+            $paginar = "";
+
+  
+            if ($lim_valores !== "tots") {
+    
+                $lim = explode("-", $lim_valores);
+            
+                $offset = intval($lim[0]);
+                $limit = intval($lim[1]) - $offset; 
+            
+                $paginar = "LIMIT $limit OFFSET $offset";
+            }
             //Seleccionar pagina segun la url
             $url = [];
 
@@ -63,14 +77,14 @@
            // Asegúrate de que la variable de sesión esté inicializada si no hay filtros
     
             if($pagina == "exposiciones"){
-                $datos = $modelo->exportarExposiciones($pagina, $input, $strWhere);
+                $datos = $modelo->exportarExposiciones($pagina, $input, $strWhere, $paginar);
              
             }
             else if($pagina == "obras"){
-                $datos = $modelo->exportarObras($pagina, $input, $strWhere);            
+                $datos = $modelo->exportarObras($pagina, $input, $strWhere, $paginar);            
             }
             else if($pagina == "usuarios"){
-                $datos = $modelo->exportarUsuarios($pagina, $input, $strWhere);
+                $datos = $modelo->exportarUsuarios($pagina, $input, $strWhere, $paginar);
             }
 
             $response = ["texto" => $datos];
