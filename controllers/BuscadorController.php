@@ -8,7 +8,20 @@
             $input = $data['busqueda'];
             $pagina = $data['pagina'];
             $filters = $data['filtros'];
-            //Seleccionar pagina segun la url
+            $lim_valores = $data['lim_registros'];
+            $paginar = "";
+
+  
+            if ($lim_valores !== "tots") {
+    
+                $lim = explode("-", $lim_valores);
+            
+                $offset = intval($lim[0]);
+                $limit = intval($lim[1]) - $offset; 
+            
+                $paginar = "LIMIT $limit OFFSET $offset";
+            }
+
             $url = [];
 
             $strWhere = $this->devolverWhere($pagina, $filters);
@@ -20,7 +33,7 @@
                 $url = ['index.php?controller=Exposiciones&action=Pantallaeditar&id=', 'index.php?controller=Exposiciones&action=fichaExposiciones&id=', 'index.php?controller=Exposiciones&action=eliminar&id='];
             }
             else if($pagina == "obras"){
-                $datos = $modelo->busquedaObras($pagina, $input, $strWhere);
+                $datos = $modelo->busquedaObras($pagina, $input, $strWhere, $paginar);
                 $url = ['index.php?controller=Obras&action=editar&id=', 'index.php?controller=Obras&action=mostrarFicha&id=', 'index.php?controller=Obras&action=eliminar&id='];
             }
             else if($pagina == "usuarios"){

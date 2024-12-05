@@ -1,4 +1,6 @@
 function mostrarDatos(dato, filters) {
+  let paginacion = document.querySelector("#numeroResultados")
+  console.log(paginacion.value)
   const url = window.location.href;
   let pagina = url.includes("Exposiciones")
     ? "exposiciones"
@@ -12,6 +14,7 @@ function mostrarDatos(dato, filters) {
     busqueda: dato,
     pagina: pagina,
     filtros: filters,
+    lim_registros: paginacion.value,
   };
   let dataJson = JSON.stringify(data);
 
@@ -405,6 +408,10 @@ function inicializarEventos() {
     mostrarDatos(inputExposiciones.value, filters);
   });
 
+  let paginacion = document.querySelector("#numeroResultados")
+  paginacion.addEventListener("change", function(event){
+    mostrarDatos(inputExposiciones.value, datosForm())
+  })
   botonExportar.addEventListener("click", function(event){
     let filters = datosForm()
     let dato = inputExposiciones.value;

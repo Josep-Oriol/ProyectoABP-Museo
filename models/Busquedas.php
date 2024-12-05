@@ -17,9 +17,9 @@ class Busquedas extends Database{
         return $resultado;
     }
 
-    public function busquedaObras($pagina, $input, $filtro){
+    public function busquedaObras($pagina, $input, $filtro, $paginar){
         $sql = "SELECT o.fotografia, o.numero_registro, o.nombre_objeto, o.titulo, o.autor, o.anyo_final, u.descripcion_ubicacion FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
-			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE o.numero_registro LIKE '%$input%' $filtro";
+			INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE o.numero_registro LIKE '%$input%' $filtro $paginar";
         $db = $this->conectar();
         try{
             $query = $db->prepare($sql);
