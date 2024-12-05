@@ -2442,7 +2442,7 @@ footer .div2 .web a {
   background-color: #333333;
   color: white;
 }
-.overlay-ubicaciones .content table .thead > td {
+.overlay-ubicaciones .content table .thead > tr {
   padding: 15px;
   text-align: center;
 }

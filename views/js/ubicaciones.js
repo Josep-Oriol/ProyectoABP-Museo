@@ -156,18 +156,21 @@ function crearHeaderTable() {
   tabla.innerHTML = "";
 
   // Header
+  const thead = document.createElement("thead");
   const rowHeader = document.createElement("tr");
-  rowHeader.setAttribute("class", "thead");
+  thead.setAttribute("class", "thead");
   header.forEach((element) => {
-    let tdHeader = document.createElement("td");
+    let tdHeader = document.createElement("th");
     tdHeader.textContent = element;
     rowHeader.appendChild(tdHeader);
   });
-  tabla.appendChild(rowHeader);
+  thead.appendChild(rowHeader);
+  tabla.appendChild(thead);
 }
 
 function mostrarPasadas(data) {
-  const tabla = document.getElementById("table-ubicaciones");
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = " ";
 
   const row = document.createElement("tr");
 
@@ -193,7 +196,7 @@ function mostrarPasadas(data) {
       row.appendChild(tdFin);
 
       // Añadir
-      tabla.appendChild(row);
+      tbody.appendChild(row);
     });
   } else {
     // No hay obras
@@ -202,12 +205,13 @@ function mostrarPasadas(data) {
     td.colSpan = 4;
     td.textContent = "No hay obras pasadas.";
     row.appendChild(tdEmpty);
-    tabla.appendChild(row);
   }
 }
 
 function mostrarActuales(data) {
-  const tabla = document.getElementById("table-ubicaciones");
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = " ";
+
   if (data.obrasActuales.length > 0) {
     data.obrasActuales.forEach((obra) => {
       // Fila
@@ -231,7 +235,7 @@ function mostrarActuales(data) {
       row.appendChild(tdFin);
 
       // Añadir
-      tabla.appendChild(row);
+      tbody.appendChild(row);
     });
   } else {
     // No hay obras
@@ -240,12 +244,15 @@ function mostrarActuales(data) {
     td.colSpan = 4;
     td.textContent = "No hay obras actuales.";
     row.appendChild(td);
-    tabla.appendChild(row);
+    tbody.appendChild(row);
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const botones = document.getElementsByClassName("historial");
+
+  const overlay = document.querySelector(".overlay-ubicaciones");
+  overlay.style.display = "none";
 
   Array.from(botones).forEach((boton) => {
     boton.addEventListener("click", function () {
@@ -254,8 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
         id_ubicacion: boton.id,
       };
       let dataJson = JSON.stringify(data);
-      const popup = document.querySelector(".overlay-ubicaciones");
-      popup.style.display = "flex";
+      overlay.style.display = "flex";
 
       fetch("ajax.php?controller=Vocabularios&action=mostrarHistorial", {
         method: "POST",
@@ -269,7 +275,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           console.log(data);
 
-          crearHeaderTable(data);
           const pasadas = document.getElementById("past");
           const actuales = document.getElementById("current");
 

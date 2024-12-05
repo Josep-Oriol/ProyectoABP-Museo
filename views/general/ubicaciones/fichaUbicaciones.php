@@ -47,6 +47,15 @@
         </div>
         <div class="content">
             <table id="table-ubicaciones">
+                <thead class="thead">
+                    <tr>
+                        <th>Títol</th>
+                        <th>Ubicació</th>
+                        <th>Inici</th>
+                        <th>Fin</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
             </table>
         </div>
     </div>
