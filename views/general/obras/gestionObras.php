@@ -8,6 +8,9 @@
       </div>
       <div>
           <div>
+            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+          </div>
+          <div>
               <img src="images/lupa.png" alt="" id="buscar">
               <input type="text" id="busqueda">
               <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
@@ -79,7 +82,10 @@
       ?>
     </table>
   </div>    
+  
 </section>
+<span class="noResultados">No se han encontrado resultados</span>
+<span class="loader"></span>
 
 <div id="popupImagen" >
   <div id="vistaImagenAmpliada">

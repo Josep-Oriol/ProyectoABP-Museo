@@ -36,6 +36,23 @@
            
         </div>
 
+<div class="overlay-ubicaciones">
+    <div class="ubicaciones-content">
+        <div class="popup-header">
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="btns">
+            <button id="past">Pasadas</button>
+            <button id="current">Actuales</button>
+        </div>
+        <div class="content">
+            <table id="table-ubicaciones">
+            </table>
+        </div>
+    </div>
+</div>
+
+
         <?php
         }
         else {

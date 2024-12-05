@@ -236,7 +236,7 @@
             $vocabulario = new Vocabularios();
 
             $historial = $vocabulario->mostrarHistorial($id_ubicacion);
-            $response = ['datos' => $historial];
+            $response = $historial;
 
             header('Content-Type: application/json');
             echo json_encode($response);

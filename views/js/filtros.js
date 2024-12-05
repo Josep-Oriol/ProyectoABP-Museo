@@ -15,6 +15,9 @@ function mostrarDatos(dato, filters) {
   };
   let dataJson = JSON.stringify(data);
 
+  loader = document.querySelector(".loader")
+  noResults = document.querySelector(".noResultados")
+
   fetch("ajax.php?controller=Buscador&action=buscar", {
     method: "POST",
     headers: {
@@ -25,8 +28,15 @@ function mostrarDatos(dato, filters) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.condicionales);
-      console.log(data.condicionales2);
+
+      if(data.texto.length === 0){
+        noResults.style.display = "block"
+        loader.style.display = "none"
+      }
+      else{
+        loader.style.display = "block"
+        noResults.style.display = "none"
+      }
       
       exposiciones = data.texto
 
@@ -90,6 +100,8 @@ function mostrarDatos(dato, filters) {
 
           tr.appendChild(td_botones)
           tbody.appendChild(tr);
+
+          loader.style.display = "none"
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
@@ -342,6 +354,15 @@ async function enviarDatos() {
   }
 }
 
+function exportar(datos){
+  const worksheet = XLSX.utils.json_to_sheet(datos); // Crear la hoja de cálculo
+  const workbook = XLSX.utils.book_new();            // Crear el libro de trabajo
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos"); // Agregar la hoja al libro
+
+  // Generar y descargar el archivo Excel
+  XLSX.writeFile(workbook, "datos.xlsx");
+}
+
 // Inicializar eventos
 function inicializarEventos() {
   const inputExposiciones = document.getElementById("busqueda");
@@ -352,6 +373,8 @@ function inicializarEventos() {
   const resetBtn = document.getElementById("btn-reset");
 
   const submit = document.getElementById("btn-apply");
+
+  const botonExportar = document.querySelector("#exportarExcel")
 
   addAndFilterBtn.addEventListener("click", () => {
     agregarFiltro("and");
@@ -381,7 +404,46 @@ function inicializarEventos() {
     let dato = inputExposiciones.value;
     mostrarDatos(inputExposiciones.value, filters);
   });
+
+  botonExportar.addEventListener("click", function(event){
+    let filters = datosForm()
+    let dato = inputExposiciones.value;
+    const url = window.location.href;
+    let pagina = url.includes("Exposiciones")
+      ? "exposiciones"
+      : url.includes("Obras")
+      ? "obras"
+      : url.includes("Usuarios")
+      ? "usuarios"
+      : null;
+    let data = {
+      busqueda: dato,
+      pagina: pagina,
+      filtros: filters,
+    };
+    let dataJson = JSON.stringify(data);
+  
+    fetch("ajax.php?controller=Buscador&action=exportarTablas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: dataJson,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+  
+        exportar(data.texto)
+
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  })  
+
 }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   await obtenerDatos(controller);

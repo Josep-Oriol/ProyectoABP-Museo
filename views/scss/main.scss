@@ -15,12 +15,14 @@
 @import "exposiciones/editarExposicion.scss";
 @import "exposiciones/relacionarObra.scss";
 @import "popups/filtroBusqueda.scss";
+@import "components/componentes.scss";
 @import "components/footer.scss";
 @import "components/popup.scss";
 @import "popups/filtroBusqueda.scss";
 @import "popups/popupEliminar.scss";
 @import "vocabularios/fichaCrearUbicacion.scss";
 @import "copias/fichaCopia.scss";
+@import "popups/popupUbicacionesHistory.scss";
 
 body {
   display: flex;

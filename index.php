@@ -11,11 +11,12 @@ session_start();
     <title>Gestió Museu Apel·les Fenosa</title>
     <link rel="stylesheet" href="views/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="views/js/logIn.js"></script>
     <script src="views/js/header.js"></script>
     <script src="views/js/ubicaciones.js"></script>
     <script src="views/js/eliminar.js"></script>
-    <script src="views/js/busqueda.js"></script>
+    <script src="views/js/exportarExcel.js"></script>
     <script src="views/js/up.js"></script>
     <script src="views/js/filtros.js"></script>
     <script src="views/js/popup.js"></script>

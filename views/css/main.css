@@ -227,6 +227,33 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   justify-content: right;
 }
 #general > :first-child > :nth-child(2) > :first-child {
+  margin-right: 12px;
+}
+#general > :first-child > :nth-child(2) > :first-child button {
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background-color: #333333;
+  border: 1px solid #BFBFBF;
+  border-radius: 3px;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 8px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+#general > :first-child > :nth-child(2) > :first-child button img {
+  width: 20px;
+  height: auto;
+}
+#general > :first-child > :nth-child(2) > :first-child button:hover {
+  transform: translateY(-1px);
+  background-color: rgb(38.25, 38.25, 38.25);
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) {
   border: 2px #333333 solid;
   display: flex;
   flex-direction: row;
@@ -235,29 +262,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-right: 10px;
   padding: 5px;
 }
-#general > :first-child > :nth-child(2) > :first-child > :first-child {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child {
   width: 20px;
   padding: 0px;
 }
-#general > :first-child > :nth-child(2) > :first-child > :nth-child(2) {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2) {
   border: none;
   margin-left: 20px;
   font-size: 16px;
 }
-#general > :first-child > :nth-child(2) > :first-child > :nth-child(2):focus {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2):focus {
   outline: none;
 }
-#general > :first-child > :nth-child(2) > :first-child > :last-child {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child {
   width: 22px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) {
+#general > :first-child > :nth-child(2) > :nth-child(3) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > select {
+#general > :first-child > :nth-child(2) > :nth-child(3) > select {
   background-color: #333333;
   border: 1px solid #BFBFBF;
   border-radius: 3px;
@@ -2341,6 +2368,117 @@ footer .div2 .web a {
     transform: scale(1.02);
   }
 }
+.overlay-ubicaciones {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+.overlay-ubicaciones .ubicaciones-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 60vh;
+  overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .overlay-ubicaciones .ubicaciones-content {
+    scale: 0;
+  }
+}
+.overlay-ubicaciones .popup-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.overlay-ubicaciones .popup-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1;
+  color: #666;
+  transition: color 0.2s;
+}
+.overlay-ubicaciones .popup-header .close-btn:hover {
+  color: #000;
+}
+.overlay-ubicaciones .popup-header .close-btn:active {
+  scale: 0.9;
+}
+.overlay-ubicaciones .btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.overlay-ubicaciones .btns button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: transparent;
+}
+.overlay-ubicaciones .btns button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-1px);
+  color: #333333;
+}
+.overlay-ubicaciones .btns button:active {
+  transform: translateY(0);
+  scale: 0.99;
+}
+.overlay-ubicaciones .btns button::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  background-color: #333333;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+.overlay-ubicaciones .btns button:hover::after {
+  width: 100%;
+}
+.overlay-ubicaciones .content {
+  display: flex;
+  justify-content: center;
+}
+.overlay-ubicaciones .content table {
+  width: 90%;
+  border-collapse: collapse;
+}
+.overlay-ubicaciones .content table .thead {
+  background-color: #333333;
+  color: white;
+}
+.overlay-ubicaciones .content table .thead > td {
+  padding: 15px;
+  text-align: center;
+}
+.overlay-ubicaciones .content table tr {
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+}
+
 body {
   display: flex;
   flex-direction: column;
