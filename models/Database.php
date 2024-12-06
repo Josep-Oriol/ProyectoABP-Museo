@@ -30,7 +30,9 @@ class Database {
         $username = DB_USER;
         $password = DB_PASSWORD;
 
-        $archivoCopia = 'copia_de_seguretat_Id' . $idCopia . "_" . date('Y-m-d_H-i-s') . '.sql';
+        $usuario = getenv('USERNAME');
+
+        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat_Id' . $idCopia . "_" . date('Y-m-d_H-i-s') . '.sql';
 
         $comandoCopia = "mysqldump -u {$username} -h {$servername} {$dbname} > {$archivoCopia}";
         

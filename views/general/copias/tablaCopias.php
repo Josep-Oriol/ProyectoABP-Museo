@@ -6,6 +6,7 @@
         <h1>Llistat Copias</h1>
         <div>
             <div>
+               
                 <button id="buscar">
                     <img src="images/lupa.png" alt="">
                 </button>
@@ -55,7 +56,7 @@
                     <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
                     <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
                     <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar Copia"><img src="images/borrarv2.png" alt=""></a>
-            
+                    <a id="<?php echo $id;?>" class="descargarCopia" title="Descarregar copia de seguretat"><img src="images/subirArchivo.png"></a>
                 <?php
             }
             else if ($_SESSION['Rol'] == 'Tècnic') {

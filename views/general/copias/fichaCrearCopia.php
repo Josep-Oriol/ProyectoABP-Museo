@@ -27,6 +27,7 @@ if (isset($_SESSION['Rol'])) {
                             <input type="submit" value="Crear" id="btnCrearCopia">
                         </div>
                     </div>
+                    <p>La copia de seguretat es guardará a la carpeta de descárregas del sistema.<p>
                 </div>
             </div>
         </form>

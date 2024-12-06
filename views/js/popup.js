@@ -14,6 +14,8 @@ function agregarEventosEliminar() {
     ? "obras"
     : url.includes("Usuarios")
     ? "usuarios"
+    : url.inculed("Copias")
+    ? "copias_seguridad"
     : null;
   let nombreColumna =
     pagina === "exposiciones"
@@ -22,6 +24,8 @@ function agregarEventosEliminar() {
       ? "numero_registro"
       : pagina === "usuarios"
       ? "usuario"
+      : pagina === "copias_seguridad"
+      ? "copia"
       : null;
 
   // MOSTRAR POPUP
