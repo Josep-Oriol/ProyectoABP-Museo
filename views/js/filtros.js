@@ -1,4 +1,6 @@
 function mostrarDatos(dato, filters) {
+  let paginacion = document.querySelector("#numeroResultados")
+  console.log(paginacion.value)
   const url = window.location.href;
   let pagina = url.includes("Exposiciones")
     ? "exposiciones"
@@ -12,6 +14,7 @@ function mostrarDatos(dato, filters) {
     busqueda: dato,
     pagina: pagina,
     filtros: filters,
+    lim_registros: paginacion.value,
   };
   let dataJson = JSON.stringify(data);
 
@@ -405,8 +408,14 @@ function inicializarEventos() {
     mostrarDatos(inputExposiciones.value, filters);
   });
 
+  let paginacion = document.querySelector("#numeroResultados")
+  paginacion.addEventListener("change", function(event){
+    mostrarDatos(inputExposiciones.value, datosForm())
+  })
   botonExportar.addEventListener("click", function(event){
     let filters = datosForm()
+    let paginacion = document.querySelector("#numeroResultados")
+    console.log(paginacion.value)
     let dato = inputExposiciones.value;
     const url = window.location.href;
     let pagina = url.includes("Exposiciones")
@@ -420,6 +429,7 @@ function inicializarEventos() {
       busqueda: dato,
       pagina: pagina,
       filtros: filters,
+      lim_registros: paginacion.value,
     };
     let dataJson = JSON.stringify(data);
   
@@ -440,7 +450,38 @@ function inicializarEventos() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  })  
+  })
+
+  atras = document.querySelector("#pag_atras")
+  delante = document.querySelector("#pag_delante")
+
+
+  delante.addEventListener("click", function(event){
+    const index = paginacion.selectedIndex
+
+    if(index < paginacion.options.length-1){
+      paginacion.selectedIndex = index + 1
+    }
+    else{
+      paginacion.selectedIndex = 0
+    }
+    mostrarDatos(inputExposiciones.value, datosForm())
+  })
+
+  atras.addEventListener("click", function(event){
+    const index = paginacion.selectedIndex
+
+    if(index === 0){
+      paginacion.selectedIndex = paginacion.options.length-1
+    }
+    else{
+      paginacion.selectedIndex -= 1
+    }
+    mostrarDatos(inputExposiciones.value, datosForm())
+  })
+
+  
+
 
 }
 

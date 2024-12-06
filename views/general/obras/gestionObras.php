@@ -16,16 +16,18 @@
               <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
           </div>
           <div>
-              <select name="numeroResultados" id="numeroResultados">
-                <option value="0-25">0-25</option>
-                <option value="0-50">0-50</option>
-                <option value="0-100">0-100</option>
-                <option value="0-500">0-500</option>
-              </select>
+            <select name="numeroResultados" id="numeroResultados">
+              <option value="0-5">0-5</option>
+              <option value="0-25" selected>0-25</option>
+              <option value="0-50">0-50</option>
+              <option value="0-100">0-100</option>
+              <option value="0-500">0-500</option>
+              <option value="tots">Tots</option>
+            </select>
           </div>
           <div>
-              <img src="images/flecha_izquierda.png" alt="flecha izquierda">
-              <img src="images/flecha_derecha.png" alt="flecha derecha">
+            <img id="pag_atras"src="images/flecha_izquierda.png" alt="flecha izquierda">
+            <img id="pag_delante" src="images/flecha_derecha.png" alt="flecha derecha">
           </div>
       </div>
   </div>
