@@ -53,7 +53,7 @@ if (isset($_SESSION['Rol'])) {
                                 <input type="text" id="numero_registro" name="numero_registro" required>
                                 <input type="text" name="decimales" id="decimales" placeholder="[01-99]">
                                 <p id="errorFormatoNumRegistro"></p>
-                                <img src="images/reload.png" alt="Sugerir número de registro" id="sugerirNumeroRegistro">
+                                <img src="images/reload.png" alt="Sugerir número de registro" id="sugerirNumeroRegistro" title="Sugerir número de registro">
                             </div>
                         </div>
                         <div>

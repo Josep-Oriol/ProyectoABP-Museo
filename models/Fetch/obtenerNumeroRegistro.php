@@ -26,6 +26,5 @@
                 echo json_encode(["existe" => false]);
             }
         }
-        exit;
     }
 ?>

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (fichaBasica) {
         fichaCompleta.style.display = 'none';
+        btnFichaBasica.classList.add('pulsado');
         btnFichaCompleta.addEventListener('click', () => {
             btnFichaCompleta.classList.add('pulsado');
             btnFichaBasica.classList.remove('pulsado');

@@ -42,7 +42,12 @@ class Obras extends Database {
     }
 
 	public function obtenerUltimoNumeroRegistro($letra) {
-		$sql = "SELECT numero_registro FROM obras WHERE numero_registro LIKE '$letra%' ORDER BY numero_registro DESC LIMIT 1";
+		if (empty($letra)) {
+			$sql = "SELECT numero_registro FROM obras ORDER BY CAST(numero_registro AS FLOAT) DESC LIMIT 1";
+		}
+		else {
+			$sql = "SELECT numero_registro FROM obras WHERE numero_registro LIKE '$letra%' ORDER BY numero_registro DESC LIMIT 1";
+		}
 
 		$db = $this->conectar();
 		try {
