@@ -150,31 +150,61 @@ function eliminarHijos(id_ubicacion) {
     });
 }
 
+function crearTabla() {
+  const content = document.getElementById("content");
+
+  const tabla = document.createElement("table");
+  tabla.setAttribute("id", "table-ubicaciones");
+
+  const thead = document.createElement("thead");
+  thead.setAttribute("class", "thead");
+
+  const trHead = document.createElement("tr");
+
+  const th1 = document.createElement("th");
+  th1.textContent = "Nombre";
+  trHead.appendChild(th1);
+
+  const th2 = document.createElement("th");
+  th2.textContent = "Data Inici";
+  trHead.appendChild(th2);
+
+  const th3 = document.createElement("th");
+  th3.textContent = "Data Fin";
+  trHead.appendChild(th3);
+
+  thead.appendChild(trHead);
+  tabla.appendChild(thead);
+  content.appendChild(tabla);
+
+  const tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "tbody");
+  tabla.appendChild(tbody);
+}
+
 function mostrarPasadas(data) {
   const tbody = document.getElementById("tbody");
-  tbody.innerHTML = "";
 
-  const row = document.createElement("tr");
+  if (tbody.hasChildNodes) {
+    tbody.innerHTML = "";
+  }
 
   if (data.obrasAntiguas.length > 0) {
     data.obrasAntiguas.forEach((obra) => {
       // Fila
+      const row = document.createElement("tr");
 
       // Celdas
       const tdTitulo = document.createElement("td");
-      tdTitulo.textContent = obra.titulo;
+      tdTitulo.textContent = obra.nombre_obra;
       row.appendChild(tdTitulo);
 
-      const tdDescripcion = document.createElement("td");
-      tdDescripcion.textContent = obra.descripcion_ubicacion;
-      row.appendChild(tdDescripcion);
-
       const tdInicio = document.createElement("td");
-      tdInicio.textContent = obra.fecha_inicio_ubicacion;
+      tdInicio.textContent = obra.fecha_inicio;
       row.appendChild(tdInicio);
 
       const tdFin = document.createElement("td");
-      tdFin.textContent = obra.fecha_fin_ubicacion;
+      tdFin.textContent = obra.fecha_fin;
       row.appendChild(tdFin);
 
       // Añadir
@@ -184,17 +214,23 @@ function mostrarPasadas(data) {
     // No hay obras
     const row = document.createElement("tr");
     const tdEmpty = document.createElement("td");
-    td.colSpan = 4;
-    td.textContent = "No hay obras pasadas.";
+    tdEmpty.colSpan = 3;
+    tdEmpty.textContent = "No hay obras pasadas.";
     row.appendChild(tdEmpty);
+    tbody.appendChild(row);
   }
 }
 
 function mostrarActuales(data) {
   const tbody = document.getElementById("tbody");
-  tbody.innerHTML = "";
+
+  if (tbody.hasChildNodes) {
+    tbody.innerHTML = "";
+  }
 
   if (data.obrasActuales.length > 0) {
+    console.log(tbody);
+
     data.obrasActuales.forEach((obra) => {
       // Fila
       const row = document.createElement("tr");
@@ -203,10 +239,6 @@ function mostrarActuales(data) {
       const tdTitulo = document.createElement("td");
       tdTitulo.textContent = obra.titulo;
       row.appendChild(tdTitulo);
-
-      const tdDescripcion = document.createElement("td");
-      tdDescripcion.textContent = obra.descripcion_ubicacion;
-      row.appendChild(tdDescripcion);
 
       const tdInicio = document.createElement("td");
       tdInicio.textContent = obra.fecha_inicio_ubicacion;
@@ -223,7 +255,7 @@ function mostrarActuales(data) {
     // No hay obras
     const row = document.createElement("tr");
     const td = document.createElement("td");
-    td.colSpan = 4;
+    td.colSpan = 3;
     td.textContent = "No hay obras actuales.";
     row.appendChild(td);
     tbody.appendChild(row);
@@ -255,10 +287,12 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-
           const pasadas = document.getElementById("past");
           const actuales = document.getElementById("current");
+          console.log(data);
+          crearTabla();
+          console.log(data);
+          mostrarPasadas(data);
 
           pasadas.addEventListener("click", () => {
             mostrarPasadas(data);

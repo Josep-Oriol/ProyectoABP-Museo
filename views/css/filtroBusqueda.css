@@ -17,6 +17,13 @@
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+@starting-style {
+  .popup-overlay .popup-content {
+    scale: 0;
+  }
 }
 .popup-overlay .popup-content .popup-header {
   display: flex;
@@ -28,7 +35,7 @@
 .popup-overlay .popup-content .popup-header .close-btn {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
   padding: 2px 8px;
   line-height: 1;
@@ -44,53 +51,116 @@
 .popup-overlay .popup-content .popup-body {
   padding-top: 5px;
 }
+.popup-overlay .popup-content .popup-body h3 {
+  padding-bottom: 15px;
+}
 
 .form-group {
   margin-bottom: 15px;
 }
+.form-group .filterItemGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
 .form-group label {
-  display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
-.form-group .form-control,
-.form-group input[type=number],
-.form-group input[type=date],
 .form-group select {
-  width: 100%;
+  width: 50%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: #333333;
+  color: white;
 }
-.form-group .form-control:focus,
-.form-group input[type=number]:focus,
-.form-group input[type=date]:focus,
 .form-group select:focus {
   outline: none;
   border-color: #333333;
   box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
 }
-.form-group .small-input {
-  width: 100px !important;
+.form-group select:hover {
+  cursor: pointer;
 }
-.form-group .range-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+.form-group input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
-.form-group .dimensions-inputs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+.form-group input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
 }
-.form-group .currency-input {
+.form-group .plusInput {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 5px;
+  margin-left: 25px;
+  margin-bottom: 10px;
 }
-.form-group .currency-input .currency-select {
-  width: 80px;
+.form-group .btn-add-field {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #333333;
+  color: white;
+}
+.form-group .btn-add-field:hover {
+  background-color: #262626;
+  transform: translateY(-1px);
+}
+.form-group .btn-add-field:active {
+  scale: 0.95;
+}
+.form-group #and-filters-inputs, .form-group #or-filters-inputs {
+  padding: 10px 0 0 10px;
+}
+.form-group .input-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+.trashIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.trashIcon:active {
+  scale: 0.9;
+}
+
+.minusIcon {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.minusIcon:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(6386%) hue-rotate(357deg) brightness(93%) contrast(120%);
+  transform: translateY(-1px);
+}
+.minusIcon:active {
+  scale: 0.9;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+.plusIcon:hover {
+  transform: translateY(-1px);
+}
+.plusIcon:active {
+  scale: 0.9;
 }
 
 .button-group {
