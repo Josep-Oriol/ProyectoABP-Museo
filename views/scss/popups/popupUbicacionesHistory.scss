@@ -110,17 +110,24 @@ $spacing-large: 20px;
       width: 90%;
       border-collapse: collapse;
       .thead {
-        background-color: $primary-color;
         color: white;
 
         > tr {
-          padding: 15px;
           text-align: center;
+          background-color: $primary-color;
+
+          > th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
         }
       }
-      tr {
-        margin-bottom: 5px;
-        background-color: $background-grey;
+      .tbody {
+        color: #333333;
+
+        > tr {
+          background-color: $background-grey;
+        }
       }
     }
   }

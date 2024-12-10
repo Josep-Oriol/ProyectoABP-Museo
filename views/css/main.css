@@ -2439,15 +2439,20 @@ footer .div2 .web a {
   border-collapse: collapse;
 }
 .overlay-ubicaciones .content table .thead {
-  background-color: #333333;
   color: white;
 }
 .overlay-ubicaciones .content table .thead > tr {
-  padding: 15px;
   text-align: center;
+  background-color: #333333;
 }
-.overlay-ubicaciones .content table tr {
-  margin-bottom: 5px;
+.overlay-ubicaciones .content table .thead > tr > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.overlay-ubicaciones .content table .tbody {
+  color: #333333;
+}
+.overlay-ubicaciones .content table .tbody > tr {
   background-color: #f0f0f0;
 }
 

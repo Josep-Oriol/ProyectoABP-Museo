@@ -55,7 +55,7 @@
                         <th>Fin</th>
                     </tr>
                 </thead>
-                <tbody id="tbody"></tbody>
+                <tbody class="tbody"></tbody>
             </table>
         </div>
     </div>

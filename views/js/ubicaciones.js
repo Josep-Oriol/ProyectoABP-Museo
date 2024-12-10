@@ -150,27 +150,9 @@ function eliminarHijos(id_ubicacion) {
     });
 }
 
-function crearHeaderTable() {
-  const header = ["Títol", "Ubicació", "Inici", "Fin"];
-  const tabla = document.getElementById("table-ubicaciones");
-  tabla.innerHTML = "";
-
-  // Header
-  const thead = document.createElement("thead");
-  const rowHeader = document.createElement("tr");
-  thead.setAttribute("class", "thead");
-  header.forEach((element) => {
-    let tdHeader = document.createElement("th");
-    tdHeader.textContent = element;
-    rowHeader.appendChild(tdHeader);
-  });
-  thead.appendChild(rowHeader);
-  tabla.appendChild(thead);
-}
-
 function mostrarPasadas(data) {
   const tbody = document.getElementById("tbody");
-  tbody.innerHTML = " ";
+  tbody.innerHTML = "";
 
   const row = document.createElement("tr");
 
@@ -210,7 +192,7 @@ function mostrarPasadas(data) {
 
 function mostrarActuales(data) {
   const tbody = document.getElementById("tbody");
-  tbody.innerHTML = " ";
+  tbody.innerHTML = "";
 
   if (data.obrasActuales.length > 0) {
     data.obrasActuales.forEach((obra) => {
