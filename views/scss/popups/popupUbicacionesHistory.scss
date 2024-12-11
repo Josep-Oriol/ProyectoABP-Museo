@@ -1,3 +1,5 @@
+@import "../utils/variables.scss";
+
 $primary-color: #333333;
 $border-color: #ddd;
 $background-grey: #f0f0f0;
@@ -66,38 +68,22 @@ $spacing-large: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
 
-    button {
+    > button {
       padding: 8px 16px;
       border: none;
-      border-radius: $border-radius;
       cursor: pointer;
       transition: all 0.2s;
       background-color: transparent;
 
       &:hover {
+        transition: all 0.2s ease-in-out;
         transform: translateY(-1px);
-        @include hover-y;
         color: $primary-color;
       }
 
       &:active {
         transform: translateY(0);
         scale: 0.99;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0px;
-        left: 50%;
-        width: 0px;
-        height: 2px;
-        background-color: $primary-color;
-        transform: translateX(-50%);
-        transition: width 0.3s ease-in-out;
-      }
-
-      &:hover::after {
-        width: 100%;
       }
     }
   }
@@ -119,6 +105,8 @@ $spacing-large: 20px;
           > th {
             padding-top: 10px;
             padding-bottom: 10px;
+            width: 25%;
+            text-align: center;
           }
         }
       }
@@ -127,8 +115,37 @@ $spacing-large: 20px;
 
         > tr {
           background-color: $background-grey;
+
+          > td {
+            text-align: center;
+            height: 25px;
+          }
         }
       }
     }
+  }
+}
+
+.underline-hover {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 0px;
+    height: 2px;
+    background-color: $primary-color;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.clicked {
+  &:active {
+    border-bottom: 2px solid $primary-color;
   }
 }

@@ -162,16 +162,20 @@ function crearTabla() {
   const trHead = document.createElement("tr");
 
   const th1 = document.createElement("th");
-  th1.textContent = "Nombre";
+  th1.textContent = "Ubicació";
   trHead.appendChild(th1);
 
   const th2 = document.createElement("th");
-  th2.textContent = "Data Inici";
+  th2.textContent = "Nombre";
   trHead.appendChild(th2);
 
   const th3 = document.createElement("th");
-  th3.textContent = "Data Fin";
+  th3.textContent = "Data Inici";
   trHead.appendChild(th3);
+
+  const th4 = document.createElement("th");
+  th4.textContent = "Data Fin";
+  trHead.appendChild(th4);
 
   thead.appendChild(trHead);
   tabla.appendChild(thead);
@@ -195,6 +199,10 @@ function mostrarPasadas(data) {
       const row = document.createElement("tr");
 
       // Celdas
+      const tdVoid = document.createElement("td");
+      tdVoid.textContent = "";
+      row.appendChild(tdVoid);
+
       const tdTitulo = document.createElement("td");
       tdTitulo.textContent = obra.nombre_obra;
       row.appendChild(tdTitulo);
@@ -214,7 +222,7 @@ function mostrarPasadas(data) {
     // No hay obras
     const row = document.createElement("tr");
     const tdEmpty = document.createElement("td");
-    tdEmpty.colSpan = 3;
+    tdEmpty.colSpan = 4;
     tdEmpty.textContent = "No hay obras pasadas.";
     row.appendChild(tdEmpty);
     tbody.appendChild(row);
@@ -229,13 +237,15 @@ function mostrarActuales(data) {
   }
 
   if (data.obrasActuales.length > 0) {
-    console.log(tbody);
-
     data.obrasActuales.forEach((obra) => {
       // Fila
       const row = document.createElement("tr");
 
       // Celdas
+      const tdDescripcion = document.createElement("td");
+      tdDescripcion.textContent = obra.descripcion_ubicacion;
+      row.appendChild(tdDescripcion);
+
       const tdTitulo = document.createElement("td");
       tdTitulo.textContent = obra.titulo;
       row.appendChild(tdTitulo);
@@ -255,7 +265,7 @@ function mostrarActuales(data) {
     // No hay obras
     const row = document.createElement("tr");
     const td = document.createElement("td");
-    td.colSpan = 3;
+    td.colSpan = 4;
     td.textContent = "No hay obras actuales.";
     row.appendChild(td);
     tbody.appendChild(row);
@@ -294,11 +304,27 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log(data);
           mostrarPasadas(data);
 
+          pasadas.addEventListener("mouseenter", () => {
+            if (!pasadas.classList.contains("clicked")) {
+              pasadas.classList.add("underline-hover");
+            }
+          });
+
+          actuales.addEventListener("mouseenter", () => {
+            if (!actuales.classList.contains("clicked")) {
+              actuales.classList.add("underline-hover");
+            }
+          });
+
           pasadas.addEventListener("click", () => {
+            actuales.classList.remove("clicked");
+            pasadas.classList.add("clicked");
             mostrarPasadas(data);
           });
 
           actuales.addEventListener("click", () => {
+            pasadas.classList.remove("clicked");
+            actuales.classList.add("clicked");
             mostrarActuales(data);
           });
         })
