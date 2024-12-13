@@ -276,7 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const botones = document.getElementsByClassName("historial");
 
   const overlay = document.querySelector(".overlay-ubicaciones");
-  overlay.style.display = "none";
+  if (overlay) {
+    overlay.style.display = "none";
+  }
 
   Array.from(botones).forEach((boton) => {
     boton.addEventListener("click", function () {
