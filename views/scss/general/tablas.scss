@@ -17,6 +17,16 @@
             justify-content: right;
             >:first-child{
                 margin-right: 12px;
+                &#subirImagen{
+                    background-color: $color_oscuro;
+                    color: white;
+                    padding: 8px;
+                    border-radius: 3px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
                 button{
                     gap: 8px;
 
@@ -154,7 +164,8 @@
     }
 }
 
-#popupImagen {
+
+#popupImagen, #popupSQL {
     display: none;
     width: 100%;
     position: fixed;
@@ -167,6 +178,10 @@
     > div {
         width: 25%;
         position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -175,5 +190,21 @@
             width: 100%;
             height: auto;
         }
+
+        #imagenSQL{
+            width: 50%;
+            height: auto;
+        }
     }
+
+    #contenidoPopupSQL {
+        background-color: $color_claro2;
+        border-radius: 10px;
+        color: black;
+        padding: 20px;
+        > div > button {
+            padding: 10px;
+        }
+    }
+    
 }

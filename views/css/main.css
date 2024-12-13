@@ -229,6 +229,15 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #general > :first-child > :nth-child(2) > :first-child {
   margin-right: 12px;
 }
+#general > :first-child > :nth-child(2) > :first-child#subirImagen {
+  background-color: #333333;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
+#general > :first-child > :nth-child(2) > :first-child#subirImagen:hover {
+  cursor: pointer;
+}
 #general > :first-child > :nth-child(2) > :first-child button {
   gap: 8px;
   display: flex;
@@ -251,7 +260,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #general > :first-child > :nth-child(2) > :first-child button:hover {
   transform: translateY(-1px);
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
   border: 2px #333333 solid;
@@ -356,7 +365,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #EFEFEF;
 }
 
-#popupImagen {
+#popupImagen, #popupSQL {
   display: none;
   width: 100%;
   position: fixed;
@@ -366,16 +375,33 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
 }
-#popupImagen > div {
+#popupImagen > div, #popupSQL > div {
   width: 25%;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#popupImagen > div img {
+#popupImagen > div img, #popupSQL > div img {
   width: 100%;
   height: auto;
+}
+#popupImagen > div #imagenSQL, #popupSQL > div #imagenSQL {
+  width: 50%;
+  height: auto;
+}
+#popupImagen #contenidoPopupSQL, #popupSQL #contenidoPopupSQL {
+  background-color: #BFBFBF;
+  border-radius: 10px;
+  color: black;
+  padding: 20px;
+}
+#popupImagen #contenidoPopupSQL > div > button, #popupSQL #contenidoPopupSQL > div > button {
+  padding: 10px;
 }
 
 #fichaObra > div {
@@ -1561,7 +1587,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -1634,14 +1660,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .loader {
@@ -1966,7 +1992,7 @@ footer .div2 .web a {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -2039,14 +2065,14 @@ footer .div2 .web a {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .popupEliminar {
@@ -2068,8 +2094,7 @@ footer .div2 .web a {
 .popupEliminar img {
   width: 64px;
   height: 64px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   margin-bottom: 1vh;
 }
 .popupEliminar button {
@@ -2658,4 +2683,6 @@ body {
 #popUpUbicaciones img {
   width: 3vw;
   margin-bottom: 1vh;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

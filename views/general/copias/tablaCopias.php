@@ -2,80 +2,98 @@
 <?php
     if(isset($_SESSION['Rol'])){ ?>
 <div id = "general">
+  <div>
     <div>
-        <h1>Llistat Copias</h1>
+        <h1>Copies de seguretat</h1>
+    </div>
+    <div>
+        <div id="subirImagen">
+          <form id="formSQL" action="index.php?controller=Copias&action=importarCopia" method="POST" enctype="multipart/form-data"  >
+            <p>Seleccionar fichero</p>
+            <input type="file" name="fichero_sql" id="inputFotografia" class="popupSQL">
+          </form>
+        </div>
         <div>
-            <div>
-               
-                <button id="buscar">
-                    <img src="images/lupa.png" alt="">
-                </button>
-                <input type="text" id="busqueda">
-                <button id="filtro">
-                    <img src="images/ajustes_deslizadores.png" alt="">
-                </button>
-            </div>
-            <div>
-                <div>
-                    <a>0 - 50</a>
-                    <img src="images/flecha_abajo.png" alt="">
-                </div>
-                <div>
-                    <img src="images/flecha_izquierda.png" alt="">
-                    <img src="images/flecha_derecha.png" alt="">
-                </div>
-            </div>
+            <img src="images/lupa.png" alt="" id="buscar">
+            <input type="text" id="busqueda">
+            <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
+        </div>
+        <div>
+          <select name="numeroResultados" id="numeroResultados">
+            <option value="0-5">0-5</option>
+            <option value="0-25" selected>0-25</option>
+            <option value="0-50">0-50</option>
+            <option value="0-100">0-100</option>
+            <option value="0-500">0-500</option>
+            <option value="tots">Tots</option>
+          </select>
+        </div>
+        <div>
+          <img id="pag_atras"src="images/flecha_izquierda.png" alt="flecha izquierda">
+          <img id="pag_delante" src="images/flecha_derecha.png" alt="flecha derecha">
         </div>
     </div>
+  </div>
 
+  <div>
+      <table>
+          <tr>
+              <td>ID</td>
+              <td>Nombre</td>
+              <td>Descripcion</td>
+              <td>Fecha</td>
+              <td>Creador</td>
+              <td> 
+                  <a href="index.php?controller=Copias&action=crear"><button>Crear copia</button></a>
+              </td>
+          </tr>
+      <?php
+          foreach($copias as $indice => $copia) {
+              $id = $copia['id_copia'];
+              echo "<tr id=\"$id\">
+                  <td>{$copia['id_copia']}</td>
+                  <td>{$copia['nombre_copia']}</td>
+                  <td>{$copia['descripcion_copia']}</td>
+                  <td>{$copia['fecha_copia']}</td>
+                  <td>{$copia['usuario']}</td>
+
+                  <td>";
+                  if ($_SESSION['Rol'] == 'Administració') {
+                      ?>
+                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
+                          <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
+                          <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar Copia"><img src="images/borrarv2.png" alt=""></a>
+                          <a id="<?php echo $id;?>" class="descargarCopia" title="Descarregar copia de seguretat"><img src="images/subirArchivo.png"></a>
+                      <?php
+                  }
+                  else if ($_SESSION['Rol'] == 'Tècnic') {
+                      ?>
+                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
+                          <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
+                      <?php
+                  }
+                  else if ($_SESSION['Rol'] == 'Lector') {
+                      ?>
+                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
+                      <?php
+                  }
+                  echo "</td>";
+              echo "</tr>";
+          }
+      ?>
+      </table>
+  </div>    
+</div>
+
+<div id="popupSQL">
+  <div id="contenidoPopupSQL">
+    <img src="images/alertIcon.png" alt="" id="imagenSQL">
+    <p>Confirmar elimininació</p>
     <div>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Nombre</td>
-                <td>Descripcion</td>
-                <td>Fecha</td>
-                <td>Creador</td>
-                <td> 
-                    <a href="index.php?controller=Copias&action=crear"><button>Crear copia</button></a>
-                </td>
-            </tr>
-        <?php
-    foreach($copias as $indice => $copia) {
-        $id = $copia['id_copia'];
-        echo "<tr id=\"$id\">
-            <td>{$copia['id_copia']}</td>
-            <td>{$copia['nombre_copia']}</td>
-            <td>{$copia['descripcion_copia']}</td>
-            <td>{$copia['fecha_copia']}</td>
-            <td>{$copia['usuario']}</td>
-
-            <td>";
-            if ($_SESSION['Rol'] == 'Administració') {
-                ?>
-                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
-                    <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar Copia"><img src="images/borrarv2.png" alt=""></a>
-                    <a id="<?php echo $id;?>" class="descargarCopia" title="Descarregar copia de seguretat"><img src="images/subirArchivo.png"></a>
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Tècnic') {
-                ?>
-                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                    <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
-                <?php
-            }
-            else if ($_SESSION['Rol'] == 'Lector') {
-                ?>
-                    <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                <?php
-            }
-            echo "</td>";
-        echo "</tr>";
-    }
-?>
-        </table>
-    </div>    
+      <button id="btnConfirmarSQL" class="confirmar">Confirmar</button>
+      <button id="btnCancelarSQL" class="cancelar">Cancelar</button>
+    </div>
+  </div>
 </div>
 
 <div id="popupImagen" >
