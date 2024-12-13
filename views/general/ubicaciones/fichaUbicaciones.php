@@ -45,10 +45,7 @@
             <button id="past">Pasadas</button>
             <button id="current">Actuales</button>
         </div>
-        <div class="content">
-            <table id="table-ubicaciones">
-            </table>
-        </div>
+        <div id="content"></div>
     </div>
 </div>
 

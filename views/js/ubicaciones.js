@@ -150,77 +150,105 @@ function eliminarHijos(id_ubicacion) {
     });
 }
 
-function crearHeaderTable() {
-  const header = ["Títol", "Ubicació", "Inici", "Fin"];
-  const tabla = document.getElementById("table-ubicaciones");
-  tabla.innerHTML = "";
+function crearTabla() {
+  const content = document.getElementById("content");
 
-  // Header
-  const rowHeader = document.createElement("tr");
-  rowHeader.setAttribute("class", "thead");
-  header.forEach((element) => {
-    let tdHeader = document.createElement("td");
-    tdHeader.textContent = element;
-    rowHeader.appendChild(tdHeader);
-  });
-  tabla.appendChild(rowHeader);
+  const tabla = document.createElement("table");
+  tabla.setAttribute("id", "table-ubicaciones");
+
+  const thead = document.createElement("thead");
+  thead.setAttribute("class", "thead");
+
+  const trHead = document.createElement("tr");
+
+  const th1 = document.createElement("th");
+  th1.textContent = "Ubicació";
+  trHead.appendChild(th1);
+
+  const th2 = document.createElement("th");
+  th2.textContent = "Nombre";
+  trHead.appendChild(th2);
+
+  const th3 = document.createElement("th");
+  th3.textContent = "Data Inici";
+  trHead.appendChild(th3);
+
+  const th4 = document.createElement("th");
+  th4.textContent = "Data Fin";
+  trHead.appendChild(th4);
+
+  thead.appendChild(trHead);
+  tabla.appendChild(thead);
+  content.appendChild(tabla);
+
+  const tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "tbody");
+  tabla.appendChild(tbody);
 }
 
 function mostrarPasadas(data) {
-  const tabla = document.getElementById("table-ubicaciones");
+  const tbody = document.getElementById("tbody");
 
-  const row = document.createElement("tr");
+  if (tbody.hasChildNodes) {
+    tbody.innerHTML = "";
+  }
 
   if (data.obrasAntiguas.length > 0) {
     data.obrasAntiguas.forEach((obra) => {
       // Fila
+      const row = document.createElement("tr");
 
       // Celdas
+      const tdVoid = document.createElement("td");
+      tdVoid.textContent = "";
+      row.appendChild(tdVoid);
+
       const tdTitulo = document.createElement("td");
-      tdTitulo.textContent = obra.titulo;
+      tdTitulo.textContent = obra.nombre_obra;
       row.appendChild(tdTitulo);
 
-      const tdDescripcion = document.createElement("td");
-      tdDescripcion.textContent = obra.descripcion_ubicacion;
-      row.appendChild(tdDescripcion);
-
       const tdInicio = document.createElement("td");
-      tdInicio.textContent = obra.fecha_inicio_ubicacion;
+      tdInicio.textContent = obra.fecha_inicio;
       row.appendChild(tdInicio);
 
       const tdFin = document.createElement("td");
-      tdFin.textContent = obra.fecha_fin_ubicacion;
+      tdFin.textContent = obra.fecha_fin;
       row.appendChild(tdFin);
 
       // Añadir
-      tabla.appendChild(row);
+      tbody.appendChild(row);
     });
   } else {
     // No hay obras
     const row = document.createElement("tr");
     const tdEmpty = document.createElement("td");
-    td.colSpan = 4;
-    td.textContent = "No hay obras pasadas.";
+    tdEmpty.colSpan = 4;
+    tdEmpty.textContent = "No hay obras pasadas.";
     row.appendChild(tdEmpty);
-    tabla.appendChild(row);
+    tbody.appendChild(row);
   }
 }
 
 function mostrarActuales(data) {
-  const tabla = document.getElementById("table-ubicaciones");
+  const tbody = document.getElementById("tbody");
+
+  if (tbody.hasChildNodes) {
+    tbody.innerHTML = "";
+  }
+
   if (data.obrasActuales.length > 0) {
     data.obrasActuales.forEach((obra) => {
       // Fila
       const row = document.createElement("tr");
 
       // Celdas
-      const tdTitulo = document.createElement("td");
-      tdTitulo.textContent = obra.titulo;
-      row.appendChild(tdTitulo);
-
       const tdDescripcion = document.createElement("td");
       tdDescripcion.textContent = obra.descripcion_ubicacion;
       row.appendChild(tdDescripcion);
+
+      const tdTitulo = document.createElement("td");
+      tdTitulo.textContent = obra.titulo;
+      row.appendChild(tdTitulo);
 
       const tdInicio = document.createElement("td");
       tdInicio.textContent = obra.fecha_inicio_ubicacion;
@@ -231,7 +259,7 @@ function mostrarActuales(data) {
       row.appendChild(tdFin);
 
       // Añadir
-      tabla.appendChild(row);
+      tbody.appendChild(row);
     });
   } else {
     // No hay obras
@@ -240,12 +268,15 @@ function mostrarActuales(data) {
     td.colSpan = 4;
     td.textContent = "No hay obras actuales.";
     row.appendChild(td);
-    tabla.appendChild(row);
+    tbody.appendChild(row);
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const botones = document.getElementsByClassName("historial");
+
+  const overlay = document.querySelector(".overlay-ubicaciones");
+  overlay.style.display = "none";
 
   Array.from(botones).forEach((boton) => {
     boton.addEventListener("click", function () {
@@ -254,8 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
         id_ubicacion: boton.id,
       };
       let dataJson = JSON.stringify(data);
-      const popup = document.querySelector(".overlay-ubicaciones");
-      popup.style.display = "flex";
+      overlay.style.display = "flex";
 
       fetch("ajax.php?controller=Vocabularios&action=mostrarHistorial", {
         method: "POST",
@@ -267,17 +297,34 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-
-          crearHeaderTable(data);
           const pasadas = document.getElementById("past");
           const actuales = document.getElementById("current");
+          console.log(data);
+          crearTabla();
+          console.log(data);
+          mostrarPasadas(data);
+
+          pasadas.addEventListener("mouseenter", () => {
+            if (!pasadas.classList.contains("clicked")) {
+              pasadas.classList.add("underline-hover");
+            }
+          });
+
+          actuales.addEventListener("mouseenter", () => {
+            if (!actuales.classList.contains("clicked")) {
+              actuales.classList.add("underline-hover");
+            }
+          });
 
           pasadas.addEventListener("click", () => {
+            actuales.classList.remove("clicked");
+            pasadas.classList.add("clicked");
             mostrarPasadas(data);
           });
 
           actuales.addEventListener("click", () => {
+            pasadas.classList.remove("clicked");
+            actuales.classList.add("clicked");
             mostrarActuales(data);
           });
         })
