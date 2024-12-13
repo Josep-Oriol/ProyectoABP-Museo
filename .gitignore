@@ -1,4 +1,5 @@
 # Base de Datos
 *.sql
 config.php
-views/css
+*.css
+*.css.map

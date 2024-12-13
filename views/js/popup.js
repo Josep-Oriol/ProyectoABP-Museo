@@ -14,7 +14,7 @@ function agregarEventosEliminar() {
     ? "obras"
     : url.includes("Usuarios")
     ? "usuarios"
-    : url.inculed("Copias")
+    : url.includes("Copias")
     ? "copias_seguridad"
     : null;
   let nombreColumna =
