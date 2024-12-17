@@ -1,6 +1,5 @@
 function mostrarDatos(dato, filters) {
-  let paginacion = document.querySelector("#numeroResultados")
-  console.log(paginacion.value)
+  let paginacion = document.querySelector("#numeroResultados");
   const url = window.location.href;
   let pagina = url.includes("Exposiciones")
     ? "exposiciones"
@@ -16,10 +15,10 @@ function mostrarDatos(dato, filters) {
     filtros: filters,
     lim_registros: paginacion.value,
   };
-  let dataJson = JSON.stringify(data);
+  const dataJson = JSON.stringify(data);
 
-  loader = document.querySelector(".loader")
-  noResults = document.querySelector(".noResultados")
+  loader = document.querySelector(".loader");
+  noResults = document.querySelector(".noResultados");
 
   fetch("ajax.php?controller=Buscador&action=buscar", {
     method: "POST",
@@ -31,80 +30,88 @@ function mostrarDatos(dato, filters) {
   })
     .then((response) => response.json())
     .then((data) => {
-
-      if(data.texto.length === 0){
-        noResults.style.display = "block"
-        loader.style.display = "none"
+      if (data.texto.length === 0) {
+        noResults.style.display = "block";
+        loader.style.display = "none";
+      } else {
+        loader.style.display = "block";
+        noResults.style.display = "none";
       }
-      else{
-        loader.style.display = "block"
-        noResults.style.display = "none"
-      }
-      
-      exposiciones = data.texto
 
-      let popupImagen = document.getElementById('popupImagen');
-      let vistaImagen = document.getElementById('vistaImagenAmpliada');
-      const tbody = document.querySelector('tbody');
-      const primer_tr = document.querySelector('tr')
-      tbody.innerHTML = primer_tr.outerHTML
-      
-      exposiciones.forEach(exposicion => {
-          let tr = document.createElement('tr')
-          for(let dato in exposicion){
-              let td = document.createElement('td')
+      exposiciones = data.texto;
 
-              if(exposicion[dato] && typeof exposicion[dato] === 'string' && exposicion[dato].includes("images/")){
-                  let img = document.createElement('img');
-                  img.src = exposicion[dato];
-                  img.alt = 'fotografia';
-                  img.className += "fotografiaObjeto";
-                  img.addEventListener('click', function() {
-                    popupImagen.style.display = 'block';
-                    let imagenAmpliada = vistaImagen.children[0]; //La imagen es el primer hijo de vistaImagenAmpliada
-                    imagenAmpliada.src = img.src;
-                  })
-                  td.appendChild(img)
-              }
-              else{
-                  td.textContent = exposicion[dato]
-              }
-              tr.appendChild(td);
+      let popupImagen = document.getElementById("popupImagen");
+      let vistaImagen = document.getElementById("vistaImagenAmpliada");
+      const tbody = document.querySelector("tbody");
+      const primer_tr = document.querySelector("tr");
+      tbody.innerHTML = primer_tr.outerHTML;
+
+      exposiciones.forEach((exposicion) => {
+        let tr = document.createElement("tr");
+        for (let dato in exposicion) {
+          let td = document.createElement("td");
+
+          if (
+            exposicion[dato] &&
+            typeof exposicion[dato] === "string" &&
+            exposicion[dato].includes("images/")
+          ) {
+            let img = document.createElement("img");
+            img.src = exposicion[dato];
+            img.alt = "fotografia";
+            img.className += "fotografiaObjeto";
+            img.addEventListener("click", function () {
+              popupImagen.style.display = "block";
+              let imagenAmpliada = vistaImagen.children[0]; //La imagen es el primer hijo de vistaImagenAmpliada
+              imagenAmpliada.src = img.src;
+            });
+            td.appendChild(img);
+          } else {
+            td.textContent = exposicion[dato];
           }
-          td_botones = document.createElement('td')
-          tr.appendChild(td_botones)
+          tr.appendChild(td);
+        }
+        td_botones = document.createElement("td");
+        tr.appendChild(td_botones);
 
-          link1 = document.createElement('a')
-          img1 = document.createElement('img')
-          img1.src = 'images/editarv2.png'
-          link1.appendChild(img1)
-          
-          link2 = document.createElement('a')
-          img2 = document.createElement('img')
-          img2.src = 'images/fichav2.png'
-          link2.appendChild(img2)
+        link1 = document.createElement("a");
+        img1 = document.createElement("img");
+        img1.src = "images/editarv2.png";
+        link1.appendChild(img1);
 
-          link3 = document.createElement('a')
-          img3 = document.createElement('img')
-          img3.src = 'images/borrarv2.png'
-          link3.appendChild(img3)
+        link2 = document.createElement("a");
+        img2 = document.createElement("img");
+        img2.src = "images/fichav2.png";
+        link2.appendChild(img2);
 
-          id = pagina === "obras" ? exposicion.numero_registro : pagina === "exposiciones" ? exposicion.id_exposicion : pagina === "usuarios" ? exposicion.id_usuario : null
+        link3 = document.createElement("a");
+        img3 = document.createElement("img");
+        img3.src = "images/borrarv2.png";
+        link3.appendChild(img3);
 
-          tr.setAttribute('id', id);
-          link1.href = data.url[0] + id
-          link2.href = data.url[1] + id
-          link3.classList.add('eliminarRegistro');
-          link3.setAttribute('id', id);
+        id =
+          pagina === "obras"
+            ? exposicion.numero_registro
+            : pagina === "exposiciones"
+            ? exposicion.id_exposicion
+            : pagina === "usuarios"
+            ? exposicion.id_usuario
+            : null;
 
-          td_botones.appendChild(link2)
-          td_botones.appendChild(link1)
-          td_botones.appendChild(link3)
+        tr.setAttribute("id", id);
+        link1.href = data.url[0] + id;
+        link2.href = data.url[1] + id;
+        link3.classList.add("eliminarRegistro");
+        link3.setAttribute("id", id);
 
-          tr.appendChild(td_botones)
-          tbody.appendChild(tr);
+        td_botones.appendChild(link2);
+        td_botones.appendChild(link1);
+        td_botones.appendChild(link3);
 
-          loader.style.display = "none"
+        tr.appendChild(td_botones);
+        tbody.appendChild(tr);
+
+        loader.style.display = "none";
       });
 
       // Llamar a la función que maneja los eventos de eliminación después de que se agregaron los botones
@@ -118,20 +125,29 @@ function mostrarDatos(dato, filters) {
 // Obtener el controller desde la URL
 const params = new URLSearchParams(window.location.search);
 const controller = params.get("controller");
+const action = params.get("action");
+const actions = [
+  "mostrarObras",
+  "mostrarExposiciones",
+  "mostrarUsuarios",
+  "mostrarCopias",
+];
 
 let dic = new Map();
 
 // Función para obtener el JSON según el controller
 async function obtenerDatos(controller) {
-  try {
-    const response = await fetch(`views/js/json/${controller}.json`);
-    const data = await response.json();
+  if (action in actions) {
+    try {
+      const response = await fetch(`views/js/json/${controller}.json`);
+      const data = await response.json();
 
-    for (const [key, value] of Object.entries(data)) {
-      dic.set(key, value);
+      for (const [key, value] of Object.entries(data)) {
+        dic.set(key, value);
+      }
+    } catch (error) {
+      console.error("Error al obtener el JSON:", error);
     }
-  } catch (error) {
-    console.error("Error al obtener el JSON:", error);
   }
 }
 
@@ -155,26 +171,28 @@ function cargarSelect() {
 
 // Agregar un filtro
 function agregarFiltro(section) {
-    const selectElement = document.getElementById(`${section}-select-value`);
-    const selectedValue = selectElement.value;
-    const selectedText = selectElement.options[selectElement.selectedIndex].text;
-    const filtersContainer = document.getElementById(`${section}-filters-inputs`);
-    let exist = false;
+  const selectElement = document.getElementById(`${section}-select-value`);
+  const selectedValue = selectElement.value;
+  const selectedText = selectElement.options[selectElement.selectedIndex].text;
+  const filtersContainer = document.getElementById(`${section}-filters-inputs`);
+  let exist = false;
 
-    // Verificar si ya existe un campo con el mismo label
-    const existingFields = filtersContainer.querySelectorAll("label");
-    for (let field of existingFields) {
-        if (field.textContent === selectedText) {
-            alert(`Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`);
-            exist = true;
-          }
+  // Verificar si ya existe un campo con el mismo label
+  const existingFields = filtersContainer.querySelectorAll("label");
+  for (let field of existingFields) {
+    if (field.textContent === selectedText) {
+      alert(
+        `Ya existe un filtro para "${selectedText}" en la sección "${section.toUpperCase()}"`
+      );
+      exist = true;
     }
+  }
 
-    // Crear el nuevo input
-    const fieldConfig = dic.get(selectedValue);
-    if (fieldConfig && !exist) {
-        const div = document.createElement("div");
-        div.className = "filter-item";
+  // Crear el nuevo input
+  const fieldConfig = dic.get(selectedValue);
+  if (fieldConfig && !exist) {
+    const div = document.createElement("div");
+    div.className = "filter-item";
 
     // Crear el label
     const label = document.createElement("label");
@@ -357,9 +375,9 @@ async function enviarDatos() {
   }
 }
 
-function exportar(datos){
+function exportar(datos) {
   const worksheet = XLSX.utils.json_to_sheet(datos); // Crear la hoja de cálculo
-  const workbook = XLSX.utils.book_new();            // Crear el libro de trabajo
+  const workbook = XLSX.utils.book_new(); // Crear el libro de trabajo
   XLSX.utils.book_append_sheet(workbook, worksheet, "Datos"); // Agregar la hoja al libro
 
   // Generar y descargar el archivo Excel
@@ -377,7 +395,7 @@ function inicializarEventos() {
 
   const submit = document.getElementById("btn-apply");
 
-  const botonExportar = document.querySelector("#exportarExcel")
+  const botonExportar = document.querySelector("#exportarExcel");
 
   addAndFilterBtn.addEventListener("click", () => {
     agregarFiltro("and");
@@ -408,83 +426,81 @@ function inicializarEventos() {
     mostrarDatos(inputExposiciones.value, filters);
   });
 
-  let paginacion = document.querySelector("#numeroResultados")
-  paginacion.addEventListener("change", function(event){
-    mostrarDatos(inputExposiciones.value, datosForm())
-  })
-  botonExportar.addEventListener("click", function(event){
-    let filters = datosForm()
-    let paginacion = document.querySelector("#numeroResultados")
-    console.log(paginacion.value)
-    let dato = inputExposiciones.value;
-    const url = window.location.href;
-    let pagina = url.includes("Exposiciones")
-      ? "exposiciones"
-      : url.includes("Obras")
-      ? "obras"
-      : url.includes("Usuarios")
-      ? "usuarios"
-      : null;
-    let data = {
-      busqueda: dato,
-      pagina: pagina,
-      filtros: filters,
-      lim_registros: paginacion.value,
-    };
-    let dataJson = JSON.stringify(data);
-  
-    fetch("ajax.php?controller=Buscador&action=exportarTablas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-      },
-      body: dataJson,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-  
-        exportar(data.texto)
+  let paginacion = document.querySelector("#numeroResultados");
+  if (paginacion) {
+    paginacion.addEventListener("change", function (event) {
+      mostrarDatos(inputExposiciones.value, datosForm());
+    });
+  }
+  if (botonExportar) {
+    botonExportar.addEventListener("click", function (event) {
+      let filters = datosForm();
+      let paginacion = document.querySelector("#numeroResultados");
+      console.log(paginacion.value);
+      let dato = inputExposiciones.value;
+      const url = window.location.href;
+      let pagina = url.includes("Exposiciones")
+        ? "exposiciones"
+        : url.includes("Obras")
+        ? "obras"
+        : url.includes("Usuarios")
+        ? "usuarios"
+        : null;
+      let data = {
+        busqueda: dato,
+        pagina: pagina,
+        filtros: filters,
+        lim_registros: paginacion.value,
+      };
+      let dataJson = JSON.stringify(data);
 
+      fetch("ajax.php?controller=Buscador&action=exportarTablas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: dataJson,
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  })
+        .then((response) => response.json())
+        .then((data) => {
+          exportar(data.texto);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  }
 
-  atras = document.querySelector("#pag_atras")
-  delante = document.querySelector("#pag_delante")
+  atras = document.querySelector("#pag_atras");
+  delante = document.querySelector("#pag_delante");
 
+  if (delante) {
+    delante.addEventListener("click", function (event) {
+      const index = paginacion.selectedIndex;
 
-  delante.addEventListener("click", function(event){
-    const index = paginacion.selectedIndex
+      if (index < paginacion.options.length - 1) {
+        paginacion.selectedIndex = index + 1;
+      } else {
+        paginacion.selectedIndex = 0;
+      }
+      mostrarDatos(inputExposiciones.value, datosForm());
+    });
+  }
 
-    if(index < paginacion.options.length-1){
-      paginacion.selectedIndex = index + 1
-    }
-    else{
-      paginacion.selectedIndex = 0
-    }
-    mostrarDatos(inputExposiciones.value, datosForm())
-  })
+  if (atras) {
+    atras.addEventListener("click", function (event) {
+      const index = paginacion.selectedIndex;
 
-  atras.addEventListener("click", function(event){
-    const index = paginacion.selectedIndex
-
-    if(index === 0){
-      paginacion.selectedIndex = paginacion.options.length-1
-    }
-    else{
-      paginacion.selectedIndex -= 1
-    }
-    mostrarDatos(inputExposiciones.value, datosForm())
-  })
-
-  
-
-
+      if (index === 0) {
+        paginacion.selectedIndex = paginacion.options.length - 1;
+      } else {
+        paginacion.selectedIndex -= 1;
+      }
+      mostrarDatos(inputExposiciones.value, datosForm());
+    });
+  }
 }
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   await obtenerDatos(controller);

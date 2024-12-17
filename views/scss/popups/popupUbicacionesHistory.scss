@@ -1,3 +1,5 @@
+@import "../utils/variables.scss";
+
 $primary-color: #333333;
 $border-color: #ddd;
 $background-grey: #f0f0f0;
@@ -66,17 +68,16 @@ $spacing-large: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
 
-    button {
+    > button {
       padding: 8px 16px;
       border: none;
-      border-radius: $border-radius;
       cursor: pointer;
       transition: all 0.2s;
       background-color: transparent;
 
       &:hover {
+        transition: all 0.2s ease-in-out;
         transform: translateY(-1px);
-        @include hover-y;
         color: $primary-color;
       }
 
@@ -84,44 +85,67 @@ $spacing-large: 20px;
         transform: translateY(0);
         scale: 0.99;
       }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0px;
-        left: 50%;
-        width: 0px;
-        height: 2px;
-        background-color: $primary-color;
-        transform: translateX(-50%);
-        transition: width 0.3s ease-in-out;
-      }
-
-      &:hover::after {
-        width: 100%;
-      }
     }
   }
 
-  .content {
+  #content {
     display: flex;
     justify-content: center;
 
-    table {
+    #table-ubicaciones {
       width: 90%;
       border-collapse: collapse;
       .thead {
-        background-color: $primary-color;
         color: white;
 
-        > td {
-          padding: 15px;
+        > tr {
           text-align: center;
+          background-color: $primary-color;
+
+          > th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 25%;
+            text-align: center;
+          }
         }
       }
-      tr {
-        margin-bottom: 5px;
-        background-color: $background-grey;
+      #tbody {
+        color: #333333;
+
+        > tr {
+          background-color: $background-grey;
+
+          > td {
+            text-align: center;
+            height: 25px;
+          }
+        }
       }
     }
+  }
+}
+
+.underline-hover {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 0px;
+    height: 2px;
+    background-color: $primary-color;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.clicked {
+  &:active {
+    border-bottom: 2px solid $primary-color;
   }
 }

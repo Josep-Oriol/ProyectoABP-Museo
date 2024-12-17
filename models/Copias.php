@@ -27,14 +27,15 @@ class Copias extends Database{
         $exitoso = false;
 
         $selectId = "SELECT id_copia FROM copias_seguridad WHERE nombre_copia = ?";
-        $sql = 'INSERT INTO copias_seguridad (nombre_copia, descripcion_copia, fecha_copia, fk_creador)
-        VALUE (?, ? ,? , ?)';
+        $sql = 'INSERT INTO copias_seguridad (nombre_copia, descripcion_copia, fecha_copia, fk_creador, ruta)
+        VALUE (?, ? ,? , ?, ?)';
 
         $db = $this->conectar();
         
         try {
             $query = $db->prepare($sql);
-            $exitoso = $query->execute([$nombre, $descripcion, $fecha, $creador]);
+            $ruta = "backups/".'copia_de_seguretat'."_" . date('Y-m-d_H-i-s') . '.sql';
+            $exitoso = $query->execute([$nombre, $descripcion, $fecha, $creador, $ruta]);
         } catch (PDOException $error) {
             $exitoso = false;
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
@@ -54,12 +55,37 @@ class Copias extends Database{
             }
 
             if($exitoso2){
-                $database = new Database;
-                $database->copiaSeguridad($idCopia);
+                require_once __DIR__ . "/../config.php";
+                $this->copiaSeguridad($idCopia);
             }
         }
 
         return $exitoso;
+    }
+
+    public function copiaSeguridad($idCopia){ // FUNCION PARA CREAR EL BACKCUP Y EN DESCARGAS Y EN EL
+        $servername = DB_HOST;
+        $dbname = DB_NAME;
+        $username = DB_USER;
+        $password = DB_PASSWORD;
+
+        $usuario = getenv('USERNAME');
+
+        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat'. "_" . date('Y-m-d_H-i-s') . '.sql';
+
+        $comandoCopia = "mysqldump --no-tablespaces -u{$username} -h{$servername} -p{$password} {$dbname}  > {$archivoCopia}";
+        
+        $resultado = null;
+        $salida = [];
+        exec($comandoCopia, $salida, $resultado);
+
+        $destino = "backups/".'copia_de_seguretat'. "_" . date('Y-m-d_H-i-s') . '.sql';
+        copy($archivoCopia, $destino);
+
+        if($resultado === 0){
+            echo "copia de seguridad hecha con exito";
+        }
+
     }
 
     public function mostrarCopia($numeroRegistro) {
@@ -93,4 +119,18 @@ class Copias extends Database{
         }
         return $exitoso;
     }
+
+    public function consultaImportar($consulta){
+
+        $db = $this->conectar();
+        try {
+            $query = $db->prepare($consulta);
+            $query->execute();
+            
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+    }
+
+
 }

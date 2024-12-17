@@ -14,7 +14,7 @@ function agregarEventosEliminar() {
     ? "obras"
     : url.includes("Usuarios")
     ? "usuarios"
-    : url.inculed("Copias")
+    : url.includes("Copias")
     ? "copias_seguridad"
     : null;
   let nombreColumna =
@@ -110,17 +110,17 @@ function filtrosAvanzados() {
 function ubicacionesHistory() {
   const cerrar = document.querySelector(".close-btn");
   const popup = document.querySelector(".overlay-ubicaciones");
-  const tabla = document.getElementById("table-ubicaciones");
+  const content = document.getElementById("content");
 
   if (popup) {
     cerrar.addEventListener("click", function () {
-      tabla.innerHTML = "";
+      content.innerHTML = "";
       popup.style.display = "none";
     });
 
     document.addEventListener("keydown", (e) => {
       if (e.key == "Escape") {
-        tabla.innerHTML = "";
+        content.innerHTML = "";
         popup.style.display = "none";
       }
     });

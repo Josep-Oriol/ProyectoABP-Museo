@@ -62,4 +62,13 @@ class CopiasController{
         
         require_once "views/general/components/footer.html";
     }
+
+    public function importarCopia(){
+        require_once "models/Copias.php";
+        $modelocopias = new Copias();
+        $ruta = $_FILES["fichero_sql"]["tmp_name"];
+        $consulta = file_get_contents($ruta);
+        $modelocopias->consultaImportar($consulta);
+        
+    }
 }

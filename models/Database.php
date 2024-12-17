@@ -24,25 +24,5 @@ class Database {
         }
     }
 
-    public function copiaSeguridad($idCopia){
-        $servername = DB_HOST;
-        $dbname = DB_NAME;
-        $username = DB_USER;
-        $password = DB_PASSWORD;
-
-        $usuario = getenv('USERNAME');
-
-        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat_Id' . $idCopia . "_" . date('Y-m-d_H-i-s') . '.sql';
-
-        $comandoCopia = "mysqldump -u {$username} -h {$servername} {$dbname} > {$archivoCopia}";
-        
-        $resultado = null;
-        $salida = [];
-        exec($comandoCopia, $salida, $resultado);
-
-
-        if($resultado === 0){
-            echo "copia de seguridad hecha con exito";
-        }
-    }
+    
 }

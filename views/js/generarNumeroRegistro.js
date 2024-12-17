@@ -68,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     inputNumero.value = numMax;
                     inputDecimal.value = '01'; //En caso de llegar al número más alto, le sugerimos el primer decimal
                 }
+                else {
+                    numMax++;
+                }
                 inputNumero.value = numMax.toString().padStart(5, '0');
             }
         }
@@ -77,10 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (letra) {
+    if (inputLetra) {
         obtenerNumeroRegistro();
         sugerirNumero.addEventListener('click', obtenerNumeroRegistro);
-        letra.addEventListener('input', obtenerNumeroRegistro);
+        inputLetra.addEventListener('input', obtenerNumeroRegistro);
 
         formulario.addEventListener('submit', async function(event) {
             event.preventDefault();

@@ -42,8 +42,8 @@ class Obras extends Database {
     }
 
 	public function obtenerUltimoNumeroRegistro($letra) {
-		if (empty($letra)) {
-			$sql = "SELECT numero_registro FROM obras ORDER BY CAST(numero_registro AS FLOAT) DESC LIMIT 1";
+		if (empty($letra)) { //Si no hay letra obtenemos el numero de registro más alto y que empiece por numeros. Con CAST lo convertimos a numero para que los ordene bien
+			$sql = "SELECT numero_registro FROM obras WHERE numero_registro REGEXP '^[0-9]' ORDER BY CAST(numero_registro AS FLOAT) DESC LIMIT 1";
 		}
 		else {
 			$sql = "SELECT numero_registro FROM obras WHERE numero_registro LIKE '$letra%' ORDER BY numero_registro DESC LIMIT 1";
@@ -104,7 +104,10 @@ class Obras extends Database {
 		$camposOrdenados = array_replace(array_flip($orden), $array);
 
 		foreach ($camposOrdenados as $indice => $campo) {
-			if (!empty($campo)) {
+			if ($indice == 'numero_registro') {
+				$camposOrdenados[$indice] = "'$campo'"; //Agregamos comillas al campo numero_registro porque si no tiene letra se detecta como numerico
+			}
+			else if (!empty($campo)) {
 				if (!is_numeric($campo)) {
 					$camposOrdenados[$indice] = "'$campo'";
 				}
