@@ -1434,10 +1434,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #EFEFEF;
 }
 
-.relacion > :first-child {
-  color: red;
-  text-align: center;
-}
 .relacion > :last-child {
   display: flex;
   justify-content: center;
@@ -1447,6 +1443,27 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+}
+.relacion > :last-child form div {
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  position: sticky;
+  top: 10vh;
+  background-color: white;
+}
+.relacion > :last-child form div input {
+  background-color: #333333;
+  border: 2px solid #EFEFEF;
+  border-radius: 3px;
+  color: #EFEFEF;
+  font-weight: bold;
+  padding: 5px 25px 5px 25px;
+}
+.relacion > :last-child form div input:hover {
+  cursor: pointer;
 }
 .relacion > :last-child form table {
   width: 92%;
@@ -1456,24 +1473,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 .relacion > :last-child form table tr {
   font-size: large;
 }
-.relacion > :last-child form table tr td, .relacion > :last-child form table tr th {
+.relacion > :last-child form table tr td,
+.relacion > :last-child form table tr th {
   padding: 1.3vh;
   text-align: center;
   width: 1.5vw;
 }
-.relacion > :last-child form table tr td > a button, .relacion > :last-child form table tr th > a button {
+.relacion > :last-child form table tr td > a button,
+.relacion > :last-child form table tr th > a button {
   font-weight: bold;
   padding: 2%;
   color: #333333;
   background-color: #EFEFEF;
 }
-.relacion > :last-child form table tr td > a button:hover, .relacion > :last-child form table tr th > a button:hover {
+.relacion > :last-child form table tr td > a button:hover,
+.relacion > :last-child form table tr th > a button:hover {
   cursor: pointer;
 }
-.relacion > :last-child form table tr td > img, .relacion > :last-child form table tr th > img {
+.relacion > :last-child form table tr td > img,
+.relacion > :last-child form table tr th > img {
   width: 30%;
 }
-.relacion > :last-child form table tr td > a > img, .relacion > :last-child form table tr th > a > img {
+.relacion > :last-child form table tr td > a > img,
+.relacion > :last-child form table tr th > a > img {
   width: 2vw;
   height: auto;
   margin-right: 0.1vw;

@@ -4,10 +4,11 @@
     ?>
     <div class="relacion">
         <div>
-            <h2>Relacionar</h2>
-        </div>
-        <div>
             <form action="index.php?controller=Exposiciones&action=relacionar&id=<?php echo $id; ?>" method="POST">
+                <div>
+                    <h2>Relacionar</h2>
+                    <input type="submit">
+                </div>
                 <table>
                     <tr>
                         <td>Imatge</td>
@@ -30,7 +31,7 @@
                             }
 
                             echo "<tr>";
-                            echo "<td>{$obra['fotografia']}</td>";
+                            echo "<td><img alt='Obra img' src='{$obra['fotografia']}'></td>";
                             echo "<td>{$obra['numero_registro']}</td>";
                             echo "<td>{$obra['nombre_objeto']}</td>";
                             echo "<td>{$obra['titulo']}</td>";
@@ -42,7 +43,6 @@
                         }
                     ?>
                 </table>
-                <input type="submit">
             </form>
         </div>
     </div>      
