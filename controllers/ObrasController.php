@@ -119,6 +119,10 @@ class ObrasController{
         $obra = $modeloObras->mostrarObra($id);
         require_once "views/general/pdfs/obrasBasicaPDF.php";
     }
+
+    public function generarLibro() {
+        require_once "views/general/pdfs/libro.php";
+    }
 }
 
 ?>

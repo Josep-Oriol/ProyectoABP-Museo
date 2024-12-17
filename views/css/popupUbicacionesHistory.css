@@ -90,7 +90,7 @@
 .overlay-ubicaciones #content #table-ubicaciones .thead > tr > th {
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 33%;
+  width: 25%;
   text-align: center;
 }
 .overlay-ubicaciones #content #table-ubicaciones #tbody {
@@ -119,6 +119,6 @@
   width: 100%;
 }
 
-.clicked {
-  background-color: red;
+.clicked:active {
+  border-bottom: 2px solid #333333;
 }/*# sourceMappingURL=popupUbicacionesHistory.css.map */

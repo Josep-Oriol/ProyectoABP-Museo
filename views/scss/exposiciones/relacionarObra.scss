@@ -1,67 +1,81 @@
-.relacion{
-    >:first-child{
-        color: red;
-        text-align: center;
-    }
-    >:last-child{
+.relacion {
+  > :last-child {
+    display: flex;
+    justify-content: center;
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+      div {
+        width: 92%;
         display: flex;
-        justify-content: center ;
-        form{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            table{
-                width: 92%;
-                border-collapse: separate;
-                border-spacing: 0 0.5vh;
-                tr{
-                    font-size: large;
-                    td, th {
-                        padding: 1.3vh;
-                        text-align: center;
-                        width: 1.5vw;
-                        > a {
-                            button {
-                                font-weight: bold;
-                                padding: 2%;
-                                color: $color_oscuro;
-                                background-color: $color_claro3;
-        
-                                &:hover {
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                        > img {
-                            width: 30%;
-                        }
-                        >a{
-                            >img{
-                                width: 2vw;
-                                height: auto;
-                                margin-right: 0.1vw;
-                            }
-                        }
-                        
-                    }
-                    
-                }
-                tr:first-child{
-                    background-color: $color_oscuro;
-                    color: white;
-                    
-                }
-                tr:nth-child(even):not(:first-child){
-                    background-color: $color_claro2;
-                }
-                tr:nth-child(odd):not(:first-child) {
-                    background-color: $color_claro3;
-                }
-                
-    
-    
-            }
+        justify-content: space-between;
+        padding: 20px 10px;
+        position: sticky;
+        top: 10vh;
+        background-color: white;
+
+        input {
+          background-color: $color_oscuro;
+          border: 2px solid $color_claro3;
+          border-radius: 3px;
+          color: $color_claro3;
+          font-weight: bold;
+          padding: 5px 25px 5px 25px;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
+      }
+      table {
+        width: 92%;
+        border-collapse: separate;
+        border-spacing: 0 0.5vh;
+        tr {
+          font-size: large;
+          td,
+          th {
+            padding: 1.3vh;
+            text-align: center;
+            width: 1.5vw;
+            > a {
+              button {
+                font-weight: bold;
+                padding: 2%;
+                color: $color_oscuro;
+                background-color: $color_claro3;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+            }
+            > img {
+              width: 30%;
+            }
+            > a {
+              > img {
+                width: 2vw;
+                height: auto;
+                margin-right: 0.1vw;
+              }
+            }
+          }
+        }
+        tr:first-child {
+          background-color: $color_oscuro;
+          color: white;
+        }
+        tr:nth-child(even):not(:first-child) {
+          background-color: $color_claro2;
+        }
+        tr:nth-child(odd):not(:first-child) {
+          background-color: $color_claro3;
+        }
+      }
     }
+  }
 }
