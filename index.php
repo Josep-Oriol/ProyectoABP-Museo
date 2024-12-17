@@ -28,7 +28,7 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="views/js/validacionesFormularios/validacionCrearUsuario.js"></script>
     <script src="views/js/validacionesFormularios/validacionCopias.js"></script>
-
+    <script src="views/js/navegacion.js"></script>
 </head>
 <body>
    

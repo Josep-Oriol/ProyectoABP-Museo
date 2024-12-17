@@ -3,12 +3,14 @@
         //Mostramos todos los nombres de los vocabularios.
         public function enviarAVocabularios(){
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/vocabularios/vocabulariosMenu.php";
             require_once "views/general/components/footer.html";
         }
         
         public function mostrarUbicaciones() {
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "models/Vocabularios.php";
             $vocabulario = new Vocabularios();
             $datos = $vocabulario->mostrarUbicaciones();
@@ -28,6 +30,7 @@
             
             // Incluye la vista para cargar el formulario de `fichaCrearUbicacion.php`
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/ubicaciones/fichaCrearUbicacion.php";
             require_once "views/general/components/footer.html";
             
@@ -98,6 +101,7 @@
 
         public function mostrarAutories() {
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "models/Vocabularios.php";
             $vocabulario = new Vocabularios();
             $datos = $vocabulario->mostrarAutories();
@@ -110,6 +114,7 @@
 
         public function mostrarVocabularios() {
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "models/Vocabularios.php";
             $vocabularios = new Vocabularios();
             $nombresVocabularios = $vocabularios->mostrarVocabularios();
@@ -120,6 +125,7 @@
         //Mostramos el nombre del vocabulario y sus campos.
         public function mostrarCamposVocabulario() {
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             //Controlamos que se haya pasado un identificador por la URL. 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];

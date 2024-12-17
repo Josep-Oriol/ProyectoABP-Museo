@@ -1831,6 +1831,18 @@ footer .div2 .web a {
   font-size: 120%;
 }
 
+#rutaNavegacion {
+  top: 10vh;
+  background-color: white;
+}
+#rutaNavegacion > :first-child {
+  padding: 15px;
+}
+#rutaNavegacion > :first-child a {
+  color: black;
+  font-weight: bold;
+}
+
 #popupEliminar {
   display: none;
   position: fixed;

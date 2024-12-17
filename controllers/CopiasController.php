@@ -7,12 +7,14 @@ class CopiasController{
         $copias = $modelo -> obtenerCopias();
 
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/copias/tablaCopias.php";
         require_once "views/general/components/footer.html";
     }
 
     function crear(){
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once 'models/Copias.php';
         $modelo = new Copias();
         $id = $_SESSION['ID_usuario'];
@@ -31,6 +33,7 @@ class CopiasController{
 
     public function mostrarCopia() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if ($_GET['id']) {
             require_once "models/Copias.php";
             $modelocopia = new Copias();
@@ -44,6 +47,7 @@ class CopiasController{
 
     public function editar() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if ($_GET['id']) {
             $id = $_GET['id'];
             require_once "models/Copias.php";

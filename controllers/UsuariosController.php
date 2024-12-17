@@ -57,12 +57,14 @@ class UsuariosController{
         $usuarios = $modeloUsuario->mostrarUsuarios();
 
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/usuarios/gestionUsuarios.php";
         require_once "views/general/components/footer.html";
     }
 
     public function crear() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/usuarios/fichaCrearUsuario.php";
         require_once "views/general/components/footer.html";
         if ($_POST) {
@@ -81,6 +83,7 @@ class UsuariosController{
 
     public function mostrarFicha(){
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             require_once "models/Usuarios.php";
@@ -96,6 +99,7 @@ class UsuariosController{
 
     public function editar() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             require_once "models/Usuarios.php";

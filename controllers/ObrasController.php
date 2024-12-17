@@ -7,12 +7,14 @@ class ObrasController{
         $modelobras = new Obras();
         $obras = $modelobras->mostrarObras();
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/obras/gestionObras.php";
         require_once "views/general/components/footer.html";
     }
 
     public function mostrarFicha() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if ($_GET['id']) {
             require_once "models/Obras.php";
             $modelobras = new Obras();
@@ -26,6 +28,7 @@ class ObrasController{
 
     public function crear() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "models/Obras.php";
         $modelobras = new Obras();
         if ($_POST) {
@@ -56,6 +59,7 @@ class ObrasController{
 
     public function editar() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         if ($_GET['id']) {
             $id = $_GET['id'];
             require_once "models/Obras.php";
@@ -89,6 +93,8 @@ class ObrasController{
 
     public function eliminar() {
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
+        
         //si hay una id pasada por la URL procedemos a eliminar la obra, si no, mostramos un mensaje.
         if ($_GET['id']) {
             require_once "models/Obras.php";

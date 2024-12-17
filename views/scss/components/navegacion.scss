@@ -1,0 +1,13 @@
+#rutaNavegacion {
+    
+    top: 10vh;
+    background-color: white;
+    
+    >:first-child{
+        padding: 15px;
+        a {
+            color: black;
+            font-weight: bold;
+        }
+    }
+}

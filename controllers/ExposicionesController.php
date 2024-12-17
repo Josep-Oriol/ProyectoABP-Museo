@@ -9,6 +9,7 @@ class ExposicionesController{
 
         
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/exposiciones/tablaExposiciones.php";
         require_once "views/general/components/footer.html";
     }
@@ -20,6 +21,7 @@ class ExposicionesController{
         $datosObras = $modelo->obrasRelacionadas($_GET['id']);
 
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/exposiciones/fichaExposiciones.php";
         require_once "views/general/components/footer.html";
     }
@@ -38,6 +40,7 @@ class ExposicionesController{
         $datos = $modelo->datosExposicion($_GET['id']);
         
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/exposiciones/editarExposicion.php";
         require_once "views/general/components/footer.html";
     }
@@ -55,6 +58,7 @@ class ExposicionesController{
         $campos = $modelo->seleccionarTipo();
 
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/exposiciones/crearExposicion.php";
         require_once "views/general/components/footer.html";
     }
@@ -77,6 +81,7 @@ class ExposicionesController{
 
 
         require_once "views/general/components/header.php";
+        require_once "views/general/components/navegacion.php";
         require_once "views/general/exposiciones/relacionarObras.php";
         require_once "views/general/components/footer.html";
     }
