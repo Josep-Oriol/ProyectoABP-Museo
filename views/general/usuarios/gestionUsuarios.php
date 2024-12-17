@@ -2,33 +2,33 @@
     if(isset($_SESSION['Rol'])){ ?>
 <section id="general">
     <div>
-        <div>
-            <h1>Usuaris</h1>
-        </div> 
-        <div>
-          <div>
-            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
-          </div>
-            <div>
-                <img src="images/lupa.png" alt="" id="buscar">
-                <input type="text" id="busqueda">
-                <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
-            </div>
-            <div>
-              <select name="numeroResultados" id="numeroResultados">
-                <option value="0-5">0-5</option>
-                <option value="0-25" selected>0-25</option>
-                <option value="0-50">0-50</option>
-                <option value="0-100">0-100</option>
-                <option value="0-500">0-500</option>
-                <option value="tots">Tots</option>
-              </select>
-            </div>
-            <div>
-              <img id="pag_atras"src="images/flecha_izquierda.png" alt="flecha izquierda">
-              <img id="pag_delante" src="images/flecha_derecha.png" alt="flecha derecha">
-            </div>
+      <div>
+          <h1>Usuaris</h1>
+      </div> 
+      <div>
+        <div id="exportarEstilo">
+          <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
         </div>
+        <div id="lupa">
+            <img src="images/lupa.png" alt="" id="buscar">
+            <input type="text" id="busqueda">
+            <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
+        </div>
+        <div id="paginacion">
+          <select name="numeroResultados" id="numeroResultados">
+            <option value="0-5">0-5</option>
+            <option value="0-25" selected>0-25</option>
+            <option value="0-50">0-50</option>
+            <option value="0-100">0-100</option>
+            <option value="0-500">0-500</option>
+            <option value="tots">Tots</option>
+          </select>
+        </div>
+        <div id="flechas">
+          <img id="pag_atras"src="images/flecha_izquierda.png" alt="flecha izquierda">
+          <img id="pag_delante" src="images/flecha_derecha.png" alt="flecha derecha">
+        </div>
+      </div>
     </div>
 
     <div>

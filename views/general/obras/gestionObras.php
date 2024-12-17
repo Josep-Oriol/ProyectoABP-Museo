@@ -7,18 +7,19 @@
           <h1>Llistat d'obres</h1>
       </div>
       <div>
-          <div>
+          <div id="generarLibro">
             <a href="index.php?controller=Obras&action=generarLibro"><img src="images/libro.png" alt="" title="Generar llibre de registre"></a>
           </div>
-          <div>
+          <div id="exportarEstilo">
             <button id="exportarExcel"><img src="images/exportar.png" alt="" title="Exportar excel"></button>
           </div>
-          <div>
+          
+          <div id="lupa">
               <img src="images/lupa.png" alt="" id="buscar">
               <input type="text" id="busqueda">
               <img src="images/ajustes_deslizadores.png" alt="" id="filtro">
           </div>
-          <div>
+          <div id="paginacion">
             <select name="numeroResultados" id="numeroResultados">
               <option value="0-5">0-5</option>
               <option value="0-25" selected>0-25</option>
@@ -28,7 +29,7 @@
               <option value="tots">Tots</option>
             </select>
           </div>
-          <div>
+          <div id="flechas">
             <img id="pag_atras"src="images/flecha_izquierda.png" alt="flecha izquierda">
             <img id="pag_delante" src="images/flecha_derecha.png" alt="flecha derecha">
           </div>

@@ -226,19 +226,10 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   align-items: center;
   justify-content: right;
 }
-#general > :first-child > :nth-child(2) > :first-child {
+#general > :first-child > :nth-child(2) #generarLibro {
   margin-right: 12px;
 }
-#general > :first-child > :nth-child(2) > :first-child#subirImagen {
-  background-color: #333333;
-  color: white;
-  padding: 8px;
-  border-radius: 3px;
-}
-#general > :first-child > :nth-child(2) > :first-child#subirImagen:hover {
-  cursor: pointer;
-}
-#general > :first-child > :nth-child(2) > :first-child button {
+#general > :first-child > :nth-child(2) #generarLibro a {
   gap: 8px;
   display: flex;
   justify-content: center;
@@ -254,18 +245,18 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   transition: transform 0.3s;
   cursor: pointer;
 }
-#general > :first-child > :nth-child(2) > :first-child a img {
+#general > :first-child > :nth-child(2) #generarLibro a img {
   width: 30px;
   height: auto;
 }
-#general > :first-child > :nth-child(2) > :first-child a:hover {
+#general > :first-child > :nth-child(2) #generarLibro a:hover {
   transform: translateY(-1px);
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) {
+#general > :first-child > :nth-child(2) #exportarEstilo {
   margin-right: 20px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) button {
+#general > :first-child > :nth-child(2) #exportarEstilo button {
   gap: 8px;
   display: flex;
   justify-content: center;
@@ -281,15 +272,15 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   transition: transform 0.3s;
   cursor: pointer;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) button img {
+#general > :first-child > :nth-child(2) #exportarEstilo button img {
   width: 28px;
   height: auto;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) button:hover {
+#general > :first-child > :nth-child(2) #exportarEstilo button:hover {
   transform: translateY(-1px);
   background-color: #262626;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) {
+#general > :first-child > :nth-child(2) #lupa {
   border: 2px #333333 solid;
   display: flex;
   flex-direction: row;
@@ -298,29 +289,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-right: 10px;
   padding: 5px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) > :first-child {
+#general > :first-child > :nth-child(2) #lupa > :first-child {
   width: 20px;
   padding: 0px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) > :nth-child(2) {
+#general > :first-child > :nth-child(2) #lupa > :nth-child(2) {
   border: none;
   margin-left: 20px;
   font-size: 16px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) > :nth-child(2):focus {
+#general > :first-child > :nth-child(2) #lupa > :nth-child(2):focus {
   outline: none;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) > :last-child {
+#general > :first-child > :nth-child(2) #lupa > :last-child {
   width: 22px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(4) {
+#general > :first-child > :nth-child(2) #paginacion {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(4) > select {
+#general > :first-child > :nth-child(2) #paginacion > select {
   background-color: #333333;
   border: 1px solid #BFBFBF;
   border-radius: 3px;
@@ -329,16 +320,16 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   text-align: center;
   padding: 8px;
 }
-#general > :first-child > :nth-child(2) > :last-child {
+#general > :first-child > :nth-child(2) #flechas {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-#general > :first-child > :nth-child(2) > :last-child img {
+#general > :first-child > :nth-child(2) #flechas img {
   width: 25px;
 }
-#general > :first-child > :nth-child(2) > :last-child img:hover {
+#general > :first-child > :nth-child(2) #flechas img:hover {
   cursor: pointer;
 }
 #general > :last-child {
@@ -1614,7 +1605,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -1687,14 +1678,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: rgb(227.25, 227.25, 227.25);
+  background-color: #e3e3e3;
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
 
 .loader {
@@ -2019,7 +2010,7 @@ footer .div2 .web a {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -2092,14 +2083,14 @@ footer .div2 .web a {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: rgb(227.25, 227.25, 227.25);
+  background-color: #e3e3e3;
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
 
 .popupEliminar {
@@ -2121,7 +2112,8 @@ footer .div2 .web a {
 .popupEliminar img {
   width: 64px;
   height: 64px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin-bottom: 1vh;
 }
 .popupEliminar button {
@@ -2724,6 +2716,4 @@ body {
 #popUpUbicaciones img {
   width: 3vw;
   margin-bottom: 1vh;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

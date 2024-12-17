@@ -15,7 +15,7 @@
         >:nth-child(2) { //Búsqueda y filtros
             @include flex-row;
             justify-content: right;
-            >:first-child{
+            #generarLibro{
                 margin-right: 12px;
                 a{
                     gap: 8px;
@@ -45,7 +45,7 @@
                     background-color: darken($color: $color_oscuro, $amount: 5%);
                 }
             }
-            >:nth-child(2){
+            #exportarEstilo{
                 margin-right: 20px;
                 button{
                     gap: 8px;
@@ -75,7 +75,7 @@
                     background-color: darken($color: $color_oscuro, $amount: 5%);
                 }
             }
-            >:nth-child(3) {
+            #lupa {
                 border: 2px $color_oscuro solid;
                 @include flex-row;
                 margin-right: 10px;
@@ -98,7 +98,7 @@
                     width: 22px;
                 }
             }
-            >:nth-child(4) {
+            #paginacion {
                 @include flex-row;
                 margin-right: 10px;
                 > select {
@@ -111,7 +111,7 @@
                     padding: 8px;
                 }
             }    
-            >:last-child {
+            #flechas {
                 @include flex-row;
                 
                 img {
