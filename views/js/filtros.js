@@ -7,7 +7,9 @@ function mostrarDatos(dato, filters) {
     ? "obras"
     : url.includes("Usuarios")
     ? "usuarios"
-    : null;
+    : url.includes("Copias")
+    ? "copias"
+    : null
 
   let data = {
     busqueda: dato,
@@ -30,6 +32,7 @@ function mostrarDatos(dato, filters) {
   })
     .then((response) => response.json())
     .then((data) => {
+
       if (data.texto.length === 0) {
         noResults.style.display = "block";
         loader.style.display = "none";
@@ -39,6 +42,8 @@ function mostrarDatos(dato, filters) {
       }
 
       exposiciones = data.texto;
+
+      
 
       let popupImagen = document.getElementById("popupImagen");
       let vistaImagen = document.getElementById("vistaImagenAmpliada");
@@ -96,7 +101,9 @@ function mostrarDatos(dato, filters) {
             ? exposicion.id_exposicion
             : pagina === "usuarios"
             ? exposicion.id_usuario
-            : null;
+            : pagina === "copias"
+            ? exposicion.id_copia
+            : null
 
         tr.setAttribute("id", id);
         link1.href = data.url[0] + id;

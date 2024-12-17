@@ -40,6 +40,10 @@
                 $datos = $modelo->busquedaUsuarios($pagina, $input, $strWhere, $paginar);
                 $url = ['index.php?controller=Usuarios&action=editar&id=', 'index.php?controller=Usuarios&action=mostrarFicha&id=', 'index.php?controller=Usuarios&action=eliminar&id='];
             }
+            else if($pagina == "copias"){
+                $datos = $modelo->busquedaCopias($pagina, $input, $strWhere, $paginar);
+                $url = ['index.php?controller=Copias&action=editar&id=', 'index.php?controller=Copias&action=mostrarCopia&id=', 'index.php?controller=Copias&action=mostrarCopia&id='];
+            }
 
             $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];
 

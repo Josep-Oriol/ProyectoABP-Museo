@@ -17,7 +17,7 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="desc">Descripció</label>
-                            <input type="textarea" id="desc" name="desc" value='<?php echo $copia['descripcion_copia'] ?>' >
+                            <input type="text" id="desc" name="desc" value='<?php echo $copia['descripcion_copia'] ?>' >
                         </div>
                         <div>
                             <label for="fecha">Datació</label>

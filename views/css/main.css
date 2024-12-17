@@ -226,10 +226,19 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   align-items: center;
   justify-content: right;
 }
-#general > :first-child > :nth-child(2) #generarLibro {
+#general > :first-child > :nth-child(2) > :first-child {
   margin-right: 12px;
 }
-#general > :first-child > :nth-child(2) #generarLibro a {
+#general > :first-child > :nth-child(2) > :first-child#subirImagen {
+  background-color: #333333;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
+#general > :first-child > :nth-child(2) > :first-child#subirImagen:hover {
+  cursor: pointer;
+}
+#general > :first-child > :nth-child(2) > :first-child button {
   gap: 8px;
   display: flex;
   justify-content: center;
@@ -241,46 +250,19 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
   font-size: 17px;
   text-align: center;
-  padding: 4px;
+  padding: 8px;
   transition: transform 0.3s;
   cursor: pointer;
 }
-#general > :first-child > :nth-child(2) #generarLibro a img {
-  width: 30px;
+#general > :first-child > :nth-child(2) > :first-child button img {
+  width: 20px;
   height: auto;
 }
-#general > :first-child > :nth-child(2) #generarLibro a:hover {
+#general > :first-child > :nth-child(2) > :first-child button:hover {
   transform: translateY(-1px);
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
-#general > :first-child > :nth-child(2) #exportarEstilo {
-  margin-right: 20px;
-}
-#general > :first-child > :nth-child(2) #exportarEstilo button {
-  gap: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  background-color: #333333;
-  border: 1px solid #BFBFBF;
-  border-radius: 3px;
-  color: white;
-  font-size: 17px;
-  text-align: center;
-  padding: 5px;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-#general > :first-child > :nth-child(2) #exportarEstilo button img {
-  width: 28px;
-  height: auto;
-}
-#general > :first-child > :nth-child(2) #exportarEstilo button:hover {
-  transform: translateY(-1px);
-  background-color: #262626;
-}
-#general > :first-child > :nth-child(2) #lupa {
+#general > :first-child > :nth-child(2) > :nth-child(2) {
   border: 2px #333333 solid;
   display: flex;
   flex-direction: row;
@@ -289,29 +271,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-right: 10px;
   padding: 5px;
 }
-#general > :first-child > :nth-child(2) #lupa > :first-child {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child {
   width: 20px;
   padding: 0px;
 }
-#general > :first-child > :nth-child(2) #lupa > :nth-child(2) {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2) {
   border: none;
   margin-left: 20px;
   font-size: 16px;
 }
-#general > :first-child > :nth-child(2) #lupa > :nth-child(2):focus {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2):focus {
   outline: none;
 }
-#general > :first-child > :nth-child(2) #lupa > :last-child {
+#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child {
   width: 22px;
 }
-#general > :first-child > :nth-child(2) #paginacion {
+#general > :first-child > :nth-child(2) > :nth-child(3) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
 }
-#general > :first-child > :nth-child(2) #paginacion > select {
+#general > :first-child > :nth-child(2) > :nth-child(3) > select {
   background-color: #333333;
   border: 1px solid #BFBFBF;
   border-radius: 3px;
@@ -320,16 +302,16 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   text-align: center;
   padding: 8px;
 }
-#general > :first-child > :nth-child(2) #flechas {
+#general > :first-child > :nth-child(2) > :last-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-#general > :first-child > :nth-child(2) #flechas img {
+#general > :first-child > :nth-child(2) > :last-child img {
   width: 25px;
 }
-#general > :first-child > :nth-child(2) #flechas img:hover {
+#general > :first-child > :nth-child(2) > :last-child img:hover {
   cursor: pointer;
 }
 #general > :last-child {
@@ -1434,10 +1416,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #EFEFEF;
 }
 
-.relacion > :first-child {
-  color: red;
-  text-align: center;
-}
 .relacion > :last-child {
   display: flex;
   justify-content: center;
@@ -1447,6 +1425,27 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+}
+.relacion > :last-child form div {
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  position: sticky;
+  top: 10vh;
+  background-color: white;
+}
+.relacion > :last-child form div input {
+  background-color: #333333;
+  border: 2px solid #EFEFEF;
+  border-radius: 3px;
+  color: #EFEFEF;
+  font-weight: bold;
+  padding: 5px 25px 5px 25px;
+}
+.relacion > :last-child form div input:hover {
+  cursor: pointer;
 }
 .relacion > :last-child form table {
   width: 92%;
@@ -1456,24 +1455,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 .relacion > :last-child form table tr {
   font-size: large;
 }
-.relacion > :last-child form table tr td, .relacion > :last-child form table tr th {
+.relacion > :last-child form table tr td,
+.relacion > :last-child form table tr th {
   padding: 1.3vh;
   text-align: center;
   width: 1.5vw;
 }
-.relacion > :last-child form table tr td > a button, .relacion > :last-child form table tr th > a button {
+.relacion > :last-child form table tr td > a button,
+.relacion > :last-child form table tr th > a button {
   font-weight: bold;
   padding: 2%;
   color: #333333;
   background-color: #EFEFEF;
 }
-.relacion > :last-child form table tr td > a button:hover, .relacion > :last-child form table tr th > a button:hover {
+.relacion > :last-child form table tr td > a button:hover,
+.relacion > :last-child form table tr th > a button:hover {
   cursor: pointer;
 }
-.relacion > :last-child form table tr td > img, .relacion > :last-child form table tr th > img {
+.relacion > :last-child form table tr td > img,
+.relacion > :last-child form table tr th > img {
   width: 30%;
 }
-.relacion > :last-child form table tr td > a > img, .relacion > :last-child form table tr th > a > img {
+.relacion > :last-child form table tr td > a > img,
+.relacion > :last-child form table tr th > a > img {
   width: 2vw;
   height: auto;
   margin-right: 0.1vw;
@@ -1605,7 +1609,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -1678,14 +1682,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .loader {
@@ -2022,7 +2026,7 @@ footer .div2 .web a {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -2095,14 +2099,14 @@ footer .div2 .web a {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .popupEliminar {
@@ -2124,8 +2128,7 @@ footer .div2 .web a {
 .popupEliminar img {
   width: 64px;
   height: 64px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   margin-bottom: 1vh;
 }
 .popupEliminar button {
@@ -2208,12 +2211,9 @@ footer .div2 .web a {
 
 #fichaCopia > div {
   width: 80%;
-  margin: 0px auto;
+  margin: 0 auto;
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   justify-content: center;
   gap: 15px;
 }
@@ -2232,15 +2232,13 @@ footer .div2 .web a {
 }
 #fichaCopia > form > :first-child {
   width: 80%;
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px;
   background-color: none;
 }
 #fichaCopia > form > :first-child > :first-child > div > :first-child {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   justify-content: center;
   width: 100%;
   padding-right: 20px;
@@ -2257,8 +2255,6 @@ footer .div2 .web a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 20px;
   padding: 20px;
   border: 2px solid black;
@@ -2273,104 +2269,84 @@ footer .div2 .web a {
   width: 100%;
   text-align: center;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) {
+#fichaCopia > form > :first-child > :first-child > div > :last-child {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px solid black;
-}
-#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
-  width: 15%;
-}
-#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
-  color: #BFBFBF;
-}
-#fichaCopia > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
-  width: 100%;
-  text-align: center;
-}
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   justify-content: left;
   padding-top: 15px;
   gap: 15px;
+  flex-direction: row;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a {
+#fichaCopia > form > :first-child > :first-child > div > :last-child input,
+#fichaCopia > form > :first-child > :first-child > div > :last-child a {
   border-radius: 5px;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input {
+#fichaCopia > form > :first-child > :first-child > div > :last-child input {
   width: 3vw;
   padding: 10px;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a {
   width: 3vw;
   text-decoration: none;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a img {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a img {
   width: 100%;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a button {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a button {
   padding: 10px;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(button) {
   width: auto;
   margin-left: auto;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a > button {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a > button {
   width: 100%;
   height: 100%;
   background-color: #333333;
   font-size: 16px;
   color: white;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a > button:hover {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a > button:hover {
   background-color: #666666;
   cursor: pointer;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
+#fichaCopia > form > :first-child > :first-child > div > :last-child input[type=submit] {
   width: 25%;
   font-size: 17px;
   background-color: #333333;
   color: white;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono descargar"]) {
   background-color: #333333;
   color: white;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono descargar"]):hover {
   background-color: #4b4b4b;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=image], #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
+#fichaCopia > form > :first-child > :first-child > div > :last-child input[type=image],
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono editar"]) {
   background-color: #666666;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
+#fichaCopia > form > :first-child > :first-child > div > :last-child input[type=image]:hover,
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono editar"]):hover {
   background-color: #7c7c7c;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono eliminar"]) {
   background-color: #E74C3C;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:has(img[alt="icono eliminar"]):hover {
   background-color: #EE6655;
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:hover, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input:hover {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:hover,
+#fichaCopia > form > :first-child > :first-child > div > :last-child input:hover {
   cursor: pointer;
   animation: aumentarTamano 0.2s linear 1 running forwards;
   transform: translateY(-1px);
 }
-#fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child a:active, #fichaCopia > form > :first-child > :first-child > div > :last-child > :last-child input:active {
+#fichaCopia > form > :first-child > :first-child > div > :last-child a:active,
+#fichaCopia > form > :first-child > :first-child > div > :last-child input:active {
   transform: translateY(0);
   scale: 0.97;
 }
@@ -2394,16 +2370,13 @@ footer .div2 .web a {
   gap: 15px;
 }
 #fichaCopia > form > :first-child > div > div div {
-  flex: 1 1 calc(50% - 15px); /* Dos columnas */
+  flex: 1 1 calc(50% - 15px);
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 #fichaCopia > form > :first-child > div > div div > div:has(img) {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   justify-content: left;
 }
 #fichaCopia > form > :first-child > div > div div > div:has(img) > :first-child {
@@ -2428,7 +2401,8 @@ footer .div2 .web a {
 #fichaCopia > form > :first-child > div > div div > div:has(img) > p {
   color: red;
 }
-#fichaCopia > form > :first-child > div > div div > label, #fichaCopia > form > :first-child > div > div div span {
+#fichaCopia > form > :first-child > div > div div > label,
+#fichaCopia > form > :first-child > div > div div span {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
@@ -2463,13 +2437,12 @@ footer .div2 .web a {
   outline: none;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .field-group {
     flex-direction: column;
   }
   .field {
-    flex: 1 1 100%; /* Una sola columna en pantallas pequeñas */
+    flex: 1 1 100%;
   }
 }
 @keyframes aumentarTamano {
@@ -2728,4 +2701,6 @@ body {
 #popUpUbicaciones img {
   width: 3vw;
   margin-bottom: 1vh;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -47,43 +47,12 @@
                   <a href="index.php?controller=Copias&action=crear"><button>Crear copia</button></a>
               </td>
           </tr>
-      <?php
-          foreach($copias as $indice => $copia) {
-              $id = $copia['id_copia'];
-              echo "<tr id=\"$id\">
-                  <td>{$copia['id_copia']}</td>
-                  <td>{$copia['nombre_copia']}</td>
-                  <td>{$copia['descripcion_copia']}</td>
-                  <td>{$copia['fecha_copia']}</td>
-                  <td>{$copia['usuario']}</td>
-
-                  <td>";
-                  if ($_SESSION['Rol'] == 'Administració') {
-                      ?>
-                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                          <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
-                          <a id="<?php echo $id;?>" class="eliminarRegistro" title="Eliminar Copia"><img src="images/borrarv2.png" alt=""></a>
-                          <a id="<?php echo $id;?>" class="descargarCopia" title="Descarregar copia de seguretat"><img src="images/subirArchivo.png"></a>
-                      <?php
-                  }
-                  else if ($_SESSION['Rol'] == 'Tècnic') {
-                      ?>
-                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                          <a href="index.php?controller=Copias&action=editar&id=<?php echo $id;?>" title="Editar Copia"><img src="images/editarv2.png" alt=""></a>
-                      <?php
-                  }
-                  else if ($_SESSION['Rol'] == 'Lector') {
-                      ?>
-                          <a href="index.php?controller=Copias&action=mostrarCopia&id=<?php echo $id;?>" title="Veure Copia"><img src="images/fichav2.png" alt=""></a>
-                      <?php
-                  }
-                  echo "</td>";
-              echo "</tr>";
-          }
-      ?>
+      
       </table>
   </div>    
 </div>
+<span class="noResultados">No se han encontrado resultados</span>
+<span class="loader"></span>
 
 <div id="popupSQL">
   <div id="contenidoPopupSQL">
