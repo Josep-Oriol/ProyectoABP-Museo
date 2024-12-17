@@ -18,7 +18,7 @@ class Copias extends Database{
         return $resultado;
     }
 
-    function crearCopia($array, $id) {
+    function crearCopia($array, $id, $date) {
         $nombre = $array['nom'];
         $descripcion = $array['desc'];
         $fecha = $array['fecha'];
@@ -34,7 +34,7 @@ class Copias extends Database{
         
         try {
             $query = $db->prepare($sql);
-            $ruta = "backups/".'copia_de_seguretat'."_" . date('Y-m-d_H-i-s') . '.sql';
+            $ruta = "backups/".'copia_de_seguretat'."_" . $date . '.sql';
             $exitoso = $query->execute([$nombre, $descripcion, $fecha, $creador, $ruta]);
         } catch (PDOException $error) {
             $exitoso = false;
@@ -56,14 +56,14 @@ class Copias extends Database{
 
             if($exitoso2){
                 require_once __DIR__ . "/../config.php";
-                $this->copiaSeguridad($idCopia);
+                $this->copiaSeguridad($idCopia, $date);
             }
         }
 
         return $exitoso;
     }
 
-    public function copiaSeguridad($idCopia){ // FUNCION PARA CREAR EL BACKCUP Y EN DESCARGAS Y EN EL
+    public function copiaSeguridad($idCopia, $date){ // FUNCION PARA CREAR EL BACKCUP Y EN DESCARGAS Y EN EL
         $servername = DB_HOST;
         $dbname = DB_NAME;
         $username = DB_USER;
@@ -71,15 +71,15 @@ class Copias extends Database{
 
         $usuario = getenv('USERNAME');
 
-        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat'. "_" . date('Y-m-d_H-i-s') . '.sql';
+        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat'. "_" . $date . '.sql';
 
-        $comandoCopia = "mysqldump --no-tablespaces -u{$username} -h{$servername} -p{$password} {$dbname}  > {$archivoCopia}";
+        $comandoCopia = "mysqldump --no-tablespaces --ignore-table={$dbname}.copias_seguridad -u{$username} -h{$servername} -p{$password} {$dbname}  > {$archivoCopia}";
         
         $resultado = null;
         $salida = [];
         exec($comandoCopia, $salida, $resultado);
 
-        $destino = "backups/".'copia_de_seguretat'. "_" . date('Y-m-d_H-i-s') . '.sql';
+        $destino = "backups/".'copia_de_seguretat'. "_" . $date . '.sql';
         copy($archivoCopia, $destino);
 
         if($resultado === 0){
@@ -104,8 +104,8 @@ class Copias extends Database{
     }
 
     public function editarCopia($array, $id) {
-        $nombre = $array['nombre'];
-        $descripcion = $array['descripcion'];
+        $nombre = $array['nom'];
+        $descripcion = $array['desc'];
         $exitoso = false;
 
         $sql = "UPDATE copias_seguridad SET nombre_copia = ?, descripcion_copia = ? WHERE id_copia = ?";
@@ -118,6 +118,33 @@ class Copias extends Database{
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
         return $exitoso;
+    }
+
+    public function eliminarCopia($id, $ruta){
+        $sql = "DELETE FROM copias_seguridad WHERE id_copia = $id";
+        $db = $this->conectar();
+        try {
+            unlink($ruta);
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+    }
+
+    public function rutaBackup($id){
+        $sql = "SELECT ruta FROM copias_seguridad WHERE id_copia = $id";
+        $db = $this->conectar();
+
+        try{
+            $query = $db->prepare($sql);
+            $query->execute();
+        }
+        catch(PDOException $error){
+
+        }
+        $resultado = $query->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
     }
 
     public function consultaImportar($consulta){
