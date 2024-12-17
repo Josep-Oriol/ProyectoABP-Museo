@@ -8,7 +8,10 @@
       </div>
       <div>
           <div>
-            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+            <a href="index.php?controller=Obras&action=generarLibro"><img src="images/libro.png" alt="" title="Generar llibre de registre"></a>
+          </div>
+          <div>
+            <button id="exportarExcel"><img src="images/exportar.png" alt="" title="Exportar excel"></button>
           </div>
           <div>
               <img src="images/lupa.png" alt="" id="buscar">

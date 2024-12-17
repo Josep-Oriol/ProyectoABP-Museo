@@ -229,7 +229,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #general > :first-child > :nth-child(2) > :first-child {
   margin-right: 12px;
 }
-#general > :first-child > :nth-child(2) > :first-child button {
+#general > :first-child > :nth-child(2) > :first-child a {
   gap: 8px;
   display: flex;
   justify-content: center;
@@ -241,19 +241,46 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
   font-size: 17px;
   text-align: center;
-  padding: 8px;
+  padding: 4px;
   transition: transform 0.3s;
   cursor: pointer;
 }
-#general > :first-child > :nth-child(2) > :first-child button img {
-  width: 20px;
+#general > :first-child > :nth-child(2) > :first-child a img {
+  width: 30px;
   height: auto;
 }
-#general > :first-child > :nth-child(2) > :first-child button:hover {
+#general > :first-child > :nth-child(2) > :first-child a:hover {
   transform: translateY(-1px);
   background-color: #262626;
 }
 #general > :first-child > :nth-child(2) > :nth-child(2) {
+  margin-right: 20px;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) button {
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background-color: #333333;
+  border: 1px solid #BFBFBF;
+  border-radius: 3px;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 5px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) button img {
+  width: 28px;
+  height: auto;
+}
+#general > :first-child > :nth-child(2) > :nth-child(2) button:hover {
+  transform: translateY(-1px);
+  background-color: #262626;
+}
+#general > :first-child > :nth-child(2) > :nth-child(3) {
   border: 2px #333333 solid;
   display: flex;
   flex-direction: row;
@@ -262,29 +289,29 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   margin-right: 10px;
   padding: 5px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :first-child {
+#general > :first-child > :nth-child(2) > :nth-child(3) > :first-child {
   width: 20px;
   padding: 0px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2) {
+#general > :first-child > :nth-child(2) > :nth-child(3) > :nth-child(2) {
   border: none;
   margin-left: 20px;
   font-size: 16px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :nth-child(2):focus {
+#general > :first-child > :nth-child(2) > :nth-child(3) > :nth-child(2):focus {
   outline: none;
 }
-#general > :first-child > :nth-child(2) > :nth-child(2) > :last-child {
+#general > :first-child > :nth-child(2) > :nth-child(3) > :last-child {
   width: 22px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) {
+#general > :first-child > :nth-child(2) > :nth-child(4) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
 }
-#general > :first-child > :nth-child(2) > :nth-child(3) > select {
+#general > :first-child > :nth-child(2) > :nth-child(4) > select {
   background-color: #333333;
   border: 1px solid #BFBFBF;
   border-radius: 3px;

@@ -22,7 +22,7 @@
         </div>
 
         <form>
-            <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
+            <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="Escriu el nom del camp" required>
             <button id="crearCampo">Crear</button>
         </form>
         <div>

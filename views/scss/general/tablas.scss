@@ -17,6 +17,36 @@
             justify-content: right;
             >:first-child{
                 margin-right: 12px;
+                a{
+                    gap: 8px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    height: auto;
+                    background-color: $color_oscuro;
+                    border: 1px solid $color_claro2;
+                    border-radius: 3px;
+                    color: white;
+                    font-size: 17px;
+                    text-align: center;
+                    padding: 4px;
+
+                    transition: transform 0.3s;
+                    cursor: pointer;
+                    img{
+                        width: 30px;
+                        height: auto;
+                    }
+                }
+                a:hover{
+                    transform: translateY(-1px);
+                    background-color: darken($color: $color_oscuro, $amount: 5%);
+                }
+            }
+            >:nth-child(2){
+                margin-right: 20px;
                 button{
                     gap: 8px;
 
@@ -31,12 +61,12 @@
                     color: white;
                     font-size: 17px;
                     text-align: center;
-                    padding: 8px;
+                    padding: 5px;
 
                     transition: transform 0.3s;
                     cursor: pointer;
                     img{
-                        width: 20px;
+                        width: 28px;
                         height: auto;
                     }
                 }
@@ -45,7 +75,7 @@
                     background-color: darken($color: $color_oscuro, $amount: 5%);
                 }
             }
-            >:nth-child(2) {
+            >:nth-child(3) {
                 border: 2px $color_oscuro solid;
                 @include flex-row;
                 margin-right: 10px;
@@ -68,7 +98,7 @@
                     width: 22px;
                 }
             }
-            >:nth-child(3) {
+            >:nth-child(4) {
                 @include flex-row;
                 margin-right: 10px;
                 > select {
