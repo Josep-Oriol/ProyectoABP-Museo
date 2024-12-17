@@ -15,38 +15,18 @@
         >:nth-child(2) { //Búsqueda y filtros
             @include flex-row;
             justify-content: right;
-            #generarLibro{
+            >:first-child{
                 margin-right: 12px;
-                a{
-                    gap: 8px;
-
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    height: auto;
+                &#subirImagen{
                     background-color: $color_oscuro;
-                    border: 1px solid $color_claro2;
-                    border-radius: 3px;
                     color: white;
-                    font-size: 17px;
-                    text-align: center;
-                    padding: 4px;
+                    padding: 8px;
+                    border-radius: 3px;
 
-                    transition: transform 0.3s;
-                    cursor: pointer;
-                    img{
-                        width: 30px;
-                        height: auto;
+                    &:hover {
+                        cursor: pointer;
                     }
                 }
-                a:hover{
-                    transform: translateY(-1px);
-                    background-color: darken($color: $color_oscuro, $amount: 5%);
-                }
-            }
-            #exportarEstilo{
-                margin-right: 20px;
                 button{
                     gap: 8px;
 
@@ -61,12 +41,12 @@
                     color: white;
                     font-size: 17px;
                     text-align: center;
-                    padding: 5px;
+                    padding: 8px;
 
                     transition: transform 0.3s;
                     cursor: pointer;
                     img{
-                        width: 28px;
+                        width: 20px;
                         height: auto;
                     }
                 }
@@ -75,7 +55,7 @@
                     background-color: darken($color: $color_oscuro, $amount: 5%);
                 }
             }
-            #lupa {
+            >:nth-child(2) {
                 border: 2px $color_oscuro solid;
                 @include flex-row;
                 margin-right: 10px;
@@ -98,7 +78,7 @@
                     width: 22px;
                 }
             }
-            #paginacion {
+            >:nth-child(3) {
                 @include flex-row;
                 margin-right: 10px;
                 > select {
@@ -111,7 +91,7 @@
                     padding: 8px;
                 }
             }    
-            #flechas {
+            >:last-child {
                 @include flex-row;
                 
                 img {
