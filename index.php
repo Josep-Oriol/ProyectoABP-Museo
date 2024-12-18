@@ -67,7 +67,12 @@ session_start();
 
     <div id="popUpUbicaciones">
         <img src="images/alertIcon.png" alt="">
-        <p>Hi han obres a aquesta ubicació actualment!</p>
+        <p>Hi han <span class="negrita">obres</span> a aquesta ubicació actualment!</p>
+    </div>
+
+    <div id="popUpUbicaciones2">
+        <img src="images/alertIcon.png" alt="">
+        <p>Hi han <span class="negrita">ubicacions</span> a aquesta ubicació actualment!</p>
     </div>
 
     <div id="popUpEliminar">

@@ -45,16 +45,8 @@
 
             #exportarEstilo{
                 margin-right: 12px;
-                &#subirImagen{
-                    background-color: $color_oscuro;
-                    color: white;
-                    padding: 8px;
-                    border-radius: 3px;
-
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
+                
+            
                 button{
                     gap: 8px;
 
@@ -128,6 +120,17 @@
                     &:hover {
                         cursor: pointer;
                     }
+                }
+            }
+            #subirImagen{
+                margin-right: 15px;
+                background-color: $color_oscuro;
+                color: white;
+                padding: 8px;
+                border-radius: 3px;
+
+                &:hover {
+                    cursor: pointer;
                 }
             }
         }

@@ -76,11 +76,13 @@
     
             // Aquí ejecutas la lógica de eliminación en la base de datos.
             $resultado = $vocabulario->eliminarUbicacion($id_ubicacion);
-
-            if ($resultado) {
-                $response = ['status' => 'success'];
-            }else {
-                $response = ['status' => 'false'];
+    
+            if ($resultado === "hay obra") {
+                $response = ['status' => 'hay obra'];
+            }else if ($resultado === "hay ubicacion"){
+                $response = ['status' => 'hay ubicacion'];
+            }else if ($resultado === "no hay ubicacion"){
+                $response = ['status' => 'no hay ubicacion'];
             }
             // Devuelve una respuesta JSON indicando si fue exitoso
             header('Content-Type: application/json');

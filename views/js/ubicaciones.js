@@ -136,15 +136,23 @@ function eliminarHijos(id_ubicacion) {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === "success") {
+      if (data.status === "no hay ubicacion") {
         document.getElementById(id_ubicacion).parentNode.remove();
         location.reload();
-      } else {
+      } else if (data.status === "hay obra"){
         let popUp = document.getElementById("popUpUbicaciones");
         popUp.style.display = "flex";
 
         setTimeout(() => {
           popUp.style.display = "none";
+        }, 3000);
+      } else if (data.status === "hay ubicacion"){
+        let popUp2 = document.getElementById("popUpUbicaciones2");
+        console.log(popUp2)
+        popUp2.style.display = "flex";
+
+        setTimeout(() => {
+          popUp2.style.display = "none";
         }, 3000);
       }
     });

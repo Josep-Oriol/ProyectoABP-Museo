@@ -234,6 +234,7 @@
         public function eliminarUbicacion($id_ubicacion) {
             $relacionesAInsertar = [];
             $respuesta = null;
+            $respuesta2 = null;
             $hayObra = null;
             $db = $this->conectar();
             $ubicacionesDescendientes = $this->ubicacionesDescendientes($id_ubicacion);
@@ -246,7 +247,7 @@
                 foreach ($fechaFinHijo as $fila) {
                     $selectNombreObra = "SELECT titulo FROM obras WHERE numero_registro = " . "'" . $fila['fk_obra'] . "'";
                     $querySelect2 = $db->prepare($selectNombreObra);
-                    print_r($querySelect2);
+                    
                     $querySelect2->execute();
                     $nombre_obra = $querySelect2->fetch(PDO::FETCH_ASSOC);
                     $selectNombreUbicacion = "SELECT descripcion_ubicacion FROM ubicaciones WHERE id_ubicacion = " . $fila['fk_ubicacion'];
@@ -267,21 +268,35 @@
                 }
             }
             if ($hayObra === true){
-                $respuesta = false;
+                $respuesta = "hay obra";
             }else {
-                foreach($relacionesAInsertar as $relaccion){
-                    $insert = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES
-                    ('" . $relaccion['id_obra'] . "', '" . $relaccion['nombre_obra'] . "', '" . $relaccion['nombre_ubicacion'] . "', '" . $relaccion['fecha_inicio'] . "', '" .$relaccion['fecha_fin'] . "')";
-                    $queryInsert = $db->prepare($insert);
-                    $queryInsert->execute();
-                }
-
-                $sql5 = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
-                $query5 = $db->prepare($sql5);
-                $query5->execute();
-                $respuesta = true;
+                $respuesta = "no hay obra";
             }
-            return $respuesta;
+
+            if ($respuesta === "no hay obra"){
+                $selectObrasHijas = "SELECT * FROM ubicaciones WHERE ID_padre = " . $id_ubicacion;
+                $querySelectObrasHijas = $db->prepare($selectObrasHijas);
+                $querySelectObrasHijas->execute();
+
+                if ($querySelectObrasHijas){
+                    $respuesta2 = "hay ubicacion";
+                }else{
+                    foreach($relacionesAInsertar as $relaccion){
+                        $insert = "INSERT INTO historial_obras_ubicaciones (id_obra, nombre_obra, nombre_ubicacion, fecha_inicio, fecha_fin) VALUES
+                        ('" . $relaccion['id_obra'] . "', '" . $relaccion['nombre_obra'] . "', '" . $relaccion['nombre_ubicacion'] . "', '" . $relaccion['fecha_inicio'] . "', '" .$relaccion['fecha_fin'] . "')";
+                        $queryInsert = $db->prepare($insert);
+                        $queryInsert->execute();
+                    }
+    
+                    $sql5 = "DELETE FROM ubicaciones WHERE id_ubicacion = $id_ubicacion";
+                    $query5 = $db->prepare($sql5);
+                    $query5->execute();
+                    $respuesta2 = "no hay ubicacion";
+                }
+            }else if ($respuesta === "hay obra"){
+                $respuesta2 = "hay obra";
+            }
+            return $respuesta2;
         }
 
         public function mostrarHistorial($id_ubicacion) {
