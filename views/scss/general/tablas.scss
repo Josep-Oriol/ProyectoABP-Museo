@@ -15,7 +15,35 @@
         >:nth-child(2) { //Búsqueda y filtros
             @include flex-row;
             justify-content: right;
-            >:first-child{
+            #generarLibro {
+                margin-right: 12px;
+                
+                a{
+                    gap: 8px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    height: auto;
+                    background-color: $color_oscuro;
+                    border: 1px solid $color_claro2;
+                    border-radius: 3px;
+                    color: white;
+                    font-size: 17px;
+                    text-align: center;
+                    padding: 8px;
+
+                    transition: transform 0.3s;
+                    cursor: pointer;
+                    img{
+                        width: 20px;
+                        height: auto;
+                    }
+                }
+            }
+
+            #exportarEstilo{
                 margin-right: 12px;
                 &#subirImagen{
                     background-color: $color_oscuro;
@@ -55,7 +83,7 @@
                     background-color: darken($color: $color_oscuro, $amount: 5%);
                 }
             }
-            >:nth-child(2) {
+            #lupa {
                 border: 2px $color_oscuro solid;
                 @include flex-row;
                 margin-right: 10px;
@@ -78,7 +106,7 @@
                     width: 22px;
                 }
             }
-            >:nth-child(3) {
+            #paginacion {
                 @include flex-row;
                 margin-right: 10px;
                 > select {
@@ -91,7 +119,7 @@
                     padding: 8px;
                 }
             }    
-            >:last-child {
+            #flechas {
                 @include flex-row;
                 
                 img {
