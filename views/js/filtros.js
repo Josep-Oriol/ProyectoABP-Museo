@@ -9,6 +9,8 @@ function mostrarDatos(dato, filters) {
     ? "usuarios"
     : url.includes("Copias")
     ? "copias"
+    : url.includes("Restauraciones")
+    ? "restauraciones"
     : null
 
   let data = {
@@ -43,7 +45,7 @@ function mostrarDatos(dato, filters) {
 
       exposiciones = data.texto;
 
-      
+      console.log(exposiciones)
 
       let popupImagen = document.getElementById("popupImagen");
       let vistaImagen = document.getElementById("vistaImagenAmpliada");
@@ -103,6 +105,8 @@ function mostrarDatos(dato, filters) {
             ? exposicion.id_usuario
             : pagina === "copias"
             ? exposicion.id_copia
+            : pagina === "restauraciones"
+            ? exposicion.id_restauracion
             : null
 
         tr.setAttribute("id", id);
