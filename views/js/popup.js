@@ -16,6 +16,8 @@ function agregarEventosEliminar() {
     ? "usuarios"
     : url.includes("Copias")
     ? "copias_seguridad"
+    : url.includes("Restauraciones")
+    ? "restauraciones"
     : null;
   let nombreColumna =
     pagina === "exposiciones"
@@ -26,8 +28,12 @@ function agregarEventosEliminar() {
       ? "usuario"
       : pagina === "copias_seguridad"
       ? "copia"
+      : pagina === "restauraciones"
+      ? "restauracion"
       : null;
 
+
+      
   // MOSTRAR POPUP
   Array.from(btnEliminar).forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -46,6 +52,7 @@ function agregarEventosEliminar() {
       apartado: pagina,
       columna: nombreColumna,
     };
+    console.log(nombreColumna)
 
     let dataJson = JSON.stringify(data);
 
