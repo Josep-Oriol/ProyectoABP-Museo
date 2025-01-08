@@ -278,7 +278,7 @@
                 $querySelectObrasHijas = $db->prepare($selectObrasHijas);
                 $querySelectObrasHijas->execute();
 
-                if ($querySelectObrasHijas){
+                if ($querySelectObrasHijas->rowCount() > 0){
                     $respuesta2 = "hay ubicacion";
                 }else{
                     foreach($relacionesAInsertar as $relaccion){
