@@ -44,6 +44,10 @@
                 $datos = $modelo->busquedaCopias($pagina, $input, $strWhere, $paginar);
                 $url = ['index.php?controller=Copias&action=editar&id=', 'index.php?controller=Copias&action=mostrarCopia&id=', 'index.php?controller=Copias&action=mostrarCopia&id='];
             }
+            else if($pagina == "restauraciones"){
+                $datos = $modelo->busquedaRestauraciones($pagina, $input, $strWhere, $paginar);
+                $url = ['index.php?controller=Restauraciones&action=editarRestauracion&id=', 'index.php?controller=Restauraciones&action=mostrarRestauracion&id=', 'index.php?controller=Restauraciones&action=mostrarCopia&id='];
+            }
 
             $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];
 

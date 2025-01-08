@@ -60,6 +60,22 @@ class Busquedas extends Database{
         return $resultado;
     }
 
+    function busquedaRestauraciones($pagina, $input, $filtro, $paginar){
+        $sql = "SELECT r.id_restauracion, r.comentario_restauracion, r.nombre_restaurador, r.fecha_inicio_restauracion, r.fecha_fin_restauracion
+        FROM restauraciones r 
+        WHERE r.id_restauracion LIKE '%$input%' $filtro $paginar";
+        $db = $this->conectar();
+
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+        $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+
 
     public function exportarObras($pagina, $input, $filtro, $paginar){
         $sql = "SELECT o.numero_registro, o.nombre_objeto, o.titulo, o.autor, o.anyo_final, u.descripcion_ubicacion FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
