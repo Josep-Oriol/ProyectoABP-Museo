@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <label for="obraRelacionada">Obra en restauració</label>
-                    <input list="obras" id="obraRelacionada" name="obra" placeholder="Busca la obra">
+                    <input list="obras" id="obraRelacionada" class="escogerObra" name="obra" placeholder="Busca la obra" require_once>
                     <datalist id="obras">
                         <?php
                             foreach($obras as $indice => $obra){
@@ -39,7 +39,7 @@
             </form>
         </div>
     </div>
-        
+    <script src="views/js/validacionesFormularios/validacionRestauraciones.js"></script>
     <?php
     }
     else {
