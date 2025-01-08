@@ -249,6 +249,18 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   width: 20px;
   height: auto;
 }
+#general > :first-child > :nth-child(2) #subirImagen {
+  background-color: #333333;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 3px;
+  margin-right: 15px;
+}
+#general > :first-child > :nth-child(2) #subirImagen:hover {
+  cursor: pointer;
+}
 #general > :first-child > :nth-child(2) #exportarEstilo {
   margin-right: 12px;
 }
@@ -326,16 +338,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   width: 25px;
 }
 #general > :first-child > :nth-child(2) #flechas img:hover {
-  cursor: pointer;
-}
-#general > :first-child > :nth-child(2) #subirImagen {
-  margin-right: 15px;
-  background-color: #333333;
-  color: white;
-  padding: 8px;
-  border-radius: 3px;
-}
-#general > :first-child > :nth-child(2) #subirImagen:hover {
   cursor: pointer;
 }
 #general > :last-child {
