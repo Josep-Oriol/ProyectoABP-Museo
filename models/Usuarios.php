@@ -57,19 +57,25 @@ class Usuarios extends Database {
 	}
 
     
-    public function verificarLogin($user, $password){
-        //Seleccionamos el registro que coincida con el usuario introducido y la contraseña introducida.
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$user' AND contrasenya = '$password'";
+    public function verificarLogin($user, $password) {
+        // Seleccionamos el registro que coincida con el usuario introducido y la contraseña introducida
+        $sql = "SELECT * FROM usuarios WHERE usuario = :user AND contrasenya = :password";
         $db = $this->conectar();
+        
         try {
             $query = $db->prepare($sql);
+            $query->bindParam(':user', $user, PDO::PARAM_STR); // Asegura que $user sea tratado como una cadena
+            $query->bindParam(':password', $password, PDO::PARAM_STR); // Asegura que $password sea tratado como una cadena
             $query->execute();
         } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            echo "<h2>Error al ejecutar la consulta. Error: " . htmlspecialchars($error->getMessage()) . "</h2>";
+            return null; // Devuelve null en caso de error
         }
+        
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
+    
 
     public function mostrarUsuarios(){
         $sql ="SELECT * FROM usuarios";
@@ -85,34 +91,52 @@ class Usuarios extends Database {
     }
 
     public function mostrarUsuario($id) {
-        $sql ="SELECT * FROM usuarios WHERE id_usuario = $id";
+        $sql = "SELECT * FROM usuarios WHERE id_usuario = :id";
         $db = $this->conectar();
+        
         try {
             $query = $db->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT); // Asegura que $id sea tratado como un entero
             $query->execute();
         } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            echo "<h2>Error al ejecutar la consulta. Error: " . htmlspecialchars($error->getMessage()) . "</h2>";
+            return null; // Devuelve null en caso de error
         }
+    
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
+    
 
-    public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
-        $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
+    public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico, $telefono, $rol, $estado) {
+        $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) 
+                VALUES (:foto, :usuario, :nombre, :apellidos, :contrasenya, :correoElectronico, :telefono, :rol, :estado)";
         $db = $this->conectar();
+        
         try {
             $query = $db->prepare($sql);
+            $query->bindParam(':foto', $foto, PDO::PARAM_STR);
+            $query->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+            $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $query->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+            $query->bindParam(':contrasenya', $contrasenya, PDO::PARAM_STR);
+            $query->bindParam(':correoElectronico', $correoElectronico, PDO::PARAM_STR);
+            $query->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+            $query->bindParam(':rol', $rol, PDO::PARAM_STR);
+            $query->bindParam(':estado', $estado, PDO::PARAM_INT); // Supongo que 'estado' es un entero
             $query->execute();
         } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            echo "<h2>Error al ejecutar la consulta. Error: " . htmlspecialchars($error->getMessage()) . "</h2>";
         }
     }
+    
 
     public function eliminarFoto($id) {
-        $sql = "SELECT foto_usuario FROM usuarios WHERE id_usuario = $id";
+        $sql = "SELECT foto_usuario FROM usuarios WHERE id_usuario = :id";
         $db = $this->conectar();
         try {
             $query = $db->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
@@ -125,30 +149,51 @@ class Usuarios extends Database {
         }
     }
 
-    public function editarUsuario($fotoExist, $id, $foto, $usuario, $nombre, $apellidos, $correoElectronico ,$telefono, $rol, $estado) {
-        //Si se ha subido una nueva foto, eliminamos la anterior y hacemos la actualización de los campos.
-        if ($fotoExist) {
-            $this->eliminarFoto($id);
-            $sql = "UPDATE usuarios SET foto_usuario = '$foto', usuario = '$usuario', nombre = '$nombre', apellidos = '$apellidos', correo_electronico = '$correoElectronico', telefono = '$telefono', rol = '$rol', estado = '$estado' WHERE id_usuario = $id";
-        }
-        else {
-            //Si no se ha subido una foto actualizamos todos los campos menos el de foto.
-            $sql = "UPDATE usuarios SET usuario = '$usuario', nombre = '$nombre', apellidos = '$apellidos', correo_electronico = '$correoElectronico', telefono = '$telefono', rol = '$rol', estado = '$estado' WHERE id_usuario = $id";
-        }
+    public function editarUsuario($fotoExist, $id, $foto, $usuario, $nombre, $apellidos, $correoElectronico, $telefono, $rol, $estado) {
         $db = $this->conectar();
+    
+        if ($fotoExist) {
+            $sql = "UPDATE usuarios 
+                    SET foto_usuario = :foto, usuario = :usuario, nombre = :nombre, apellidos = :apellidos, 
+                        correo_electronico = :correoElectronico, telefono = :telefono, rol = :rol, estado = :estado 
+                    WHERE id_usuario = :id";
+        } else {
+            $sql = "UPDATE usuarios 
+                    SET usuario = :usuario, nombre = :nombre, apellidos = :apellidos, 
+                        correo_electronico = :correoElectronico, telefono = :telefono, rol = :rol, estado = :estado 
+                    WHERE id_usuario = :id";
+        }
+    
         try {
             $query = $db->prepare($sql);
+    
+            // Vincular parámetros comunes
+            $query->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+            $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $query->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+            $query->bindParam(':correoElectronico', $correoElectronico, PDO::PARAM_STR);
+            $query->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+            $query->bindParam(':rol', $rol, PDO::PARAM_STR);
+            $query->bindParam(':estado', $estado, PDO::PARAM_INT);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+    
+            // Vincular parámetro de la foto si aplica
+            if ($fotoExist) {
+                $query->bindParam(':foto', $foto, PDO::PARAM_STR);
+            }
+    
             $query->execute();
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
     }
+    
 
     public function eliminarUsuario($id) {
         $this->eliminarFoto($id);
         $sql2 = "UPDATE copias_seguridad SET fk_creador = NULL";
         $sql3 = "UPDATE logs_obras SET persona_autorizada = NULL";
-        $sql = "DELETE FROM usuarios WHERE id_usuario = $id";
+        $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
         $db = $this->conectar();
         try {
             $query2 = $db->prepare($sql2);
@@ -156,6 +201,7 @@ class Usuarios extends Database {
             $query3 = $db->prepare($sql3);
             $query3->execute();
             $query = $db->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";

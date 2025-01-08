@@ -17,72 +17,106 @@ class Exposiciones extends Database{
         return $resultado;
     }
     
-    public function eliminarExposicion($id){
+    public function eliminarExposicion($id) {
         $db = $this->conectar();
-        $sql = "UPDATE obras_exposiciones SET fk_exposicion = NULL WHERE fk_exposicion = $id";
-        $sql2 = "DELETE FROM exposiciones WHERE id_exposicion = $id";
-        try{
+        $sql = "UPDATE obras_exposiciones SET fk_exposicion = NULL WHERE fk_exposicion = :id";
+        $sql2 = "DELETE FROM exposiciones WHERE id_exposicion = :id";
+        
+        try {
             $query = $db->prepare($sql);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->execute();
+            
             $query2 = $db->prepare($sql2);
+            $query2->bindValue(':id', $id, PDO::PARAM_INT);
             $query2->execute();
         }
-        catch(PDOException $error){
+        catch(PDOException $error) {
             echo $error->getMessage();
         }
     }
-    public function datosExposicion($id){
+
+    public function datosExposicion($id) {
         $db = $this->conectar();
-        $sql = "SELECT * FROM exposiciones WHERE id_exposicion = $id";
-        try{
+        $sql = "SELECT * FROM exposiciones WHERE id_exposicion = :id";
+        try {
             $query = $db->prepare($sql);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->execute();
         }
-        catch(PDOException $error){
+        catch(PDOException $error) {
             echo $error->getMessage();
         }
         $resultado = $query->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
 
-    public function editarExposicion($id, $array){
+    public function editarExposicion($id, $array) {
+        $db = $this->conectar();
+        $descripcio = $array['descripcio'];
+        $lloc = $array['lloc'];
+        $tipus = $array['tipus'];
+        $inici = $array['inici']; 
+        $final = $array['final'];
+     
+        $sql = "UPDATE exposiciones SET 
+                texto_exposicion = :descripcio,
+                tipo_exposicion = :tipus,
+                lugar_exposicion = :lloc,
+                fecha_inicio_exposicion = :inici,
+                fecha_fin_exposicion = :final 
+                WHERE id_exposicion = :id";
+     
+        try {
+            $query = $db->prepare($sql);
+            $query->bindValue(':descripcio', $descripcio, PDO::PARAM_STR);
+            $query->bindValue(':tipus', $tipus, PDO::PARAM_STR);
+            $query->bindValue(':lloc', $lloc, PDO::PARAM_STR);
+            $query->bindValue(':inici', $inici, PDO::PARAM_STR);
+            $query->bindValue(':final', $final, PDO::PARAM_STR);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+        }
+        catch(PDOException $error) {
+            echo $error->getMessage();
+        }
+    }
+
+    public function crearExposicion($array) {
         $db = $this->conectar();
         $descripcio = $array['descripcio'];
         $lloc = $array['lloc'];
         $tipus = $array['tipus'];
         $inici = $array['inici'];
         $final = $array['final'];
-
-        $sql = "UPDATE exposiciones SET texto_exposicion = '$descripcio', tipo_exposicion = '$tipus', lugar_exposicion = '$lloc', 
-        fecha_inicio_exposicion = '$inici', fecha_fin_exposicion = '$final' WHERE id_exposicion = $id";
-
-        try{
+     
+        $sql = "INSERT INTO exposiciones (
+                texto_exposicion, 
+                lugar_exposicion, 
+                tipo_exposicion, 
+                fecha_inicio_exposicion, 
+                fecha_fin_exposicion
+            ) VALUES (
+                :descripcio,
+                :lloc,
+                :tipus,
+                :inici,
+                :final
+            )";
+     
+        try {
             $query = $db->prepare($sql);
+            $query->bindValue(':descripcio', $descripcio, PDO::PARAM_STR);
+            $query->bindValue(':lloc', $lloc, PDO::PARAM_STR);
+            $query->bindValue(':tipus', $tipus, PDO::PARAM_STR);
+            $query->bindValue(':inici', $inici, PDO::PARAM_STR);
+            $query->bindValue(':final', $final, PDO::PARAM_STR);
             $query->execute();
         }
-        catch(PDOException $error){
+        catch(PDOException $error) {
             echo $error->getMessage();
         }
-    }
-
-    public function crearExposicion($array){
-        $db = $this->conectar();
-        $descripcio = $array['descripcio'];
-        $lloc = $array['lloc'];
-        $tipus = $array['tipus'];
-        $inici = $array['inici'];
-        $final = $array['final'];
-
-        $sql = "INSERT INTO exposiciones (texto_exposicion, lugar_exposicion, tipo_exposicion, fecha_inicio_exposicion, fecha_fin_exposicion) VALUES('$descripcio', '$lloc', '$tipus', '$inici', '$final')";
-
-        try{
-            $query = $db->prepare($sql);
-            $query->execute();
-        }
-        catch(PDOException $error){
-            echo $error->getMessage();
-        }
-    }
+     }
 
     public function seleccionarTipo(){
         $db = $this->conectar();
@@ -100,34 +134,40 @@ class Exposiciones extends Database{
 
     public function obrasRelacionadas($id){
         $db = $this->conectar();
-        $sql = "SELECT * FROM obras o INNER JOIN obras_exposiciones oe ON o.numero_registro = oe.fk_obra
-        INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion WHERE e.id_exposicion = $id";
-
-        try{
+        $sql = "SELECT * FROM obras o 
+                INNER JOIN obras_exposiciones oe ON o.numero_registro = oe.fk_obra
+                INNER JOIN exposiciones e ON e.id_exposicion = oe.fk_exposicion 
+                WHERE e.id_exposicion = :id";
+    
+        try {
             $query = $db->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT); // Asegura que $id sea tratado como un entero
             $query->execute();
-        }
-        catch(PDOException $error){
+        } catch (PDOException $error) {
             echo $error->getMessage();
         }
+        
         $datos = $query->fetchAll(PDO::FETCH_ASSOC);
         return $datos;
     }
+    
 
-    public function NumRegistroObrasRelacionadas($id){  //CONSULTA PARECIDA A LA ANTERIOR PERO MAS LIVIANA
+    public function NumRegistroObrasRelacionadas($id){  // CONSULTA PARECIDA A LA ANTERIOR PERO MÁS LIVIANA
         $db = $this->conectar();
-        $sql = "SELECT fk_obra FROM obras_exposiciones WHERE fk_exposicion = $id";
-
-        try{
+        $sql = "SELECT fk_obra FROM obras_exposiciones WHERE fk_exposicion = :id";
+    
+        try {
             $query = $db->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT); // Asegura que $id sea tratado como un entero
             $query->execute();
-        }
-        catch(PDOException $error){
+        } catch (PDOException $error) {
             echo $error->getMessage();
         }
+        
         $datos = $query->fetchAll(PDO::FETCH_ASSOC);
         return $datos;
     }
+    
     
     public function eliminarRelaciones($obrasEnviadas, $obrasRelacionadas, $idExposicion){  //SE HARA ELIMINAR Y AÑADIR POR SEPARADO (SI NO HAY OBRAS RELACIONADAS NO RECORRE EL PRIMER FOREACH)
         
@@ -209,17 +249,22 @@ class Exposiciones extends Database{
 
     public function consultaEliminarRelacionesFicha($idObra, $idExposicion){
         $db = $this->conectar();
-        $sql = "DELETE FROM obras_exposiciones WHERE fk_obra = '$idObra' and fk_exposicion = '$idExposicion'";
-        try{
+        $sql = "DELETE FROM obras_exposiciones WHERE fk_obra = :idObra AND fk_exposicion = :idExposicion";
+    
+        try {
             $query = $db->prepare($sql);
+            $query->bindParam(':idObra', $idObra, PDO::PARAM_INT); // Asegura que $idObra sea tratado como un entero
+            $query->bindParam(':idExposicion', $idExposicion, PDO::PARAM_INT); // Asegura que $idExposicion sea tratado como un entero
             $query->execute();
             $filas = $query->rowCount();
-        }
-        catch(PDOException $error){
+        } catch (PDOException $error) {
             echo $error->getMessage();
+            $filas = 0; // Si ocurre un error, devuelve 0 como indicador de que no se eliminaron filas
         }
+    
         return $filas;
     }
+    
 
 
 
