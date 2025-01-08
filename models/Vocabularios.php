@@ -16,10 +16,11 @@
         }
 
         public function mostrarVocabulario($idVocabulario) {
-            $sql = "SELECT nombre_vocabulario FROM vocabularios WHERE id_vocabulario = $idVocabulario";
+            $sql = "SELECT nombre_vocabulario FROM vocabularios WHERE id_vocabulario = :idVocabulario";
             $db = $this->conectar();
             try {
                 $query = $db->prepare($sql);
+                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_INT);
                 $query->execute();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
@@ -27,9 +28,10 @@
             $nombreVocabulario = $query->fetch(PDO::FETCH_ASSOC);
             
             //Obtenemos cada campo del vocabulario en cuestión mediante la ID del vocabulario pasado como argumento.
-            $sql = "SELECT id_campo, nombre_campo FROM campos WHERE fk_vocabulario = $idVocabulario";
+            $sql = "SELECT id_campo, nombre_campo FROM campos WHERE fk_vocabulario = :idVocabulario";
             try {
                 $query = $db->prepare($sql);
+                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_INT);
                 $query->execute();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
@@ -41,15 +43,18 @@
         }
 
         public function crearVocabulario($nombre) {
-            $sql = "INSERT INTO vocabularios VALUES ('$nombre')";
+            $sql = "INSERT INTO vocabularios (nombre) VALUES (:nombre)";
             $db = $this->conectar();
+            
             try {
                 $query = $db->prepare($sql);
+                $query->bindParam(':nombre', $nombre, PDO::PARAM_STR); // Vinculamos el parámetro
                 $query->execute();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
         }
+        
 
         public function obtenerCamposLista() {
             $sql = "SELECT v.nombre_vocabulario, c.nombre_campo FROM vocabularios v INNER JOIN campos c ON v.id_vocabulario = c.fk_vocabulario";
@@ -79,50 +84,62 @@
         }
 
         public function crearCampo($idVocabulario, $nombreCampo) {
-            $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES ('$nombreCampo', $idVocabulario)";
+            $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES (:nombreCampo, :idVocabulario)";
             $db = $this->conectar();
+            
             try {
                 $query = $db->prepare($sql);
+                $query->bindParam(':nombreCampo', $nombreCampo, PDO::PARAM_STR); // Vincula el parámetro nombreCampo
+                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_INT); // Vincula el parámetro idVocabulario
                 $query->execute();
                 $filas = $query->rowCount();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
+            
             $create = $filas > 0 ? true : false;
             return $create;
         }
+        
 
         public function editarCampo($antiguoValor, $nuevoValor) {
-             //$antiguoValor = str_replace('_', " ", $antiguoValor); //por defecto el indice tiene una _ en vez de un espacio, por eso lo reemplaza
-            if($antiguoValor != $nuevoValor){
-                $sql = "UPDATE campos SET nombre_campo = '$nuevoValor' WHERE nombre_campo = '$antiguoValor'";
+            if ($antiguoValor != $nuevoValor) {
+                $sql = "UPDATE campos SET nombre_campo = :nuevoValor WHERE nombre_campo = :antiguoValor";
                 $db = $this->conectar();
+                
                 try {
                     $query = $db->prepare($sql);
+                    $query->bindParam(':nuevoValor', $nuevoValor, PDO::PARAM_STR);
+                    $query->bindParam(':antiguoValor', $antiguoValor, PDO::PARAM_STR);
                     $query->execute();
                     return true;
                 } catch (PDOException $error) {
                     echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
         }
+        
 
         public function eliminarCampo($idCampo) {
-            $sql = "DELETE FROM campos WHERE nombre_campo = '$idCampo'";
+            $sql = "DELETE FROM campos WHERE nombre_campo = :idCampo";
             $db = $this->conectar();
+            
             try {
                 $query = $db->prepare($sql);
+                $query->bindParam(':idCampo', $idCampo, PDO::PARAM_STR); // Vincula el parámetro
                 $query->execute();
                 $filas = $query->rowCount();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
+            
             $delete = $filas > 0 ? true : false;
             return $delete;
         }
+        
 
         public function mostrarAutories() {
             //Obtenemos los campos del vocabulario Autories juntando las tablas de campos y vocabularios para encontrar los campos en los cuales el identificador del vocabulario coincide con el de autories.

@@ -1,5 +1,6 @@
-<?php
 
+<?php
+/*
 require_once 'Database.php';
 
 class Copias extends Database{
@@ -160,4 +161,224 @@ class Copias extends Database{
     }
 
 
+} */
+
+
+require_once 'Database.php';
+
+class Copias extends Database {
+    
+    function obtenerCopias() {
+        $sql = 'SELECT * FROM copias_seguridad cs INNER JOIN usuarios u ON cs.fk_creador = u.id_usuario';
+        $db = $this->conectar();
+
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $error) {
+            error_log("Error in obtenerCopias: " . $error->getMessage());
+            throw new Exception("Error al obtener copias de seguridad");
+        }
+    }
+
+    function crearCopia($array, $id, $date) {
+        if (!$this->validarDatosCopia($array)) {
+            throw new Exception("Datos de copia inválidos");
+        }
+
+        $nombre = trim($array['nom']);
+        $descripcion = trim($array['desc']);
+        $fecha = trim($array['fecha']);
+        $creador = (int)$id;
+        
+        $db = $this->conectar();
+        $db->beginTransaction();
+
+        try {
+            // Primero verificamos si ya existe una copia con ese nombre
+            $checkSql = "SELECT COUNT(*) FROM copias_seguridad WHERE nombre_copia = ?";
+            $checkStmt = $db->prepare($checkSql);
+            $checkStmt->execute([$nombre]);
+            
+            if ($checkStmt->fetchColumn() > 0) {
+                throw new Exception("Ya existe una copia con ese nombre");
+            }
+
+            // Insertar nueva copia
+            $sql = 'INSERT INTO copias_seguridad (nombre_copia, descripcion_copia, fecha_copia, fk_creador, ruta) 
+                    VALUES (?, ?, ?, ?, ?)';
+            
+            $ruta = "backups/copia_de_seguretat_" . htmlspecialchars($date) . '.sql';
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute([$nombre, $descripcion, $fecha, $creador, $ruta]);
+            
+            $idCopia = $db->lastInsertId();
+            
+            if ($idCopia) {
+                require_once __DIR__ . "/../config.php";
+                $this->copiaSeguridad($idCopia, $date);
+                $db->commit();
+                return true;
+            }
+            
+            $db->rollBack();
+            return false;
+
+        } catch (PDOException $error) {
+            $db->rollBack();
+            error_log("Error in crearCopia: " . $error->getMessage());
+            throw new Exception("Error al crear la copia de seguridad");
+        }
+    }
+
+    protected function validarDatosCopia($array) {
+        return isset($array['nom']) && 
+               isset($array['desc']) && 
+               isset($array['fecha']) &&
+               !empty(trim($array['nom'])) &&
+               strlen($array['nom']) <= 255 &&
+               strlen($array['desc']) <= 1000;
+    }
+
+    public function copiaSeguridad($idCopia, $date) {
+        if (!is_numeric($idCopia) || empty($date)) {
+            throw new Exception("Parámetros inválidos");
+        }
+
+        require_once __DIR__ . "/../config.php";
+        
+        $servername = DB_HOST;
+        $dbname = DB_NAME;
+        $username = DB_USER;
+        $password = DB_PASSWORD;
+
+        // Sanitizar el nombre de usuario y la fecha para la ruta
+        $usuario = preg_replace('/[^a-zA-Z0-9]/', '', getenv('USERNAME'));
+        $date = preg_replace('/[^0-9_-]/', '', $date);
+        
+        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat_' . $date . '.sql';
+        
+        // Escapar los argumentos del comando
+        $comandoCopia = sprintf(
+            'mysqldump --no-tablespaces --ignore-table=%s.copias_seguridad -u%s -h%s -p%s %s > %s',
+            escapeshellarg($dbname),
+            escapeshellarg($username),
+            escapeshellarg($servername),
+            escapeshellarg($password),
+            escapeshellarg($dbname),
+            escapeshellarg($archivoCopia)
+        );
+        
+        $resultado = null;
+        $salida = [];
+        exec($comandoCopia, $salida, $resultado);
+
+        if ($resultado === 0) {
+            $destino = "backups/copia_de_seguretat_" . $date . '.sql';
+            if (!copy($archivoCopia, $destino)) {
+                throw new Exception("Error al copiar el archivo de respaldo");
+            }
+            return true;
+        }
+        
+        throw new Exception("Error al crear la copia de seguridad");
+    }
+
+    public function mostrarCopia($numeroRegistro) {
+        if (!is_numeric($numeroRegistro)) {
+            throw new Exception("ID de copia inválido");
+        }
+
+        $sql = "SELECT * FROM copias_seguridad cs 
+                INNER JOIN usuarios u ON cs.fk_creador = u.id_usuario 
+                WHERE id_copia = ?";
+        
+        $db = $this->conectar();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([$numeroRegistro]);
+            return $query->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $error) {
+            error_log("Error in mostrarCopia: " . $error->getMessage());
+            throw new Exception("Error al mostrar la copia");
+        }
+    }
+
+    public function editarCopia($array, $id) {
+        if (!$this->validarDatosCopia($array) || !is_numeric($id)) {
+            throw new Exception("Datos inválidos para editar copia");
+        }
+
+        $nombre = trim($array['nom']);
+        $descripcion = trim($array['desc']);
+
+        $sql = "UPDATE copias_seguridad SET nombre_copia = ?, descripcion_copia = ? WHERE id_copia = ?";
+        $db = $this->conectar();
+        
+        try {
+            $query = $db->prepare($sql);
+            return $query->execute([$nombre, $descripcion, $id]);
+        } catch (PDOException $error) {
+            error_log("Error in editarCopia: " . $error->getMessage());
+            throw new Exception("Error al editar la copia");
+        }
+    }
+
+    public function eliminarCopia($id, $ruta) {
+        if (!is_numeric($id) || empty($ruta)) {
+            throw new Exception("Parámetros inválidos para eliminar copia");
+        }
+
+        $sql = "DELETE FROM copias_seguridad WHERE id_copia = ?";
+        $db = $this->conectar();
+        
+        try {
+            if (file_exists($ruta) && !unlink($ruta)) {
+                throw new Exception("Error al eliminar el archivo físico");
+            }
+            
+            $query = $db->prepare($sql);
+            return $query->execute([$id]);
+        } catch (PDOException $error) {
+            error_log("Error in eliminarCopia: " . $error->getMessage());
+            throw new Exception("Error al eliminar la copia");
+        }
+    }
+
+    public function rutaBackup($id) {
+        if (!is_numeric($id)) {
+            throw new Exception("ID de copia inválido");
+        }
+
+        $sql = "SELECT ruta FROM copias_seguridad WHERE id_copia = ?";
+        $db = $this->conectar();
+
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([$id]);
+            return $query->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $error) {
+            error_log("Error in rutaBackup: " . $error->getMessage());
+            throw new Exception("Error al obtener la ruta del backup");
+        }
+    }
+
+    public function consultaImportar($consulta) {
+        // IMPORTANTE: Esta función podría ser peligrosa si acepta consultas arbitrarias
+        // Se recomienda implementar validaciones específicas según el tipo de importación
+        if (empty($consulta)) {
+            throw new Exception("Consulta vacía");
+        }
+
+        $db = $this->conectar();
+        try {
+            $query = $db->prepare($consulta);
+            return $query->execute();
+        } catch (PDOException $error) {
+            error_log("Error in consultaImportar: " . $error->getMessage());
+            throw new Exception("Error al importar la consulta");
+        }
+    }
 }
