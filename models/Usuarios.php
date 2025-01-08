@@ -123,7 +123,7 @@ class Usuarios extends Database {
             $query->bindParam(':correoElectronico', $correoElectronico, PDO::PARAM_STR);
             $query->bindParam(':telefono', $telefono, PDO::PARAM_STR);
             $query->bindParam(':rol', $rol, PDO::PARAM_STR);
-            $query->bindParam(':estado', $estado, PDO::PARAM_INT); // Supongo que 'estado' es un entero
+            $query->bindParam(':estado', $estado, PDO::PARAM_STR);
             $query->execute();
         } catch (PDOException $error) {
             echo "<h2>Error al ejecutar la consulta. Error: " . htmlspecialchars($error->getMessage()) . "</h2>";
