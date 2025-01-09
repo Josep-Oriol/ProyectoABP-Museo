@@ -1,14 +1,34 @@
 
 <header>
+
     <img src="images/nombre.png" alt="">
     
     <nav>
+        
         <a href="index.php?controller=Obras&action=mostrarObras" class="opcionesHeader">Inici</a>
+        <?php 
+        if($_SESSION['Rol'] == 'Administració' || $_SESSION['Rol'] == 'Tècnic'){
+        ?>
         <a href="index.php?controller=Exposiciones&action=mostrarExposiciones" class="opcionesHeader">Exposicions</a>
+        <?php
+        }
+        ?>
+        <?php 
+        if($_SESSION['Rol'] == 'Administració'){
+        ?>
         <a href="index.php?controller=Vocabularios&action=mostrarUbicaciones" class="opcionesHeader">Ubicacions</a>
+        <?php
+        }
+        ?>
+        <?php 
+        if($_SESSION['Rol'] == 'Administració' || $_SESSION['Rol'] == 'Tècnic'){
+        ?>
         <a href="index.php?controller=Restauraciones&action=mostrarRestauraciones" class="opcionesHeader">Restauracions</a>
         <?php
-        if ($_SESSION['Rol'] == 'Administració' || $_SESSION['Rol'] == 'Tècnic') {
+        }
+        ?>
+        <?php
+        if ($_SESSION['Rol'] == 'Administració') {
             ?>
             <div id="opcionAdmin">
                 <a href="">Administració</a>
