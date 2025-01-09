@@ -97,6 +97,22 @@ class Usuarios extends Database {
         return $resultado;
     }
 
+    public function comprobarUsuario($usuario) {
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+        $existe = false;
+        $db = $this->conectar();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+        if ($query->rowCount() > 0) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
     public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
         $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
         $db = $this->conectar();

@@ -2,7 +2,7 @@
 if (isset($_SESSION['Rol'])) {
 ?>
     <section id="fichaObra">
-        <form action="index.php?controller=Obras&action=crear" enctype="multipart/form-data" method="POST" id="formCrear">
+        <form action="index.php?controller=Obras&action=crear" enctype="multipart/form-data" method="POST" id="formCrearObra">
             <div>
                 <div>
                     <h2>Dades Principals</h2>
@@ -10,19 +10,19 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <span>Fotografia</span>
                             <div id="subirImagen">
-                                <img src="images/subirArchivo.png" alt="subir archivo">
-                                <span>PNG/JPG/JPEG</span>
+                                <img src="images/subirArchivo.png" alt="subir archivo" title="Subir archivo">
+                                <span>PNG/JPG/JPEG/WEBP</span>
                                 <p id="nombreArchivo"></p>
+                                <input type="file" name="fotografia" id="inputFotografia">
                             </div>
-                            <input type="file" name="fotografia" id="inputFotografia">
                         </div>
                         <div>
                             <div>
-                                <label for="titulo">Títol</label>
+                                <label for="titulo">Títol <span>*</span></label>
                                 <input type="text" id="titulo" name="titulo" required>
                             </div>
                             <div>
-                                <label for="autor">Autor</label>
+                                <label for="autor">Autor <span>*</span></label>
                                 <select name="autor" id="autor" required>
                                     <option value=""></option>
                                     <?php
@@ -47,21 +47,21 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Dades Generals</h2>
                     <div>
                         <div>
-                            <label for="numero_registro">Nº de registre</label>
+                            <label for="numero_registro">Nº de registre <span>*</span></label>
                             <div id="camposNumeroRegistro">
                                 <input type="text" name="letra" id="letra" placeholder="[A-Z]">
                                 <input type="text" id="numero_registro" name="numero_registro" required>
                                 <input type="text" name="decimales" id="decimales" placeholder="[01-99]">
+                                <img src="images/reload.png" alt="Sugerir número de registro" id="sugerirNumeroRegistro" title="Sugerir número de registre">
                                 <p id="errorFormatoNumRegistro"></p>
-                                <img src="images/reload.png" alt="Sugerir número de registro" id="sugerirNumeroRegistro" title="Sugerir número de registro">
                             </div>
                         </div>
                         <div>
-                            <label for="fecha_registro">Data de registre</label>
+                            <label for="fecha_registro">Data de registre <span>*</span></label>
                             <input type="date" id="fecha_registro" name="fecha_registro" required>
                         </div>
                         <div>
-                            <label for="nombre_museo">Nom del Museu</label>
+                            <label for="nombre_museo">Nom del Museu <span>*</span></label>
                             <input type="text" id="nombre_museo" name="nombre_museo" required>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Classificació i Dimensions</h2>
                     <div>
                         <div>
-                            <label for="clasificacion_generica">Classificació genèrica</label>
+                            <label for="clasificacion_generica">Classificació genèrica <span>*</span></label>
                             <select name="clasificacion_generica" id="clasificacion_generica" required>
                                 <option value=""></option>
                                 <?php
@@ -86,7 +86,7 @@ if (isset($_SESSION['Rol'])) {
                             </select>
                         </div>
                         <div>
-                            <label for="nombre_objeto">Nom de l'objecte</label>
+                            <label for="nombre_objeto">Nom de l'objecte <span>*</span></label>
                             <input type="text" id="nombre_objeto" name="nombre_objeto" required>
                         </div>
                         <div>
@@ -172,7 +172,7 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Ubicació</h2>
                     <div>
                         <div>
-                            <label for="id_ubicacion">Ubicació</label>
+                            <label for="id_ubicacion">Ubicació <span>*</span></label>
                             <select name="id_ubicacion" id="id_ubicacion" required>
                                 <option value=""></option>
                                 <?php
@@ -183,8 +183,8 @@ if (isset($_SESSION['Rol'])) {
                             </select>
                         </div>
                         <div>
-                            <label for="fecha_inicio_ubicacion">Data inici ubicació</label>
-                            <input type="date" id="fecha_inicio_ubicacion" name="fecha_inicio_ubicacion">
+                            <label for="fecha_inicio_ubicacion">Data inici ubicació <span>*</span></label>
+                            <input type="date" id="fecha_inicio_ubicacion" name="fecha_inicio_ubicacion" required>
                         </div>
                     </div>
                 </div>
@@ -208,7 +208,7 @@ if (isset($_SESSION['Rol'])) {
                             </select>
                         </div>
                         <div>
-                            <label for="fecha_ingreso">Data d'ingrés</label>
+                            <label for="fecha_ingreso">Data d'ingrés <span>*</span></label>
                             <input type="date" id="fecha_ingreso" name="fecha_ingreso" required>
                         </div>
                         <div>
@@ -222,15 +222,15 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Dates i llocs</h2>
                     <div>
                         <div>
-                            <label for="anyo_inicial">Any inicial</label>
+                            <label for="anyo_inicial">Any inicial <span>*</span></label>
                             <input type="number" id="anyo_inicial" name="anyo_inicial" required>
                         </div>
                         <div>
-                            <label for="anyo_final">Any final</label>
+                            <label for="anyo_final">Any final <span>*</span></label>
                             <input type="number" id="anyo_final" name="anyo_final" required>
                         </div>
                         <div>
-                            <label for="datacion">Datació</label>
+                            <label for="datacion">Datació <span>*</span></label>
                             <input type="text" id="datacion" name="datacion" required>
                         </div>
                         <div>
@@ -343,7 +343,7 @@ if (isset($_SESSION['Rol'])) {
                     <h2>Informació Adicional</h2>
                     <div>
                         <div>
-                            <label for="descripcion_obra">Descripció</label>
+                            <label for="descripcion_obra">Descripció <span>*</span></label>
                             <textarea id="descripcion_obra" name="descripcion_obra" required></textarea>
                         </div>
                         <div>

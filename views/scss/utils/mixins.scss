@@ -16,3 +16,29 @@
     transition: all 0.2s ease-in-out;
     transform: translateY(-1px);
 }
+
+@mixin cuadroSubirImagen {
+    width: 100%;
+    @include flex-column;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid $color_claro;
+
+    img {
+        width: 15%;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    span {
+        width: 100%;
+        text-align: center;
+        color: $color_claro2;
+    }
+    p {
+        width: 100%;
+        text-align: center;
+    }
+}
