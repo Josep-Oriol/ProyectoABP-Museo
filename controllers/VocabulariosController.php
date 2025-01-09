@@ -137,7 +137,17 @@
                 $datos = $vocabulario->mostrarVocabulario($id);
                 $nombre = $datos[0]['nombre_vocabulario'];
                 $campos = $datos[1];
-                require_once "views/general/vocabularios/fichaVocabulario.php";
+                if($nombre =="Tècnica"){
+                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
+                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
+                    require_once "views/general/vocabularios/fichaVocabularioGetty.php";
+                }elseif($nombre == "Material"){
+                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
+                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
+                    require_once "views/general/vocabularios/fichaVocabularioGetty.php";
+                }else{
+                    require_once "views/general/vocabularios/fichaVocabulario.php";
+                }
             }
             else {
                 echo "<h3>Ningún vocabulario seleccionado.</h3>";
