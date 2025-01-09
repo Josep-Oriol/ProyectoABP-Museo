@@ -45,7 +45,7 @@ function mostrarDatos(dato, filters) {
 
       exposiciones = data.texto;
 
-      console.log(exposiciones)
+      
 
       let popupImagen = document.getElementById("popupImagen");
       let vistaImagen = document.getElementById("vistaImagenAmpliada");
@@ -108,6 +108,8 @@ function mostrarDatos(dato, filters) {
             : pagina === "restauraciones"
             ? exposicion.id_restauracion
             : null
+
+        
 
         tr.setAttribute("id", id);
         link1.href = data.url[0] + id;
@@ -447,7 +449,7 @@ function inicializarEventos() {
     botonExportar.addEventListener("click", function (event) {
       let filters = datosForm();
       let paginacion = document.querySelector("#numeroResultados");
-      console.log(paginacion.value);
+      
       let dato = inputExposiciones.value;
       const url = window.location.href;
       let pagina = url.includes("Exposiciones")

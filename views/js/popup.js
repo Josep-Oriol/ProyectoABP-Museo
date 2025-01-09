@@ -45,14 +45,12 @@ function agregarEventosEliminar() {
   });
 
   btnConfirmar.addEventListener("click", function () {
-    console.log(idRegistro);
-
+  
     let data = {
       id: idRegistro,
       apartado: pagina,
       columna: nombreColumna,
     };
-    console.log(nombreColumna)
 
     let dataJson = JSON.stringify(data);
 

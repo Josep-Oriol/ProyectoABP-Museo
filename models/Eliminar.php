@@ -10,7 +10,7 @@
             $db = $this->conectar();
             try {
                 $query = $db->prepare($sql);
-                $query->bindValue(':id', $id, PDO::PARAM_INT);
+                $query->bindValue(':id', $id, PDO::PARAM_STR);
                 $query->execute();
                 return $query->execute();;
             } catch (PDOException $error) {
