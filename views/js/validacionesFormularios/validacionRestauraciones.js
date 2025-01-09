@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     opcionesObras.forEach(option => {
         array.push(option.value)
     });
+    
     console.log(array);
     form.addEventListener("submit", function(event){
       event.preventDefault();
