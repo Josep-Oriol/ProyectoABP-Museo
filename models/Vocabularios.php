@@ -337,7 +337,29 @@
                 'obrasActuales' => $obrasActuales
             ];
         }
+
+        function obtenerNombreCampo($id){
+            $db = $this->conectar();
+            $sql = "SELECT nombre_vocabulario FROM vocabularios WHERE id_vocabulario LIKE ?";
+            $query = $db->prepare($sql);
+            $query->execute([$id]);
+
+            if ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $res = $row['nombre_vocabulario'];
+            }else{
+                $res = null;
+            }
+            return $res;
+        }
         
-        
+        function obtenerCodigosGetty($nombre){
+            $db = $this->conectar();
+            $sql = "SELECT * FROM codigos_getty WHERE fk_nombre_campo LIKE ?";
+            $query = $db->prepare($sql);
+            $query->execute([$nombre]);
+            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $res;
+        }
     }
 ?>

@@ -2,7 +2,7 @@
     if(isset($_SESSION['Rol'])){
     ?>
     <div id="fichaVocabulario">
-        <div>
+        <div> 
             <h2><?php echo $nombre; ?></h2>
         </div>
         <div>
@@ -23,7 +23,13 @@
 
         <form>
             <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
-            <select name="tecnicas" id="tecnicas"></select>
+            <datalist id="gettys">
+                <?php
+                    foreach ($codigosGetty as $codigo) {
+                        echo '<option value={$codigo}></option';
+                    }
+                ?>
+            </datalist>
             <button id="crearCampo">Crear</button>
         </form>
         <div>
