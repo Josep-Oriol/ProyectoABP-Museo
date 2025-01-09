@@ -62,8 +62,8 @@ class Busquedas extends Database{
 
     function busquedaRestauraciones($pagina, $input, $filtro, $paginar){
         $sql = "SELECT r.id_restauracion, r.comentario_restauracion, r.nombre_restaurador, r.fecha_inicio_restauracion, r.fecha_fin_restauracion
-        FROM restauraciones r 
-        WHERE r.id_restauracion LIKE '%$input%' $filtro $paginar";
+        FROM restauraciones r
+        WHERE r.comentario_restauracion LIKE '%$input%' $filtro $paginar";
         $db = $this->conectar();
 
         try {
@@ -116,6 +116,22 @@ class Busquedas extends Database{
         }
         catch(PDOException $error){
             echo $error->getMessage();
+        }
+        $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+
+    public function exportarRestauraciones($pagina, $input, $filtro, $paginar){
+        $sql = "SELECT r.id_restauracion, r.comentario_restauracion, r.nombre_restaurador, r.fecha_inicio_restauracion, r.fecha_fin_restauracion
+        FROM restauraciones r
+        WHERE r.comentario_restauracion LIKE '%$input%' $filtro $paginar";
+        $db = $this->conectar();
+
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
         $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;

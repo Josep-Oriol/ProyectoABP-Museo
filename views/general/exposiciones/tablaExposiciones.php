@@ -8,7 +8,7 @@
       </div>
       <div>
           <div id="exportarEstilo">
-            <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+            <button id="exportarExcel"><img src="images/exportar.png" alt=""></button>
           </div>
           <div id="lupa">
               <img src="images/lupa.png" alt="" id="buscar">
@@ -35,7 +35,7 @@
     <table>
         <tr>
             <td>ID</td>
-            <td>Descrpció</td>
+            <td>Descripció</td>
             <td>Lloc exposició</td>
             <td>Tipus</td>
             <td>Data inici</td>

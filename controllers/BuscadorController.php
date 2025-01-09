@@ -86,13 +86,15 @@
     
             if($pagina == "exposiciones"){
                 $datos = $modelo->exportarExposiciones($pagina, $input, $strWhere, $paginar);
-             
             }
             else if($pagina == "obras"){
                 $datos = $modelo->exportarObras($pagina, $input, $strWhere, $paginar);            
             }
             else if($pagina == "usuarios"){
                 $datos = $modelo->exportarUsuarios($pagina, $input, $strWhere, $paginar);
+            }
+            else{
+                $datos = $modelo->exportarRestauraciones($pagina, $input, $strWhere, $paginar);
             }
 
             $response = ["texto" => $datos];
