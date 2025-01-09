@@ -450,13 +450,17 @@ function inicializarEventos() {
       console.log(paginacion.value);
       let dato = inputExposiciones.value;
       const url = window.location.href;
+      
       let pagina = url.includes("Exposiciones")
         ? "exposiciones"
         : url.includes("Obras")
         ? "obras"
         : url.includes("Usuarios")
         ? "usuarios"
+        : url.includes("Restauraciones")
+        ? "restauraciones"
         : null;
+
       let data = {
         busqueda: dato,
         pagina: pagina,

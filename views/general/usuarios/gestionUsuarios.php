@@ -7,7 +7,7 @@
       </div> 
       <div>
         <div id="exportarEstilo">
-          <button id="exportarExcel">Exportar<img src="images/exportar.png" alt=""></button>
+          <button id="exportarExcel"><img src="images/exportar.png" alt=""></button>
         </div>
         <div id="lupa">
             <img src="images/lupa.png" alt="" id="buscar">

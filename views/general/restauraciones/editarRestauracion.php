@@ -22,8 +22,8 @@
                     <input type="date" name="fecha_fin" id="fecha_fin" value="<?php echo $datos['fecha_fin_restauracion']; ?>" required>
                 </div>
                 <div>
-                    <label for="obraRelacionada">Obra en restauració</label>
-                    <input list="obras" id="obraRelacionada" class="escogerObra" name="obra" placeholder="Busca la obra" value="<?php echo $datos['titulo'] ?>" require_once>
+                    <label for="obraRelacionada">Numero registre</label>
+                    <input list="obras" id="obraRelacionada" class="escogerObra" name="obra" placeholder="Busca la obra" value="<?php echo $datos['numero_registro'] ?>" require_once>
                     <datalist id="obras">
                         <?php
                             foreach($obras as $indice => $obra){
@@ -31,6 +31,10 @@
                             }
                         ?>
                     </datalist>
+                </div>
+                <div>
+                    <label for="nombreObra">Obra en restauració</label>
+                    <input type="text" value="<?php echo $datos['titulo'] ?>" readonly>
                 </div>
                 
                 <div>
