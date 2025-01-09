@@ -259,6 +259,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     Crear copia de seguretat
                 </div>
             `;
+        }else if (urlActual.href.includes('Restauraciones') && urlActual.href.includes('mostrarRestauraciones')){
+            rutaNavegacion.innerHTML = `
+                <div>
+                    <a href="index.php?controller=Restauraciones&action=mostrarRestauraciones">Restauracions</a>
+                </div>
+            `;
+        }else if (urlActual.href.includes('Restauraciones') && urlActual.href.includes('mostrarRestauracion')){
+            rutaNavegacion.innerHTML = `
+                <div>
+                    <a href="index.php?controller=Restauraciones&action=mostrarRestauraciones">Restauracions</a>-> 
+                    Ficha restauració
+                </div>
+            `;
+        }else if (urlActual.href.includes('Restauraciones') && urlActual.href.includes('editarRestauracion')){
+            rutaNavegacion.innerHTML = `
+                <div>
+                    <a href="index.php?controller=Restauraciones&action=mostrarRestauraciones">Restauracions</a>-> 
+                    Editar restauració
+                </div>
+            `;
+        }else if (urlActual.href.includes('Restauraciones') && urlActual.href.includes('crearRestauracion')){
+            rutaNavegacion.innerHTML = `
+                <div>
+                    <a href="index.php?controller=Restauraciones&action=mostrarRestauraciones">Restauracions</a>-> 
+                    Crear restauració
+                </div>
+            `;
         }
     }
 })

@@ -2,6 +2,7 @@
     class RestauracionesController{
         public function mostrarRestauraciones(){
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/restauraciones/tablaRestauraciones.php";
             require_once "views/general/components/footer.html";
         }
@@ -12,6 +13,7 @@
             $obras = $modelo->obtenerObras();
             
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/restauraciones/crearRestauracion.php";
             require_once "views/general/components/footer.html";
         }
@@ -23,6 +25,7 @@
             $obras = $modelo->obtenerObras();
             
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/restauraciones/verRestauracion.php";
             require_once "views/general/components/footer.html";
         }
@@ -34,6 +37,7 @@
             $obras = $modelo->obtenerObras();
 
             require_once "views/general/components/header.php";
+            require_once "views/general/components/navegacion.php";
             require_once "views/general/restauraciones/editarRestauracion.php";
             require_once "views/general/components/footer.html";        
         }
