@@ -49,7 +49,20 @@
                 $url = ['index.php?controller=Restauraciones&action=editarRestauracion&id=', 'index.php?controller=Restauraciones&action=mostrarRestauracion&id=', 'index.php?controller=Restauraciones&action=mostrarCopia&id='];
             }
 
-            $response = ["texto" => $datos, "rol" => $_SESSION['Rol'], "url" => $url];
+            $rol = "";
+
+            switch($_SESSION['Rol']){
+                case "Administració": $rol = "administracio"; break;
+                case "Tècnic" : $rol = "tecnic"; break;
+            }
+            $secret_key = 'clave_para_encriptar_8371';
+            $json_data = json_encode($rol);
+
+            
+
+            $datos_encriptados = base64_encode($json_data ^ $secret_key);
+
+            $response = ["texto" => $datos, "rol" => $datos_encriptados, "url" => $url];
 
             header('Content-Type: application/json');
             echo json_encode($response);

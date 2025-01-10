@@ -32,8 +32,12 @@ class ObrasController{
         require_once "models/Obras.php";
         $modelobras = new Obras();
         if ($_POST) {
-            if (isset($_FILES['fotografia']) && $_FILES['fotografia']['error'] == 0) {
-                $fotografia = $modelobras->subirFotografiaServidor('fotografia', $_POST['numero_registro']);
+            if (isset($_FILES['fotografia']['name']) && $_FILES['fotografia']['error'] == 0) {
+                $idFotografia = $_POST['letra'] . $_POST['numero_registro'];
+                if (!empty($_POST['decimales'])) {
+                    $idFotografia . "." . $_POST['decimales'];
+                }
+                $fotografia = $modelobras->subirFotografiaServidor('fotografia', $idFotografia);
                 $_POST['fotografia'] = $fotografia;
             }
             else {
@@ -65,7 +69,7 @@ class ObrasController{
             require_once "models/Obras.php";
             $modelobras = new Obras();
             if ($_POST) {
-                if (isset($_FILES['fotografia']) && $_FILES['fotografia']['error'] == 0) {
+                if (isset($_FILES['fotografia']['name']) && $_FILES['fotografia']['error'] == 0) {
                     $fotografia = $modelobras->subirFotografiaServidor('fotografia', $id);
                     $_POST['fotografia'] = $fotografia;
                 }
