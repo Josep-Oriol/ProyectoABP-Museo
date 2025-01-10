@@ -260,5 +260,50 @@
             echo json_encode($response);
             exit;
         }
+
+        public function editarUbicaciones() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $antiguoValor = $data['antiguoValor'];
+            $nuevoValor = $data['nuevoValor'];
+            
+            require_once "models/Vocabularios.php";    
+            $vocabulario = new Vocabularios();
+
+            $cambios = false;
+            
+            foreach ($nuevoValor as $index => $valorNuevo) {
+                foreach ($nuevoValor as $subIndex => $otroValor) {
+                    if ($index !== $subIndex && $valorNuevo === $otroValor) {
+                        header('Content-Type: application/json');
+                        echo json_encode(['status' => 'repetidos',  'duplicado' => $valorNuevo]);
+                        exit;
+                    }
+                }
+            }
+
+            foreach ($nuevoValor as $index => $valorNuevo){
+                if (trim($valorNuevo) === ""){
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'vacio']);
+                    exit;
+                }
+            }
+
+            foreach ($antiguoValor as $index => $valorAntiguo) {
+                $valorNuevo = $nuevoValor[$index];         
+                $resultado = $vocabulario->editarUbicaciones($valorAntiguo, $valorNuevo);
+                echo $antiguoValor;
+                echo $nuevoValor;
+                if ($resultado) {
+                    $cambios = true;
+                }
+            }
+
+            $respuesta = $cambios ? ['status' => 'success'] : ['status' => 'sinCambios'];
+            header('Content-Type: application/json');
+            echo json_encode($respuesta);
+            exit;
+        }
     }
 ?>

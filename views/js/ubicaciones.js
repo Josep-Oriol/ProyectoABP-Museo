@@ -43,6 +43,7 @@ function mostrarHijos(id, boton) {
           const inputTexto = document.createElement("input");
           inputTexto.setAttribute("type", "text");
           inputTexto.setAttribute("class", "inputUbi");
+          inputTexto.setAttribute("readonly", "true");
           inputTexto.setAttribute("name", hijo.id_padre);
           inputTexto.setAttribute("id", hijo.id_ubicacion);
           inputTexto.setAttribute("value", hijo.descripcion_ubicacion);
@@ -350,11 +351,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let editando = false; 
 
+  let actuales = [];
+  let editados = [];
+
   // FUNCIONES PARA APLICAR EL ESTILO
   const aplicarEstiloInputs = () => {
     const inputs = document.querySelectorAll('input[type="text"]');
     inputs.forEach(input => {
-        input.style.borderBottom = "1px solid black";
+      input.style.borderBottom = "1px solid black";
+      input.removeAttribute("readonly")
     });
   };
 
@@ -362,24 +367,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputs = document.querySelectorAll('input[type="text"]');
     inputs.forEach(input => {
       input.style.borderBottom = "none";
+      input.setAttribute("readonly", "true")
     });
   }
 
-  let inputsActuales = Array.from(document.querySelectorAll('input.inputUbi')).map(campo => campo.value);
+  let inputsActuales = [];
+  const crearArrayActuales = (inputsNuevos) => {
+    if (inputsNuevos){
+      inputsNuevos.forEach(input => {
+        inputsActuales[input.id] = input.value; // Agregar o actualizar el input en el objeto
+      });
+    }else {
+      inputsActuales = Array.from(document.querySelectorAll('input.inputUbi'))
+      .reduce((acc, campo) => {
+          acc[campo.id] = campo.value; // Usa la id como clave
+          return acc;
+      }, {});
+    }
+    return inputsActuales;
+  }
+  
+  const crearArrayEditados = () => {
+    const inputsEditados = Array.from(document.querySelectorAll('input.inputUbi'))
+    .reduce((acc, campo) => {
+        acc[campo.id] = campo.value; // Usa la id como clave
+        return acc;
+    }, {});
+    return inputsEditados;
+  }
 
   const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        if (btnEditarGuardar.textContent === "Guardar Cambis") {
-          //aqui añado los valores al array
-          mutation.addedNodes.forEach(node => {
-            const descendientes = node.querySelectorAll?.('input.inputUbi') || [];
-            descendientes.forEach(input => inputsActuales.push(input.value));
-          });
-          aplicarEstiloInputs();
-        } else {
-          quitarEstiloInputs();
-        }
-    });
+    if (btnEditarGuardar.textContent === "Guardar Cambis") { //cuando estoy en guardar cambios
+      let inputsNuevos = [];
+      mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(node => {
+          // Buscar directamente todos los inputs descendientes (incluyendo el nodo actual si es un input)
+          const inputsAnidados = node.nodeType === 1
+            ? Array.from(node.querySelectorAll?.('input.inputUbi') || []).filter(input => input.tagName === 'INPUT')
+            : [];
+        
+          inputsNuevos.push(...inputsAnidados);
+        });
+      })
+      console.log(inputsNuevos)
+      actuales = crearArrayActuales(inputsNuevos);
+      aplicarEstiloInputs();
+    } else { //cuando estoy en editar
+      editados = crearArrayEditados();
+      quitarEstiloInputs();
+    }
   });
   
   observer.observe(document.body, {
@@ -388,19 +424,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   
   btnEditarGuardar.addEventListener("click", () => {
-    if (!editando) {
+    if (!editando) { //cuando pulsas editar
+      actuales = crearArrayActuales();
       aplicarEstiloInputs();
       btnEditarGuardar.textContent = "Guardar Cambis"; 
+      
 
       editando = true; 
-    } else {
+    } else { //cuando pulsas guardar cambios
+      editados = crearArrayEditados();
       quitarEstiloInputs();
-      btnEditarGuardar.textContent = "Editar"; 
-      let inputsEditados = Array.from(document.querySelectorAll('input.inputUbi')).map(campo => campo.value);
+      btnEditarGuardar.textContent = "Editar";
+      console.log(actuales)
+      console.log(editados)
 
-      console.log(inputsActuales)
-      console.log(inputsEditados)
-    
+      let data = {
+        antiguoValor: actuales,
+        nuevoValor: editados
+      }
+
+      let dataJson = JSON.stringify(data)
+
+      fetch('ajax.php?controller=Vocabularios&action=editarUbicaciones', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body :dataJson
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.status === 'success'){
+
+          }
+      })
+
       editando = false;
     } 
   });

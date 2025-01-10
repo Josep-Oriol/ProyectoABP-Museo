@@ -15,7 +15,7 @@
                 <div class="inputsDiv">
                     <button class="mostrarHijos" onclick="ejecutarFuncionesMostrar(<?= $ubicacion['id_ubicacion'] ?>, this)"><img src="images/flecha_derecha.png" alt=""></button> <!-- cuando pulsas ejecutas el script mostrarHijos y le pasas 
                     la id_ubicacion del padre del cual quieres ver sus hijos -->
-                    <input type='text' class="inputUbi" name='<?= $ubicacion['id_padre'] ?>' id='<?= $ubicacion['id_ubicacion'] ?>' value='<?= $ubicacion['descripcion_ubicacion'] ?>' />
+                    <input type='text' class="inputUbi" name='<?= $ubicacion['id_padre'] ?>' id='<?= $ubicacion['id_ubicacion'] ?>' value='<?= $ubicacion['descripcion_ubicacion'] ?>' readonly />
                     
                     <button onclick="eliminarHijos(<?= $ubicacion['id_ubicacion'] ?>)"><img class="eliminarUbi" src="images/basura.png"></button>
                     
