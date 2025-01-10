@@ -143,7 +143,9 @@ $camposTecnicos = [
         ['Datación', $smallStyle],
         ['Dating', $smallStyle]
     ]
+    
 ];
+
 
 foreach ($camposTecnicos as $campo) {
     $textrun = $section->addTextRun($leftParagraph);
