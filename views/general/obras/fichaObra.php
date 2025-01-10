@@ -55,7 +55,7 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="num-registre">Nº de registre</label>
-                            <input type="text" id="num-registre" readonly value="<?php echo $obra['numero_registro']; ?>" disabled>
+                            <input type="text" id="num-registre" value="<?php echo $obra['numero_registro']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data-registre">Data de registre</label>
@@ -230,12 +230,12 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                         <div>
                             <label for="data-inici-expo">Data inici expo.</label>
-                            <input type="text" id="data-inici-expo" readonly value="<?php $valor = (isset($obra['fecha_inicio_exposicion'])) ? $obra['fecha_inicio_exposicion'] : "Indefinida";
+                            <input type="text" id="data-inici-expo" value="<?php $valor = (isset($obra['fecha_inicio_exposicion'])) ? $obra['fecha_inicio_exposicion'] : "Indefinida";
                                                                                     echo $valor ?>" disabled>
                         </div>
                         <div>
                             <label for="data-fi-expo">Data fi expo.</label>
-                            <input type="text" id="data-fi-expo" readonly value="<?php $valor = (isset($obra['fecha_fin_exposicion'])) ? $obra['fecha_fin_exposicion'] : "Indefinida";
+                            <input type="text" id="data-fi-expo" value="<?php $valor = (isset($obra['fecha_fin_exposicion'])) ? $obra['fecha_fin_exposicion'] : "Indefinida";
                                                                                     echo $valor ?>" disabled>
                         </div>
                         <div>
@@ -285,19 +285,19 @@ if (isset($_SESSION['Rol'])) {
                         <div>
                             <div>
                                 <label for="num-registre">Nº de registre</label>
-                                <input type="text" id="num-registre" readonly value="<?php echo $obra['numero_registro']; ?>">
+                                <input type="text" id="num-registre" value="<?php echo $obra['numero_registro']; ?>" disabled>
                             </div>
                             <div>
                                 <label for="nom_obra">Títol</label>
-                                <input type="text" id="nom_obra" value="<?php echo $obra['titulo']; ?>">
+                                <input type="text" id="nom_obra" value="<?php echo $obra['titulo']; ?>" disabled>
                             </div>
                             <div>
                                 <label for="autor">Autor</label>
-                                <input type="text" id="autor" value="<?php echo $obra['autor']; ?>">
+                                <input type="text" id="autor" value="<?php echo $obra['autor']; ?>" disabled>
                             </div>
                             <div>
                                 <label for="data">Datació</label>
-                                <input type="text" id="data" value="<?php echo $obra['datacion']; ?>">
+                                <input type="text" id="data" value="<?php echo $obra['datacion']; ?>" disabled>
                             </div>
                             <div>
                                 <a href="index.php?controller=Obras&action=generarPdfBasica&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
@@ -327,11 +327,11 @@ if (isset($_SESSION['Rol'])) {
                         
                         <div>
                             <label for="data-registre">Data de registre</label>
-                            <input type="text" id="data-registre" value="<?php echo $obra['fecha_registro']; ?>">
+                            <input type="text" id="data-registre" value="<?php echo $obra['fecha_registro']; ?>" disabled>
                         </div>
                         <div>
                             <label for="lloc-procedencia">Lloc de procedència</label>
-                            <input type="text" id="lloc-procedencia" value="<?php echo $obra['lugar_procedencia']; ?>">
+                            <input type="text" id="lloc-procedencia" value="<?php echo $obra['lugar_procedencia']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -341,31 +341,31 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="nom-objecte">Nom de l'objecte</label>
-                            <input type="text" id="nom-objecte" value="<?php echo $obra['nombre_objeto']; ?>">
+                            <input type="text" id="nom-objecte" value="<?php echo $obra['nombre_objeto']; ?>" disabled>
                         </div>
                         <div>
                             <label for="classificacio">Classificació genèrica</label>
-                            <input type="text" id="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>">
+                            <input type="text" id="classificacio" value="<?php echo $obra['clasificacion_generica']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-alçada">Mides màxima alçada (cm)</label>
-                            <input type="number" id="mides-alçada" value="<?php echo $obra['maxima_altura_cm']; ?>">
+                            <input type="number" id="mides-alçada" value="<?php echo $obra['maxima_altura_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-amplada">Mides màxima amplada (cm)</label>
-                            <input type="number" id="mides-amplada" value="<?php echo $obra['maxima_anchura_cm']; ?>">
+                            <input type="number" id="mides-amplada" value="<?php echo $obra['maxima_anchura_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="mides-profunditat">Mides màxima profunditat (cm)</label>
-                            <input type="number" id="mides-profunditat" value="<?php echo $obra['maxima_profundidad_cm']; ?>">
+                            <input type="number" id="mides-profunditat" value="<?php echo $obra['maxima_profundidad_cm']; ?>" disabled>
                         </div>
                         <div>
                             <label for="material">Material</label>
-                            <input type="text" id="material" value="<?php echo $obra['material']; ?>">
+                            <input type="text" id="material" value="<?php echo $obra['material']; ?>" disabled>
                         </div>
                         <div>
                             <label for="estat_conservacio">Estat de conservació</label>
-                            <input type="text" id="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>">
+                            <input type="text" id="estat_conservacio" value="<?php echo $obra['estado_conservacion']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -375,15 +375,15 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="forma_ingres">Forma d'ingrés</label>
-                            <input type="text" id="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>">
+                            <input type="text" id="forma_ingres" value="<?php echo $obra['forma_ingreso']; ?>" disabled>
                         </div>
                         <div>
                             <label for="data_ingres">Data d'ingrés</label>
-                            <input type="text" id="data_ingres" value="<?php echo $obra['fecha_ingreso']; ?>">
+                            <input type="text" id="data_ingres" value="<?php echo $obra['fecha_ingreso']; ?>" disabled>
                         </div>
                         <div>
                             <label for="font_ingres">Font d'ingrés</label>
-                            <input type="text" id="font_ingres" value="<?php echo $obra['fuente_ingreso']; ?>">
+                            <input type="text" id="font_ingres" value="<?php echo $obra['fuente_ingreso']; ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -393,11 +393,11 @@ if (isset($_SESSION['Rol'])) {
                     <div>
                         <div>
                             <label for="valoracio-economica">Valoració econòmica (€)</label>
-                            <input type="number" id="valoracio-economica" value="<?php echo $obra['valoracion_economica']; ?>">
+                            <input type="number" id="valoracio-economica" value="<?php echo $obra['valoracion_economica']; ?>" disabled>
                         </div>
                         <div>
                             <label for="usuario_registro">Usuari que registra</label>
-                            <input type="text" id="usuario_registro" value="">
+                            <input type="text" id="usuario_registro" value="" disabled>
                         </div>
                     </div>
                 </div>

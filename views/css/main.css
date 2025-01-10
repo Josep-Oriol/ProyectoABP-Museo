@@ -472,13 +472,13 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaObra > div button.pulsado {
   border-bottom: 2px solid #333333;
 }
-#fichaObra > form > :first-child {
+#fichaObra > form > div {
   width: 80%;
   margin: 0px auto;
   padding: 20px;
   background-color: none;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child {
+#fichaObra > form > div > :first-child > div > :first-child {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -488,10 +488,10 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   width: 100%;
   padding-right: 20px;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > img {
+#fichaObra > form > div > :first-child > div > :first-child > img {
   width: 100%;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -500,10 +500,10 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   padding-top: 15px;
   gap: 15px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child:has(div) {
   justify-content: space-between;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(div) > div {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child:has(div) > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -511,17 +511,17 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   justify-content: left;
   gap: 10px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child:has(:not(div)) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child:has(:not(div)) {
   justify-content: left;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child input, #fichaObra > form > div > :first-child > div > :last-child > :last-child a {
   border-radius: 5px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child input {
   width: 3vw;
   padding: 10px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a {
   width: 3vw;
   text-decoration: none;
   display: flex;
@@ -530,61 +530,61 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   align-items: center;
   padding: 10px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a img {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a img {
   width: 100%;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a button {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a button {
   padding: 10px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(button) {
   width: auto;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(button) > button {
   width: auto;
   background-color: #333333;
   font-size: 16px;
   color: white;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(button) > button:hover {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(button) > button:hover {
   background-color: #666666;
   cursor: pointer;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=submit] {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child input[type=submit] {
   width: auto;
   background-color: #333333;
   font-size: 17px;
   color: white;
   padding: 12px 20px 12px 20px;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]) {
   background-color: #333333;
   color: white;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono descargar"]):hover {
   background-color: #4b4b4b;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image], #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child input[type=image], #fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]) {
   background-color: #666666;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child input[type=image]:hover, #fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono editar"]):hover {
   background-color: #7c7c7c;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]) {
   background-color: #E74C3C;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:has(img[alt="icono eliminar"]):hover {
   background-color: #EE6655;
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:hover {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:hover, #fichaObra > form > div > :first-child > div > :last-child > :last-child input:hover {
   cursor: pointer;
   animation: aumentarTamano 0.2s linear 1 running forwards;
   transform: translateY(-1px);
 }
-#fichaObra > form > :first-child > :first-child > div > :last-child > :last-child a:active, #fichaObra > form > :first-child > :first-child > div > :last-child > :last-child input:active {
+#fichaObra > form > div > :first-child > div > :last-child > :last-child a:active, #fichaObra > form > div > :first-child > div > :last-child > :last-child input:active {
   transform: translateY(0);
   scale: 0.97;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span), #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) {
+#fichaObra > form > div > :first-child > div > :first-child > div:has(input[type=file]), #fichaObra > form > div > :first-child > div > :last-child > div:has(input[type=file]) {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -592,87 +592,92 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   align-items: center;
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #333333;
+  border: 2px solid #CFD1D4;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img {
+#fichaObra > form > div > :first-child > div > :first-child > div:has(input[type=file]) img, #fichaObra > form > div > :first-child > div > :last-child > div:has(input[type=file]) img {
   width: 15%;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > img:hover, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > img:hover {
+#fichaObra > form > div > :first-child > div > :first-child > div:has(input[type=file]) img:hover, #fichaObra > form > div > :first-child > div > :last-child > div:has(input[type=file]) img:hover {
   cursor: pointer;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > span, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > span {
+#fichaObra > form > div > :first-child > div > :first-child > div:has(input[type=file]) span, #fichaObra > form > div > :first-child > div > :last-child > div:has(input[type=file]) span {
   width: 100%;
   text-align: center;
   color: #BFBFBF;
 }
-#fichaObra > form > :first-child > :first-child > div > :first-child > div:has(span) > p, #fichaObra > form > :first-child > :first-child > div > :last-child > div:has(span) > p {
+#fichaObra > form > div > :first-child > div > :first-child > div:has(input[type=file]) p, #fichaObra > form > div > :first-child > div > :last-child > div:has(input[type=file]) p {
   width: 100%;
   text-align: center;
 }
-#fichaObra > form > :first-child > div {
+#fichaObra > form > div > div {
   margin-bottom: 20px;
   padding: 15px;
   border-left: 5px solid #333333;
   background-color: #F4F4F4;
   border-radius: 5px;
 }
-#fichaObra > form > :first-child > div > h2 {
+#fichaObra > form > div > div > h2 {
   font-size: 1.2em;
   font-weight: bold;
   color: #333333;
   margin-top: 0;
   margin-bottom: 15px;
 }
-#fichaObra > form > :first-child > div > div {
+#fichaObra > form > div > div > div {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
-#fichaObra > form > :first-child > div > div div {
+#fichaObra > form > div > div > div div {
   flex: 1 1 calc(50% - 15px); /* Dos columnas */
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   justify-content: left;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :first-child {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > :first-child {
   width: 15%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(2) {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > :nth-child(2) {
   width: 30%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > :nth-child(3) {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > :nth-child(3) {
   width: 15%;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) input {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) input {
   margin-right: 10px;
   text-align: center;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > img {
   width: 20px;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > img:hover {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > img:hover {
   cursor: pointer;
 }
-#fichaObra > form > :first-child > div > div div > div:has(input[name=numero_registro]) > p {
+#fichaObra > form > div > div > div div > div:has(input[name=numero_registro]) > p {
   color: red;
+  margin-left: 10px;
 }
-#fichaObra > form > :first-child > div > div div > label, #fichaObra > form > :first-child > div > div div span {
+#fichaObra > form > div > div > div div > label, #fichaObra > form > div > div > div div span {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
 }
-#fichaObra > form > :first-child > div > div div input[type=text],
-#fichaObra > form > :first-child > div > div div input[type=number],
-#fichaObra > form > :first-child > div > div div input[type=date],
-#fichaObra > form > :first-child > div > div div select,
-#fichaObra > form > :first-child > div > div div textarea {
+#fichaObra > form > div > div > div div > label > span {
+  color: red;
+  font-size: 15px;
+}
+#fichaObra > form > div > div > div div input[type=text],
+#fichaObra > form > div > div > div div input[type=number],
+#fichaObra > form > div > div > div div input[type=date],
+#fichaObra > form > div > div > div div select,
+#fichaObra > form > div > div > div div textarea {
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -681,19 +686,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: #333333;
   transition: border-color 0.3s;
 }
-#fichaObra > form > :first-child > div > div div input[type=text][readonly],
-#fichaObra > form > :first-child > div > div div input[type=date][readonly] {
-  background-color: #F4F4F4;
-  color: #BFBFBF;
-}
-#fichaObra > form > :first-child > div > div div textarea {
+#fichaObra > form > div > div > div div textarea {
   resize: vertical;
 }
-#fichaObra > form > :first-child > div > div div input[type=text]:focus,
-#fichaObra > form > :first-child > div > div div input[type=number]:focus,
-#fichaObra > form > :first-child > div > div div input[type=date]:focus,
-#fichaObra > form > :first-child > div > div div select:focus,
-#fichaObra > form > :first-child > div > div div textarea:focus {
+#fichaObra > form > div > div > div div input[type=text]:focus,
+#fichaObra > form > div > div > div div input[type=number]:focus,
+#fichaObra > form > div > div > div div input[type=date]:focus,
+#fichaObra > form > div > div > div div select:focus,
+#fichaObra > form > div > div > div div textarea:focus {
   border-color: #333333;
   outline: none;
 }
@@ -858,39 +858,70 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: flex;
   align-items: center;
 }
-#fichaCrearUsuario > div div {
+#fichaCrearUsuario > div > div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#fichaCrearUsuario > div div div {
-  width: 50%;
+#fichaCrearUsuario > div > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
-#fichaCrearUsuario > div div form {
+#fichaCrearUsuario > div > div form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
   width: 50%;
 }
-#fichaCrearUsuario > div div form div {
+#fichaCrearUsuario > div > div form > div {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
 }
-#fichaCrearUsuario > div div form div label {
+#fichaCrearUsuario > div > div form > div > :first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#fichaCrearUsuario > div > div form > div > :first-child div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-items: start;
+}
+#fichaCrearUsuario > div > div form > div > :first-child div label, #fichaCrearUsuario > div > div form > div > :first-child div span {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
   width: 50%;
 }
-#fichaCrearUsuario > div div form div input[type=text],
-#fichaCrearUsuario > div div form div input[type=password],
-#fichaCrearUsuario > div div form div input[type=email],
-#fichaCrearUsuario > div div form div input[type=tel],
-#fichaCrearUsuario > div div form div select {
-  width: 40%;
+#fichaCrearUsuario > div > div form > div > :first-child div > span {
+  width: 100%;
+  margin-left: 15px;
+}
+#fichaCrearUsuario > div > div form > div > :first-child div > p {
+  color: red;
+  font-weight: bold;
+}
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=text],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=password],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=email],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=tel],
+#fichaCrearUsuario > div > div form > div > :first-child div select {
+  width: 95%;
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -899,23 +930,48 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: #333333;
   transition: border-color 0.3s;
 }
-#fichaCrearUsuario > div div form div input[type=text]:focus,
-#fichaCrearUsuario > div div form div input[type=password]:focus,
-#fichaCrearUsuario > div div form div input[type=email]:focus,
-#fichaCrearUsuario > div div form div input[type=tel]:focus,
-#fichaCrearUsuario > div div form div select:focus {
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=text]:focus,
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=password]:focus,
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=email]:focus,
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=tel]:focus,
+#fichaCrearUsuario > div > div form > div > :first-child div select:focus {
   border-color: #333333;
   outline: none;
 }
-#fichaCrearUsuario > div div form div input[type=text][readonly],
-#fichaCrearUsuario > div div form div input[type=password][readonly],
-#fichaCrearUsuario > div div form div input[type=email][readonly],
-#fichaCrearUsuario > div div form div input[type=tel][readonly],
-#fichaCrearUsuario > div div form div select[readonly] {
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=text][readonly],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=password][readonly],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=email][readonly],
+#fichaCrearUsuario > div > div form > div > :first-child div input[type=tel][readonly],
+#fichaCrearUsuario > div > div form > div > :first-child div select[readonly] {
   background-color: #F4F4F4;
   color: #BFBFBF;
 }
-#fichaCrearUsuario > div div form div input[type=submit] {
+#fichaCrearUsuario > div > div form > div > :nth-child(2) > div:has(input[type=file]) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #CFD1D4;
+}
+#fichaCrearUsuario > div > div form > div > :nth-child(2) > div:has(input[type=file]) img {
+  width: 15%;
+}
+#fichaCrearUsuario > div > div form > div > :nth-child(2) > div:has(input[type=file]) img:hover {
+  cursor: pointer;
+}
+#fichaCrearUsuario > div > div form > div > :nth-child(2) > div:has(input[type=file]) span {
+  width: 100%;
+  text-align: center;
+  color: #BFBFBF;
+}
+#fichaCrearUsuario > div > div form > div > :nth-child(2) > div:has(input[type=file]) p {
+  width: 100%;
+  text-align: center;
+}
+#fichaCrearUsuario > div > div form > div input[type=submit] {
   font-size: 1em;
   border: none;
   border-radius: 5px;
@@ -925,7 +981,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#fichaCrearUsuario > div div form div input[type=submit]:hover {
+#fichaCrearUsuario > div > div form > div input[type=submit]:hover {
   background-color: #333333;
 }
 @media (max-width: 768px) {
@@ -968,7 +1024,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaEditarUsuario > div > div form > div:first-child {
   width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 #fichaEditarUsuario > div > div form > div:first-child img {
@@ -979,22 +1035,37 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaEditarUsuario > div > div form > div:last-child {
   width: 50%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
 }
-#fichaEditarUsuario > div > div form > div:last-child div {
-  width: 45%;
+#fichaEditarUsuario > div > div form > div:last-child > :first-child {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
-#fichaEditarUsuario > div > div form > div:last-child div label {
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-items: start;
+  padding: 5px;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333333;
 }
-#fichaEditarUsuario > div > div form > div:last-child div select {
-  width: 100%;
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div select {
+  width: 95%;
+  height: fit-content;
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -1002,8 +1073,8 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #FFFFFF;
   color: #333333;
 }
-#fichaEditarUsuario > div > div form > div:last-child div input[type=text] {
-  width: 100%;
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div input[type=text] {
+  width: 95%;
   padding: 8px;
   font-size: 1em;
   border: 1px solid #BFBFBF;
@@ -1012,32 +1083,66 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: #333333;
   transition: border-color 0.3s;
 }
-#fichaEditarUsuario > div > div form > div:last-child div input[type=text]:focus {
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div input[type=text]:focus {
   border-color: #333333;
   outline: none;
 }
-#fichaEditarUsuario > div > div form > div:last-child div input[type=text][readonly] {
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div input[type=text][readonly] {
   background-color: #F4F4F4;
   color: #BFBFBF;
 }
-#fichaEditarUsuario > div > div form > div:last-child > div:last-child {
+#fichaEditarUsuario > div > div form > div:last-child > :first-child div > p {
+  color: red;
+  font-weight: bold;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > span {
+  font-weight: bold;
+  color: #333333;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > div {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #CFD1D4;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > div img {
+  width: 15%;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > div img:hover {
+  cursor: pointer;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > div span {
+  width: 100%;
+  text-align: center;
+  color: #BFBFBF;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :nth-child(2) > div p {
+  width: 100%;
+  text-align: center;
+}
+#fichaEditarUsuario > div > div form > div:last-child > :last-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   margin-top: 20px;
 }
-#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit] {
+#fichaEditarUsuario > div > div form > div:last-child > :last-child > input, #fichaEditarUsuario > div > div form > div:last-child > :last-child button {
   font-size: 1em;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   background-color: #666666;
   color: #FFFFFF;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
-#fichaEditarUsuario > div > div form > div:last-child > div:last-child input[type=submit]:hover {
+#fichaEditarUsuario > div > div form > div:last-child > :last-child > input:hover, #fichaEditarUsuario > div > div form > div:last-child > :last-child button:hover {
   background-color: #333333;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -2662,7 +2767,7 @@ body {
   display: none;
 }
 
-#popUpEliminar {
+#popUpEliminar, #popupFormulario {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -2679,17 +2784,17 @@ body {
   text-align: center; /* Centra el contenido del popup */
   border: 1px solid black;
 }
-#popUpEliminar p {
+#popUpEliminar p, #popupFormulario p {
   font-size: 1.2rem;
   margin-bottom: 20px;
   color: #333;
 }
-#popUpEliminar img {
+#popUpEliminar img, #popupFormulario img {
   width: 20%;
   height: auto;
   margin-bottom: 1vh;
 }
-#popUpEliminar button {
+#popUpEliminar button, #popupFormulario button {
   padding: 12px 20px;
   font-size: 1rem;
   border-radius: 5px;
@@ -2698,14 +2803,14 @@ body {
   border: 1px solid black;
   cursor: pointer;
 }
-#popUpEliminar button:hover {
+#popUpEliminar button:hover, #popupFormulario button:hover {
   background-color: black;
   color: white;
 }
-#popUpEliminar button.confirmar {
+#popUpEliminar button.confirmar, #popupFormulario button.confirmar {
   margin-right: 1vw;
 }
-#popUpEliminar button.cancelar {
+#popUpEliminar button.cancelar, #popupFormulario button.cancelar {
   margin-left: 1vw;
 }
 
@@ -2727,32 +2832,6 @@ body {
 #popUpUbicaciones img {
   width: 3vw;
   margin-bottom: 1vh;
-}
-#popUpUbicaciones .negrita {
-  font-weight: bold;
-}
-
-#popUpUbicaciones2 {
-  display: none;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  top: 12vh;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1vw;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 1000;
-  background-color: #e7e7e7;
-}
-#popUpUbicaciones2 img {
-  width: 3vw;
-  margin-bottom: 1vh;
-}
-#popUpUbicaciones2 .negrita {
-  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */

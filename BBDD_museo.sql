@@ -62,6 +62,15 @@ CREATE TABLE obras_ubicaciones (
     FOREIGN KEY (fk_ubicacion) REFERENCES ubicaciones(id_ubicacion) ON UPDATE CASCADE
 );
 
+CREATE TABLE historial_obras_ubicaciones (
+    id_historial INT PRIMARY KEY AUTO_INCREMENT,
+    id_obra VARCHAR(255),
+    nombre_obra VARCHAR(255) NOT NULL,
+    nombre_ubicacion VARCHAR(255) NOT NULL,
+    fecha_inicio DATE,
+    fecha_fin DATE
+);
+
 CREATE TABLE obras_exposiciones (
     id_obra_exposicion INT PRIMARY KEY AUTO_INCREMENT,
     fk_obra VARCHAR(255),
@@ -136,6 +145,15 @@ CREATE TABLE campos (
     nombre_campo VARCHAR(255) NOT NULL,
     fk_vocabulario INT NOT NULL,
     FOREIGN KEY (fk_vocabulario) REFERENCES vocabularios(id_vocabulario) ON UPDATE CASCADE
+);
+
+CREATE TABLE codigos_getty(
+  id_codigo_getty INT PRIMARY KEY AUTO_INCREMENT,
+  codigo VARCHAR(255) NOT NULL UNIQUE,
+  fk_nombre_vocabulario VARCHAR(255) NOT NULL,
+  fk_campo INT NOT NULL,
+  FOREIGN KEY (fk_nombre_vocabulario) REFERENCES vocabularios(nombre_vocabulario) ON UPDATE CASCADE,
+  FOREIGN KEY (fk_campo) REFERENCES campos(id_campo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE copias_seguridad (
