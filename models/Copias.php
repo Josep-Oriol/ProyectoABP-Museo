@@ -258,7 +258,12 @@ class Copias extends Database {
         $usuario = preg_replace('/[^a-zA-Z0-9]/', '', getenv('USERNAME'));
         $date = preg_replace('/[^0-9_-]/', '', $date);
         
-        $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat_' . $date . '.sql';
+        if(strtoupper(substr(PHP_OS, 0, 3)) == "WIN"){
+            $archivoCopia = 'C:\Users\\' . $usuario . '\Downloads\copia_de_seguretat_' . $date . '.sql';
+        }else if (strtoupper(substr(PHP_OS, 0, 3)) == "LIN"){
+            $archivoCopia = '~/copia_de_seguretat_' . $date . '.sql';
+        }
+        
         
         // Escapar los argumentos del comando
         $comandoCopia = sprintf(
