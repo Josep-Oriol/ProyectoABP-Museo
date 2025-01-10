@@ -113,15 +113,16 @@ class Usuarios extends Database {
         return $existe;
     }
 
-    public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
-        $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
-        $db = $this->conectar();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute();
-        } catch (PDOException $error) {
-            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
-        }
+    public function subirFotoServidor($nombreInput, $idFoto) {
+        $directorio = "images/usuarios/"; //Directorio destino para guardar las imágenes de los usuarios.
+        $path = pathinfo($_FILES[$nombreInput]['name']); //Obtenemos el path de la foto subida.
+        $extension = $path['extension']; //Obtenemos la extensión de la misma.
+
+        $nombreFichero = $idFoto . "." . $extension;
+        move_uploaded_file($_FILES[$nombreInput]['tmp_name'], $directorio . $nombreFichero); //Movemos el fichero del directorio temporal al nuevo concatenado con el nuevo nombre del fichero.
+        $destino = $directorio . $nombreFichero;
+    
+        return $destino;
     }
 
     public function eliminarFoto($id) {
@@ -141,10 +142,32 @@ class Usuarios extends Database {
         }
     }
 
-    public function editarUsuario($fotoExist, $id, $foto, $usuario, $nombre, $apellidos, $correoElectronico ,$telefono, $rol, $estado) {
+    public function crearUsuario($foto, $usuario, $nombre, $apellidos, $contrasenya, $correoElectronico ,$telefono, $rol, $estado) {
+        $sql = "INSERT INTO usuarios (foto_usuario, usuario, nombre, apellidos, contrasenya, correo_electronico, telefono, rol, estado) VALUES ('$foto', '$usuario', '$nombre', '$apellidos', '$contrasenya', '$correoElectronico', '$telefono', '$rol', '$estado')";
+        $db = $this->conectar();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+        } catch (PDOException $error) {
+            echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+        }
+        $idUsuario = $db->lastInsertId();
+        if ($foto != "images/IconDefaultUser.png") {
+            $directorioFoto = $this->subirFotoServidor('fotografia', $idUsuario);
+            $sql = "UPDATE usuarios SET foto_usuario = '$directorioFoto' WHERE id_usuario = $idUsuario";
+            $db = $this->conectar();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute();
+            } catch (PDOException $error) {
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+        }
+    }
+
+    public function editarUsuario($id, $fotoSubida, $foto, $usuario, $nombre, $apellidos, $correoElectronico ,$telefono, $rol, $estado) {
         //Si se ha subido una nueva foto, eliminamos la anterior y hacemos la actualización de los campos.
-        if ($fotoExist) {
-            $this->eliminarFoto($id);
+        if ($fotoSubida) {
             $sql = "UPDATE usuarios SET foto_usuario = '$foto', usuario = '$usuario', nombre = '$nombre', apellidos = '$apellidos', correo_electronico = '$correoElectronico', telefono = '$telefono', rol = '$rol', estado = '$estado' WHERE id_usuario = $id";
         }
         else {
@@ -177,25 +200,5 @@ class Usuarios extends Database {
             echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
         }
     }
-
-    public function subirFotoServidor($nombreCampo) {
-        $directorio = "images/usuarios/"; //Directorio destino para guardar las imágenes de los usuarios.
-        $idFoto = time(); //Usamos el tiempo actual como identificador de la foto.
-        $path = pathinfo($_FILES[$nombreCampo]['name']); //Obtenemos el path de la foto subida.
-        $extension = $path['extension']; //Obtenemos la extensión de la misma.
-
-        $extensionesPosibles = ['png', 'jpg', 'jpeg'];
-        if (in_array($extension, $extensionesPosibles)) { //Comprobamos que la extensión del fichero esté dentro de las posibles.
-            $nombreFichero = $idFoto . "." . $extension;
-            move_uploaded_file($_FILES[$nombreCampo]['tmp_name'], $directorio . $nombreFichero); //Movemos el fichero del directorio temporal al nuevo concatenado con el nuevo nombre del fichero.
-            $destino = $directorio . $nombreFichero;
-        }
-        else {
-            echo "<h2>No se ha podido subir la imagen. La extensión no es válida.</h2>";
-            $destino = "images/IconDefaultUser.png"; //Si no está dentro de las extensiones posibles, mostramos el mensaje y establecemos la imagen predeterminada como la foto que tendrá el usuario.
-        }
-        return $destino;
-    }
-    
 }
 ?>

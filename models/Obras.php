@@ -109,7 +109,7 @@ class Obras extends Database {
 			}
 			else if (!empty($campo)) {
 				if (!is_numeric($campo)) {
-					$camposOrdenados[$indice] = "'$campo'";
+					$camposOrdenados[$indice] = '"' . $campo . '"';
 				}
 			}
 			else {
@@ -165,8 +165,6 @@ class Obras extends Database {
 		}
 
 		if ($query->rowCount() == 0) { //Se ha cambiado la ubicación
-			require_once "Vocabularios.php";
-			$modeloVocabularios = new Vocabularios();
 			$sql = "SELECT id_ubicacion, descripcion_ubicacion, fecha_inicio_ubicacion FROM obras_ubicaciones ou INNER JOIN ubicaciones u ON u.id_ubicacion = ou.fk_ubicacion WHERE fk_obra = '$numeroRegistro'"; //Seleccionamos la ubicacion antigua
 			try {
 				$query = $db->prepare($sql);
@@ -184,24 +182,25 @@ class Obras extends Database {
 			$sql3 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion) VALUES ('$numeroRegistro', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}')"; //Insertamos el nuevo registro con la nueva ubicación activa
 		}
 
-		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y'];
+		$camposQuitarArray = ['numero_registro', 'id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
 		}
 
 		if (isset($array['fotografia'])) {
-			$orden = ['numero_registro', 'nombre_objeto', 'fotografia', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
+			$orden = ['nombre_objeto', 'fotografia', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
 		}
 		else {
-			$orden = ['numero_registro', 'nombre_objeto', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
+			$orden = ['nombre_objeto', 'titulo', 'autor', 'datacion', 'anyo_inicial', 'anyo_final', 'descripcion_obra', 'fecha_registro', 'material', 'tecnica', 'clasificacion_generica', 'coleccion_procedencia', 'maxima_altura_cm', 'maxima_anchura_cm', 'maxima_profundidad_cm', 'nombre_museo', 'estado_conservacion', 'lugar_ejecucion', 'lugar_procedencia', 'numero_tiraje', 'otros_numeros_identificacion', 'numero_ejemplares', 'forma_ingreso', 'fecha_ingreso', 'fuente_ingreso', 'valoracion_economica', 'historia_objeto', 'bibliografia'];
 		}
 		$camposOrdenados = array_replace(array_flip($orden), $array);
 		
 		foreach ($camposOrdenados as $indice => $campo) {
 			if ($campo != "") {
 				if (!is_numeric($campo)) {
-					$camposOrdenados[$indice] = "$indice = '$campo'"; //Indice guarda el nombre del campo y campo el valor
+					$valor = '"' . $campo . '"';
+					$camposOrdenados[$indice] = $indice . " = " . $valor; //Indice guarda el nombre del campo y campo el valor
 				}
 				else {
 					$camposOrdenados[$indice] = "$indice = $campo";
@@ -244,13 +243,13 @@ class Obras extends Database {
 		return $exitoso;
 	}
 
-	public function subirFotografiaServidor($nombreCampo, $idFotografia) {
+	public function subirFotografiaServidor($nombreInput, $idFotografia) {
 		$directorio = "images/obras/";
-		$path = pathinfo($_FILES[$nombreCampo]['name']); //Obtenemos el path de la foto subida
+		$path = pathinfo($_FILES[$nombreInput]['name']); //Obtenemos el path de la foto subida
         $extension = $path['extension'];
 
 		$nombreFichero = $idFotografia . "." . $extension;
-		move_uploaded_file($_FILES[$nombreCampo]['tmp_name'], $directorio . $nombreFichero); //Movemos el fichero de la carpeta temporal a la carpeta destino
+		move_uploaded_file($_FILES[$nombreInput]['tmp_name'], $directorio . $nombreFichero); //Movemos el fichero de la carpeta temporal a la carpeta destino
 
 		return $directorio . $nombreFichero;
 	}
