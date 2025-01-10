@@ -13,41 +13,51 @@
         display: flex;
         align-items: center;
         gap: 20px;
-    
-        /*
-        border-radius: 10px;
-        width: 20vw;
-        padding-top: 1.5vw;
-        padding-bottom: 1.5vw;
-        margin-bottom: 1.7vh;
-        display: flex;*/
         
         > h2 {
             font-size: 1.5rem;
             color: #333333;
         }
         form {
-            margin: 0;
-            margin-left: 3vh;
+          margin: 0;
+          margin-left: 3vh;
+          
+          .btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
             
-            .btn {
-              padding: 8px 16px;
-              background-color: white;
-              border: 1px solid black;
-              border-radius: 4px;
-              cursor: pointer;
-              font-size: 14px;
-              
-              &:hover {
-                background-color: black;
-                color: white;
-              }
-              
-              &:active {
-                transform: translateY(1px);
-              }
+            &:hover {
+              background-color: black;
+              color: white;
+            }
+            
+            &:active {
+              transform: translateY(1px);
             }
           }
+        }
+
+        button {
+          padding: 8px 16px;
+          background-color: white;
+          border: 1px solid black;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+
+          &:hover {
+            background-color: black;
+            color: white;
+          }
+          
+          &:active {
+            transform: translateY(1px);
+          }
+        }
     }
     >:nth-child(2) {
         display: flex;

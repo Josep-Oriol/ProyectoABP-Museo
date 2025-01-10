@@ -42,6 +42,7 @@ function mostrarHijos(id, boton) {
           // Input de texto
           const inputTexto = document.createElement("input");
           inputTexto.setAttribute("type", "text");
+          inputTexto.setAttribute("class", "inputUbi");
           inputTexto.setAttribute("name", hijo.id_padre);
           inputTexto.setAttribute("id", hijo.id_ubicacion);
           inputTexto.setAttribute("value", hijo.descripcion_ubicacion);
@@ -344,5 +345,65 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   });
+
+  let btnEditarGuardar = document.getElementById("editarUbicacion");
+
+  let editando = false; 
+
+  // FUNCIONES PARA APLICAR EL ESTILO
+  const aplicarEstiloInputs = () => {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+        input.style.borderBottom = "1px solid black";
+    });
+  };
+
+  const quitarEstiloInputs = () => {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+      input.style.borderBottom = "none";
+    });
+  }
+
+  let inputsActuales = Array.from(document.querySelectorAll('input.inputUbi')).map(campo => campo.value);
+
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+        if (btnEditarGuardar.textContent === "Guardar Cambis") {
+          //aqui añado los valores al array
+          mutation.addedNodes.forEach(node => {
+            const descendientes = node.querySelectorAll?.('input.inputUbi') || [];
+            descendientes.forEach(input => inputsActuales.push(input.value));
+          });
+          aplicarEstiloInputs();
+        } else {
+          quitarEstiloInputs();
+        }
+    });
+  });
+  
+  observer.observe(document.body, {
+    childList: true, 
+    subtree: true,   
+  });
+  
+  btnEditarGuardar.addEventListener("click", () => {
+    if (!editando) {
+      aplicarEstiloInputs();
+      btnEditarGuardar.textContent = "Guardar Cambis"; 
+
+      editando = true; 
+    } else {
+      quitarEstiloInputs();
+      btnEditarGuardar.textContent = "Editar"; 
+      let inputsEditados = Array.from(document.querySelectorAll('input.inputUbi')).map(campo => campo.value);
+
+      console.log(inputsActuales)
+      console.log(inputsEditados)
+    
+      editando = false;
+    } 
+  });
+
 });
 $id_ubicacion = $data["id_ubicacion"];
