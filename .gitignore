@@ -1,10 +1,5 @@
 # Base de Datos
 *.sql
 config.php
-<<<<<<< HEAD
 *.css
 *.css.map
-=======
-*.css.map
-*.css
->>>>>>> oriol

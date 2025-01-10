@@ -13,6 +13,7 @@ function mostrarDatos(dato, filters) {
     ? "restauraciones"
     : null
 
+
   let data = {
     busqueda: dato,
     pagina: pagina,
@@ -35,6 +36,8 @@ function mostrarDatos(dato, filters) {
     .then((response) => response.json())
     .then((data) => {
 
+      let decryptedData = simpleDecrypt(data.rol, clave_secreta);      //clave desencriptada
+
       if (data.texto.length === 0) {
         noResults.style.display = "block";
         loader.style.display = "none";
@@ -44,8 +47,6 @@ function mostrarDatos(dato, filters) {
       }
 
       exposiciones = data.texto;
-
-      
 
       let popupImagen = document.getElementById("popupImagen");
       let vistaImagen = document.getElementById("vistaImagenAmpliada");
@@ -117,9 +118,15 @@ function mostrarDatos(dato, filters) {
         link3.classList.add("eliminarRegistro");
         link3.setAttribute("id", id);
 
+        
         td_botones.appendChild(link2);
-        td_botones.appendChild(link1);
-        td_botones.appendChild(link3);
+        if(decryptedData === '"administracio"' || decryptedData === '"tecnic"'){
+          td_botones.appendChild(link1);
+        }
+       
+        if (decryptedData === '"administracio"') {
+          td_botones.appendChild(link3);
+      }
 
         tr.appendChild(td_botones);
         tbody.appendChild(tr);
@@ -133,6 +140,17 @@ function mostrarDatos(dato, filters) {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+const clave_secreta = 'clave_para_encriptar_8371';
+
+function simpleDecrypt(encryptedData, key) {
+  const decodedData = atob(encryptedData); // Decodificar Base64
+  let decrypted = "";
+  for (let i = 0; i < decodedData.length; i++) {
+      decrypted += String.fromCharCode(decodedData.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+  }
+  return decrypted;
 }
 
 // Obtener el controller desde la URL
