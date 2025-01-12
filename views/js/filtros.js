@@ -11,8 +11,7 @@ function mostrarDatos(dato, filters) {
     ? "copias"
     : url.includes("Restauraciones")
     ? "restauraciones"
-    : null
-
+    : null;
 
   let data = {
     busqueda: dato,
@@ -35,8 +34,7 @@ function mostrarDatos(dato, filters) {
   })
     .then((response) => response.json())
     .then((data) => {
-
-      let decryptedData = simpleDecrypt(data.rol, clave_secreta);      //clave desencriptada
+      let decryptedData = simpleDecrypt(data.rol, clave_secreta); //clave desencriptada
 
       if (data.texto.length === 0) {
         noResults.style.display = "block";
@@ -108,9 +106,7 @@ function mostrarDatos(dato, filters) {
             ? exposicion.id_copia
             : pagina === "restauraciones"
             ? exposicion.id_restauracion
-            : null
-
-        
+            : null;
 
         tr.setAttribute("id", id);
         link1.href = data.url[0] + id;
@@ -118,15 +114,17 @@ function mostrarDatos(dato, filters) {
         link3.classList.add("eliminarRegistro");
         link3.setAttribute("id", id);
 
-        
         td_botones.appendChild(link2);
-        if(decryptedData === '"administracio"' || decryptedData === '"tecnic"'){
+        if (
+          decryptedData === '"administracio"' ||
+          decryptedData === '"tecnic"'
+        ) {
           td_botones.appendChild(link1);
         }
-       
+
         if (decryptedData === '"administracio"') {
           td_botones.appendChild(link3);
-      }
+        }
 
         tr.appendChild(td_botones);
         tbody.appendChild(tr);
@@ -142,13 +140,15 @@ function mostrarDatos(dato, filters) {
     });
 }
 
-const clave_secreta = 'clave_para_encriptar_8371';
+const clave_secreta = "clave_para_encriptar_8371";
 
 function simpleDecrypt(encryptedData, key) {
   const decodedData = atob(encryptedData); // Decodificar Base64
   let decrypted = "";
   for (let i = 0; i < decodedData.length; i++) {
-      decrypted += String.fromCharCode(decodedData.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    decrypted += String.fromCharCode(
+      decodedData.charCodeAt(i) ^ key.charCodeAt(i % key.length)
+    );
   }
   return decrypted;
 }
@@ -168,7 +168,7 @@ let dic = new Map();
 
 // Función para obtener el JSON según el controller
 async function obtenerDatos(controller) {
-  if (action in actions) {
+  if (actions.includes(action)) {
     try {
       const response = await fetch(`views/js/json/${controller}.json`);
       const data = await response.json();
@@ -467,10 +467,10 @@ function inicializarEventos() {
     botonExportar.addEventListener("click", function (event) {
       let filters = datosForm();
       let paginacion = document.querySelector("#numeroResultados");
-      
+
       let dato = inputExposiciones.value;
       const url = window.location.href;
-      
+
       let pagina = url.includes("Exposiciones")
         ? "exposiciones"
         : url.includes("Obras")

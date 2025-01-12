@@ -1,0 +1,34 @@
+{
+  "nombre": {
+    "label": "Nom",
+    "type": "text",
+    "placeholder": "Introdueix el nom",
+    "name": "op-nom",
+    "class": "nom-class",
+    "id": "id-nom"
+  },
+  "descripcion": {
+    "label": "Descripció",
+    "type": "text",
+    "placeholder": "Introdueix la descripció",
+    "name": "op-descripcio",
+    "class": "descripcio-class",
+    "id": "id-descripcio"
+  },
+  "fecha": {
+    "label": "Data",
+    "type": "date",
+    "placeholder": "Introdueix la data",
+    "name": "op-data",
+    "class": "data-class",
+    "id": "id-data"
+  },
+  "creador": {
+    "label": "Creador",
+    "type": "text",
+    "placeholder": "Introdueix el creador",
+    "name": "op-creador",
+    "class": "creador-class",
+    "id": "id-creador"
+  }
+}
