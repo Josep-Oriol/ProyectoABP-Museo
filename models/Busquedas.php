@@ -46,6 +46,12 @@ class Busquedas extends Database{
     }
 
     function busquedaCopias($pagina, $input, $filtro, $paginar){
+
+        $filtro = str_replace("fecha", "fecha_copia", $filtro);
+        $filtro = str_replace("nombre", "nombre_copia", $filtro);
+        $filtro = str_replace("descripcion", "descripcion_copia", $filtro);
+        $filtro = str_replace("cs.creador", "u.nombre", $filtro);
+
         $sql = "SELECT cs.id_copia, cs.nombre_copia, cs.descripcion_copia, cs.fecha_copia, u.nombre FROM copias_seguridad cs INNER JOIN usuarios u ON cs.fk_creador = u.id_usuario
         WHERE cs.nombre_copia LIKE '%$input%' $filtro $paginar";
         $db = $this->conectar();
@@ -61,8 +67,17 @@ class Busquedas extends Database{
     }
 
     function busquedaRestauraciones($pagina, $input, $filtro, $paginar){
+        $filtro = str_replace("numero_registre", "id_restauracion", $filtro);
+        $filtro = str_replace("nom_restaurador", "nombre_restaurador", $filtro);
+        $filtro = str_replace("data_fi", "fecha_fin_restauracion", $filtro);
+        $filtro = str_replace("data_inici", "fecha_inicio_restauracion", $filtro);
+        $filtro = str_replace("comentari", "comentario_restauracion", $filtro);
+        $filtro = str_replace("r.obra", "o.titulo", $filtro);
+
         $sql = "SELECT r.id_restauracion, r.comentario_restauracion, r.nombre_restaurador, r.fecha_inicio_restauracion, r.fecha_fin_restauracion
-        FROM restauraciones r
+        FROM restauraciones r 
+        INNER JOIN obras_restauraciones ro ON ro.fk_restauracion = r.id_restauracion
+        INNER JOIN obras o ON ro.fk_obra = o.numero_registro 
         WHERE r.comentario_restauracion LIKE '%$input%' $filtro $paginar";
         $db = $this->conectar();
 
