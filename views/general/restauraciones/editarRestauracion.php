@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <label for="nombreObra">Obra en restauració</label>
-                    <input type="text" value="<?php echo $datos['titulo'] ?>" readonly>
+                    <input type="text" value="<?php echo $datos['titulo'] ?>">
                 </div>
                 
                 <div>

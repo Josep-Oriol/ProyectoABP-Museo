@@ -24,11 +24,11 @@
                 </div>
                 <div>
                     <label for="obraRelacionada">Obra en restauració</label>
-                    <input type="text" value="<?php echo $datos['titulo'] ?>" >
+                    <input type="text" value="<?php echo $datos['titulo'] ?>" readonly>
                 </div>
                 <div>
                     <label for="obraRelacionada">Numero registre</label>
-                    <input type="text" value="<?php echo $datos['numero_registro'] ?>" >
+                    <input type="text" value="<?php echo $datos['numero_registro'] ?>" readonly>
                 </div>
             </form>
         </div>
