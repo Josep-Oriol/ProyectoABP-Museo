@@ -408,13 +408,29 @@ async function enviarDatos() {
 }
 
 function exportar(datos) {
-  const worksheet = XLSX.utils.json_to_sheet(datos); // Crear la hoja de cálculo
-  const workbook = XLSX.utils.book_new(); // Crear el libro de trabajo
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos"); // Agregar la hoja al libro
+  // Convertir los datos a CSV
+  const csv = datos.map(row => 
+    Object.values(row).map(value => 
+      typeof value === 'string' && value.includes(',') ? `"${value}"` : value
+    ).join(',')
+  ).join('\n');
 
-  // Generar y descargar el archivo Excel
-  XLSX.writeFile(workbook, "datos.xlsx");
+  // Crear un blob con el contenido del CSV
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
+  // Crear un enlace para descargar el archivo
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.setAttribute('href', url);
+  link.setAttribute('download', 'datos.csv');
+  link.style.visibility = 'hidden';
+
+  // Agregar y hacer clic en el enlace
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
+
 
 // Inicializar eventos
 function inicializarEventos() {
