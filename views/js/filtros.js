@@ -162,6 +162,7 @@ const actions = [
   "mostrarExposiciones",
   "mostrarUsuarios",
   "mostrarCopias",
+  "mostrarRestauraciones",
 ];
 
 let dic = new Map();

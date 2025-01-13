@@ -1,0 +1,50 @@
+{
+  "comentari": {
+    "label": "Comentari",
+    "type": "text",
+    "placeholder": "Introdueix el comentari",
+    "name": "op-comentari",
+    "class": "comentari-class",
+    "id": "id-comentari"
+  },
+  "nom_restaurador": {
+    "label": "Nom del Restaurador",
+    "type": "text",
+    "placeholder": "Introdueix el nom del restaurador",
+    "name": "op-nomrestaurador",
+    "class": "nomrestaurador-class",
+    "id": "id-nomrestaurador"
+  },
+  "data_inici": {
+    "label": "Data d'Inici",
+    "type": "date",
+    "placeholder": "Selecciona la data d'inici",
+    "name": "op-datainici",
+    "class": "datainici-class",
+    "id": "id-datainici"
+  },
+  "data_fi": {
+    "label": "Data de Fi",
+    "type": "date",
+    "placeholder": "Selecciona la data de fi",
+    "name": "op-datafi",
+    "class": "datafi-class",
+    "id": "id-datafi"
+  },
+  "obra": {
+    "label": "Obra",
+    "type": "text",
+    "placeholder": "Introdueix el nom de l'obra",
+    "name": "op-obra",
+    "class": "obra-class",
+    "id": "id-obra"
+  },
+  "numero_registre": {
+    "label": "Nº Registre",
+    "type": "text",
+    "placeholder": "Introdueix el Nº de registre",
+    "name": "op-nregistrestauracio",
+    "class": "nregistrestauracio-class",
+    "id": "id-nregistrestauracio"
+  }
+}
