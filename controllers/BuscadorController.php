@@ -138,6 +138,9 @@
                     break;
                 case "restauraciones":
                     $alias = "r.";
+                    break;   
+                case "copias":
+                    $alias = "cs.";
                     break;    
                 default:
                     $alias = null; // O un valor por defecto que tenga sentido
