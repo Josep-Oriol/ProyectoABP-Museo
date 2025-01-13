@@ -136,6 +136,7 @@ class ObrasController{
         $id = $_GET['id'];
         $obra = $modeloObras->mostrarObra($id);
         require_once "views/general/pdfs/word.php";
+        
     }
 }
 

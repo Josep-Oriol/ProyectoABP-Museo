@@ -301,6 +301,8 @@ if (isset($_SESSION['Rol'])) {
                             </div>
                             <div>
                                 <a href="index.php?controller=Obras&action=generarPdfBasica&id=<?php echo $id; ?>"><img src="images/download.png" alt="icono descargar"></a>
+                                <a href="index.php?controller=Obras&action=generarWord&id=<?php echo $id; ?>"><img src="images/wordIcon.png" alt="icono descargar"></a>
+
                                 <?php
                                 switch ($_SESSION['Rol']) {
                                     case 'Administració':

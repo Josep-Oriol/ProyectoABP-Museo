@@ -45,6 +45,7 @@ $checkboxParagraph = [
 ];
 
 // Títulos centrados
+
 $section->addText('FORMULARI DE PRÉSTEC PER RETORNAR AL CENTRE', $titleStyle, $centerParagraph);
 $section->addText('FORMULARIO DE PRÉSTAMO PARA DEVOLVER AL CENTRO', ['name' => 'Arial', 'size' => 10, 'italic' => true], $centerParagraph);
 $section->addText('FORMULARY OF LOAN TO RETURN TO CENTRE', $titleStyle, $centerParagraph);
@@ -138,11 +139,19 @@ $camposTecnicos = [
     [
         ['Materials:', $catalanStyle],
         ['Materials', $smallStyle],
-        ['Materials', $smallStyle],
-        ['    Datació:', $catalanStyle],
+        ['Materials', $smallStyle]
+    ],
+    [
+        ['Datació:', $catalanStyle],
         ['Datación', $smallStyle],
         ['Dating', $smallStyle]
+    ],
+    [
+        ['Necessitat d’embalatge especial ☐:', $catalanStyle],
+        ['Necesidad de embalado especial', $smallStyle],
+        ['Need of packed special', $smallStyle]
     ]
+
     
 ];
 
@@ -153,7 +162,38 @@ foreach ($camposTecnicos as $campo) {
         $textrun->addText($parte[0], $parte[1]);
         $textrun->addText('  ', $normalStyle);
     }
-    $section->addText('_________________________________________________________________________________', $normalStyle);
+    if($parte[0] == 'Author'){
+        $section->addText($obra['autor'], $normalStyle);
+    }
+    elseif($parte[0] == 'Object name and title'){
+        $section->addText($obra['nombre_objeto'].", ".$obra['titulo'], $normalStyle);
+    }
+    elseif($parte[0] == 'Inventory number'){
+        $section->addText($obra['numero_registre'], $normalStyle);
+    }
+    elseif($parte[0] == 'Dimensions (Height/Width/Depth)'){
+        if($obra['maxima_altura_cm'] != null){
+            $section->addText($obra['maxima_altura_cm']."/".$obra['maxima_anchura_cm']."/".$obra['maxima_profundidad_cm'], $normalStyle);
+        }
+        else{
+            $section->addText('_________________________________________________________________________________', $normalStyle);    
+        }
+    }
+    elseif($parte[0] == 'Materials'){
+        if($obra['material'] != null){
+            $section->addText($obra['material'], $normalStyle);
+        }
+        else{
+            $section->addText('_________________________________________________________________________________', $normalStyle);    
+        }
+    }
+    elseif($parte[0] == 'Dating'){
+        $section->addText($obra['datacion'], $normalStyle);
+    }
+    else{
+        $section->addText('_________________________________________________________________________________', $normalStyle);    
+    }
+    
 }
 
 // Segunda página
