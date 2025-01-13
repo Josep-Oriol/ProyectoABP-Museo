@@ -133,6 +133,15 @@ class ObrasController{
     public function generarLibro() {
         require_once "views/general/pdfs/libro.php";
     }
+
+    public function generarWord(){
+        require "models/Obras.php";
+        $modeloObras = new Obras;
+        $id = $_GET['id'];
+        $obra = $modeloObras->mostrarObra($id);
+        require_once "views/general/pdfs/word.php";
+        
+    }
 }
 
 ?>
