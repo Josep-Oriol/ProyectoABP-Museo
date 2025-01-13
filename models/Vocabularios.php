@@ -84,23 +84,48 @@
         }
 
         public function crearCampo($idVocabulario, $nombreCampo) {
-            $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES (:nombreCampo, :idVocabulario)";
             $db = $this->conectar();
+            $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES (:nombreCampo, :idVocabulario)";
+            
             
             try {
                 $query = $db->prepare($sql);
-                $query->bindParam(':nombreCampo', $nombreCampo, PDO::PARAM_STR); // Vincula el parámetro nombreCampo
-                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_INT); // Vincula el parámetro idVocabulario
+                $query->bindParam(':nombreCampo', $nombreCampo, PDO::PARAM_STR); 
+                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_INT);
                 $query->execute();
                 $filas = $query->rowCount();
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
-            
-            $create = $filas > 0 ? true : false;
-            return $create;
         }
-        
+
+        public function crearCampoGetty($idVocabulario, $codigo){
+            $db = $this->conectar();
+            $sql = "INSERT INTO codigos_getty (codigo, fk_nombre_vocabulario) VALUE (:codigo, :idVocabulario)";
+
+            try{
+                $query = $db->prepare($sql);
+                $query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_STR);
+                $query->execute();
+            } catch (PDOException $error) {
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+        }
+
+        public function asignarCodigoGetty($idVocabulario, $campo, $codigo){
+            $db = $this->conectar();
+            $nombreVocabulario = $this->obtenerNombreCampo($idVocabulario);
+            $sql = "UPDATE codigos_getty SET fk_campo = :campo WHERE codigo = :codigo AND fk_nombre_campo = $nombreVocabulario";
+
+            try{
+                $query = $db->prepare($sql);
+                $query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+                $query->execute();
+            } catch (PDOException $error) {
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+        }
 
         public function editarCampo($antiguoValor, $nuevoValor) {
             if ($antiguoValor != $nuevoValor) {
@@ -386,7 +411,7 @@
         
         function obtenerCodigosGetty($nombre){
             $db = $this->conectar();
-            $sql = "SELECT * FROM codigos_getty WHERE fk_nombre_campo LIKE ?";
+            $sql = "SELECT cg.codigo FROM codigos_getty cg WHERE cg.fk_nombre_vocabulario LIKE ?";
             $query = $db->prepare($sql);
             $query->execute([$nombre]);
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
