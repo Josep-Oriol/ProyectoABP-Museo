@@ -252,8 +252,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #general > :first-child > :nth-child(2) #subirImagen {
   background-color: #333333;
   color: white;
-  font-size: 17px;
-  text-align: center;
   padding: 8px;
   border-radius: 3px;
   margin-right: 15px;
@@ -286,7 +284,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #general > :first-child > :nth-child(2) #exportarEstilo button:hover {
   transform: translateY(-1px);
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
 #general > :first-child > :nth-child(2) #lupa {
   border: 2px #333333 solid;
@@ -338,6 +336,16 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   width: 25px;
 }
 #general > :first-child > :nth-child(2) #flechas img:hover {
+  cursor: pointer;
+}
+#general > :first-child > :nth-child(2) #subirImagen {
+  margin-right: 15px;
+  background-color: #333333;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
+#general > :first-child > :nth-child(2) #subirImagen:hover {
   cursor: pointer;
 }
 #general > :last-child {
@@ -1065,6 +1073,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #fichaEditarUsuario > div > div form > div:last-child > :first-child div select {
   width: 95%;
+  height: -moz-fit-content;
   height: fit-content;
   padding: 8px;
   font-size: 1em;
@@ -1230,13 +1239,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: flex;
   align-items: center;
   gap: 20px;
-  /*
-  border-radius: 10px;
-  width: 20vw;
-  padding-top: 1.5vw;
-  padding-bottom: 1.5vw;
-  margin-bottom: 1.7vh;
-  display: flex;*/
 }
 #fichaUbicaciones > :first-child > h2 {
   font-size: 1.5rem;
@@ -1259,6 +1261,21 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 #fichaUbicaciones > :first-child form .btn:active {
+  transform: translateY(1px);
+}
+#fichaUbicaciones > :first-child button {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#fichaUbicaciones > :first-child button:hover {
+  background-color: black;
+  color: white;
+}
+#fichaUbicaciones > :first-child button:active {
   transform: translateY(1px);
 }
 #fichaUbicaciones > :nth-child(2) {
@@ -1304,7 +1321,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: none;
 }
 #fichaUbicaciones > :last-child {
-  display: flex;
+  display: none;
   gap: 10px;
 }
 #fichaUbicaciones > :last-child form {
@@ -1740,7 +1757,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -1813,14 +1830,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: rgb(227.25, 227.25, 227.25);
+  background-color: #e3e3e3;
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
 
 .loader {
@@ -2157,7 +2174,7 @@ footer .div2 .web a {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -2230,14 +2247,14 @@ footer .div2 .web a {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: rgb(227.25, 227.25, 227.25);
+  background-color: #e3e3e3;
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: rgb(38.25, 38.25, 38.25);
+  background-color: #262626;
 }
 
 .popupEliminar {
@@ -2259,7 +2276,8 @@ footer .div2 .web a {
 .popupEliminar img {
   width: 64px;
   height: 64px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin-bottom: 1vh;
 }
 .popupEliminar button {
@@ -2586,7 +2604,6 @@ footer .div2 .web a {
 }
 .overlay-ubicaciones {
   display: none;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -2833,5 +2850,29 @@ body {
   width: 3vw;
   margin-bottom: 1vh;
 }
+#popUpUbicaciones .negrita {
+  font-weight: bold;
+}
 
-/*# sourceMappingURL=main.css.map */
+#popUpUbicaciones2 {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones2 img {
+  width: 3vw;
+  margin-bottom: 1vh;
+}
+#popUpUbicaciones2 .negrita {
+  font-weight: bold;
+}/*# sourceMappingURL=main.css.map */

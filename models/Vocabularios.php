@@ -146,6 +146,26 @@
                 return false;
             }
         }
+
+        public function editarUbicaciones($antiguoValor, $nuevoValor) {
+            if ($antiguoValor != $nuevoValor) {
+                $sql = "UPDATE ubicaciones SET descripcion_ubicacion = :nuevoValor WHERE descripcion_ubicacion = :antiguoValor";
+                $db = $this->conectar();
+                
+                try {
+                    $query = $db->prepare($sql);
+                    $query->bindParam(':nuevoValor', $nuevoValor, PDO::PARAM_STR);
+                    $query->bindParam(':antiguoValor', $antiguoValor, PDO::PARAM_STR);
+                    $query->execute();
+                    return true;
+                } catch (PDOException $error) {
+                    echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
         
 
         public function eliminarCampo($idCampo) {

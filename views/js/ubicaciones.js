@@ -42,6 +42,8 @@ function mostrarHijos(id, boton) {
           // Input de texto
           const inputTexto = document.createElement("input");
           inputTexto.setAttribute("type", "text");
+          inputTexto.setAttribute("class", "inputUbi");
+          inputTexto.setAttribute("readonly", "true");
           inputTexto.setAttribute("name", hijo.id_padre);
           inputTexto.setAttribute("id", hijo.id_ubicacion);
           inputTexto.setAttribute("value", hijo.descripcion_ubicacion);
@@ -82,7 +84,7 @@ function mostrarHijos(id, boton) {
           const imgHistorial = document.createElement("img");
           imgHistorial.classList.add("historial");
           imgHistorial.setAttribute("src", "images/history.png");
-          imgHistorial.setAttribute("id", "historial");
+          imgHistorial.setAttribute("id", `${hijo.id_ubicacion}`);
 
           // Contenedor para hijos
           const divSubHijos = document.createElement("div");
@@ -280,69 +282,233 @@ function mostrarActuales(data) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const botones = document.getElementsByClassName("historial");
+function recogerBotonesHistorial(){
+  let botones = document.getElementsByClassName("historial");
+  let botonesArray = Array.from(botones);
+  return botonesArray;
+}
 
+function funcionClick(botones) {
+  console.log("entra");
+  Array.from(botones).forEach((boton) => {
+    // Verificar si el botón ya tiene un eventListener asignado
+    if (!boton.dataset.listenerAdded) {
+      boton.addEventListener("click", function () {
+        verHistorial(boton.id);
+      });
+      // Marcar que este botón ya tiene un eventListener
+      boton.dataset.listenerAdded = true;
+    }
+  });
+}
+
+let botones;
+
+const observador = new MutationObserver(mutations => {
+  botones = recogerBotonesHistorial();
+  console.log(botones)
+  funcionClick(botones)
+})
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  editarUbicaciones();
+
+  botones = recogerBotonesHistorial();
+  
+  funcionClick(botones)
+  
+  let divUbicaciones = document.getElementById('divUbicaciones');
+  observador.observe(divUbicaciones, {
+    childList: true, 
+    subtree: true,   
+  });
+})
+
+
+function verHistorial(id_boton){
+  console.log("entra")
   const overlay = document.querySelector(".overlay-ubicaciones");
+  const divUbicaciones = document.querySelector(".ubicaciones-content");
+  divUbicaciones.style.display = null;
+
   if (overlay) {
-    overlay.style.display = "none";
+    overlay.style.display = "none"
+    overlay.style.position = "fixed";
   }
 
-  Array.from(botones).forEach((boton) => {
-    boton.addEventListener("click", function () {
-      let div = document.getElementById("div_" + boton.id);
-      let data = {
-        id_ubicacion: boton.id,
-      };
-      let dataJson = JSON.stringify(data);
-      overlay.style.display = "flex";
+  let div = document.getElementById("div_" + id_boton);
+  let data = {
+    id_ubicacion: id_boton,
+  };
+  let dataJson = JSON.stringify(data);
+  
+  overlay.style.display = "flex";
 
-      fetch("ajax.php?controller=Vocabularios&action=mostrarHistorial", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-        },
-        body: dataJson,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const pasadas = document.getElementById("past");
-          const actuales = document.getElementById("current");
-          console.log(data);
-          crearTabla();
-          console.log(data);
-          mostrarPasadas(data);
+  fetch("ajax.php?controller=Vocabularios&action=mostrarHistorial", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Requested-With": "XMLHttpRequest",
+    },
+    body: dataJson,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const pasadas = document.getElementById("past");
+      const actuales = document.getElementById("current");
+      console.log(data);
+      crearTabla();
+      console.log(data);
+      mostrarPasadas(data);
 
-          pasadas.addEventListener("mouseenter", () => {
-            if (!pasadas.classList.contains("clicked")) {
-              pasadas.classList.add("underline-hover");
-            }
-          });
+      pasadas.addEventListener("mouseenter", () => {
+        if (!pasadas.classList.contains("clicked")) {
+          pasadas.classList.add("underline-hover");
+        }
+      });
 
-          actuales.addEventListener("mouseenter", () => {
-            if (!actuales.classList.contains("clicked")) {
-              actuales.classList.add("underline-hover");
-            }
-          });
+      actuales.addEventListener("mouseenter", () => {
+        if (!actuales.classList.contains("clicked")) {
+          actuales.classList.add("underline-hover");
+        }
+      });
 
-          pasadas.addEventListener("click", () => {
-            actuales.classList.remove("clicked");
-            pasadas.classList.add("clicked");
-            mostrarPasadas(data);
-          });
+      pasadas.addEventListener("click", () => {
+        actuales.classList.remove("clicked");
+        pasadas.classList.add("clicked");
+        mostrarPasadas(data);
+      });
 
-          actuales.addEventListener("click", () => {
-            pasadas.classList.remove("clicked");
-            actuales.classList.add("clicked");
-            mostrarActuales(data);
+      actuales.addEventListener("click", () => {
+        pasadas.classList.remove("clicked");
+        actuales.classList.add("clicked");
+        mostrarActuales(data);
+      });
+    })
+    .catch((error) => {
+      alert("Error al cargar los datos:" + error);
+      console.error("Error al cargar los datos:", error);
+    });
+  }
+
+  function editarUbicaciones() {
+    let btnEditarGuardar = document.getElementById("editarUbicacion");
+
+    let editando = false; 
+
+    let actuales = [];
+    let editados = [];
+
+    // FUNCIONES PARA APLICAR EL ESTILO
+    const aplicarEstiloInputs = () => {
+      const inputs = document.querySelectorAll('input[type="text"]');
+      inputs.forEach(input => {
+        input.style.borderBottom = "1px solid black";
+        input.removeAttribute("readonly")
+      });
+    };
+
+    const quitarEstiloInputs = () => {
+      const inputs = document.querySelectorAll('input[type="text"]');
+      inputs.forEach(input => {
+        input.style.borderBottom = "none";
+        input.setAttribute("readonly", "true")
+      });
+    }
+
+    // FUNCIONES PARA LA LOGICA
+    let inputsActuales = [];
+    const crearArrayActuales = (inputsNuevos) => {
+      if (inputsNuevos){
+        inputsNuevos.forEach(input => {
+          inputsActuales[input.id] = input.value; // Agregar o actualizar el input en el objeto
+        });
+      }else {
+        inputsActuales = Array.from(document.querySelectorAll('input.inputUbi'))
+        .reduce((acc, campo) => {
+            acc[campo.id] = campo.value; // Usa la id como clave
+            return acc;
+        }, {});
+      }
+      return inputsActuales;
+    }
+    
+    const crearArrayEditados = () => {
+      const inputsEditados = Array.from(document.querySelectorAll('input.inputUbi'))
+      .reduce((acc, campo) => {
+          acc[campo.id] = campo.value; // Usa la id como clave
+          return acc;
+      }, {});
+      return inputsEditados;
+    }
+
+    const observer = new MutationObserver(mutations => {
+      if (btnEditarGuardar.textContent === "Guardar Cambis") { //cuando estoy en guardar cambios
+        let inputsNuevos = [];
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            // Buscar directamente todos los inputs descendientes (incluyendo el nodo actual si es un input)
+            const inputsAnidados = node.nodeType === 1
+              ? Array.from(node.querySelectorAll?.('input.inputUbi') || []).filter(input => input.tagName === 'INPUT')
+              : [];
+          
+            inputsNuevos.push(...inputsAnidados);
           });
         })
-        .catch((error) => {
-          alert("Error al cargar los datos:" + error);
-          console.error("Error al cargar los datos:", error);
-        });
+        actuales = crearArrayActuales(inputsNuevos);
+        aplicarEstiloInputs();
+      } else { //cuando estoy en editar
+        editados = crearArrayEditados();
+        quitarEstiloInputs();
+      }
     });
-  });
-});
+    
+    observer.observe(document.body, {
+      childList: true, 
+      subtree: true,   
+    });
+    
+    btnEditarGuardar.addEventListener("click", () => {
+      if (!editando) { //cuando pulsas editar
+        actuales = crearArrayActuales();
+        aplicarEstiloInputs();
+        btnEditarGuardar.textContent = "Guardar Cambis"; 
+        
+
+        editando = true; 
+      } else { //cuando pulsas guardar cambios
+        editados = crearArrayEditados();
+        quitarEstiloInputs();
+        btnEditarGuardar.textContent = "Editar";
+        console.log(actuales)
+        console.log(editados)
+
+        let data = {
+          antiguoValor: actuales,
+          nuevoValor: editados
+        }
+
+        let dataJson = JSON.stringify(data)
+
+        fetch('ajax.php?controller=Vocabularios&action=editarUbicaciones', {
+          method: 'POST',
+          headers:{
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
+          },
+          body :dataJson
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success'){
+
+            }
+        })
+
+        editando = false;
+      } 
+    });
+  }
+  
 $id_ubicacion = $data["id_ubicacion"];

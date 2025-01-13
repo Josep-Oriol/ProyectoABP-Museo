@@ -14,13 +14,6 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  /*
-  border-radius: 10px;
-  width: 20vw;
-  padding-top: 1.5vw;
-  padding-bottom: 1.5vw;
-  margin-bottom: 1.7vh;
-  display: flex;*/
 }
 #fichaUbicaciones > :first-child > h2 {
   font-size: 1.5rem;
@@ -43,6 +36,21 @@
   color: white;
 }
 #fichaUbicaciones > :first-child form .btn:active {
+  transform: translateY(1px);
+}
+#fichaUbicaciones > :first-child button {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#fichaUbicaciones > :first-child button:hover {
+  background-color: black;
+  color: white;
+}
+#fichaUbicaciones > :first-child button:active {
   transform: translateY(1px);
 }
 #fichaUbicaciones > :nth-child(2) {
@@ -88,7 +96,7 @@
   display: none;
 }
 #fichaUbicaciones > :last-child {
-  display: flex;
+  display: none;
   gap: 10px;
 }
 #fichaUbicaciones > :last-child form {
