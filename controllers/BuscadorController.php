@@ -136,6 +136,9 @@
                 case "usuarios":
                     $alias = "u.";
                     break;
+                case "restauraciones":
+                    $alias = "r.";
+                    break;    
                 default:
                     $alias = null; // O un valor por defecto que tenga sentido
             }
