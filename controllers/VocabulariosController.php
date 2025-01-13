@@ -135,15 +135,10 @@
                 require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
                 $datos = $vocabulario->mostrarVocabulario($id);
-                $nombre = $datos[0]['nombre_vocabulario'];
+                $nombreVocabulario = $datos[0]['nombre_vocabulario'];
                 $campos = $datos[1];
-                if($nombre =="Tècnica"){
-                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
-                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
-                    require_once "views/general/vocabularios/fichaVocabularioGetty.php";
-                }elseif($nombre == "Material"){
-                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
-                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
+                if($nombre =="Tècnica" || $nombre == "Material"){
+                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombreVocabulario);
                     require_once "views/general/vocabularios/fichaVocabularioGetty.php";
                 }else{
                     require_once "views/general/vocabularios/fichaVocabulario.php";
@@ -160,13 +155,17 @@
 
             $id = $data['id'];
             $nombre = $data['nombre'];
+            $codigo = isset($data['codigo']) ? $data['codigo'] : null;
 
             require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
 
             if(isset($nombre)){
-                $vocabulario->crearCampo($id, $nombre);
-
+                if($nombre == "Tècnica" || $nombre == "Material"){
+                    $vocabulario->crearCampoGetty($id, $codigo);
+                }else{
+                    $vocabulario->crearCampo($id, $nombre);
+                }
                 if($vocabulario) {
                     $response = ['status' => 'success'];
                 }else{

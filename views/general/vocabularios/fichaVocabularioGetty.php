@@ -25,6 +25,7 @@
             <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
             <datalist id="gettys">
                 <?php
+                    echo "<option value='test'></option>";
                     foreach ($codigosGetty as $codigo) {
                         echo '<option value={$codigo}></option';
                     }

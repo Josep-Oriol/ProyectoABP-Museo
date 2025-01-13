@@ -252,8 +252,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #general > :first-child > :nth-child(2) #subirImagen {
   background-color: #333333;
   color: white;
-  font-size: 17px;
-  text-align: center;
   padding: 8px;
   border-radius: 3px;
   margin-right: 15px;
@@ -338,6 +336,16 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   width: 25px;
 }
 #general > :first-child > :nth-child(2) #flechas img:hover {
+  cursor: pointer;
+}
+#general > :first-child > :nth-child(2) #subirImagen {
+  margin-right: 15px;
+  background-color: #333333;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
+#general > :first-child > :nth-child(2) #subirImagen:hover {
   cursor: pointer;
 }
 #general > :last-child {
@@ -2832,6 +2840,32 @@ body {
 #popUpUbicaciones img {
   width: 3vw;
   margin-bottom: 1vh;
+}
+#popUpUbicaciones .negrita {
+  font-weight: bold;
+}
+
+#popUpUbicaciones2 {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: #e7e7e7;
+}
+#popUpUbicaciones2 img {
+  width: 3vw;
+  margin-bottom: 1vh;
+}
+#popUpUbicaciones2 .negrita {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */
