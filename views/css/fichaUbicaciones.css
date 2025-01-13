@@ -96,7 +96,7 @@
   display: none;
 }
 #fichaUbicaciones > :last-child {
-  display: flex;
+  display: none;
   gap: 10px;
 }
 #fichaUbicaciones > :last-child form {

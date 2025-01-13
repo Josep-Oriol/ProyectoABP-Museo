@@ -1321,7 +1321,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   display: none;
 }
 #fichaUbicaciones > :last-child {
-  display: flex;
+  display: none;
   gap: 10px;
 }
 #fichaUbicaciones > :last-child form {
@@ -2604,7 +2604,6 @@ footer .div2 .web a {
 }
 .overlay-ubicaciones {
   display: none;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
