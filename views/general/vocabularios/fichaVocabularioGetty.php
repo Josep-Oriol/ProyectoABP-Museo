@@ -25,8 +25,10 @@
             <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
             <datalist id="gettys">
                 <?php
-                    foreach ($codigosGetty as $codigo) {
-                        echo '<option value={$codigo}></option';
+                    if(count($codigosGetty) > 0){
+                        foreach ($codigosGetty as $indice => $codigo) {
+                            echo "<option value='{$codigo['codigo']}'>{$codigo['codigo']}</option>";
+                        }
                     }
                 ?>
             </datalist>

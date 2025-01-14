@@ -20,7 +20,12 @@ class ObrasController{
             $modelobras = new Obras();
             $id = $_GET['id'];
             $obra = $modelobras->mostrarObra($id);
-
+            $historialUbicaciones = $modelobras->obtenerHistorialObras($id);
+            $archivosAdicionales = $modelobras->obtenerArchivosAdicionales($id);
+            $imagenes = $archivosAdicionales["imagenes"];
+            $documentos = $archivosAdicionales["documentos"];
+            $multimedia = $archivosAdicionales["multimedia"];
+            $enlaces = $archivosAdicionales["enlaces"];
             require_once "views/general/obras/fichaObra.php";
         }
         require_once "views/general/components/footer.html";
@@ -33,16 +38,55 @@ class ObrasController{
         $modelobras = new Obras();
         if ($_POST) {
             if (isset($_FILES['fotografia']['name']) && $_FILES['fotografia']['error'] == 0) {
+                $archivo = $_FILES['fotografia']['name'];
                 $idFotografia = $_POST['letra'] . $_POST['numero_registro'];
                 if (!empty($_POST['decimales'])) {
-                    $idFotografia . "." . $_POST['decimales'];
+                    $idFotografia .= "." . $_POST['decimales'];
                 }
-                $fotografia = $modelobras->subirFotografiaServidor('fotografia', $idFotografia);
+                $directorioTemporal = $_FILES['fotografia']['tmp_name'];
+                $directorioDestino = "images/obras/";
+                $fotografia = $modelobras->subirArchivoServidor($archivo, $idFotografia, $directorioTemporal, $directorioDestino);
                 $_POST['fotografia'] = $fotografia;
             }
             else {
                 $_POST['fotografia'] = 'images/iconDefaultObra.png';
             }
+            if (!empty($_FILES['archivos']['name'][0])) { //Verificar que se haya subido almenos 1 archivo adicional. Si en el sub array de name la primera posición está vacío es que ningún fichero se ha subido
+                $archivosSubidos = $_FILES['archivos']['name'];
+                $directoriosTemporales = $_FILES['archivos']['tmp_name'];
+
+                $rutasArchivosSubidos = array();
+                foreach($archivosSubidos as $indice => $archivo) {
+                    $pathArchivo = pathinfo($archivo);
+                    $nombre = $pathArchivo['filename'];
+                    $extension = $pathArchivo['extension'];
+                    $idArchivo = $nombre . "-" . $_POST['letra'] . $_POST['numero_registro'];
+                    if (!empty($_POST['decimales'])) {
+                        $idArchivo .= "." . $_POST['decimales'];
+                    }
+                    $directorioTemporal = $directoriosTemporales[$indice];
+
+                    $directorioDestino = "images/obras/arxius-adicionals/";
+
+                    $esImagen = in_array($extension, $modelobras->getExtensionesImagenes());
+					$esDocumento = in_array($extension, $modelobras->getExtensionesDocumentos());
+
+                    if ($esImagen) {
+                        $directorioDestino .= "imatges/";
+                    }
+                    else if ($esDocumento) {
+                        $directorioDestino .= "documents/";
+                    }
+                    else {
+                        $directorioDestino .= "multimedia/";
+                    }
+
+                    $rutaArchivo = $modelobras->subirArchivoServidor($archivo, $idArchivo, $directorioTemporal, $directorioDestino);
+                    array_push($rutasArchivosSubidos, $rutaArchivo);
+                }
+                $_POST['archivos'] = $rutasArchivosSubidos;
+            }
+
             $exitoso = $modelobras->crearObra($_POST);
             if ($exitoso) {
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
@@ -70,7 +114,11 @@ class ObrasController{
             $modelobras = new Obras();
             if ($_POST) {
                 if (isset($_FILES['fotografia']['name']) && $_FILES['fotografia']['error'] == 0) {
-                    $fotografia = $modelobras->subirFotografiaServidor('fotografia', $id);
+                    $archivo = $_FILES['fotografia']['name'];
+                    $directorioTemporal = $_FILES['fotografia']['tmp_name'];
+                    $directorioDestino = "images/obras/";
+                    $modelobras->eliminarFotografia($id);
+                    $fotografia = $modelobras->subirArchivoServidor($archivo, $id, $directorioTemporal, $directorioDestino);
                     $_POST['fotografia'] = $fotografia;
                 }
                 $exitoso = $modelobras->editarObra($_POST, $id);

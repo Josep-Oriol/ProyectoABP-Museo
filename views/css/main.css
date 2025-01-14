@@ -284,7 +284,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #general > :first-child > :nth-child(2) #exportarEstilo button:hover {
   transform: translateY(-1px);
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 #general > :first-child > :nth-child(2) #lupa {
   border: 2px #333333 solid;
@@ -705,6 +705,149 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   border-color: #333333;
   outline: none;
 }
+#fichaObra > form > div > div > div div a {
+  margin-bottom: 10px;
+  width: max-content;
+}
+#fichaObra > form > div > div > div div p {
+  padding: 10px;
+}
+#fichaObra > form > div > div > div div div:has(a img) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+  overflow-x: auto;
+}
+#fichaObra > form > div > div > div div div:has(a img) a {
+  width: max-content;
+  text-decoration: none;
+  color: black;
+}
+#fichaObra > form > div > div > div div div:has(a img) a img {
+  width: 100px;
+}
+#fichaObra > form > div > div > div div > div:has(video) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+}
+#fichaObra > form > div > div > div div > div:has(video) video {
+  min-width: 50%;
+}
+#fichaObra > form > div > div > div div > div:has(video) audio {
+  min-width: 50%;
+}
+#fichaObra > form > div > div > div div > div:has(input[type=file]) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #CFD1D4;
+}
+#fichaObra > form > div > div > div div > div:has(input[type=file]) img {
+  width: 15%;
+}
+#fichaObra > form > div > div > div div > div:has(input[type=file]) img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > div > div > div div > div:has(input[type=file]) span {
+  width: 100%;
+  text-align: center;
+  color: #BFBFBF;
+}
+#fichaObra > form > div > div > div div > div:has(input[type=file]) p {
+  width: 100%;
+  text-align: center;
+}
+#fichaObra > form > div > div > div div > :last-child > :nth-child(2) input, #fichaObra > form > div > div > div div > :last-child > :last-child input {
+  width: 80%;
+  padding: 3px;
+  font-size: 1em;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+#fichaObra > form > div > div > div div > :last-child > :nth-child(2) img, #fichaObra > form > div > div > div div > :last-child > :last-child img {
+  width: 20px;
+  height: 20px;
+}
+#fichaObra > form > div > div > div div > :last-child > :nth-child(2) img:hover, #fichaObra > form > div > div > div div > :last-child > :last-child img:hover {
+  cursor: pointer;
+}
+#fichaObra > form > div > div > div div > :last-child > :nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#fichaObra > form > div > div > div div > :last-child > :last-child {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-items: start;
+  max-height: fit-content;
+  overflow-y: auto;
+  padding: 5px;
+}
+#fichaObra > form > div > div > div div > :last-child > :last-child div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-height: unset;
+  overflow: unset;
+}
+#fichaObra .historial_obras_ubicaciones table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+#fichaObra .historial_obras_ubicaciones table th, #fichaObra .historial_obras_ubicaciones table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #BFBFBF;
+}
+#fichaObra .historial_obras_ubicaciones table th {
+  background-color: #333333;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+}
+#fichaObra .historial_obras_ubicaciones table tr:nth-child(even) {
+  background-color: #F4F4F4;
+}
+#fichaObra .historial_obras_ubicaciones table tr:hover {
+  background-color: #f8f8f8;
+  transition: background-color 0.3s ease;
+}
+#fichaObra .historial_obras_ubicaciones table tr td {
+  color: #333333;
+  font-size: 0.95em;
+}
+#fichaObra .historial_obras_ubicaciones table tr td:first-child {
+  font-weight: 500;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -1073,7 +1216,6 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 }
 #fichaEditarUsuario > div > div form > div:last-child > :first-child div select {
   width: 95%;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 8px;
   font-size: 1em;
@@ -1757,7 +1899,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -1830,14 +1972,14 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .loader {
@@ -2174,7 +2316,7 @@ footer .div2 .web a {
   color: white;
 }
 .form-group .btn-add-field:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
   transform: translateY(-1px);
 }
 .form-group .btn-add-field:active {
@@ -2247,14 +2389,14 @@ footer .div2 .web a {
   background-color: #f0f0f0;
 }
 .button-group .btn-reset:hover {
-  background-color: #e3e3e3;
+  background-color: rgb(227.25, 227.25, 227.25);
 }
 .button-group .btn-apply {
   background-color: #333333;
   color: white;
 }
 .button-group .btn-apply:hover {
-  background-color: #262626;
+  background-color: rgb(38.25, 38.25, 38.25);
 }
 
 .popupEliminar {
@@ -2276,8 +2418,7 @@ footer .div2 .web a {
 .popupEliminar img {
   width: 64px;
   height: 64px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   margin-bottom: 1vh;
 }
 .popupEliminar button {
@@ -2875,4 +3016,6 @@ body {
 }
 #popUpUbicaciones2 .negrita {
   font-weight: bold;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

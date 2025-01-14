@@ -10,10 +10,7 @@ class UsuariosController{
         $data = json_decode(file_get_contents('php://input'), true);
     
         // Verifica si los datos se recibieron correctamente
-        if (is_null($data)) {
-            require_once "views/general/login.php";
-            exit;
-        }else {
+        if (!is_null($data)) {
             $username = $data['username'];
             $password = $data['password'];
         
@@ -41,7 +38,8 @@ class UsuariosController{
             // Establece el encabezado JSON para que el navegador sepa que la respuesta es JSON
             header('Content-Type: application/json');
             echo json_encode($response);
-            exit;
+        }else {
+            require_once "views/general/login.php";
         }
     }
 

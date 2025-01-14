@@ -53,7 +53,7 @@ if (isset($_SESSION['Rol'])) {
                                         <div>
                                             <input type="image" src="images/guardar.png" alt="guardar cambios">
                                         </div>
-                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><button>Descartar canvis</button></a>
+                                        <a href="index.php?controller=Obras&action=editar&id=<?php echo $id; ?>" title="Editar"><button type="button">Descartar canvis</button></a>
                                 <?php
                                         break;
                                 }

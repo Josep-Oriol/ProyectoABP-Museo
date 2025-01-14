@@ -49,7 +49,16 @@ CREATE TABLE obras (
     fuente_ingreso VARCHAR(255),
     valoracion_economica DECIMAL(11,2),
     historia_objeto TEXT,
-    bibliografia TEXT
+    bibliografia TEXT,
+);
+
+CREATE TABLE archivos_obras (
+    id_archivo INT PRIMARY KEY AUTO_INCREMENT,
+    fk_obra VARCHAR(255) NOT NULL,
+    nombre_archivo VARCHAR(255),
+    tipo_archivo VARCHAR(25) NOT NULL,
+    enlace_ruta TEXT NOT NULL,
+    FOREIGN KEY (fk_obra) REFERENCES obras(numero_registro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE obras_ubicaciones (
@@ -82,7 +91,7 @@ CREATE TABLE obras_exposiciones (
 CREATE TABLE usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     foto_usuario VARCHAR(255),
-    usuario VARCHAR(255) NOT NULL,
+    usuario VARCHAR(255) NOT NULL UNIQUE,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255),
     contrasenya VARCHAR(255) NOT NULL,
@@ -151,7 +160,7 @@ CREATE TABLE codigos_getty(
   id_codigo_getty INT PRIMARY KEY AUTO_INCREMENT,
   codigo VARCHAR(255) NOT NULL UNIQUE,
   fk_nombre_vocabulario VARCHAR(255) NOT NULL,
-  fk_campo INT NOT NULL,
+  fk_campo INT,
   FOREIGN KEY (fk_nombre_vocabulario) REFERENCES vocabularios(nombre_vocabulario) ON UPDATE CASCADE,
   FOREIGN KEY (fk_campo) REFERENCES campos(id_campo) ON UPDATE CASCADE ON DELETE CASCADE
 );
