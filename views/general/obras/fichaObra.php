@@ -253,7 +253,7 @@ if (isset($_SESSION['Rol'])) {
                     </div>
                 </div>
 
-                <div>
+                <div class="historial_obras_ubicaciones">
                     <h2>Historial d'ubicacions</h2>
                     <div>
                         <table>
