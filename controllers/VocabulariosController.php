@@ -131,14 +131,15 @@
             //Controlamos que se haya pasado un identificador por la URL. 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                $nombreUrl = $_GET['nombre'];
                 //Llamamos al modelo para recoger los datos del vocabulario pasado por URL.
                 require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
                 $datos = $vocabulario->mostrarVocabulario($id);
                 $nombreVocabulario = $datos[0]['nombre_vocabulario'];
                 $campos = $datos[1];
-                if($nombre =="Tècnica" || $nombre == "Material"){
-                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombreVocabulario);
+                if($nombreVocabulario =="Tècnica" || $nombreVocabulario == "Material"){
+                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombreUrl);
                     require_once "views/general/vocabularios/fichaVocabularioGetty.php";
                 }else{
                     require_once "views/general/vocabularios/fichaVocabulario.php";
@@ -155,17 +156,12 @@
 
             $id = $data['id'];
             $nombre = $data['nombre'];
-            $codigo = isset($data['codigo']) ? $data['codigo'] : null;
 
             require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
 
             if(isset($nombre)){
-                if($nombre == "Tècnica" || $nombre == "Material"){
-                    $vocabulario->crearCampoGetty($id, $codigo);
-                }else{
-                    $vocabulario->crearCampo($id, $nombre);
-                }
+                $vocabulario->crearCampo($id, $nombre);
                 if($vocabulario) {
                     $response = ['status' => 'success'];
                 }else{
@@ -175,6 +171,28 @@
             header('Content-Type: application/json');
             echo json_encode($response);
         }
+
+        public function crearCampoGetty() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $id = $data['id'];
+            $nombre = $data['nombre'];
+
+            require_once "models/Vocabularios.php";
+                $vocabulario = new Vocabularios();
+
+            if(isset($nombre)){
+                $vocabulario->crearCampoGetty($id, $nombre);
+                if($vocabulario) {
+                    $response = ['status' => 'success'];
+                }else{
+                    $response = ['status' => 'false'];
+                }
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+
 
         public function editarCampos() {
             $data = json_decode(file_get_contents('php://input'), true);

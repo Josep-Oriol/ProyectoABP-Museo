@@ -83,6 +83,21 @@
             return $vocabulariosyCampos;
         }
 
+        public function obtenerCamposListaGetty() {
+            $sql = "SELECT * FROM codigos_getty";
+            
+            $db = $this->conectar();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute();
+            } catch (PDOException $error) {
+                echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+            }
+            $datos = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $datos;
+        }
+
         public function crearCampo($idVocabulario, $nombreCampo) {
             $db = $this->conectar();
             $sql = "INSERT INTO campos (nombre_campo, fk_vocabulario) VALUES (:nombreCampo, :idVocabulario)";
@@ -99,19 +114,24 @@
             }
         }
 
-        public function crearCampoGetty($idVocabulario, $codigo){
+        public function crearCampoGetty($idVocabulario, $codigo) {
             $db = $this->conectar();
-            $sql = "INSERT INTO codigos_getty (codigo, fk_nombre_vocabulario) VALUE (:codigo, :idVocabulario)";
-
-            try{
+            $nombreVocabulario = $this->obtenerNombreCampo($idVocabulario);
+        
+            $sql = "INSERT INTO codigos_getty (codigo, fk_nombre_vocabulario) VALUES (:codigo, :nombreVocabulario)";
+        
+            try {
                 $query = $db->prepare($sql);
                 $query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
-                $query->bindParam(':idVocabulario', $idVocabulario, PDO::PARAM_STR);
+                $query->bindParam(':nombreVocabulario', $nombreVocabulario, PDO::PARAM_STR);
                 $query->execute();
+        
+                echo "<h2>Inserción realizada correctamente.</h2>";
             } catch (PDOException $error) {
                 echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
             }
         }
+        
 
         public function asignarCodigoGetty($idVocabulario, $campo, $codigo){
             $db = $this->conectar();
