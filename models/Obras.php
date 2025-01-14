@@ -94,7 +94,7 @@ class Obras extends Database {
 	}
 
 	public function obtenerHistorialObras($numeroRegistro) {
-		$sql = "SELECT nombre_ubicacion, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE id_obra = $numeroRegistro";
+		$sql = "SELECT nombre_ubicacion, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE id_obra = '$numeroRegistro'";
 		$db = $this->conectar();
 		try {
 			$query = $db->prepare($sql);
