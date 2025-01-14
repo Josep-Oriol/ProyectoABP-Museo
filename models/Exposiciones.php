@@ -253,7 +253,7 @@ class Exposiciones extends Database{
     
         try {
             $query = $db->prepare($sql);
-            $query->bindParam(':idObra', $idObra, PDO::PARAM_INT); // Asegura que $idObra sea tratado como un entero
+            $query->bindParam(':idObra', $idObra, PDO::PARAM_STR); // Asegura que $idObra sea tratado como un entero
             $query->bindParam(':idExposicion', $idExposicion, PDO::PARAM_INT); // Asegura que $idExposicion sea tratado como un entero
             $query->execute();
             $filas = $query->rowCount();
