@@ -16,17 +16,23 @@ async function enviarDatos(datos, url) {
     return data;
 }
 
-function validarExtension(inputFichero, tipoFichero) {
+function validarExtension(fichero, tipoFichero) {
     let extensiones;
     switch (tipoFichero) {
         case "imagen":
-            extensiones = ['jpg', 'jpeg', 'png', 'webp'];
+            extensiones = ['jpg', 'jpeg', 'png', 'webp', 'tiff'];
+            break;
+        case "multimedia":
+            extensiones = ['mp4', 'mov', 'wmv', 'avi', 'mkv', 'webm', 'mp3', 'wav'];
+            break;
+        case "documento":
+            extensiones = ['pdf', 'docx', 'doc', 'odt', 'ods', 'xls', 'xlsx', 'csv', 'ppt', 'pptx', 'odp', 'txt'];
             break;
         case "sql":
             extensiones = ['sql'];
             break;
     }
-    let nombreFichero = inputFichero.files[0].name;
+    let nombreFichero = fichero.name;
     let extension = nombreFichero.split(".")[1].toLowerCase(); //La extensión se puede obtener convirtiendo el nombre del fichero en un array, obteniendo la segunda posición (1) y asegurándonos de que esté en minúsculas
     console.log(extension);
 
@@ -36,7 +42,8 @@ function validarExtension(inputFichero, tipoFichero) {
 
 function validarImagenEnviarForm(inputFichero, tipoFichero, mensajePopup) {
     let valido = false;
-    let extensionValida = validarExtension(inputFichero, tipoFichero);
+    let fichero = inputFichero.files[0];
+    let extensionValida = validarExtension(fichero, tipoFichero);
     if (extensionValida) {
         valido = true;
     }
@@ -55,7 +62,8 @@ function validarAlSubirImagen(inputFichero) {
     apartadoSubirArchivo.appendChild(mensajeError);
     mensajeError.style.display = 'none';
     inputFichero.addEventListener('change', function() {
-        let extensionValida = validarExtension(inputFichero, "imagen");
+        let fichero = inputFichero.files[0].name;
+        let extensionValida = validarExtension(fichero, "imagen");
         if (extensionValida) {
             mensajeError.style.display = 'none';
         }

@@ -1,20 +1,38 @@
+function abrirInputFile(inputFile) {
+    inputFile.click();
+}
+
+function indicarArchivoImagenSubido(inputFile, nombreArchivoSubido) {
+    nombreArchivoSubido.innerText = inputFile.files[0].name;
+    console.log(inputFile.files);
+}
+
+function mostrarArchivosSubidos(inputFile, nombreArchivosSubidos) {
+    nombreArchivosSubidos.innerText = '';
+    let archivosSubidos = inputFile.files;
+    for (let archivo of archivosSubidos) {
+        nombreArchivosSubidos.innerText += archivo.name + "\n";
+    }
+    console.log(archivosSubidos)
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    let inputFile = document.getElementById('inputFotografia');
-    let subirImagen = document.getElementById('subirImagen');
-    let nombreArchivo = document.getElementById('nombreArchivo');
+    const inputFileImagen = document.getElementById('inputFotografia');
+    const subirImagen = document.getElementById('subirImagen');
+    const nombreArchivoImagen = document.getElementById('nombreArchivo');
 
-    if (inputFile) {
-        inputFile.style.display = 'none';
+    const inputFileArchivos = document.getElementById('inputArchivosAdicionales');
+    const subirArchivos = document.getElementById('subirArchivosAdicionales');
+    const nombreArchivos = document.getElementById('nombreArchivos');
 
-        subirImagen.addEventListener('click', function() {
-            inputFile.click();
-        });
-
-        inputFile.addEventListener('change', function() {
-            if (nombreArchivo) {
-                nombreArchivo.innerHTML = inputFile.files[0].name;
-                console.log(inputFile.files);
-            }
-        });
+    if (inputFileImagen) {
+        inputFileImagen.style.display = 'none';
+        subirImagen.addEventListener('click', () => abrirInputFile(inputFileImagen));
+        inputFileImagen.addEventListener('change', () => indicarArchivoImagenSubido(inputFileImagen, nombreArchivoImagen));
+    }
+    if (inputFileArchivos) {
+        inputFileArchivos.style.display = 'none';
+        subirArchivos.addEventListener('click', () => abrirInputFile(inputFileArchivos));
+        inputFileArchivos.addEventListener('change', () => mostrarArchivosSubidos(inputFileArchivos, nombreArchivos));
     }
 });

@@ -2,6 +2,22 @@
 require_once "Database.php";
 class Obras extends Database {
 
+	private static $extensionesImagenes = ['jpg', 'jpeg', 'png', 'webp', 'tiff'];
+	private static $extensionesMultimedia = ['mp4', 'mov', 'wmv', 'avi', 'mkv', 'webm', 'mp3', 'wav'];
+	private static $extensionesDocumentos = ['pdf', 'docx', 'doc', 'odt', 'ods', 'xls', 'xlsx', 'csv', 'ppt', 'pptx', 'odp', 'txt'];
+
+	public static function getExtensionesImagenes() {
+        return self::$extensionesImagenes;
+    }
+
+	public static function getExtensionesMultimedia() {
+        return self::$extensionesMultimedia;
+    }
+
+	public static function getExtensionesDocumentos() {
+        return self::$extensionesDocumentos;
+    }
+
 	public function mostrarObras(){
 		//Obtenemos todos los datos de obras y la descripción de la ubicación mediante la unión de la tabla de obras y ubicaciones.
         $sql = "SELECT * FROM obras o INNER JOIN obras_ubicaciones ou ON ou.fk_obra = o.numero_registro
@@ -41,6 +57,42 @@ class Obras extends Database {
         return $resultado;
     }
 
+	public function obtenerArchivosAdicionales($numeroRegistro) {
+		$sql = "SELECT * FROM archivos_obras WHERE fk_obra = '$numeroRegistro'";
+
+		$db = $this->conectar();
+		try {
+			$query = $db->prepare($sql);
+			$query->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		}
+		$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		$arrayOrdenado = array();
+		$arrayOrdenado["imagenes"] = array();
+		$arrayOrdenado["documentos"] = array();
+		$arrayOrdenado["multimedia"] = array();
+		$arrayOrdenado["enlaces"] = array();
+		foreach ($resultado as $indice => $registro) {
+			switch ($registro["tipo_archivo"]) {
+				case "imagen":
+					array_push($arrayOrdenado["imagenes"], $registro);
+					break;
+				case "documento":
+					array_push($arrayOrdenado["documentos"], $registro);
+					break;
+				case "multimedia":
+					array_push($arrayOrdenado["multimedia"], $registro);
+					break;
+				case "enlace":
+					array_push($arrayOrdenado["enlaces"], $registro);
+					break;
+			}
+		}
+		return $arrayOrdenado;
+	}
+
 	public function obtenerHistorialObras($numeroRegistro) {
 		$sql = "SELECT nombre_ubicacion, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE id_obra = $numeroRegistro";
 		$db = $this->conectar();
@@ -54,7 +106,6 @@ class Obras extends Database {
 		$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
     }
-	
 
 	public function obtenerUltimoNumeroRegistro($letra) {
 		if (empty($letra)) { //Si no hay letra obtenemos el numero de registro más alto y que empiece por numeros. Con CAST lo convertimos a numero para que los ordene bien
@@ -105,9 +156,46 @@ class Obras extends Database {
 		if (!empty($array['id_exposicion'])) {
 			$sql3 = "INSERT INTO obras_exposiciones (fk_obra, fk_exposicion) VALUES ('{$array['numero_registro']}', {$array['id_exposicion']})";
 		}
+		
+		if (isset($array['archivos']) || isset($array['enlaces'])) {
+			$sql4 = "INSERT INTO archivos_obras (fk_obra, nombre_archivo, tipo_archivo, enlace_ruta) VALUES ";
+			if (isset($array['archivos'])) {
+				$archivosAdicionales = $array['archivos'];
+				
+				foreach ($archivosAdicionales as $archivo) {
+					$path = pathinfo($archivo);
+					$nombreArchivo = $path['basename'];
+					$extension = $path['extension'];
+					$esImagen = in_array($extension, self::$extensionesImagenes);
+					$esDocumento = in_array($extension, self::$extensionesDocumentos);
+
+					$tipoArchivo = '';
+					if ($esImagen) {
+						$tipoArchivo = "imagen";
+					}
+					else if ($esDocumento) {
+						$tipoArchivo = "documento";
+					}
+					else {
+						$tipoArchivo = "multimedia";
+					}
+					$sql4 .= '("' . $array['numero_registro'] . '", "' . $nombreArchivo . '", "' . $tipoArchivo . '", "' . $archivo . '"),';
+				}
+			}
+			if (isset($array['enlaces'])) {
+				$nombres = $array['nombres_enlaces'];
+				$enlaces = $array['enlaces'];
+
+				foreach($enlaces as $indice => $enlace) {
+					$nombreEnlace = $nombres[$indice];
+					$sql4 .= '(' . '"' . $array['numero_registro'] . '", "' . $nombreEnlace . '", "enlace", "' . $enlace . '"),';
+				}
+			}
+			$sql4 = substr_replace($sql4, ";", -1, 1); //Sustituimos el último carácter que es la coma, por un punto y coma
+		}
 
 		//Campos que llegan por POST pero que no son de la tabla de obras
-		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'letra', 'decimales'];
+		$camposQuitarArray = ['id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'letra', 'decimales', 'archivos', 'nombres_enlaces', 'enlaces'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
@@ -158,6 +246,14 @@ class Obras extends Database {
 			if (isset($sql3)) {
 				try {
 					$query = $db->prepare($sql3);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+			if (isset($sql4)) {
+				try {
+					$query = $db->prepare($sql4);
 					$query->execute();
 				} catch (PDOException $error) {
 					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
@@ -258,15 +354,14 @@ class Obras extends Database {
 		return $exitoso;
 	}
 
-	public function subirFotografiaServidor($nombreInput, $idFotografia) {
-		$directorio = "images/obras/";
-		$path = pathinfo($_FILES[$nombreInput]['name']); //Obtenemos el path de la foto subida
+	public function subirArchivoServidor($archivo, $idArchivo, $rutaTemporal, $rutaDestino) {
+		$path = pathinfo($archivo); //Obtenemos el path del archivo subido
         $extension = $path['extension'];
 
-		$nombreFichero = $idFotografia . "." . $extension;
-		move_uploaded_file($_FILES[$nombreInput]['tmp_name'], $directorio . $nombreFichero); //Movemos el fichero de la carpeta temporal a la carpeta destino
+		$nombreArchivo = $idArchivo . "." . $extension;
+		move_uploaded_file($rutaTemporal, $rutaDestino . $nombreArchivo); //Movemos el fichero de la carpeta temporal a la carpeta destino
 
-		return $directorio . $nombreFichero;
+		return $rutaDestino . $nombreArchivo;
 	}
 
 	public function eliminarFotografia($numeroRegistro) {

@@ -293,6 +293,85 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <h2>Arxius adicionals</h2>
+                    <div>
+                        <div>
+                            <span>Imatges</span>
+                            <div>
+                                <?php
+                                if (count($imagenes) == 0) {
+                                    echo "<p>No hi ha imatges adicionals d'aquesta obra.</p>";
+                                }
+                                else {
+                                    foreach ($imagenes as $indice => $imagen) {
+                                        echo "<a href='{$imagen['enlace_ruta']}' target='_blank'>
+                                                <img src='{$imagen['enlace_ruta']}' alt='fotografia adicional {$imagen['nombre_archivo']}'>
+                                            </a>";
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div>
+                            <span>Arxius multimèdia</span>
+                            <div>
+                                <?php
+                                if (count($multimedia) == 0) {
+                                    echo "<p>No hi ha arxius multimèdia d'aquesta obra.</p>";
+                                }
+                                else {
+                                    foreach($multimedia as $indice => $archivo) {
+                                        $pathArchivo = pathinfo($archivo['nombre_archivo']);
+                                        $extension = $pathArchivo['extension'];
+                                        if ($extension == 'mp4' || $extension == 'webm') {
+                                            echo "<video src='{$archivo['enlace_ruta']}' controls></video>";
+                                        }
+                                        else if ($extension == 'mp3' || $extension == 'wav') {
+                                            echo "<audio src='{$archivo['enlace_ruta']}' controls></audio>";
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div>
+                            <span>Documents</span>
+                            <?php
+                                if (count($documentos) == 0) {
+                                    echo "<p>No hi ha documents d'aquesta obra.</p>";
+                                }
+                                else {
+                                    foreach ($documentos as $indice => $documento) {
+                                        $pathArchivo = pathinfo($documento['nombre_archivo']);
+                                        $extension = $pathArchivo['extension'];
+                                        $imagen = ($extension == "pdf") ? "images/pdf.png" : "images/fichav2.png";
+                                        echo "<div>
+                                                <a href='{$documento['enlace_ruta']}' target='_blank'><img src='$imagen' alt='documento {$documento['nombre_archivo']}'></a>
+                                                <a href='{$documento['enlace_ruta']}' target='_blank'><span>{$documento['nombre_archivo']}</span></a>
+                                            </div>";
+                                    }
+                                }
+                            ?>
+                        </div>
+                        <div>
+                            <span>Enllaços</span>
+                            <div>
+                                <?php
+                                if (count($enlaces) == 0) {
+                                    echo "<p>No hi ha enllaços en aquesta obra.</p>";
+                                }
+                                else {
+                                    foreach($enlaces as $indice => $enlace) {
+                                        echo "<a href='{$enlace['enlace_ruta']}' target='_blank'>{$enlace['enlace_ruta']}</a>";
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
 

@@ -108,7 +108,7 @@ function validarNumeroRegistro(campoLetra, campoNumeroRegistro, campoDecimal, me
     campoDecimal.autocomplete = 'off';
 }
 
-function validarEnvioFormCrear(formCrear, inputFichero, campoLetra, campoNumeroRegistro, campoDecimal, popup, mensajePopup) {
+function validarEnvioFormCrear(formCrear, inputFichero, inputArchivos, campoLetra, campoNumeroRegistro, campoDecimal, popup, mensajePopup) {
     formCrear.addEventListener('submit', async function(event) {
         event.preventDefault();
         mensajePopup.innerText = '';
@@ -124,6 +124,12 @@ function validarEnvioFormCrear(formCrear, inputFichero, campoLetra, campoNumeroR
         }
         else {
             envioForm = numRegistroValido;
+        }
+
+        if (inputArchivos.files.length > 0) {
+            let archivosValidos = validarArchivosEnviarForm(inputArchivos, mensajePopup); //Comprobar que los archivos adicionales que se suben tengan extensiones válidas
+            envioForm = envioForm && archivosValidos;
+            console.log(archivosValidos);
         }
 
         if (envioForm) {
@@ -164,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnFichaCompleta = document.getElementById('btnFichaCompleta');
 
     const campoFichero = document.getElementById('inputFotografia');
+    const campoSubirArchivos = document.getElementById('inputArchivosAdicionales');
     const camposNumeroRegistro = document.getElementById('camposNumeroRegistro');
     const campoLetra = document.getElementById('letra');
     const campoNumeroRegistro = document.getElementById('numero_registro');
@@ -183,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (formCrear) {
         validarNumeroRegistro(campoLetra, campoNumeroRegistro, campoDecimal, mensajeErrorNumero);
-        validarEnvioFormCrear(formCrear, campoFichero, campoLetra, campoNumeroRegistro, campoDecimal, popupFormulario, mensajePopup);
+        validarEnvioFormCrear(formCrear, campoFichero, campoSubirArchivos, campoLetra, campoNumeroRegistro, campoDecimal, popupFormulario, mensajePopup);
     }
     else if (formEditar) {
         validarEnvioFormEditar(formEditar, campoFichero, popupFormulario, mensajePopup);

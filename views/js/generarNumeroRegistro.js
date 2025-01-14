@@ -59,10 +59,10 @@ async function obtenerNumeroRegistro(inputLetra, inputNumero, inputDecimal, mens
 async function validarNumEnviarForm(inputLetra, inputNumero, inputDecimal, mensajePopup) {
     let valido = false;
     if (inputNumero.value.length < 5) {
-        mensajePopup.innerText += '\nEl número de registre ha de contenir 5 dígits';
+        mensajePopup.innerText += '\nEl número de registre ha de contenir 5 dígits.';
     }
     else if (inputDecimal.value.length === 1) {
-        mensajePopup.innerText += '\nEls decimals del número de registre han de ser 2 dígits';
+        mensajePopup.innerText += '\nEls decimals del número de registre han de ser 2 dígits.';
     }
     else {
         let nuevoNumeroRegistro;

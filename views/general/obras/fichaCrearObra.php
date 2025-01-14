@@ -356,6 +356,35 @@ if (isset($_SESSION['Rol'])) {
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <h2>Arxius adicionals</h2>
+                    <div>
+                        <div>
+                            <label for="subirArchivosAdicionales">Arxius</label>
+                            <div id="subirArchivosAdicionales">
+                                <img src="images/subirArchivo.png" alt="subir archivo" title="Subir archivo">
+                                <span>PNG/JPG/JPEG/WEBP/MP4/PDF/DOCX/DOC/ODT/ODS/XLSX/XLS</span>
+                                <p id="nombreArchivos"></p>
+                                <input type="file" name="archivos[]" id="inputArchivosAdicionales" multiple>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="enlace_internet">Enllaços d'internet</label>
+                            <div id="subirEnlaces">
+                                <p id="mensajeErrorEnlace"></p>
+                                <div>
+                                    <input type="text" placeholder="Nom de l'enllaç" id="nombre_enlace">
+                                    <input type="text" placeholder="Enllaç" id="enlace">
+                                    <img src="images/mas.png" alt="añadir enlace" id="anadirEnlace">
+                                </div>
+                                <div id="enlaces">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </section>

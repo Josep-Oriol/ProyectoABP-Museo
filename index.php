@@ -25,6 +25,7 @@ session_start();
     <script src="views/js/cambiarInputFile.js"></script>
     <script src="views/js/generarNumeroRegistro.js"></script>
     <script src="views/js/validacionesFormularios/validacionesGenerales.js"></script>
+    <script src="views/js/archivosObras.js"></script>
     <script src="views/js/validacionesFormularios/validacionesObras.js"></script>
     <script src="views/js/validacionesFormularios/validacionesUsuarios.js"></script>
     <script src="views/js/gestionarCampos.js"></script>
