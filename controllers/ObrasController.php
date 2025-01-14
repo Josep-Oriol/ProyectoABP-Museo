@@ -20,6 +20,7 @@ class ObrasController{
             $modelobras = new Obras();
             $id = $_GET['id'];
             $obra = $modelobras->mostrarObra($id);
+            $historialUbicaciones = $modelobras->obtenerHistorialObras($id);
 
             require_once "views/general/obras/fichaObra.php";
         }

@@ -254,6 +254,29 @@ if (isset($_SESSION['Rol'])) {
                 </div>
 
                 <div>
+                    <h2>Historial d'ubicacions</h2>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Ubicació</th>
+                                <th>Data inici</th>
+                                <th>Data fi</th>
+                            </tr>
+                            
+                            <?php
+                                foreach($historialUbicaciones as $ubicacion) {
+                                    echo "<tr>
+                                        <td>{$ubicacion['nombre_ubicacion']}</td>
+                                        <td>{$ubicacion['fecha_inicio']}</td>
+                                        <td>{$ubicacion['fecha_fin']}</td>
+                                    </tr>";
+                                }
+                            ?>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
                     <h2>Informació Adicional</h2>
                     <div>
                         <div>

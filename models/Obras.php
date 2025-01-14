@@ -41,6 +41,21 @@ class Obras extends Database {
         return $resultado;
     }
 
+	public function obtenerHistorialObras($numeroRegistro) {
+		$sql = "SELECT nombre_ubicacion, fecha_inicio, fecha_fin FROM historial_obras_ubicaciones WHERE id_obra = $numeroRegistro";
+		$db = $this->conectar();
+		try {
+			$query = $db->prepare($sql);
+			$query->execute();
+		} catch (PDOException $error) {
+			echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+		}
+
+		$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+	
+
 	public function obtenerUltimoNumeroRegistro($letra) {
 		if (empty($letra)) { //Si no hay letra obtenemos el numero de registro más alto y que empiece por numeros. Con CAST lo convertimos a numero para que los ordene bien
 			$sql = "SELECT numero_registro FROM obras WHERE numero_registro REGEXP '^[0-9]' ORDER BY CAST(numero_registro AS FLOAT) DESC LIMIT 1";
