@@ -743,6 +743,21 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaObra > form > div > div > div div > div:has(video) audio {
   min-width: 50%;
 }
+#fichaObra > form > div > div > div div > #editarArchivosAdicionales {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#fichaObra > form > div > div > div div > #editarArchivosAdicionales div {
+  height: 100%;
+  width: auto;
+}
+#fichaObra > form > div > div > div div > #editarArchivosAdicionales div img, #fichaObra > form > div > div > div div > #editarArchivosAdicionales div video, #fichaObra > form > div > div > div div > #editarArchivosAdicionales div audio {
+  width: 150px;
+}
 #fichaObra > form > div > div > div div > div:has(input[type=file]) {
   width: 100%;
   display: flex;
@@ -767,6 +782,17 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
 #fichaObra > form > div > div > div div > div:has(input[type=file]) p {
   width: 100%;
   text-align: center;
+}
+#fichaObra > form > div > div > div div #editarEnlaces div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+#fichaObra > form > div > div > div div #editarEnlaces div input {
+  width: 100%;
 }
 #fichaObra > form > div > div > div div > :last-child > :nth-child(2) input, #fichaObra > form > div > div > div div > :last-child > :last-child input {
   width: 80%;
@@ -793,7 +819,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   justify-content: center;
   gap: 10px;
 }
-#fichaObra > form > div > div > div div > :last-child > :last-child {
+#fichaObra > form > div > div > div div > :last-child > :last-child, #fichaObra > form > div > div > div div > :last-child #editarEnlaces {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -804,7 +830,7 @@ header > nav > div > div > :last-child, header > div > div > :last-child {
   overflow-y: auto;
   padding: 5px;
 }
-#fichaObra > form > div > div > div div > :last-child > :last-child div {
+#fichaObra > form > div > div > div div > :last-child > :last-child div, #fichaObra > form > div > div > div div > :last-child #editarEnlaces div {
   width: 100%;
   display: flex;
   flex-direction: row;

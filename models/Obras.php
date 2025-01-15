@@ -293,7 +293,91 @@ class Obras extends Database {
 			$sql3 = "INSERT INTO obras_ubicaciones (fk_obra, fk_ubicacion, fecha_inicio_ubicacion) VALUES ('$numeroRegistro', {$array['id_ubicacion']}, '{$array['fecha_inicio_ubicacion']}')"; //Insertamos el nuevo registro con la nueva ubicación activa
 		}
 
-		$camposQuitarArray = ['numero_registro', 'id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y'];
+		if (isset($array['archivos']) || isset($array['enlaces'])) {
+			$sql4 = "INSERT INTO archivos_obras (fk_obra, nombre_archivo, tipo_archivo, enlace_ruta) VALUES ";
+			if (isset($array['archivos'])) {
+				$archivosAdicionales = $array['archivos'];
+				
+				foreach ($archivosAdicionales as $archivo) {
+					$path = pathinfo($archivo);
+					$nombreArchivo = $path['basename'];
+					$extension = $path['extension'];
+					$esImagen = in_array($extension, self::$extensionesImagenes);
+					$esDocumento = in_array($extension, self::$extensionesDocumentos);
+
+					$tipoArchivo = '';
+					if ($esImagen) {
+						$tipoArchivo = "imagen";
+					}
+					else if ($esDocumento) {
+						$tipoArchivo = "documento";
+					}
+					else {
+						$tipoArchivo = "multimedia";
+					}
+					$sql4 .= '("' . $numeroRegistro . '", "' . $nombreArchivo . '", "' . $tipoArchivo . '", "' . $archivo . '"),';
+				}
+			}
+			if (isset($array['enlaces'])) {
+				$nombres = $array['nombres_enlaces'];
+				$enlaces = $array['enlaces'];
+
+				foreach($enlaces as $indice => $enlace) {
+					$nombreEnlace = $nombres[$indice];
+					$sql4 .= '(' . '"' . $numeroRegistro . '", "' . $nombreEnlace . '", "enlace", "' . $enlace . '"),';
+				}
+			}
+			$sql4 = substr_replace($sql4, ";", -1, 1); //Sustituimos el último carácter que es la coma, por un punto y coma
+		}
+
+		if (isset($array['nombres_enlaces_editados'])) {
+			$nombresEditados = $array['nombres_enlaces_editados'];
+			foreach($nombresEditados as $indice => $nombre) {
+				$sql5 = "UPDATE archivos_obras SET nombre_archivo = '$nombre' WHERE id_archivo = $indice";
+				try {
+					$query = $db->prepare($sql5);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+		}
+
+		if (isset($array['enlaces_editados'])) {
+			$enlacesEditados = $array['enlaces_editados'];
+			foreach($enlacesEditados as $indice => $enlace) {
+				$sql6 = "UPDATE archivos_obras SET enlace_ruta = '$enlace' WHERE id_archivo = $indice";
+				try {
+					$query = $db->prepare($sql6);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+		}
+
+		if (isset($array['borrar_enlaces'])) {
+			$enlacesBorrar = $array['borrar_enlaces'];
+			$sql7 = "DELETE FROM archivos_obras WHERE id_archivo IN (" . implode(',', $enlacesBorrar) . ")";
+		}
+
+		if (isset($array['borrar_archivos'])) {
+			$archivosBorrar = $array['borrar_archivos'];
+			$sql8 = "SELECT enlace_ruta FROM archivos_obras WHERE id_archivo IN (" . implode(',', $archivosBorrar) . ")";
+			try {
+				$query = $db->prepare($sql8);
+				$query->execute();
+			} catch (PDOException $error) {
+				echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+			}
+			$registros = $query->fetchAll(PDO::FETCH_ASSOC);
+			foreach($registros as $registro) {
+				unlink($registro['enlace_ruta']);
+			}
+			$sql9 = "DELETE FROM archivos_obras WHERE id_archivo IN (" . implode(',', $archivosBorrar) . ")";
+		}
+
+		$camposQuitarArray = ['numero_registro', 'id_ubicacion', 'fecha_inicio_ubicacion', 'id_exposicion', 'fecha_inicio_exposicion', 'fecha_fin_exposicion', 'baja', 'causa_baja', 'fecha_baja', 'persona_autorizada', 'id_restauracion', 'fecha_inicio_restauracion', 'fecha_fin_restauracion', 'x', 'y', 'archivos', 'borrar_archivos', 'nombres_enlaces', 'enlaces', 'nombres_enlaces_editados', 'enlaces_editados', 'borrar_enlaces'];
 
 		foreach ($camposQuitarArray as $indice => $campo) {
 			unset($array[$campo]); //Eliminamos las claves del $_POST que esten dentro del array anterior
@@ -345,6 +429,36 @@ class Obras extends Database {
 					$query = $db->prepare($sql2);
 					$query->execute();
 					$query = $db->prepare($sql3);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+
+			if (isset($sql4)) {
+				$db = $this->conectar();
+				try {
+					$query = $db->prepare($sql4);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+
+			if (isset($sql7)) {
+				$db = $this->conectar();
+				try {
+					$query = $db->prepare($sql7);
+					$query->execute();
+				} catch (PDOException $error) {
+					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";
+				}
+			}
+
+			if (isset($sql9)) {
+				$db = $this->conectar();
+				try {
+					$query = $db->prepare($sql9);
 					$query->execute();
 				} catch (PDOException $error) {
 					echo "<h2>Error al ejecutar la consulta. Error: " . $error->getMessage() . "</h2>";

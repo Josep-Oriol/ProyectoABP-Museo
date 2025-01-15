@@ -379,6 +379,94 @@ if (isset($_SESSION['Rol'])) {
                     </div>
                 </div>
 
+                <div>
+                    <h2>Arxius adicionals</h2>
+                    <div>
+                        <div>
+                            <label for="subirArchivosAdicionales">Arxius</label>
+                            <p>(Selecciona un arxiu per eliminar-lo)</p>
+                            <div id="editarArchivosAdicionales">
+                                <?php
+                                foreach($archivosAdicionales as $indice => $categoria) {
+                                    echo "<div>";
+                                    foreach($categoria as $indice => $archivo) {
+                                        $nombreArchivo = $archivo['nombre_archivo'];
+                                        $idArchivo = $archivo['id_archivo'];
+                                        
+                                        if ($archivo['tipo_archivo'] != 'enlace') {
+                                            $pathArchivo = pathinfo($nombreArchivo);
+                                            $extension = $pathArchivo['extension'];
+                                        }
+
+                                        if ($archivo['tipo_archivo'] == 'imagen') {
+                                            echo "<a href='{$archivo['enlace_ruta']}' target='_blank'>
+                                                    <img src='{$archivo['enlace_ruta']}' alt='fotografia adicional $nombreArchivo'>
+                                                </a>
+                                                <input type='checkbox' name='borrar_archivos[]' value='$idArchivo'>";
+                                        }
+                                        else if ($archivo['tipo_archivo'] == 'documento') {
+                                            $imagen = ($extension == "pdf") ? "images/pdf.png" : "images/fichav2.png";
+                                            echo "<a href='{$archivo['enlace_ruta']}' target='_blank'><img src='$imagen' alt='documento $nombreArchivo'></a>
+                                                <a href='{$archivo['enlace_ruta']}' target='_blank'><span>$nombreArchivo</span></a>
+                                                <input type='checkbox' name='borrar_archivos[]' value='$idArchivo'>";
+                                        }
+                                        else if ($archivo['tipo_archivo'] == 'multimedia') {
+                                            if ($extension == 'mp4') {
+                                                echo "<video src='{$archivo['enlace_ruta']}' controls></video>
+                                                <input type='checkbox' name='borrar_archivos[]' value='$idArchivo'>";
+                                            }
+                                            else {
+                                                echo "<audio src='{$archivo['enlace_ruta']}' controls></audio>
+                                                <input type='checkbox' name='borrar_archivos[]' value='$idArchivo'>";
+                                            }
+                                        }
+                                    }
+                                    echo "</div>";
+                                }
+                                ?>
+                            </div>
+                            <div id="subirArchivosAdicionales">
+                                <img src="images/subirArchivo.png" alt="subir archivo" title="Subir archivo">
+                                <span>PNG/JPG/JPEG/WEBP/MP4/PDF/DOCX/DOC/ODT/ODS/XLSX/XLS</span>
+                                <p id="nombreArchivos"></p>
+                                <input type="file" name="archivos[]" id="inputArchivosAdicionales" multiple>
+                            </div>
+                        </div>
+                        <div>
+                            <span>Editar enllaços</span>
+                            <p>(Selecciona un enllaç per eliminar-lo)</p>
+                            <div id="editarEnlaces">
+                                <?php
+                                $enlaces = $archivosAdicionales['enlaces'];
+                                foreach($enlaces as $indice => $datosEnlace) {
+                                    $nombreEnlace = $datosEnlace['nombre_archivo'];
+                                    $enlace = $datosEnlace['enlace_ruta'];
+                                    $idEnlace = $datosEnlace['id_archivo'];
+                                    echo "<div>
+                                            <input type='text' name='nombres_enlaces_editados[$idEnlace]' value='$nombreEnlace'>
+                                            <input type='text' name='enlaces_editados[$idEnlace]' value='$enlace'>
+                                            <input type='checkbox' name='borrar_enlaces[]' value='$idEnlace'>
+                                        </div>";
+                                }
+                                ?>
+                                
+                            </div>
+                            <span>Pujar enllaços</span>
+                            <div id="subirEnlaces">
+                                <p id="mensajeErrorEnlace"></p>
+                                <div>
+                                    <input type="text" placeholder="Nom de l'enllaç" id="nombre_enlace">
+                                    <input type="text" placeholder="Enllaç" id="enlace">
+                                    <img src="images/mas.png" alt="añadir enlace" id="anadirEnlace">
+                                </div>
+                                <div id="enlaces">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </form>
     </section>
