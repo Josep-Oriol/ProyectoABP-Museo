@@ -41,7 +41,8 @@ function validarAlSubirArchivo(inputArchivos, subirArchivos) {
 }
 
 function validarArchivosEnviarForm(inputArchivos, mensajePopup) {
-    validarArchivos(inputArchivos, mensajePopup);
+    let validos = validarArchivos(inputArchivos, mensajePopup);
+    return validos;
 }
 
 function generarInput(tipo, nombre, valor) {

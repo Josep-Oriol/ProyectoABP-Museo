@@ -89,7 +89,7 @@ class ObrasController{
 
             $exitoso = $modelobras->crearObra($_POST);
             if ($exitoso) {
-                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>"; 
             }
         }
         else {
@@ -121,9 +121,42 @@ class ObrasController{
                     $fotografia = $modelobras->subirArchivoServidor($archivo, $id, $directorioTemporal, $directorioDestino);
                     $_POST['fotografia'] = $fotografia;
                 }
+                if (!empty($_FILES['archivos']['name'][0])) { //Verificar que se haya subido almenos 1 archivo adicional. Si en el sub array de name la primera posición está vacío es que ningún fichero se ha subido
+                    $archivosSubidos = $_FILES['archivos']['name'];
+                    $directoriosTemporales = $_FILES['archivos']['tmp_name'];
+    
+                    $rutasArchivosSubidos = array();
+                    foreach($archivosSubidos as $indice => $archivo) {
+                        $pathArchivo = pathinfo($archivo);
+                        $nombre = $pathArchivo['filename'];
+                        $extension = $pathArchivo['extension'];
+                        $idArchivo = $nombre . "-" . $id;
+                        
+                        $directorioTemporal = $directoriosTemporales[$indice];
+    
+                        $directorioDestino = "images/obras/arxius-adicionals/";
+    
+                        $esImagen = in_array($extension, $modelobras->getExtensionesImagenes());
+                        $esDocumento = in_array($extension, $modelobras->getExtensionesDocumentos());
+    
+                        if ($esImagen) {
+                            $directorioDestino .= "imatges/";
+                        }
+                        else if ($esDocumento) {
+                            $directorioDestino .= "documents/";
+                        }
+                        else {
+                            $directorioDestino .= "multimedia/";
+                        }
+    
+                        $rutaArchivo = $modelobras->subirArchivoServidor($archivo, $idArchivo, $directorioTemporal, $directorioDestino);
+                        array_push($rutasArchivosSubidos, $rutaArchivo);
+                    }
+                    $_POST['archivos'] = $rutasArchivosSubidos;
+                }
                 $exitoso = $modelobras->editarObra($_POST, $id);
                 if ($exitoso) {
-                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>"; 
                 }
             }
             else {
@@ -135,9 +168,9 @@ class ObrasController{
                 require_once "models/Exposiciones.php";
                 $modeloExposiciones = new Exposiciones();
                 $exposiciones = $modeloExposiciones->datosExposiciones();
+                $archivosAdicionales = $modelobras->obtenerArchivosAdicionales($id);
                 require_once "views/general/obras/fichaEditarObra.php";
             }           
-            
         }
         
         require_once "views/general/components/footer.html";
@@ -153,7 +186,7 @@ class ObrasController{
             $modelobras = new Obras();
             $exitoso = $modelobras->eliminarObra($_GET['id']);
             if ($exitoso) {
-                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>";
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?controller=Obras&action=mostrarObras'/>"; 
             }
         }
         else {
@@ -188,8 +221,5 @@ class ObrasController{
         $id = $_GET['id'];
         $obra = $modeloObras->mostrarObra($id);
         require_once "views/general/pdfs/word.php";
-        
     }
 }
-
-?>

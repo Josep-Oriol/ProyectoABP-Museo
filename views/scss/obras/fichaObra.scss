@@ -286,9 +286,35 @@
                             }
                         }
 
+                        >#editarArchivosAdicionales {
+                            @include flex-row;
+                            flex-wrap: wrap;
+                            gap: 20px;
+                            div {
+                                height: 100%;
+                                width: auto;
+                                img, video, audio {
+                                    width: 150px;
+                                }
+                            }
+                        }
+
                         > div:has(input[type="file"]) { //Campo subir fichero
                             @include cuadroSubirImagen;
                         }
+
+                        #editarEnlaces{
+                            div {
+                                @include flex-row;
+                                justify-content: center;
+                                gap: 20px;
+
+                                input {
+                                    width: 100%;
+                                }
+                            }
+                        }
+
                         >:last-child {
                             >:nth-child(2), >:last-child {
                                 input {
@@ -314,7 +340,7 @@
                                 justify-content: center;
                                 gap: 10px;
                             }
-                            >:last-child { //Div que contiene todos los enlaces agregados
+                            >:last-child, #editarEnlaces { //Div que contiene todos los enlaces agregados
                                 width: 100%;
                                 @include flex-column;
                                 align-items: start;

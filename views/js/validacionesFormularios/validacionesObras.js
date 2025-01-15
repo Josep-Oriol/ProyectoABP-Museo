@@ -129,7 +129,6 @@ function validarEnvioFormCrear(formCrear, inputFichero, inputArchivos, campoLetr
         if (inputArchivos.files.length > 0) {
             let archivosValidos = validarArchivosEnviarForm(inputArchivos, mensajePopup); //Comprobar que los archivos adicionales que se suben tengan extensiones válidas
             envioForm = envioForm && archivosValidos;
-            console.log(archivosValidos);
         }
 
         if (envioForm) {
