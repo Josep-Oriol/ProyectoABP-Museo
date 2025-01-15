@@ -12,6 +12,7 @@ if (isset($_SESSION['Rol'])) {
                     echo "
                     <div class='input-group'>
                         <input class='campo' type='text' name='{$campo['nombre_campo']}' id='{$campo['nombre_campo']}' value='{$campo['nombre_campo']}' autocomplete='off'/>
+                        <a href='#'><button type='button' class='codigosGetty' id='{$campo['nombre_campo']}'>Relacionar Getty</button></a>
                         <input class='campo-checkbox' type='checkbox' name='{$campo['nombre_campo']}_checkbox' id='{$campo['nombre_campo']}_checkbox'/>
                     </div>
                     "; 
@@ -23,14 +24,6 @@ if (isset($_SESSION['Rol'])) {
 
         <form>
             <input type="text" name='<?php echo $id; ?>' id="crearCampoInput" placeholder="+ Crear nou camp">
-            <select name="gettys" id="gettys">
-                <option value="default">Codi getty</option>
-                <?php
-                    foreach ($codigosGetty as $codigo) {
-                        echo "<option value='{$codigo['codigo']}'>{$codigo['codigo']}</option>";
-                    }                    
-                ?>
-            </select>
             <button id="crearCampo">Crear</button>
         </form>
         
@@ -47,3 +40,15 @@ if (isset($_SESSION['Rol'])) {
     echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
 }
 ?>
+
+<div class="popup-overlay">
+  <div class="popup-content">
+    <div class="popup-header">
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="popup-body">
+      <div id="codigosGetty" class="codigo-getty-list">
+      </div>
+    </div>
+  </div>
+</div>

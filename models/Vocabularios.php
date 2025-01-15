@@ -431,12 +431,25 @@
         
         function obtenerCodigosGetty($nombre){
             $db = $this->conectar();
-            $sql = "SELECT cg.codigo FROM codigos_getty cg WHERE cg.fk_nombre_vocabulario LIKE ?";
+            $sql = "SELECT cg.codigo FROM codigos_getty cg INNER JOIN vocabularios v ON cg.fk_nombre_vocabulario = v.nombre_vocabulario WHERE cg.fk_nombre_vocabulario = ? AND cg.fk_campo IS NULL";
             $query = $db->prepare($sql);
             $query->execute([$nombre]);
-            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $query->fetchAll(PDO::FETCH_COLUMN, 0);
             
-            return $res;
+        }
+
+        public function asociarCodigoGetty($codigoId, $nombre) {
+            $db = $this->conectar();
+        
+            $sql = "UPDATE codigos_getty SET fk_campo = :nombre WHERE codigo = :codigoId";
+            $query = $db->prepare($sql);
+        
+            $resultado = $query->execute([
+                ':nombre'   => $nombre,
+                ':codigoId' => $codigoId
+            ]);
+        
+            return $resultado;
         }
     }
 ?>

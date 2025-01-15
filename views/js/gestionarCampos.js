@@ -1,9 +1,16 @@
 let url = window.location.href;
 let pagina = url.includes("mostrarCamposVocabulario") ? "Vocabulario" : null;
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const nombre = params.get("nombre");
+const paramsUrl = new URLSearchParams(window.location.search);
+const id = paramsUrl.get("id");
+const nombreCampo = paramsUrl.get("nombre");
+
+const relaciones = {
+  Tècnica: "Codi Getty tècnica",
+  Material: "Codi Getty material",
+};
+
+let dataAsociar = {};
 
 if (pagina != null) {
   document.addEventListener("DOMContentLoaded", function () {
@@ -137,9 +144,7 @@ if (pagina != null) {
           (campo) => campo.value === input.value.trim()
         );
 
-        if (existeCampo) {
-          return;
-        } else {
+        if (!existeCampo) {
           let id = input.name;
           let nombre = input.value;
 
@@ -148,17 +153,19 @@ if (pagina != null) {
             nombre: nombre,
           };
 
+          let fetchurl;
           if (
-            nombre == "Codi Getty tècnica" ||
-            nombre == "Codi Getty material"
+            nombreCampo == "Codi Getty tècnica" ||
+            nombreCampo == "Codi Getty material"
           ) {
-            let fetchurl =
+            fetchurl =
               "ajax.php?controller=Vocabularios&action=crearCampoGetty";
           } else {
-            let fetchurl = "ajax.php?controller=Vocabularios&action=crearCampo";
+            fetchurl = "ajax.php?controller=Vocabularios&action=crearCampo";
           }
 
           let dataJson = JSON.stringify(data);
+
           fetch(fetchurl, {
             method: "POST",
             headers: {
@@ -298,6 +305,132 @@ if (pagina != null) {
       camposActuales = Array.from(document.querySelectorAll("input.campo")).map(
         (campo) => campo.value
       );
+    }
+
+    const botonesGetty = document.querySelectorAll(".codigosGetty");
+
+    botonesGetty.forEach((boton) => {
+      boton.addEventListener("click", function () {
+        const texto = this.getAttribute("id");
+        dataAsociar = {};
+        dataAsociar.nombreTexto = texto;
+        obtenerCodigosGetty(nombreCampo);
+      });
+    });
+
+    function obtenerCodigosGetty(nombre) {
+      let nombreCampoFetch;
+
+      if (relaciones[nombre]) {
+        nombreCampoFetch = relaciones[nombre];
+      }
+      const data = { nombre: nombreCampoFetch };
+
+      const dataJson = JSON.stringify(data);
+
+      fetch("ajax.php?controller=Vocabularios&action=obtenerCodigosGetty", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: dataJson,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Respuesta recibida:", data);
+
+          if (Array.isArray(data)) {
+            data = data[0];
+          }
+
+          if (data.status === "success") {
+            console.log("La solicitud fue exitosa");
+            mostrarCodigosGetty(data.codigos);
+          } else {
+            console.error("Error:", data.mensaje);
+          }
+        })
+        .catch((error) => console.error("Error en la petición:", error));
+    }
+
+    function mostrarCodigosGetty(data) {
+      const contenedor = document.getElementById("codigosGetty");
+      contenedor.innerHTML = "";
+
+      const codigos = Array.isArray(data) ? data : Object.values(data);
+      if (codigos.length) {
+        codigos.forEach((item) => {
+          // Crear contenedor para cada código
+          const itemDiv = document.createElement("div");
+          itemDiv.classList.add("codigo-getty-item");
+
+          // Acceder a la propiedad 'codigo' del objeto
+          const spanCodigo = document.createElement("span");
+          spanCodigo.textContent = item;
+
+          // Crear botón "Añadir"
+          const botonAgregar = document.createElement("button");
+          botonAgregar.classList.add("asociarCodigoGetty");
+          botonAgregar.setAttribute("id", item);
+          botonAgregar.textContent = "Añadir";
+
+          // Evento para el botón
+          botonAgregar.addEventListener("click", () => {
+            console.log(`Código seleccionado: ${item}`);
+            alert(`Código ${item.codigo} asociado correctamente.`);
+          });
+
+          // Agregar elementos al contenedor
+          itemDiv.appendChild(spanCodigo);
+          itemDiv.appendChild(botonAgregar);
+          contenedor.appendChild(itemDiv);
+        });
+      } else {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "No hay códigos Getty disponibles.";
+        contenedor.appendChild(mensaje);
+      }
+    }
+
+    const botonesAsociar = document.querySelectorAll(".asociarCodigoGetty");
+
+    botonesAsociar.forEach((boton) => {
+      boton.addEventListener("click", function () {
+        const codigoId = this.getAttribute("id");
+        dataAsociar.codigoGetty = codigoId;
+        asociarCodigoGetty(codigoId);
+      });
+    });
+
+    function asociarCodigoGetty(codigoId) {
+      fetch("ajax.php?controller=Vocabularios&action=asociarGetty", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: JSON.stringify(dataAsociar),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Error en la respuesta: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.status === "success") {
+            console.log(`Código ${codigoId} asociado correctamente.`);
+            alert(`Código ${codigoId} asociado correctamente.`);
+          } else {
+            console.error("Error:", data.mensaje);
+            alert("Error al asociar el código.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error en la petición:", error);
+          alert("Hubo un error en la solicitud.");
+        });
     }
   });
 }
