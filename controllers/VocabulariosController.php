@@ -131,19 +131,14 @@
             //Controlamos que se haya pasado un identificador por la URL. 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                $nombreUrl = $_GET['nombre'];
                 //Llamamos al modelo para recoger los datos del vocabulario pasado por URL.
                 require_once "models/Vocabularios.php";
                 $vocabulario = new Vocabularios();
                 $datos = $vocabulario->mostrarVocabulario($id);
-                $nombre = $datos[0]['nombre_vocabulario'];
+                $nombreVocabulario = $datos[0]['nombre_vocabulario'];
                 $campos = $datos[1];
-                if($nombre =="Tècnica"){
-                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
-                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
-                    require_once "views/general/vocabularios/fichaVocabularioGetty.php";
-                }elseif($nombre == "Material"){
-                    $nombreCampo = $vocabulario->obtenerNombreCampo($id);
-                    $codigosGetty = $vocabulario->obtenerCodigosGetty($nombre);
+                if($nombreUrl =="Tècnica" || $nombreUrl == "Material"){
                     require_once "views/general/vocabularios/fichaVocabularioGetty.php";
                 }else{
                     require_once "views/general/vocabularios/fichaVocabulario.php";
@@ -166,7 +161,6 @@
 
             if(isset($nombre)){
                 $vocabulario->crearCampo($id, $nombre);
-
                 if($vocabulario) {
                     $response = ['status' => 'success'];
                 }else{
@@ -176,6 +170,28 @@
             header('Content-Type: application/json');
             echo json_encode($response);
         }
+
+        public function crearCampoGetty() {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $id = $data['id'];
+            $nombre = $data['nombre'];
+
+            require_once "models/Vocabularios.php";
+                $vocabulario = new Vocabularios();
+
+            if(isset($nombre)){
+                $vocabulario->crearCampoGetty($id, $nombre);
+                if($vocabulario) {
+                    $response = ['status' => 'success'];
+                }else{
+                    $response = ['status' => 'false'];
+                }
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+
 
         public function editarCampos() {
             $data = json_decode(file_get_contents('php://input'), true);
@@ -304,5 +320,85 @@
             echo json_encode($respuesta);
             exit;
         }
+
+        public function obtenerCodigosGetty() {
+            header('Content-Type: application/json');
+        
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $data = json_decode(file_get_contents("php://input"), true);
+        
+                if (isset($data['nombre']) && !empty($data['nombre'])) {
+                    $nombre = $data['nombre'];
+        
+                    require_once "models/Vocabularios.php";
+                    $vocabulario = new Vocabularios();
+                    $codigos = $vocabulario->obtenerCodigosGetty($nombre);
+        
+                    if (!empty($codigos)) {
+                        echo json_encode([
+                            "status" => "success",
+                            "codigos" => array_values($codigos)
+                        ], JSON_FORCE_OBJECT);
+                    } else {
+                        echo json_encode([
+                            "status" => "vacio",
+                            "mensaje" => "No se encontraron códigos Getty."
+                        ]);
+                    }
+                } else {
+                    echo json_encode([
+                        "status" => "vacio",
+                        "mensaje" => "El nombre del vocabulario está vacío."
+                    ]);
+                }
+            } else {
+                echo json_encode([
+                    "status" => "error",
+                    "mensaje" => "Petición inválida."
+                ]);
+            }
+        }
+
+        public function asociarGetty() {
+            header('Content-Type: application/json');
+        
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $data = json_decode(file_get_contents("php://input"), true);
+        
+                // Validar que se recibió un ID
+                if (isset($data['id']) && !empty($data['id'])) {
+                    $codigoId = $data['codigoGetty'];
+                    $nombre = $data['nombreTexto'];
+        
+                    require_once "models/Vocabularios.php";
+                    $vocabulario = new Vocabularios();
+        
+                    $resultado = $vocabulario->asociarCodigoGetty($codigoId, $nombre);
+        
+                    if ($resultado) {
+                        echo json_encode([
+                            "status" => "success",
+                            "mensaje" => "Código Getty asociado correctamente."
+                        ]);
+                    } else {
+                        echo json_encode([
+                            "status" => "error",
+                            "mensaje" => "No se pudo asociar el código Getty."
+                        ]);
+                    }
+                } else {
+                    echo json_encode([
+                        "status" => "error",
+                        "mensaje" => "ID del código no proporcionado."
+                    ]);
+                }
+            } else {
+                echo json_encode([
+                    "status" => "error",
+                    "mensaje" => "Petición inválida."
+                ]);
+            }
+        }
+        
     }
 ?>

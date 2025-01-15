@@ -32,8 +32,6 @@ function agregarEventosEliminar() {
       ? "restauracion"
       : null;
 
-
-      
   // MOSTRAR POPUP
   Array.from(btnEliminar).forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -45,7 +43,6 @@ function agregarEventosEliminar() {
   });
 
   btnConfirmar.addEventListener("click", function () {
-  
     let data = {
       id: idRegistro,
       apartado: pagina,
@@ -112,6 +109,34 @@ function filtrosAvanzados() {
   }
 }
 
+function codigosGetty() {
+  const openBtns = document.querySelectorAll(".codigosGetty");
+  const cerrar = document.querySelector(".close-btn");
+  const popup = document.querySelector(".popup-overlay");
+
+  console.log(openBtns);
+
+  if (openBtns.length > 0) {
+    openBtns.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        popup.style.display = "flex";
+      });
+    });
+
+    cerrar.addEventListener("click", function () {
+      popup.style.display = "none";
+    });
+
+    if (popup) {
+      document.addEventListener("keydown", (e) => {
+        if (e.key == "Escape") {
+          popup.style.display = "none";
+        }
+      });
+    }
+  }
+}
+
 function ubicacionesHistory() {
   const cerrar = document.querySelector(".close-btn");
   const popup = document.querySelector(".overlay-ubicaciones");
@@ -136,4 +161,5 @@ document.addEventListener("DOMContentLoaded", function () {
   agregarEventosEliminar();
   filtrosAvanzados();
   ubicacionesHistory();
+  codigosGetty();
 });

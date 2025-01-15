@@ -1,18 +1,19 @@
 <?php
-    if(isset($_SESSION['Rol'])){
-    ?>
+if (isset($_SESSION['Rol'])) {
+?>
     <div id="fichaVocabulario">
         <div> 
-            <h2><?php echo $nombre; ?></h2>
+            <h2><?php echo $nombreVocabulario; ?></h2>
         </div>
         <div>
             <form id="campos">
                 <?php
                 foreach ($campos as $indice => $campo) {
                     echo "
-                    <div class='input-group' id='{$campo['nombre_campo']}'>
+                    <div class='input-group'>
                         <input class='campo' type='text' name='{$campo['nombre_campo']}' id='{$campo['nombre_campo']}' value='{$campo['nombre_campo']}' autocomplete='off'/>
-                        <input class='campo-checkbox' type='checkbox' name='{$campo['nombre_campo']}_checkbox' id='{$campo['nombre_campo']}'/>
+                        <a href='#'><button type='button' class='codigosGetty' id='{$campo['nombre_campo']}'>Relacionar Getty</button></a>
+                        <input class='campo-checkbox' type='checkbox' name='{$campo['nombre_campo']}_checkbox' id='{$campo['nombre_campo']}_checkbox'/>
                     </div>
                     "; 
                 }
@@ -22,27 +23,32 @@
         </div>
 
         <form>
-            <input type="text" name='<?php echo $id ?>' id="crearCampoInput" placeholder="+ Crear nou camp" required>
-            <datalist id="gettys">
-                <?php
-                    if(count($codigosGetty) > 0){
-                        foreach ($codigosGetty as $indice => $codigo) {
-                            echo "<option value='{$codigo['codigo']}'>{$codigo['codigo']}</option>";
-                        }
-                    }
-                ?>
-            </datalist>
+            <input type="text" name='<?php echo $id; ?>' id="crearCampoInput" placeholder="+ Crear nou camp">
             <button id="crearCampo">Crear</button>
         </form>
+        
         <div>
             <button id="editar">Guardar cambios</button>
             <button id="eliminarCampos">Eliminar</button>
-            <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>"><button>Descartar cambios</button></a>
+            <a href="index.php?controller=Vocabularios&action=mostrarCamposVocabulario&id=<?php echo $id; ?>">
+                <button type="button">Descartar cambios</button>
+            </a>
         </div>
     </div>
-    <?php
-    }
-    else {
-        echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
-    }
+<?php
+} else {
+    echo "<meta http-equiv='refresh' content='0; URL=index.php'/>";
+}
 ?>
+
+<div class="popup-overlay">
+  <div class="popup-content">
+    <div class="popup-header">
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="popup-body">
+      <div id="codigosGetty" class="codigo-getty-list">
+      </div>
+    </div>
+  </div>
+</div>

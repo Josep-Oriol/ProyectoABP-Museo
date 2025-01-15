@@ -1,0 +1,86 @@
+@import "../utils/variables.scss";
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: $color_blanc;
+  width: 50%;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+
+  @starting-style {
+    scale: 0;
+  }
+}
+
+.popup-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: $color_claro2;
+
+  &:hover {
+    color: $color_oscuro;
+  }
+}
+
+.popup-body {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-top: 10px;
+}
+
+.codigo-getty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.codigo-getty-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color_claro3;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $color_claro2;
+
+  span {
+    font-weight: bold;
+    color: $color_oscuro;
+  }
+}
+
+.asociarCodigoGetty {
+  background-color: $color_oscuro;
+  color: $color_blanc;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($color_oscuro, 10%);
+  }
+}

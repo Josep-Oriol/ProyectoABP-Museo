@@ -3,7 +3,7 @@
     ?>
     <div id="fichaVocabulario">
         <div>
-            <h2><?php echo $nombre; ?></h2>
+            <h2><?php echo $nombreVocabulario; ?></h2>
         </div>
         <div>
             <form id="campos">
