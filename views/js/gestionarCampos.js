@@ -2,7 +2,7 @@ let url = window.location.href;
 let pagina = url.includes("mostrarCamposVocabulario") ? "Vocabulario" : null;
 
 const paramsUrl = new URLSearchParams(window.location.search);
-const id = paramsUrl.get("id");
+let id = paramsUrl.get("id");
 const nombreCampo = paramsUrl.get("nombre");
 
 const relaciones = {
